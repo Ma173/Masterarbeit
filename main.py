@@ -2,7 +2,7 @@ import requests, re, itertools
 
 # Defining all lists of websites to be web scraped
 
-websitesListDefault=["https://www.gansel-rechtsanwaelte.de/","http://www.kanzlei-illner.de/","http://www.hpk-recht.de/","https://www.himmelmann-pohlmann.de/"]
+websitesListDefault=["https://www.gansel-rechtsanwaelte.de/","http://www.kanzlei-illner.de/","http://www.hpk-recht.de/","https://www.himmelmann-pohlmann.de/","http://www.anwaltskanzlei-dressler.de/","http://www.anwalt.de/wolff-partner","http://www.advopartner.de/","http://www.anwaelte-mayer.com/","http://www.kanzlei-platanenhof.de/","http://www.rae-teigelack.de/"]
 websitesListChancelleryComparison1=["https://www.gansel-rechtsanwaelte.de/","http://www.kanzlei-illner.de/"]
 websitesListChancelleryComparison2=["http://www.hpk-recht.de/","https://www.gansel-rechtsanwaelte.de/"]
 websitesListChancelleryComparison3=["https://www.himmelmann-pohlmann.de/","http://www.hpk-recht.de/"]
@@ -32,12 +32,10 @@ def textComparisonGetFeatures(texts):
   searchParameterLimited = '="(.*)"'
   websitesFeaturesList=[]
   for text in texts:
-    websitesFeaturesList.append(re.findall(searchParameterLimited,text))
+    print()
+    websitesFeaturesList.append(set(re.findall(searchParameterLimited,text)))
   commonFeatures=[]
-  list(itertools.combinations(websitesListDefault, r))
-  #while commonFeatures.isEmpty():
-  #  for 
-  commonFeatures = set(websitesFeaturesList[0]).intersection(websitesFeaturesList[1],websitesFeaturesList[2])#websitesFeaturesList[1],websitesFeaturesList[2])
+  commonFeatures = set.intersection(*websitesFeaturesList)#websitesFeaturesList[1],websitesFeaturesList[2])
   return commonFeatures
 
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
