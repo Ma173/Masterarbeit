@@ -97,6 +97,10 @@ print("Matching features: ",list(matchingFeatures)[:10])
 
 
 userinput=""
+loadedFeatures=[]
+def loadFeatures(filename):
+  loadedFeatures=open(filename,'r').readlines()
+  return loadedFeatures
 
 def userSuggestedFeatures ():
   userinputFeatures=""
@@ -111,9 +115,11 @@ def userSuggestedFeatures ():
 
 
 while userinput!="exit":
-  userinput=input("feature: Scanning Features from the websites' source codes\nexit: Exiting the program\n")
+  userinput=input("feature: Scan features from the websites' source codes\nload: Load all previously saved features\nexit: Exit the program\n")
   if userinput=="feature":
     userSuggestedFeatures()
+  elif userinput=="load":
+    loadedFeatures = loadFeatures("features.txt")
 
 #print(websitesTexts)
 #print(getMultipleWebsiteData(websitesListDefault))
