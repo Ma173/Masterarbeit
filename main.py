@@ -1,4 +1,4 @@
-import requests, re, itertools
+import requests, re
 
 # Defining all lists of websites to be web scraped
 
@@ -8,6 +8,7 @@ websitesListChancelleryComparison1=["https://www.gansel-rechtsanwaelte.de/","htt
 websitesListChancelleryComparison2=["http://www.hpk-recht.de/","https://www.gansel-rechtsanwaelte.de/"]
 websitesListChancelleryComparison3=["https://www.himmelmann-pohlmann.de/","http://www.hpk-recht.de/"]
 websitesListGoogle=["http://www.google.de"]
+
 
 # The function to get the text of a single website
 def getSingleWebsiteData(url):
@@ -51,10 +52,18 @@ def getChancelleryName(textfile):
 def textComparisonGetFeatures(texts):
   print("Extracting common features")
   searchParameterWhole = '=".*"'
-  searchParameterLimited = '="(.*)"'
+  searchParameterLimited = '="(.+)"'
+  searchParameter2 = '<(.+)>'
   websitesFeaturesList=[]
   for text in texts:
-    websitesFeaturesList.append((text[0],set(re.findall(searchParameterLimited,text[1]))))
+    foundFeatures = re.findall(searchParameter2,text[1])
+    # Converting the list of features into a set for removing duplicates easily and then converting it into a list again
+    foundFeatures = list(set(foundFeatures))
+    websiteName = text[0]
+    websitesFeaturesList.append((websiteName,set(foundFeatures)))
+    print("\n- {} features in website text '{}'".format(len(foundFeatures),websiteName))
+    for feature in foundFeatures:
+      print("\t",feature)
   commonFeatures=[]
   #print("Type of websitesFeaturesList:",type(websitesFeaturesList))
   # Struktur: Liste von 1 Tupel von 2 Strings
@@ -66,8 +75,8 @@ def textComparisonGetFeatures(texts):
   for textSet in websitesFeaturesList:
     featuresListTexts.append(textSet[1])
     commonFeatures = set.intersection(*featuresListTexts)#websitesFeaturesList[1],websitesFeaturesList[2])
-  for featureListText in featuresListTexts:
-    print("\n\n",featureListText)
+  ##for featureListText in featuresListTexts:
+  ##  print("\n\n",featureListText)
   return commonFeatures
 
 # Comparing a list of website texts
@@ -84,11 +93,33 @@ def textWithNameComparisonGetFeatures(texts):
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
 websitesTexts = getMultipleWebsiteDataWithWebsiteName(websitesListWithChancelleryName[:5])
 matchingFeatures=textComparisonGetFeatures(websitesTexts)
-print(list(matchingFeatures)[:10])
+print("Matching features: ",list(matchingFeatures)[:10])
 
+
+userinput=""
+
+def userSuggestedFeatures ():
+  userinputFeatures=""
+  while userinputFeatures!="exit":
+    userinputFeatures=input("\n\nFill in the feature you want to search for. Otherwise type in 'exit' to exit to the program's main loop.\n")
+    if userinputFeatures!="exit":
+      counterList=[]
+      for i in range(len( websitesTexts)):
+        currentWebsiteText=websitesTexts[i]
+        print("{}: {} matches with the feature you're looking for.\n".format(currentWebsiteText[0],currentWebsiteText[1].count(userinputFeatures)))
+
+
+
+while userinput!="exit":
+  userinput=input("feature: Scanning Features from the websites' source codes\nexit: Exiting the program\n")
+  if userinput=="feature":
+    userSuggestedFeatures()
+
+#print(websitesTexts)
 #print(getMultipleWebsiteData(websitesListDefault))
 
 # TODO: Aktuell werden ja nur die Features gesammelt, daher als nächstes:
-# die Fehler des Codes (TypeError, obwohl das mit dem Sternchen als Operator, um die Liste aufzuschlüsseln eigentlich behoben sein sollte);
 # die Features nach Nützlichkeit priorisieren
 # auch die Qualität der durch die priorisierten Features eingeholten Informationen (Kanzleiname, Telefonnummer, etc.) bewerten
+
+#TODO: Features finden über verschiedene Rahmenzeichen
