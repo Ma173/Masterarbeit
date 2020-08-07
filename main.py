@@ -17,18 +17,6 @@ def getSingleWebsiteData(url):
   print("\tDone gathering data.")
   return websiteText
 
-# Getting the texts of multiple websites
-def getMultipleWebsiteData(urllist):
-  print("Gathering text data of {} websites...".format(len(urllist)))
-  websitesTexts=[]
-  # Iterating through all websites (Website Name & actual url) and saving a list of website name and website text to a list
-  for i in range(len(urllist)):
-    website =urllist[i]
-    print("\n\t{} of {}".format(i,len(urllist)))
-    websitesTexts.append([website[1],getSingleWebsiteData(website[0])])
-  print("Done gathering text data of multiple websites.")
-  return websitesTexts
-
 def getMultipleWebsiteDataWithWebsiteName(urllist):
   print("Gathering text data of {} websites...".format(len(urllist)))
   websitesTexts=[]
@@ -48,22 +36,44 @@ def getChancelleryName(textfile):
   print("Done getting chancellery name.")
   return chancelleryName
 
+overlappingFeaturesDict={}
+
+
+
+def compareWebsitesFeatures(websitesFeaturesList):
+  ''' for i in range(len(websitesFeaturesList)):
+    currentWebsite=websitesFeaturesList[i]
+    currentWebsiteName=currentWebsite[0]
+    currentWebsiteFeatures=currentWebsite[1]
+    for k in range (len(currentWebsiteFeatures)):
+      for l in range '''
+from itertools import chain
+from collections import defaultdict
+
+def frequency(*lists):
+    counter = defaultdict(int)
+    for x in chain(*lists):
+        counter[x] += 1
+    return [key for (key, value) in 
+        sorted(counter.items(), key=lambda kv: (kv[1], kv[0]), reverse=True)]
+
+websitesFeaturesList=[]
 # Comparing a list of website texts
 def textComparisonGetFeatures(texts):
   print("Extracting common features")
   searchParameterWhole = '=".*"'
   searchParameterLimited = '="(.+)"'
   searchParameter2 = '<(.+)>'
-  websitesFeaturesList=[]
+  searchParameter3 = '="(.+)"'
   for text in texts:
-    foundFeatures = re.findall(searchParameter2,text[1])
+    foundFeatures = re.findall(searchParameter3,text[1])
     # Converting the list of features into a set for removing duplicates easily and then converting it into a list again
     foundFeatures = list(set(foundFeatures))
     websiteName = text[0]
     websitesFeaturesList.append((websiteName,set(foundFeatures)))
     print("\n- {} features in website text '{}'".format(len(foundFeatures),websiteName))
-    for feature in foundFeatures:
-      print("\t",feature)
+    #for feature in foundFeatures:
+    #  print("\t",feature)
   commonFeatures=[]
   #print("Type of websitesFeaturesList:",type(websitesFeaturesList))
   # Struktur: Liste von 1 Tupel von 2 Strings
@@ -79,21 +89,19 @@ def textComparisonGetFeatures(texts):
   ##  print("\n\n",featureListText)
   return commonFeatures
 
-# Comparing a list of website texts
-def textWithNameComparisonGetFeatures(texts):
-  searchParameterWhole = '=".*"'
-  searchParameterLimited = '="(.*)"'
-  websitesFeaturesList=[]
-  for text in texts:
-    websitesFeaturesList.append([text[0],set(re.findall(searchParameterLimited,text[1]))])
-  commonFeatures=[]
-  commonFeatures = set.intersection(*websitesFeaturesList)#websitesFeaturesList[1],websitesFeaturesList[2])
-  return commonFeatures
-
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
 websitesTexts = getMultipleWebsiteDataWithWebsiteName(websitesListWithChancelleryName[:5])
 matchingFeatures=textComparisonGetFeatures(websitesTexts)
 print("Matching features: ",list(matchingFeatures)[:10])
+websitesListOfFeaturesWithoutWebsitename=[]
+for i in range(len(websitesFeaturesList)):
+  print(type(websitesFeaturesList))
+  for element in (websitesFeaturesList):
+    print("\t",type(element))
+  if i==0: print("Erste Liste fängt so an:",websitesFeaturesList[i][:30])
+  websitesListOfFeaturesWithoutWebsitename.append(list(websitesFeaturesList[i][1]))
+
+print(frequency(list(websitesListOfFeaturesWithoutWebsitename)))
 
 
 userinput=""
@@ -129,3 +137,4 @@ while userinput!="exit":
 # auch die Qualität der durch die priorisierten Features eingeholten Informationen (Kanzleiname, Telefonnummer, etc.) bewerten
 
 #TODO: Features finden über verschiedene Rahmenzeichen
+#TODO Die Art überarbeiten wie da Listen und Tupel bei der websitesFeaturesList zusammengemischt werden; die Art die Variable zu bespeichern überarbeiten. Aktuell sind in einer liste (webseite) 4 Tupel, warum auch immer
