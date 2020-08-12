@@ -50,11 +50,12 @@ def compareWebsitesFeatures(websitesFeaturesList):
 from itertools import chain
 from collections import defaultdict
 
-def frequency(*lists):
+# Getting the frequency of all elements of multiple lists. Returns tuples of list item and count, sorted by most frequent list item
+def frequency(lists): # Notice: If the input is lists (rather than currently a list of lists), insert an asterisk before "lists" -> def frequency(*lists):
     counter = defaultdict(int)
     for x in chain(*lists):
         counter[x] += 1
-    return [key for (key, value) in 
+    return [(key,value) for (key, value) in 
         sorted(counter.items(), key=lambda kv: (kv[1], kv[0]), reverse=True)]
 
 websitesFeaturesList=[]
@@ -82,6 +83,7 @@ def textComparisonGetFeatures(texts):
   #    print(type(tupel))
   featuresListTexts = []
   
+  # Gaining the common features of *all* texts through intersection. Might lead to very few hits
   for textSet in websitesFeaturesList:
     featuresListTexts.append(textSet[1])
     commonFeatures = set.intersection(*featuresListTexts)#websitesFeaturesList[1],websitesFeaturesList[2])
@@ -91,18 +93,21 @@ def textComparisonGetFeatures(texts):
 
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
 websitesTexts = getMultipleWebsiteDataWithWebsiteName(websitesListWithChancelleryName[:5])
-matchingFeatures=textComparisonGetFeatures(websitesTexts)
+matchingFeatures = textComparisonGetFeatures(websitesTexts)
 print("Matching features: ",list(matchingFeatures)[:10])
 websitesListOfFeaturesWithoutWebsitename=[]
+print("Type of websitesFeaturesList:",type(websitesFeaturesList))
 for i in range(len(websitesFeaturesList)):
-  print(type(websitesFeaturesList))
-  for element in (websitesFeaturesList):
-    print("\t",type(element))
-  if i==0: print("Erste Liste fängt so an:",websitesFeaturesList[i][:30])
+  print("\t",i,type(websitesFeaturesList[i]))
+  #if i==0: print("Erste Liste fängt so an:",websitesFeaturesList[i][:2])
   websitesListOfFeaturesWithoutWebsitename.append(list(websitesFeaturesList[i][1]))
 
-print(frequency(list(websitesListOfFeaturesWithoutWebsitename)))
-
+featureFrequency = frequency(websitesListOfFeaturesWithoutWebsitename)
+featureFrequencyTop = []
+for featurePairs in featureFrequency:
+  if featurePairs[1]>1:
+    featureFrequencyTop.append(featurePairs)
+print("All features that occur more than in just one text:",featureFrequencyTop)
 
 userinput=""
 loadedFeatures=[]
@@ -119,6 +124,15 @@ def userSuggestedFeatures ():
       for i in range(len( websitesTexts)):
         currentWebsiteText=websitesTexts[i]
         print("{}: {} matches with the feature you're looking for.\n".format(currentWebsiteText[0],currentWebsiteText[1].count(userinputFeatures)))
+        userinputDetail=""
+      while userinputDetail!="exit":
+        userinputDetail = input("Type in the feature again for a detailed output of found features. Otherwise type in 'exit'.\n")
+        if userinputDetail!="exit":
+          for i in range(len(websitesListOfFeaturesWithoutWebsitename)):
+            currentWebsiteText=websitesTexts[i]
+            for feature in websitesListOfFeaturesWithoutWebsitename[i]:
+              if re.search(userinputDetail,feature):
+                print("{}: This is the full feature occurence you're looking for:{}.\n".format(currentWebsiteText[0],re.findall(userinputDetail,feature)))
 
 
 
