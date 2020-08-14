@@ -2,15 +2,27 @@ def sortDict(inputdict):
   listofTuples = sorted(inputdict.items() , reverse=True,  key=lambda x: x[1])
   return listofTuples
 
-def firstX(minimumCount,listOfTuples):
+def first_with_x_count(minimumCount,listOfTuples):
   exportlist=[]
   for tuple in listOfTuples:
     if tuple[1]>=minimumCount:
       exportlist.append(tuple)
   return exportlist
 
-def loadFile(filename):
+def loadFromFile(filename):
   loadedFileContents=open(filename,'r')
   return loadedFileContents
-def saveFile(filename):
-  contentToSave = open(filename, 'w')
+
+def saveListToFile(list,filename):
+  f= open(filename,"w+")
+  for listElement in list:
+     f.write(listElement+"\n")
+  f.close()
+
+def compare_strings(mylist):
+  from difflib import SequenceMatcher
+  import itertools
+  if len(mylist) < 2: return 0.0
+  total = sum(SequenceMatcher(None, a, b).ratio() for a, b in itertools.combinations(mylist, 2))
+  cnt = (len(mylist) * (len(mylist)-1)) // 2
+  return total / cnt

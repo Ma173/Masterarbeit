@@ -1,6 +1,6 @@
 import requests, re
 from tryout import nGram
-from toolbox import sortDict, firstX, loadFile
+from toolbox import sortDict, first_with_x_count, loadFromFile,compare_strings, saveListToFile
 
 # Defining all lists of websites to be web scraped
 
@@ -95,6 +95,8 @@ def textComparisonGetFeatures(texts):
 
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
 websitesTexts = getMultipleWebsiteDataWithWebsiteName(websitesListWithChancelleryName[:5])
+saveListToFile(websitesTexts,"websitesTexts")
+
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
 print("Matching features: ",list(matchingFeatures)[:10])
 websitesListOfFeaturesWithoutWebsitename=[]
@@ -142,9 +144,10 @@ if usereval==True:
     if userinput=="feature":
       userSuggestedFeatures()
     elif userinput=="load":
-      loadedFeatures = loadFile("features.txt").readlines()
+      loadedFeatures = loadFromFile("features.txt").readlines()
 
-print(firstX(5,sortDict(nGram(websitesTexts))))
+ngrams=first_with_x_count(5,sortDict(nGram(6,websitesTexts)))
+print(compare_strings([ngrams[0],ngrams[1]]))
 
 #print(websitesTexts)
 #print(getMultipleWebsiteData(websitesListDefault))
