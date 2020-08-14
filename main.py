@@ -1,6 +1,6 @@
 import requests, re
 from tryout import nGram
-from toolbox import sortDict, first_with_x_count, loadFromFile,compare_strings, saveListOfTuplesToFile,loadListOfTuplesFromFile, getShortestItem
+from toolbox import sortDict, first_with_x_count, loadFromFile,similarityOfStrings, saveListOfTuplesToFile,loadListOfTuplesFromFile, getShortestItem
 
 # Defining all lists of websites to be web scraped
 
@@ -153,12 +153,22 @@ if usereval==True:
       loadedFeatures = loadFromFile("features.txt").readlines()
 
 ngrams=first_with_x_count(5,sortDict(nGram(6,websitesTexts)))
+tooHighSimilarityCount=0
+for i in range(len(ngrams)):
+  ngramName=ngrams[i][0]
+  for k in range(len(ngrams)):
+    comparedName=ngrams[k][0]
+    similarity=similarityOfStrings([ngramName,comparedName],int)
+    if similarity>0.5:
+      #print("Similarity between '{}' and '{}' too high ({})!".format(ngramName,comparedName,similarity))
+      tooHighSimilarityCount+=1
+print("Too high similarity count:",tooHighSimilarityCount)
+ngramsClean=[]
 print("-----------")
 print(ngrams[:20])
-print(compare_strings([ngrams[0],ngrams[1]]))
-print(compare_strings([ngrams[1],ngrams[2]]))
-print(compare_strings(['title=','itle="']))
-print(compare_strings(['title=','itle="']))
+print(similarityOfStrings([ngrams[0],ngrams[1]],str))
+print(similarityOfStrings([ngrams[1],ngrams[2]],str))
+print(similarityOfStrings(['title=','itle="'],str))
 
 #print(websitesTexts)
 #print(getMultipleWebsiteData(websitesListDefault))
