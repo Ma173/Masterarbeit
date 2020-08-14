@@ -593,7 +593,7 @@ Gerade in der Corona-Krise ist es wichtig, Ihre Rechte als Arbeitnehmer genau zu
 <form method="post" enctype="application/x-www-form-urlencoded" id="form-anmeldung-newsletter" class="form-validate">
 <div class="formbody">
 <input type="hidden" name="FORM_SUBMIT" value="auto_form_101">
-<input type="hidden" name="REQUEST_TOKEN" value="It4lDWdRRA2hh-JVA2wQKhveKP2y2815PzT3gDI6uxI">
+<input type="hidden" name="REQUEST_TOKEN" value="99EFvsJbGzBdDdFghEC8GCcgBGa7kzKtogRRb5Q1FNY">
 <div class="row formular__anmeldung_newsletter no-validate"><div class="form-group widget widget-text col-md-12 no-validate margin-bottom-0 mandatory">
 <input type="email"
 name="Email"
@@ -792,7 +792,7 @@ class="last"
 <form method="post" enctype="application/x-www-form-urlencoded" class="newsletter-form--footer form-validate">
 <div class="formbody">
 <input type="hidden" name="FORM_SUBMIT" value="auto_form_105">
-<input type="hidden" name="REQUEST_TOKEN" value="It4lDWdRRA2hh-JVA2wQKhveKP2y2815PzT3gDI6uxI">
+<input type="hidden" name="REQUEST_TOKEN" value="99EFvsJbGzBdDdFghEC8GCcgBGa7kzKtogRRb5Q1FNY">
 <div class="row formular__anmeldung_newsletter no-validate">
 <div class="margin-bottom-0" style="width: 100%;"><div class="form-group widget widget-text col-md-8 no-validate margin-bottom-0 formular__anmeldung_newsletter__email mandatory">
 <input type="email"
@@ -866,7 +866,7 @@ class="submit btn btn-secondary-contrast btn-forward btn-block col-md-12 formula
 <div class="container">
 <form action="/_cookie/set" method="post">
 <div class="formbody">
-<input type="hidden" name="REQUEST_TOKEN" value="It4lDWdRRA2hh-JVA2wQKhveKP2y2815PzT3gDI6uxI">
+<input type="hidden" name="REQUEST_TOKEN" value="99EFvsJbGzBdDdFghEC8GCcgBGa7kzKtogRRb5Q1FNY">
 <input type="hidden" name="page" value="1">
 <div class="cookie-banner-content">
 <div class="info margin-right-2">

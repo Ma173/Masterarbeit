@@ -1,6 +1,6 @@
 import requests, re
 from tryout import nGram
-from toolbox import sortDict, first_with_x_count, loadFromFile,compare_strings, saveListOfTuplesToFile
+from toolbox import sortDict, first_with_x_count, loadFromFile,compare_strings, saveListOfTuplesToFile,loadListOfTuplesFromFile
 
 # Defining all lists of websites to be web scraped
 
@@ -94,8 +94,13 @@ def textComparisonGetFeatures(texts):
   return commonFeatures
 
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
-websitesTexts = getMultipleWebsiteDataWithWebsiteName(websitesListWithChancelleryName[:5])
-saveListOfTuplesToFile(websitesTexts,"websitesTexts")
+
+# OUTDATED:
+#websitesTexts = getMultipleWebsiteDataWithWebsiteName(websitesListWithChancelleryName[:5])
+# NEW:
+websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
+# UNUSED -> ACTIVATE ONCE UPDATING THE WEBSITES' TEXT FILES
+#saveListOfTuplesToFile(websitesTexts,"websitesTexts.txt")
 
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
 print("Matching features: ",list(matchingFeatures)[:10])

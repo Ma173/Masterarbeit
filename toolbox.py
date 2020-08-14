@@ -18,13 +18,16 @@ def loadListOfTuplesFromFile(filename):
   loadedList=loadedListFile.split("__________")
   finalList=[]
   for item in loadedList:
-    finalList.append((item.splitlines[0],item.splitlines[1]))
+    #print(item)
+    textName=item.split("\n")[0]
+    
+    finalList.append((textName,item.splitlines()[1]))
+  print("Loaded file '{}'".format(filename))
   return finalList
 
 def saveListOfTuplesToFile(listToSave,filename):
   f= open(filename,"w+")
   for listElement in listToSave:
-    print(type(listElement))
     if isinstance(listElement,tuple):
       f.write(listElement[0]+"\n")
       f.write(listElement[1]+"\n__________\n")
