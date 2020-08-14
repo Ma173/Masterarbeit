@@ -1,4 +1,6 @@
 import requests, re
+from tryout import nGram
+from toolbox import sortDict, firstX, loadFile
 
 # Defining all lists of websites to be web scraped
 
@@ -111,9 +113,7 @@ print("All features that occur more than in just one text:",featureFrequencyTop)
 
 userinput=""
 loadedFeatures=[]
-def loadFeatures(filename):
-  loadedFeatures=open(filename,'r').readlines()
-  return loadedFeatures
+
 
 def userSuggestedFeatures ():
   userinputFeatures=""
@@ -134,14 +134,17 @@ def userSuggestedFeatures ():
               if re.search(userinputDetail,feature):
                 print("{}: This is the full feature occurence you're looking for:{}.\n".format(currentWebsiteText[0],re.findall(userinputDetail,feature)))
 
+usereval=False
 
+if usereval==True:
+  while userinput!="exit":
+    userinput=input("feature: Scan features from the websites' source codes\nload: Load all previously saved features\nexit: Exit the program\n")
+    if userinput=="feature":
+      userSuggestedFeatures()
+    elif userinput=="load":
+      loadedFeatures = loadFile("features.txt").readlines()
 
-while userinput!="exit":
-  userinput=input("feature: Scan features from the websites' source codes\nload: Load all previously saved features\nexit: Exit the program\n")
-  if userinput=="feature":
-    userSuggestedFeatures()
-  elif userinput=="load":
-    loadedFeatures = loadFeatures("features.txt")
+print(firstX(5,sortDict(nGram(websitesTexts))))
 
 #print(websitesTexts)
 #print(getMultipleWebsiteData(websitesListDefault))
