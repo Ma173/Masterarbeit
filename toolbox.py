@@ -16,7 +16,9 @@ def loadFromFile(filename):
 def saveListToFile(list,filename):
   f= open(filename,"w+")
   for listElement in list:
-     f.write(listElement+"\n")
+     f.write(listElement)
+     f.write("\n")
+  print("Saving to file '{}'.".format(filename))
   f.close()
 
 def compare_strings(mylist):
