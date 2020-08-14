@@ -13,12 +13,26 @@ def loadFromFile(filename):
   loadedFileContents=open(filename,'r')
   return loadedFileContents
 
-def saveListToFile(list,filename):
+def loadListOfTuplesFromFile(filename):
+  loadedListFile=open(filename,'r').read()
+  loadedList=loadedListFile.split("__________")
+  finalList=[]
+  for item in loadedList:
+    finalList.append((item.splitlines[0],item.splitlines[1]))
+  return finalList
+
+def saveListOfTuplesToFile(listToSave,filename):
   f= open(filename,"w+")
-  for listElement in list:
-     f.write(listElement)
-     f.write("\n")
-  print("Saving to file '{}'.".format(filename))
+  for listElement in listToSave:
+    print(type(listElement))
+    if isinstance(listElement,tuple):
+      f.write(listElement[0]+"\n")
+      f.write(listElement[1]+"\n__________\n")
+      print("Saving to file '{}'.".format(filename))
+    elif isinstance(listElement,str):
+      f.write(listElement+"\n__________\n")
+      print("Saving to file '{}'.".format(filename))
+    else: print("List contents unknown. Nothing saved to file.")
   f.close()
 
 def compare_strings(mylist):
