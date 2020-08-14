@@ -1,6 +1,6 @@
 import requests, re
 from tryout import nGram
-from toolbox import sortDict, first_with_x_count, loadFromFile,compare_strings, saveListOfTuplesToFile,loadListOfTuplesFromFile
+from toolbox import sortDict, first_with_x_count, loadFromFile,compare_strings, saveListOfTuplesToFile,loadListOfTuplesFromFile, getShortestItem
 
 # Defining all lists of websites to be web scraped
 
@@ -95,11 +95,12 @@ def textComparisonGetFeatures(texts):
 
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
 
-# OUTDATED:
+# UNUSED -> ACTIVATE ONCE UPDATING THE WEBSITES' TEXT FILES:
 #websitesTexts = getMultipleWebsiteDataWithWebsiteName(websitesListWithChancelleryName[:5])
-# NEW:
+# CURRENTLY USED TO LOAD THE WEBSITES' TEXTS FROM FILE:
 websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
-# UNUSED -> ACTIVATE ONCE UPDATING THE WEBSITES' TEXT FILES
+
+# UNUSED -> ACTIVATE ONCE UPDATING THE WEBSITES' TEXT FILES:
 #saveListOfTuplesToFile(websitesTexts,"websitesTexts.txt")
 
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
@@ -152,7 +153,12 @@ if usereval==True:
       loadedFeatures = loadFromFile("features.txt").readlines()
 
 ngrams=first_with_x_count(5,sortDict(nGram(6,websitesTexts)))
+print("-----------")
+print(ngrams[:20])
 print(compare_strings([ngrams[0],ngrams[1]]))
+print(compare_strings([ngrams[1],ngrams[2]]))
+print(compare_strings(['title=','itle="']))
+print(compare_strings(['title=','itle="']))
 
 #print(websitesTexts)
 #print(getMultipleWebsiteData(websitesListDefault))

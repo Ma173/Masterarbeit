@@ -19,10 +19,11 @@ def loadListOfTuplesFromFile(filename):
   finalList=[]
   for item in loadedList:
     #print(item)
-    textName=item.split("\n")[0]
-    
-    finalList.append((textName,item.splitlines()[1]))
-  print("Loaded file '{}'".format(filename))
+    if item!="":
+      textName=item.split("\n")[0]
+      textWithoutFirstLine = '\n'.join(item.split('\n')[1:])
+      finalList.append((textName,textWithoutFirstLine))
+  print("Loaded {} tuples from file '{}'".format(len(finalList),filename))
   return finalList
 
 def saveListOfTuplesToFile(listToSave,filename):
@@ -38,10 +39,15 @@ def saveListOfTuplesToFile(listToSave,filename):
     else: print("List contents unknown. Nothing saved to file.")
   f.close()
 
-def compare_strings(mylist):
+def compare_strings(listOfItemsToCompare):
   from difflib import SequenceMatcher
   import itertools
-  if len(mylist) < 2: return 0.0
-  total = sum(SequenceMatcher(None, a, b).ratio() for a, b in itertools.combinations(mylist, 2))
-  cnt = (len(mylist) * (len(mylist)-1)) // 2
-  return total / cnt
+  if len(listOfItemsToCompare) < 2: return 0.0
+  total = sum(SequenceMatcher(None, a, b).ratio() for a, b in itertools.combinations(listOfItemsToCompare, 2))
+  cnt = (len(listOfItemsToCompare) * (len(listOfItemsToCompare)-1)) // 2
+  resultDescription="The similarity of '{}' and '{}' is {}%.".format(listOfItemsToCompare[0],listOfItemsToCompare[1],round((total/cnt)*100,2))
+  return resultDescription#total / cnt
+
+def getShortestItem(listToCheck):
+  resultString="shortest item: {}".format(min(listToCheck, key=len))
+  return resultString
