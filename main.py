@@ -170,3 +170,4 @@ print(similarityOfStrings(['title=','itle="'],str))
 #TODO: Features finden über verschiedene Rahmenzeichen
 #TODO Die Art überarbeiten wie da Listen und Tupel bei der websitesFeaturesList zusammengemischt werden; die Art die Variable zu bespeichern überarbeiten. Aktuell sind in einer liste (webseite) 4 Tupel, warum auch immer
 #TODO (24.08.): Die Outputs (Prints) weiter aufräumen und gucken, warum der Webseiten-Text im Output nicht angezeigt wird (da steht nur '')
+#TODO (24.08.): https://www.advocard.de/service/anwaltssuche/ Radius auf 50km von PLZ 40472 aus erhöhen und dann die Liste der Kanzleien erweitern
