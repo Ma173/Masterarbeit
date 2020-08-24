@@ -39,14 +39,15 @@ def saveListOfTuplesToFile(listToSave,filename):
     else: print("List contents unknown. Nothing saved to file.")
   f.close()
 
-def compare_strings(listOfItemsToCompare,OutputType):
+def similarityOfStrings(listOfItemsToCompare,OutputType):
   from difflib import SequenceMatcher
   import itertools
   if len(listOfItemsToCompare) < 2: return 0.0
   total = sum(SequenceMatcher(None, a, b).ratio() for a, b in itertools.combinations(listOfItemsToCompare, 2))
   cnt = (len(listOfItemsToCompare) * (len(listOfItemsToCompare)-1)) // 2
-  resultCalculation=round(total / cnt,2)
-  resultDescription="The similarity of '{}' and '{}' is {}%.".format(listOfItemsToCompare[0],listOfItemsToCompare[1],resultCalculation*100)
+  if len(listOfItemsToCompare) >0:
+    resultCalculation=round(total / cnt,2)
+    resultDescription="The similarity of '{}' and '{}' is {}%.".format(listOfItemsToCompare[0],listOfItemsToCompare[1],resultCalculation*100)
   if OutputType is str: return resultDescription
   else: return resultCalculation
 

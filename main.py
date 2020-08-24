@@ -1,11 +1,16 @@
 import requests, re
 from tryout import nGram
 from toolbox import sortDict, first_with_x_count, loadFromFile,similarityOfStrings, saveListOfTuplesToFile,loadListOfTuplesFromFile, getShortestItem
+from chancelleryURLs import websitesDictWithChancelleryName
+from userInteraction import userSuggestedFeatures
 
 # Defining all lists of websites to be web scraped
 
 websitesListDefault=["https://www.gansel-rechtsanwaelte.de/","http://www.kanzlei-illner.de/","http://www.hpk-recht.de/","https://www.himmelmann-pohlmann.de/","http://www.anwaltskanzlei-dressler.de/","http://www.anwalt.de/wolff-partner","http://www.advopartner.de/","http://www.anwaelte-mayer.com/","http://www.kanzlei-platanenhof.de/","http://www.rae-teigelack.de/"]
-websitesListWithChancelleryName=[["https://www.gansel-rechtsanwaelte.de/","gansel"],["http://www.kanzlei-illner.de/","illner"],["http://www.hpk-recht.de/","heinz"],["https://www.himmelmann-pohlmann.de/","himmelmann"],["http://www.anwaltskanzlei-dressler.de/","dressler"],["http://www.anwalt.de/wolff-partner","wolff"],["http://www.advopartner.de/","advopartner"],["http://www.anwaelte-mayer.com/","mayer"],["http://www.kanzlei-platanenhof.de/","platanenhof"],["http://www.rae-teigelack.de/","teigelack"]]
+websitesListWithChancelleryName=[["https://www.gansel-rechtsanwaelte.de/","gansel"],["http://www.kanzlei-illner.de/","illner"],["http://www.hpk-recht.de/","heinz"],["https://www.himmelmann-pohlmann.de/","himmelmann"],["http://www.anwaltskanzlei-dressler.de/","dressler"],["http://www.anwalt.de/wolff-partner","wolff"],["http://www.advopartner.de/","advopartner"],["http://www.anwaelte-mayer.com/","mayer"],["http://www.kanzlei-platanenhof.de/","platanenhof"],["http://www.rae-teigelack.de/","teigelack"],["http://www.matyssek-kirchmann.de/","matyssek"],["http://www.rae-drkeller.de/","keller"],["http://www.hp-verteidigung.de/","heimbürger"], ["http://www.sws-rechtsanwaelte.de/","steinhauer"],["http://www.anb-anwaelte.de/","nerger"],["http://www.wittenberg-kollegen.de/","wittenberg"],["http://www.kanzlei-hzk.de/","hering"],["http://www.ra-npp.de/","puhr"],["http://www.kanzlei-duisburg.de/","gärtner"],["http://www.rae-drkeller.de/","keller"]]
+
+
+
 websitesListChancelleryComparison1=["https://www.gansel-rechtsanwaelte.de/","http://www.kanzlei-illner.de/"]
 websitesListChancelleryComparison2=["http://www.hpk-recht.de/","https://www.gansel-rechtsanwaelte.de/"]
 websitesListChancelleryComparison3=["https://www.himmelmann-pohlmann.de/","http://www.hpk-recht.de/"]
@@ -19,14 +24,28 @@ def getSingleWebsiteData(url):
   print("\tDone gathering data.")
   return websiteText
 
-def getMultipleWebsiteDataWithWebsiteName(urllist):
+def getMultipleWebsiteData(urlCollection):
+  urllist=[]
+  print(type(urlCollection))
+  if urlCollection is list:
+    print("Collection of urls as of list type detected")
+    urllist=urlCollection[:]
+  elif isinstance(urlCollection,dict):#urlCollection is dict:
+    print("Collection of urls as of dictionary type detected")
+    for key,value in urlCollection.items():
+      pair=[key,value]
+      urllist.append(pair)
+
   print("Gathering text data of {} websites...".format(len(urllist)))
   websitesTexts=[]
   # Iterating through all websites (Website Name & actual url) and saving a list of website name and website text to a list
   for i in range(len(urllist)):
     website =urllist[i]
     print("\n\t{} of {}".format(i,len(urllist)))
-    websitesTexts.append((website[1],getSingleWebsiteData(website[0])))
+    if "http" in website[0]:
+      websitesTexts.append((website[1],getSingleWebsiteData(website[0])))
+    elif "http" in website[1]:
+      websitesTexts.append((website[0],getSingleWebsiteData(website[1])))
   print("Done gathering text data of multiple websites.")
   return websitesTexts
 
@@ -96,12 +115,12 @@ def textComparisonGetFeatures(texts):
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
 
 # UNUSED -> ACTIVATE ONCE UPDATING THE WEBSITES' TEXT FILES:
-#websitesTexts = getMultipleWebsiteDataWithWebsiteName(websitesListWithChancelleryName[:5])
+#websitesTexts = getMultipleWebsiteData(websitesDictWithChancelleryName)
 # CURRENTLY USED TO LOAD THE WEBSITES' TEXTS FROM FILE:
 websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
 
 # UNUSED -> ACTIVATE ONCE UPDATING THE WEBSITES' TEXT FILES:
-#saveListOfTuplesToFile(websitesTexts,"websitesTexts.txt")
+saveListOfTuplesToFile(websitesTexts,"websitesTexts.txt")
 
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
 print("Matching features: ",list(matchingFeatures)[:10])
@@ -115,32 +134,14 @@ for i in range(len(websitesFeaturesList)):
 featureFrequency = frequency(websitesListOfFeaturesWithoutWebsitename)
 featureFrequencyTop = []
 for featurePairs in featureFrequency:
-  if featurePairs[1]>1:
+  if featurePairs[1]>2:
     featureFrequencyTop.append(featurePairs)
-print("All features that occur more than in just one text:",featureFrequencyTop)
+print("All features that occur on at least 3 websites:")    
+for featureFreqPair in featureFrequencyTop:
+  print(featureFreqPair)
 
 userinput=""
 loadedFeatures=[]
-
-
-def userSuggestedFeatures ():
-  userinputFeatures=""
-  while userinputFeatures!="exit":
-    userinputFeatures=input("\n\nFill in the feature you want to search for. Otherwise type in 'exit' to exit to the program's main loop.\n")
-    if userinputFeatures!="exit":
-      counterList=[]
-      for i in range(len( websitesTexts)):
-        currentWebsiteText=websitesTexts[i]
-        print("{}: {} matches with the feature you're looking for.\n".format(currentWebsiteText[0],currentWebsiteText[1].count(userinputFeatures)))
-        userinputDetail=""
-      while userinputDetail!="exit":
-        userinputDetail = input("Type in the feature again for a detailed output of found features. Otherwise type in 'exit'.\n")
-        if userinputDetail!="exit":
-          for i in range(len(websitesListOfFeaturesWithoutWebsitename)):
-            currentWebsiteText=websitesTexts[i]
-            for feature in websitesListOfFeaturesWithoutWebsitename[i]:
-              if re.search(userinputDetail,feature):
-                print("{}: This is the full feature occurence you're looking for:{}.\n".format(currentWebsiteText[0],re.findall(userinputDetail,feature)))
 
 usereval=False
 
@@ -148,21 +149,23 @@ if usereval==True:
   while userinput!="exit":
     userinput=input("feature: Scan features from the websites' source codes\nload: Load all previously saved features\nexit: Exit the program\n")
     if userinput=="feature":
-      userSuggestedFeatures()
+      userSuggestedFeatures(websitesTexts, websitesListOfFeaturesWithoutWebsitename)
     elif userinput=="load":
       loadedFeatures = loadFromFile("features.txt").readlines()
 
 ngrams=first_with_x_count(5,sortDict(nGram(6,websitesTexts)))
-tooHighSimilarityCount=0
-for i in range(len(ngrams)):
-  ngramName=ngrams[i][0]
-  for k in range(len(ngrams)):
-    comparedName=ngrams[k][0]
-    similarity=similarityOfStrings([ngramName,comparedName],int)
-    if similarity>0.5:
-      #print("Similarity between '{}' and '{}' too high ({})!".format(ngramName,comparedName,similarity))
-      tooHighSimilarityCount+=1
-print("Too high similarity count:",tooHighSimilarityCount)
+def countSimilarity(listToCheck):
+  tooHighSimilarityCount=0
+  for i in range(len(listToCheck)):
+    ngramName=listToCheck[i][0]
+    for k in range(len(listToCheck)):
+      comparedName=listToCheck[k][0]
+      similarity=similarityOfStrings([ngramName,comparedName],int)
+      if similarity>0.5:
+        #print("Similarity between '{}' and '{}' too high ({})!".format(ngramName,comparedName,similarity))
+        tooHighSimilarityCount+=1
+  print("Too high similarity count:",tooHighSimilarityCount)
+  return tooHighSimilarityCount
 ngramsClean=[]
 print("-----------")
 print(ngrams[:20])
