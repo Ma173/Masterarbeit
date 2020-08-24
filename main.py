@@ -35,7 +35,6 @@ def getMultipleWebsiteData(urlCollection):
     for key,value in urlCollection.items():
       pair=[key,value]
       urllist.append(pair)
-
   print("Gathering text data of {} websites...".format(len(urllist)))
   websitesTexts=[]
   # Iterating through all websites (Website Name & actual url) and saving a list of website name and website text to a list
@@ -120,14 +119,12 @@ def textComparisonGetFeatures(texts):
 websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
 
 # UNUSED -> ACTIVATE ONCE UPDATING THE WEBSITES' TEXT FILES:
-saveListOfTuplesToFile(websitesTexts,"websitesTexts.txt")
+#saveListOfTuplesToFile(websitesTexts,"websitesTexts.txt")
 
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
-print("Matching features: ",list(matchingFeatures)[:10])
+print("Features that match all websites: ",list(matchingFeatures)[:10])
 websitesListOfFeaturesWithoutWebsitename=[]
-print("Type of websitesFeaturesList:",type(websitesFeaturesList))
 for i in range(len(websitesFeaturesList)):
-  print("\t",i,type(websitesFeaturesList[i]))
   #if i==0: print("Erste Liste fängt so an:",websitesFeaturesList[i][:2])
   websitesListOfFeaturesWithoutWebsitename.append(list(websitesFeaturesList[i][1]))
 
