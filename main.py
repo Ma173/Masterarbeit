@@ -3,6 +3,8 @@ from tryout import nGram
 from toolbox import sortDict, first_with_x_count, loadFromFile,similarityOfStrings, saveListOfTuplesToFile,loadListOfTuplesFromFile, getShortestItem
 from chancelleryURLs import websitesDictWithChancelleryName
 from userInteraction import userSuggestedFeatures
+from itertools import chain
+from collections import defaultdict
 
 # Defining all lists of websites to be web scraped
 
@@ -57,18 +59,6 @@ def getChancelleryName(textfile):
   return chancelleryName
 
 overlappingFeaturesDict={}
-
-
-
-def compareWebsitesFeatures(websitesFeaturesList):
-  ''' for i in range(len(websitesFeaturesList)):
-    currentWebsite=websitesFeaturesList[i]
-    currentWebsiteName=currentWebsite[0]
-    currentWebsiteFeatures=currentWebsite[1]
-    for k in range (len(currentWebsiteFeatures)):
-      for l in range '''
-from itertools import chain
-from collections import defaultdict
 
 # Getting the frequency of all elements of multiple lists. Returns tuples of list item and count, sorted by most frequent list item
 def frequency(lists): # Notice: If the input is lists (rather than currently a list of lists), insert an asterisk before "lists" -> def frequency(*lists):
@@ -179,3 +169,4 @@ print(similarityOfStrings(['title=','itle="'],str))
 
 #TODO: Features finden über verschiedene Rahmenzeichen
 #TODO Die Art überarbeiten wie da Listen und Tupel bei der websitesFeaturesList zusammengemischt werden; die Art die Variable zu bespeichern überarbeiten. Aktuell sind in einer liste (webseite) 4 Tupel, warum auch immer
+#TODO (24.08.): Die Outputs (Prints) weiter aufräumen und gucken, warum der Webseiten-Text im Output nicht angezeigt wird (da steht nur '')
