@@ -28,7 +28,7 @@ def getSingleWebsiteData(url):
 
 def getMultipleWebsiteData(urlCollection):
   urllist=[]
-  print(type(urlCollection))
+  #print(type(urlCollection))
   if urlCollection is list:
     print("Collection of urls as of list type detected")
     urllist=urlCollection[:]
@@ -42,11 +42,14 @@ def getMultipleWebsiteData(urlCollection):
   # Iterating through all websites (Website Name & actual url) and saving a list of website name and website text to a list
   for i in range(len(urllist)):
     website =urllist[i]
+    #print("website=urllist[i] is: {}".format(urllist[i]))
     print("\n\t{} of {}".format(i,len(urllist)))
     if "http" in website[0]:
       websitesTexts.append((website[1],getSingleWebsiteData(website[0])))
+      print("Appending the following: {}".format((website[1],getSingleWebsiteData(website[0]))))
     elif "http" in website[1]:
       websitesTexts.append((website[0],getSingleWebsiteData(website[1])))
+      print("Appending the following: {}".format((website[0],getSingleWebsiteData(website[]))))
   print("Done gathering text data of multiple websites.")
   return websitesTexts
 
@@ -80,6 +83,7 @@ def textComparisonGetFeatures(texts):
     foundFeatures = re.findall(searchParameter3,text[1])
     # Converting the list of features into a set for removing duplicates easily and then converting it into a list again
     foundFeatures = list(set(foundFeatures))
+    print("Text [0] ist {}; Text[1][:30] ist {}".format(text[0],text[1][:50]))
     websiteName = text[0]
     websitesFeaturesList.append((websiteName,set(foundFeatures)))
     print("\n- {} features in website text '{}'".format(len(foundFeatures),websiteName))
@@ -104,12 +108,12 @@ def textComparisonGetFeatures(texts):
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
 
 # UNUSED -> ACTIVATE ONCE UPDATING THE WEBSITES' TEXT FILES:
-#websitesTexts = getMultipleWebsiteData(websitesDictWithChancelleryName)
+websitesTexts = getMultipleWebsiteData(websitesDictWithChancelleryName)
 # CURRENTLY USED TO LOAD THE WEBSITES' TEXTS FROM FILE:
-websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
+#websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
 
 # UNUSED -> ACTIVATE ONCE UPDATING THE WEBSITES' TEXT FILES:
-#saveListOfTuplesToFile(websitesTexts,"websitesTexts.txt")
+saveListOfTuplesToFile(websitesTexts,"websitesTexts.txt")
 
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
 print("Features that match all websites: ",list(matchingFeatures)[:10])
