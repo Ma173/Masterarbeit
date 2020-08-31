@@ -28,14 +28,15 @@ def loadListOfTuplesFromFile(filename):
 
 def saveListOfTuplesToFile(listToSave,filename):
   f= open(filename,"w+")
-  for listElement in listToSave:
+  for i in range(len(listToSave)):
+    listElement=listToSave[i]
     if isinstance(listElement,tuple):
       f.write(listElement[0]+"\n")
       f.write(listElement[1]+"\n__________\n")
-      print("Saving to file '{}'.".format(filename))
+      print("Saving tuple '{}' to file '{}'.".format(input, filename))
     elif isinstance(listElement,str):
       f.write(listElement+"\n__________\n")
-      print("Saving to file '{}'.".format(filename))
+      print("Saving tuple '{}' to file '{}'.".format(i, filename))
     else: print("List contents unknown. Nothing saved to file.")
   f.close()
 
