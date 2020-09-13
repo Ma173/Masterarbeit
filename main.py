@@ -6,19 +6,6 @@ from userInteraction import userSuggestedFeatures
 from itertools import chain
 from collections import defaultdict
 
-# Defining all lists of websites to be web scraped
-
-websitesListDefault=["https://www.gansel-rechtsanwaelte.de/","http://www.kanzlei-illner.de/","http://www.hpk-recht.de/","https://www.himmelmann-pohlmann.de/","http://www.anwaltskanzlei-dressler.de/","http://www.anwalt.de/wolff-partner","http://www.advopartner.de/","http://www.anwaelte-mayer.com/","http://www.kanzlei-platanenhof.de/","http://www.rae-teigelack.de/"]
-websitesListWithChancelleryName=[["https://www.gansel-rechtsanwaelte.de/","gansel"],["http://www.kanzlei-illner.de/","illner"],["http://www.hpk-recht.de/","heinz"],["https://www.himmelmann-pohlmann.de/","himmelmann"],["http://www.anwaltskanzlei-dressler.de/","dressler"],["http://www.anwalt.de/wolff-partner","wolff"],["http://www.advopartner.de/","advopartner"],["http://www.anwaelte-mayer.com/","mayer"],["http://www.kanzlei-platanenhof.de/","platanenhof"],["http://www.rae-teigelack.de/","teigelack"],["http://www.matyssek-kirchmann.de/","matyssek"],["http://www.rae-drkeller.de/","keller"],["http://www.hp-verteidigung.de/","heimbürger"], ["http://www.sws-rechtsanwaelte.de/","steinhauer"],["http://www.anb-anwaelte.de/","nerger"],["http://www.wittenberg-kollegen.de/","wittenberg"],["http://www.kanzlei-hzk.de/","hering"],["http://www.ra-npp.de/","puhr"],["http://www.kanzlei-duisburg.de/","gärtner"],["http://www.rae-drkeller.de/","keller"]]
-
-
-
-websitesListChancelleryComparison1=["https://www.gansel-rechtsanwaelte.de/","http://www.kanzlei-illner.de/"]
-websitesListChancelleryComparison2=["http://www.hpk-recht.de/","https://www.gansel-rechtsanwaelte.de/"]
-websitesListChancelleryComparison3=["https://www.himmelmann-pohlmann.de/","http://www.hpk-recht.de/"]
-websitesListGoogle=["http://www.google.de"]
-
-
 # The function to get the text of a single website
 def getSingleWebsiteData(url):
   print("\tGathering single website data (text)...")
@@ -133,7 +120,7 @@ usereval=False
 if usereval==True:
   userinput=""
   loadedFeatures=[]
-  
+
   while userinput!="exit":
     userinput=input("feature: Scan features from the websites' source codes\nload: Load all previously saved features\nexit: Exit the program\n")
     if userinput=="feature":
