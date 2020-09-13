@@ -27,12 +27,12 @@ def loadListOfTuplesFromFile(filename):
       textName=parts[0]
       websitetext=parts[1]
       finalList.append((textName,websitetext))
-      print("Loaded tuple {}: {}".format(i,(textName,websitetext[:50])))
+      #print("Loaded tuple {}: {}".format(i,(textName,websitetext[:50])))
     if len(parts)==3:
       textName=parts[0]
       websitetext=parts[1]
       finalList.append((textName,websitetext))
-      print("Loaded tuple {}: {}".format(i,(textName,websitetext[:50])))
+      #print("Loaded tuple {}: {}".format(i,(textName,websitetext[:50])))
   print("Loaded {} tuples from file '{}'".format(len(finalList),filename))
   print("First tuple for example is:{}".format((finalList[0][0][:100],finalList[0][1][:50])))
   return finalList

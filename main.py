@@ -80,19 +80,17 @@ def frequency(lists): # Notice: If the input is lists (rather than currently a l
 websitesFeaturesList=[]
 # Comparing a list of website texts
 def textComparisonGetFeatures(texts):
-  print("Extracting common features")
-  searchParameterWhole = '=".*"'
-  searchParameterLimited = '="(.+)"'
-  searchParameter2 = '<(.+)>'
+  print("Extracting common features...")
+  searchParametersArchive = ['=".*"','="(.+)"','<(.+)>']
   searchParameter3 = '="(.+)"'
   for text in texts:
     foundFeatures = re.findall(searchParameter3,text[1])
     # Converting the list of features into a set for removing duplicates easily and then converting it into a list again
     foundFeatures = list(set(foundFeatures))
-    print("Text [0] ist {}; Text[1][:30] ist {}".format(text[0],text[1][:50]))
+    print("Text [0] is {}; Text[1][:50] is {}".format(text[0],text[1][:50]))
     websiteName = text[0]
     websitesFeaturesList.append((websiteName,set(foundFeatures)))
-    print("\n- {} features in website text '{}'\n\n".format(len(foundFeatures),websiteName[:100]))
+    print("\n- {} features in website text '{}' with a length of {}:\n{}\n\n".format(len(foundFeatures),websiteName[:100],len(text[1]),foundFeatures))
     #for feature in foundFeatures:
     #  print("\t",feature)
   commonFeatures=[]
