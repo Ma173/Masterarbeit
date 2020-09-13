@@ -81,8 +81,8 @@ websitesFeaturesList=[]
 # Comparing a list of website texts
 def textComparisonGetFeatures(texts):
   print("Extracting common features...")
-  searchParametersArchive = ['=".*"','="(.+)"','<(.+)>']
-  searchParameter3 = '="(.+)"'
+  searchParametersArchive = ['=".*"','="(.+)"','<(.+)>','="(.+)"']
+  searchParameter3 = '(" alt=")(.+)(")'
   for text in texts:
     foundFeatures = re.findall(searchParameter3,text[1])
     print("Foundall findet {} Treffer".format(len(foundFeatures)))
@@ -91,34 +91,26 @@ def textComparisonGetFeatures(texts):
     print("Text [0] is {}; Text[1][:50] is {}".format(text[0],text[1][:50]))
     websiteName = text[0]
     websitesFeaturesList.append((websiteName,set(foundFeatures)))
-    print("\n- {} features in website text '{}' with a length of {}:\n{}\n\n".format(len(foundFeatures),websiteName[:100],len(text[1]),"-"))#foundFeatures))
+    print("\n- {} features in website text '{}' with a length of {}:\n{}\n\n".format(len(foundFeatures),websiteName[:100],len(text[1]),foundFeatures))
     #for feature in foundFeatures:
     #  print("\t",feature)
   commonFeatures=[]
-  #print("Type of websitesFeaturesList:",type(websitesFeaturesList))
-  # Struktur: Liste von 1 Tupel von 2 Strings
-  #for item in websitesFeaturesList:
-  #  for tupel in item:
-  #    print(type(tupel))
   featuresListTexts = []
-  
   # Gaining the common features of *all* texts through intersection. Might lead to very few hits
   for textSet in websitesFeaturesList:
     featuresListTexts.append(textSet[1])
     commonFeatures = set.intersection(*featuresListTexts)#websitesFeaturesList[1],websitesFeaturesList[2])
-  ##for featureListText in featuresListTexts:
-  ##  print("\n\n",featureListText)
   return commonFeatures
 
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
 
-# UNUSED -> ACTIVATE ONCE UPDATING THE WEBSITES' TEXT FILES:
-#websitesTexts = getMultipleWebsiteData(websitesDictWithChancelleryName)
-# CURRENTLY USED TO LOAD THE WEBSITES' TEXTS FROM FILE:
-websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
-
-# UNUSED -> ACTIVATE ONCE UPDATING THE WEBSITES' TEXT FILES:
-#saveListOfTuplesToFile(websitesTexts,"websitesTexts.txt")
+# SWITCH MODE TO UPDATE THE WEBSITES' TEXT FILES:
+textImportMode="LoadFromFile"
+if textImportMode == "LoadFromFile":
+  websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
+elif textImportMode == "RetrieveFromWeb":
+  websitesTexts = getMultipleWebsiteData(websitesDictWithChancelleryName)
+  saveListOfTuplesToFile(websitesTexts,"websitesTexts.txt")
 
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
 print("Features that match all websites: ",list(matchingFeatures)[:10])
@@ -136,12 +128,12 @@ print("All features that occur on at least 3 websites:")
 for featureFreqPair in featureFrequencyTop:
   print(featureFreqPair)
 
-userinput=""
-loadedFeatures=[]
 
 usereval=False
-
 if usereval==True:
+  userinput=""
+  loadedFeatures=[]
+  
   while userinput!="exit":
     userinput=input("feature: Scan features from the websites' source codes\nload: Load all previously saved features\nexit: Exit the program\n")
     if userinput=="feature":
@@ -149,7 +141,7 @@ if usereval==True:
     elif userinput=="load":
       loadedFeatures = loadFromFile("features.txt").readlines()
 
-ngrams=first_with_x_count(5,sortDict(nGram(6,websitesTexts)))
+
 def countSimilarity(listToCheck):
   tooHighSimilarityCount=0
   for i in range(len(listToCheck)):
@@ -162,12 +154,16 @@ def countSimilarity(listToCheck):
         tooHighSimilarityCount+=1
   print("Too high similarity count:",tooHighSimilarityCount)
   return tooHighSimilarityCount
-ngramsClean=[]
-print("-----------")
-print(ngrams[:20])
-print(similarityOfStrings([ngrams[0],ngrams[1]],str))
-print(similarityOfStrings([ngrams[1],ngrams[2]],str))
-print(similarityOfStrings(['title=','itle="'],str))
+# SET TRUE IF NGRAM-APPROACH IS INTENDED
+nGramApproach=False
+if nGramApproach is True:
+  ngrams=first_with_x_count(5,sortDict(nGram(6,websitesTexts)))
+  ngramsClean=[]
+  print("-----------")
+  print(ngrams[:20])
+  print(similarityOfStrings([ngrams[0],ngrams[1]],str))
+  print(similarityOfStrings([ngrams[1],ngrams[2]],str))
+  print(similarityOfStrings(['title=','itle="'],str))
 
 #print(websitesTexts)
 #print(getMultipleWebsiteData(websitesListDefault))
