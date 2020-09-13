@@ -85,12 +85,13 @@ def textComparisonGetFeatures(texts):
   searchParameter3 = '="(.+)"'
   for text in texts:
     foundFeatures = re.findall(searchParameter3,text[1])
+    print("Foundall findet {} Treffer".format(len(foundFeatures)))
     # Converting the list of features into a set for removing duplicates easily and then converting it into a list again
     foundFeatures = list(set(foundFeatures))
     print("Text [0] is {}; Text[1][:50] is {}".format(text[0],text[1][:50]))
     websiteName = text[0]
     websitesFeaturesList.append((websiteName,set(foundFeatures)))
-    print("\n- {} features in website text '{}' with a length of {}:\n{}\n\n".format(len(foundFeatures),websiteName[:100],len(text[1]),foundFeatures))
+    print("\n- {} features in website text '{}' with a length of {}:\n{}\n\n".format(len(foundFeatures),websiteName[:100],len(text[1]),"-"))#foundFeatures))
     #for feature in foundFeatures:
     #  print("\t",feature)
   commonFeatures=[]
