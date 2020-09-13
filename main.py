@@ -92,7 +92,7 @@ def textComparisonGetFeatures(texts):
     print("Text [0] ist {}; Text[1][:30] ist {}".format(text[0],text[1][:50]))
     websiteName = text[0]
     websitesFeaturesList.append((websiteName,set(foundFeatures)))
-    print("\n- {} features in website text '{}'\n\n".format(len(foundFeatures),websiteName))
+    print("\n- {} features in website text '{}'\n\n".format(len(foundFeatures),websiteName[:100]))
     #for feature in foundFeatures:
     #  print("\t",feature)
   commonFeatures=[]
