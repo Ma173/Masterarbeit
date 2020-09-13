@@ -115,7 +115,7 @@ print("All features that occur on at least 3 websites:")
 for featureFreqPair in featureFrequencyTop:
   print(featureFreqPair)
 
-
+# SET TRUE TO OFFER USER EVALUATION IN RUNNING CODE
 usereval=False
 if usereval==True:
   userinput=""
@@ -141,6 +141,7 @@ def countSimilarity(listToCheck):
         tooHighSimilarityCount+=1
   print("Too high similarity count:",tooHighSimilarityCount)
   return tooHighSimilarityCount
+
 # SET TRUE IF NGRAM-APPROACH IS INTENDED
 nGramApproach=False
 if nGramApproach is True:
@@ -152,6 +153,8 @@ if nGramApproach is True:
   print(similarityOfStrings([ngrams[1],ngrams[2]],str))
   print(similarityOfStrings(['title=','itle="'],str))
 
+
+
 #print(websitesTexts)
 #print(getMultipleWebsiteData(websitesListDefault))
 
@@ -159,7 +162,6 @@ if nGramApproach is True:
 # die Features nach Nützlichkeit priorisieren
 # auch die Qualität der durch die priorisierten Features eingeholten Informationen (Kanzleiname, Telefonnummer, etc.) bewerten
 
-#TODO: Features finden über verschiedene Rahmenzeichen
-#TODO Die Art überarbeiten wie da Listen und Tupel bei der websitesFeaturesList zusammengemischt werden; die Art die Variable zu bespeichern überarbeiten. Aktuell sind in einer liste (webseite) 4 Tupel, warum auch immer
-#TODO (24.08.): Die Outputs (Prints) weiter aufräumen und gucken, warum der Webseiten-Text im Output nicht angezeigt wird (da steht nur '')
 #TODO (24.08.): https://www.advocard.de/service/anwaltssuche/ Radius auf 50km von PLZ 40472 aus erhöhen und dann die Liste der Kanzleien erweitern
+#TODO (14.09.): Weitere Regex-Suchparameter ausprobieren, um nicht einen ganzen Textblock ('="(.+)"' ), sondern nur die Features zu finden. Dabei beachten: mit regex-Groups durch Klammern lassen sich dann sowohl das Feature als auch die folgende sprachliche Information (um die es ja eigentlich geht) erfassen. Deswegen mit z.B. 2 Groups arbeiten, die eine findet das Feature, die andere die nachstehende Information
+#TODO (14.09.): Die Lern-/ Trainingsfunktion bauen, um Featureerkennung alternativ zum regelbasierten über Lernansatz hinzubekommen. Dafür Texte unter "trainingTexts.txt" einlesen und Feature-Marker erkennen (°§~).
