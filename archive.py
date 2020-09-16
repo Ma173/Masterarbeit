@@ -35,3 +35,45 @@ def loadListOfTuplesFromFile_old(filename):
     print("Loaded {} tuples from file '{}'".format(len(finalList),filename))
     print("First tuple for example is:{}".format((finalList[0][0][:100],finalList[0][1][:50])))
     return finalList
+
+def learningAlgorithm(learningTexts):
+  ## IMPORT
+  LearningTexts_raw = loadFromFile(learningTexts).read()
+  learningTextsList_raw = LearningTexts_raw.split("__________")
+  learningTextsList = []
+  for listItem in learningTextsList_raw:
+    if listItem != '':
+      learningTextsList.append(listItem)
+  print("Imported a list of {} learning texts..".format(len(learningTextsList)))
+  print(learningTextsList[0])
+  learningtextNameTuples = []
+  for textWithName in learningTextsList:
+    learningtextNameTuples.append((textWithName.split("\n")[1],textWithName.split("\n")[2]))
+  #print(learningtextNameTuples)
+  ## ACTUAL LEARNING
+  # DELETE THE "[0]" TO LEARN FROM ALL TEXTS
+  learnedFeatures=[]
+  for i in range(len(learningtextNameTuples)):
+    currentLearningTextTuple = learningtextNameTuples[i]
+    currentLearningTextName = currentLearningTextTuple[0]
+    currentLearningText = currentLearningTextTuple[1]
+    learningPattern = "°§~"
+    patternStatus = "no pattern"
+    startOfPatternPosition = -1
+    endOfFeaturePosition = -1
+    endOfPatternPosition = -1
+    print("Currently viewed text begins with {}".format(currentLearningText[:50]))
+    for k in range (len(currentLearningText)):
+      currentChar = currentLearningText[k]
+      nextChar = ""
+      if k<len(currentLearningText)-1:
+        nextChar = currentLearningText[k+1]
+      if currentChar == "°":
+        if nextChar == "§":
+          print("Start of pattern found.")
+          startOfPatternPosition += (k+2)
+      if patternStatus == "no pattern" and endOfPatternPosition!=-1:
+        print("End of pattern found")
+        patternStatus = "pattern found"
+        learnedFeatures.append(currentLearningText[startOfPatternPosition:endOfPatternPosition])
+  print(learnedFeatures)
