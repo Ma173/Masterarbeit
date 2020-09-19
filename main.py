@@ -142,7 +142,7 @@ def countSimilarity(listToCheck):
   print("Too high similarity count:",tooHighSimilarityCount)
   return tooHighSimilarityCount
 
-def learningAlgorithm(learningTexts):
+def learningAlgorithmAnnotatedText(learningTexts):
   ## IMPORT
   LearningTexts_raw = loadFromFile(learningTexts).read()
   learningTextsList_raw = LearningTexts_raw.split("__________")
@@ -163,31 +163,34 @@ def learningAlgorithm(learningTexts):
     #currentLearningTextTuple = learningtextNameTuples[i]
     currentLearningText = learningTextsList[0]
     learningPattern = "°§~"
-    patternStatus = "no pattern"
     startOfPatternPosition = -1
     endOfFeaturePosition = -1
     endOfPatternPosition = -1
     print("Currently viewed text begins with {}".format(currentLearningText[:50]))
+    numberofstartofpatterns=0
     for k in range (len(currentLearningText)):
       currentChar = currentLearningText[k]
       nextChar = ""
-      if k<len(currentLearningText)-1:
-        nextChar = currentLearningText[k+1]
-      if currentChar == "°":
-        if nextChar == "§":
-          print("Start of pattern found.")
-          startOfPatternPosition += (k+2)
-      elif currentChar == "~":
-        if nextChar == "§":
-          print("End of pattern found.")
-          endOfPatternPosition += (k+2)
-      if patternStatus == "no pattern" and endOfPatternPosition!=-1:
-        print("End of pattern found")
-        patternStatus = "pattern found"
+      previousChar = ""
+      if k<len(currentLearningText)-1: nextChar = currentLearningText[k+1]
+      if k>0: previousChar = currentLearningText[k-1]
+      
+      if currentChar == learningPattern[0] and nextChar == learningPattern[1]:
+        print("Start of pattern found.")
+        startOfPatternPosition += (k+3)
+        numberofstartofpatterns+=1
+      elif currentChar == learningPattern[0] and nextChar != learningPattern[1]:
+        print("End of pattern found.")
+        endOfPatternPosition += (k+3)
         learnedFeatures.append(currentLearningText[startOfPatternPosition:endOfPatternPosition])
-  print(learnedFeatures)
+        #startOfPatternPosition=0
+        #endOfPatternPosition=0
+  print("Learning features:\n")
+  for feature in learnedFeatures: print(feature)
 
-
+def learningAlgorithmGivenInfo(learningTexts):
+  for learningText in learningTexts:
+    loadFromFile(learningTexts).read()
 
 
 # SET TRUE IF NGRAM-APPROACH IS INTENDED
@@ -214,3 +217,4 @@ learningAlgorithm("learningTexts.txt")
 #TODO (14.09.): Weitere Regex-Suchparameter ausprobieren, um nicht einen ganzen Textblock ('="(.+)"' ), sondern nur die Features zu finden. Dabei beachten: mit regex-Groups durch Klammern lassen sich dann sowohl das Feature als auch die folgende sprachliche Information (um die es ja eigentlich geht) erfassen. Deswegen mit z.B. 2 Groups arbeiten, die eine findet das Feature, die andere die nachstehende Information
 #TODO (14.09.): Die Lern-/ Trainingsfunktion bauen, um Featureerkennung alternativ zum regelbasierten über Lernansatz hinzubekommen. Dafür Texte unter "trainingTexts.txt" einlesen und Feature-Marker erkennen (°§~)
 #TODO (17.09.): Ab Zeile 171 checken, warum zwar in den Outputs mehrfach "Start of pattern found" steht, aber nie "End of pattern found"
+#TODO (17.09.): Alternative Lernmethode: Lerntext ohne Annotationen, dafür mit wichtigen Daten wie Telefonnummer an Algorithmus übergeben
