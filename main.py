@@ -188,9 +188,51 @@ def learningAlgorithmAnnotatedText(learningTexts):
   print("Learning features:\n")
   for feature in learnedFeatures: print(feature)
 
-def learningAlgorithmGivenInfo(learningTexts):
-  for learningText in learningTexts:
-    loadFromFile(learningTexts).read()
+def learningAlgorithmGivenInfo():
+  from learningTextsGivenInfo import websiteTexts as learningTexts
+  import re
+
+  # Structure of learningTextsGivenInfo:
+  # List 'websiteTexts' = 
+      # List of [websiteName, websiteText, websiteData]
+      # website Data = List of [(dataName, [list of actual data])]
+
+  featureList=[]
+  
+  # For each learning text
+  for i in range(len(learningTexts)):
+    currentTextGroup = learningTexts[i]
+    currentTextName = currentTextGroup[0]
+    currentActualText = currentTextGroup[1]
+    currentTextData = currentTextGroup[2]
+
+    # For each data entry of the current learning text, e.g.: # phone
+    for k in range(len(currentTextData)):
+      dataEntry = currentTextData[k]
+      dataName = dataEntry[0]
+      actualData = dataEntry[1]
+
+      # For each entity of actual data, e.g.:
+      # +4923456789
+      # ! The regex search parameter cuts off the search result at whitespace (left and right of the find)
+      for l in range (len(actualData)):
+        dataEntity = actualData[l]
+        searchParameter = '\s(\S*{}\S*)\s'.format(dataEntity)
+        searchResults = re.findall(searchParameter,currentActualText)
+        print("Current findings of {}: {}".format(dataEntity,searchResults))
+
+        # For each search result, e.g.:
+        # itemprop="telephone">+49 2131 9235-0</span><br
+        for m in range(len(searchResults)):
+          currentSearchResult = searchResults[m]
+          dataPositionInResult = currentSearchResult.find(dataEntity)
+          leftOfDataFind = currentSearchResult[:dataPositionInResult]
+          rightOfDataFind = currentSearchResult[dataPositionInResult+len(dataEntity):]
+          if '"' in leftOfDataFind:
+            possibleFeature = leftOfDataFind.split('"')[1]
+            print("The feature could be {}".format(possibleFeature))
+            featureList.append(possibleFeature)
+          
 
 
 # SET TRUE IF NGRAM-APPROACH IS INTENDED
@@ -204,7 +246,7 @@ if nGramApproach is True:
   print(similarityOfStrings([ngrams[1],ngrams[2]],str))
   print(similarityOfStrings(['title=','itle="'],str))
 
-learningAlgorithm("learningTexts.txt")
+learningAlgorithmGivenInfo()
 
 #print(websitesTexts)
 #print(getMultipleWebsiteData(websitesListDefault))
@@ -214,7 +256,14 @@ learningAlgorithm("learningTexts.txt")
 # auch die Qualität der durch die priorisierten Features eingeholten Informationen (Kanzleiname, Telefonnummer, etc.) bewerten
 
 #TODO (24.08.): https://www.advocard.de/service/anwaltssuche/ Radius auf 50km von PLZ 40472 aus erhöhen und dann die Liste der Kanzleien erweitern
+#TODO (21.09.): Featureerkennung durch Lerntext funktioniert ja erst mal ganz gut (Name des Dateneintrags im HTML-Code wird ausgelesen, z.B. "faxNumber"). Daher zwei Folgeansätze:
+# 1. Selben Lernalgorithmus auf 2, 3 weitere Texte anwenden, deren Daten ich wieder in einer Liste mitliefere
+# 2. Den Lernalgorithmus mal bei WebseitenTexten anwenden, für die ich keine Daten mitliefere und überprüfen, ob sich dort nur mit den wenigen bisherig gesammelten zur Auswahl stehenden feature (tags) die wertvollen Informationen des Textes abschöpfen lassen.
+
+#_______
 #TODO (14.09.): Weitere Regex-Suchparameter ausprobieren, um nicht einen ganzen Textblock ('="(.+)"' ), sondern nur die Features zu finden. Dabei beachten: mit regex-Groups durch Klammern lassen sich dann sowohl das Feature als auch die folgende sprachliche Information (um die es ja eigentlich geht) erfassen. Deswegen mit z.B. 2 Groups arbeiten, die eine findet das Feature, die andere die nachstehende Information
+#on hold/ vorerst verworfen:
 #TODO (14.09.): Die Lern-/ Trainingsfunktion bauen, um Featureerkennung alternativ zum regelbasierten über Lernansatz hinzubekommen. Dafür Texte unter "trainingTexts.txt" einlesen und Feature-Marker erkennen (°§~)
 #TODO (17.09.): Ab Zeile 171 checken, warum zwar in den Outputs mehrfach "Start of pattern found" steht, aber nie "End of pattern found"
-#TODO (17.09.): Alternative Lernmethode: Lerntext ohne Annotationen, dafür mit wichtigen Daten wie Telefonnummer an Algorithmus übergeben
+#______
+#erledigt (17.09.): Alternative Lernmethode: Lerntext ohne Annotationen, dafür mit wichtigen Daten wie Telefonnummer an Algorithmus übergeben
