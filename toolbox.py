@@ -37,7 +37,7 @@ def loadListOfTuplesFromFile(filename):
   print("First tuple for example is:{}".format((finalList[0][0][:100],finalList[0][1][:50])))
   return finalList
 
-def saveListOfTuplesToFile(listToSave,filename):
+def saveListToFile(listToSave,filename):
   f= open(filename,"w+")
   for i in range(len(listToSave)):
     listElement=listToSave[i]
@@ -47,7 +47,7 @@ def saveListOfTuplesToFile(listToSave,filename):
       print("Saving tuple '{}' to file '{}'.".format(input, filename))
     elif isinstance(listElement,str):
       f.write(listElement+"\n__________\n")
-      print("Saving tuple '{}' to file '{}'.".format(i, filename))
+      print("Saving string '{}' to file '{}'.".format(listElement, filename))
     else: print("List contents unknown. Nothing saved to file.")
   f.close()
 
