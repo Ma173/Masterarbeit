@@ -1,6 +1,6 @@
 import requests, re
 from tryout import nGram
-from toolbox import sortDict, first_with_x_count, loadFromFile,similarityOfStrings, saveListOfTuplesToFile,loadListOfTuplesFromFile, getShortestItem
+from toolbox import sortDict, first_with_x_count, loadFromFile,similarityOfStrings, saveListToFile,loadListOfTuplesFromFile, getShortestItem
 from chancelleryURLs import websitesDictWithChancelleryName
 from userInteraction import userSuggestedFeatures
 from itertools import chain
@@ -97,7 +97,7 @@ if textImportMode == "LoadFromFile":
   websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
 elif textImportMode == "RetrieveFromWeb":
   websitesTexts = getMultipleWebsiteData(websitesDictWithChancelleryName)
-  saveListOfTuplesToFile(websitesTexts,"websitesTexts.txt")
+  saveListToFile(websitesTexts,"websitesTexts.txt")
 
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
 print("Features that match all websites: ",list(matchingFeatures)[:10])
@@ -206,11 +206,14 @@ def learningAlgorithmGivenInfo():
     currentActualText = currentTextGroup[1]
     currentTextData = currentTextGroup[2]
 
+    print("\n1) Cycling through each learning text.\nCurrent text: {}".format(currentTextName))
     # For each data entry of the current learning text, e.g.: # phone
     for k in range(len(currentTextData)):
       dataEntry = currentTextData[k]
       dataName = dataEntry[0]
       actualData = dataEntry[1]
+
+      print("\n2) Cycling through each data entry.\nCurrent data entry: {}".format(dataName))
 
       # For each entity of actual data, e.g.:
       # +4923456789
@@ -221,6 +224,8 @@ def learningAlgorithmGivenInfo():
         searchResults = re.findall(searchParameter,currentActualText)
         print("Current findings of {}: {}".format(dataEntity,searchResults))
 
+        print("\n3) Cycling through each actual data.\nCurrent data: {}".format(dataEntity))
+
         # For each search result, e.g.:
         # itemprop="telephone">+49 2131 9235-0</span><br
         for m in range(len(searchResults)):
@@ -228,11 +233,19 @@ def learningAlgorithmGivenInfo():
           dataPositionInResult = currentSearchResult.find(dataEntity)
           leftOfDataFind = currentSearchResult[:dataPositionInResult]
           rightOfDataFind = currentSearchResult[dataPositionInResult+len(dataEntity):]
+
+          print("\n4) Cycling through each search result.\nCurrent search result: {}".format(currentSearchResult))
+          
           if '"' in leftOfDataFind:
             possibleFeature = leftOfDataFind.split('"')[1]
             print("The feature could be {}".format(possibleFeature))
             featureList.append(possibleFeature)
-          
+  print("\nFull feature list:{}".format(featureList))
+  loadedFeatures = loadFromFile("features.txt")
+  listToSave = []
+  listToSave.append(loadedFeatures)
+  listToSave.append(featureList)
+  saveListToFile(listToSave,"features.txt")
 
 
 # SET TRUE IF NGRAM-APPROACH IS INTENDED
