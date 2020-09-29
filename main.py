@@ -241,10 +241,11 @@ def learningAlgorithmGivenInfo():
             print("The feature could be {}".format(possibleFeature))
             featureList.append(possibleFeature)
   print("\nFull feature list:{}".format(featureList))
-  loadedFeatures = loadFromFile("features.txt")
+  loadedFeatures = loadFromFile("features.txt").readlines()
   listToSave = []
-  listToSave.append(loadedFeatures)
-  listToSave.append(featureList)
+  listToSave.extend(loadedFeatures)
+  listToSave.extend(featureList)
+  listToSave = list(set(listToSave))
   saveListToFile(listToSave,"features.txt")
 
 

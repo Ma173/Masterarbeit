@@ -41,14 +41,18 @@ def saveListToFile(listToSave,filename):
   f= open(filename,"w+")
   for i in range(len(listToSave)):
     listElement=listToSave[i]
+    if listElement=="" or listElement==" " or listElement=="\n":
+      continue
     if isinstance(listElement,tuple):
       f.write(listElement[0]+"\n")
       f.write(listElement[1]+"\n__________\n")
       print("Saving tuple '{}' to file '{}'.".format(input, filename))
     elif isinstance(listElement,str):
-      f.write(listElement+"\n__________\n")
+      if "\n" in listElement:
+        listElement=listElement.replace("\n","")
+      f.write(listElement+"\n")#+"\n__________\n")
       print("Saving string '{}' to file '{}'.".format(listElement, filename))
-    else: print("List contents unknown. Nothing saved to file.")
+    else: print("List contents unknown. List element was {}Nothing saved to file.".format(type(listElement)))
   f.close()
 
 def similarityOfStrings(listOfItemsToCompare,OutputType):
