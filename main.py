@@ -69,7 +69,7 @@ websitesFeaturesList=[]
 def textComparisonGetFeatures(texts):
   print("Extracting common features...")
   searchParametersArchive = ['=".*"','="(.+)"','<(.+)>','="(.+)"','(" alt=")(.+)(")']
-  searchParameter3 = '(\w+=")(\s*\w+\s*)+(")'
+  searchParameter3 = '(\w+=")([\w\d\s]+)(")'#'(\w+=")(\s*\w+\s*)+(")'
   for text in texts:
     foundFeatures = re.findall(searchParameter3,text[1])
     print("Foundall findet {} Treffer".format(len(foundFeatures)))
