@@ -213,7 +213,7 @@ def learningAlgorithmGivenInfo():
       dataName = dataEntry[0]
       actualData = dataEntry[1]
 
-      print("\n2) Cycling through each data entry.\nCurrent data entry: {}".format(dataName))
+      print("\22) Cycling through each data entry.\nCurrent data entry: {}".format(dataName))
 
       # For each entity of actual data, e.g.:
       # +4923456789
@@ -224,7 +224,7 @@ def learningAlgorithmGivenInfo():
         searchResults = re.findall(searchParameter,currentActualText)
         print("Current findings of {}: {}".format(dataEntity,searchResults))
 
-        print("\n3) Cycling through each actual data.\nCurrent data: {}".format(dataEntity))
+        print("3) Cycling through each actual data.\nCurrent data: {}".format(dataEntity))
 
         # For each search result, e.g.:
         # itemprop="telephone">+49 2131 9235-0</span><br
@@ -234,7 +234,7 @@ def learningAlgorithmGivenInfo():
           leftOfDataFind = currentSearchResult[:dataPositionInResult]
           rightOfDataFind = currentSearchResult[dataPositionInResult+len(dataEntity):]
 
-          print("\n4) Cycling through each search result.\nCurrent search result: {}".format(currentSearchResult))
+          print("4) Cycling through each search result.\nCurrent search result: {}".format(currentSearchResult))
           
           if '"' in leftOfDataFind:
             possibleFeature = leftOfDataFind.split('"')[1]

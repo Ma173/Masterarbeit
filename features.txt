@@ -1,10 +1,10 @@
+telephone
+postalCode
+faxNumber
+streetAddress
+postalCode
 mailto:
-postalCode
-faxNumber
 telephone
-telephone
+streetAddress
 faxNumber
-streetAddress
-postalCode
-streetAddress
 mailto:
