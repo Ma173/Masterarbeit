@@ -30,6 +30,7 @@ def getMultipleWebsiteData(urlCollection):
     for key,value in urlCollection.items():
       pair=[key,value]
       urllist.append(pair)
+  else: print("Type of collection not recognized. Type was {} No website retrieved from web. First items of collection were: {}".format(type(urlCollection),urllist[:5]))
   print("Gathering text data of {} websites...".format(len(urllist)))
   websitesTexts=[]
   # Iterating through all websites (Website Name & actual url) and saving a list of website name and website text to a list
@@ -37,7 +38,10 @@ def getMultipleWebsiteData(urlCollection):
     website =urllist[i]
     #print("website=urllist[i] is: {}".format(urllist[i]))
     print("\n\t{} of {}".format(i,len(urllist)))
-    if "http" in website[0]:
+    if len(website)==1:
+      websitesTexts.append((website,getSingleWebsiteData(website)))
+      print("Appending the following: {}".format((website[1],getSingleWebsiteData(website[0])[:50])))
+    elif "http" in website[0]:
       websitesTexts.append((website[1],getSingleWebsiteData(website[0])))
       print("Appending the following: {}".format((website[1],getSingleWebsiteData(website[0])[:50])))
     elif "http" in website[1]:
@@ -89,14 +93,21 @@ def textComparisonGetFeatures(texts):
     commonFeatures = set.intersection(*featuresListTexts)#websitesFeaturesList[1],websitesFeaturesList[2])
   return commonFeatures
 
+
+chancelleryUrls = loadFromFile("chancelleryURLs_2.txt").read().splitlines()
+print(chancelleryUrls[:10])
+print("ChancelleryUrls length is: {}",len(chancelleryUrls))
+#TODO: Checken, warum getMultipleWebsiteData in "urllist" keine Daten hat, obwohl ich die doch hier laden lasse und die im TextImport übergeben werden?!
+
+
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
 
 # SWITCH MODE TO UPDATE THE WEBSITES' TEXT FILES:
-textImportMode="LoadFromFile"
+textImportMode="RetrieveFromWeb"#LoadFromFile"
 if textImportMode == "LoadFromFile":
   websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
 elif textImportMode == "RetrieveFromWeb":
-  websitesTexts = getMultipleWebsiteData(websitesDictWithChancelleryName)
+  websitesTexts = getMultipleWebsiteData(chancelleryUrls)#websitesDictWithChancelleryName)
   saveListToFile(websitesTexts,"websitesTexts.txt")
 
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
