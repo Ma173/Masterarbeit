@@ -72,13 +72,13 @@ def textComparisonGetFeatures(texts):
   searchParameter3 = '(\w+=")([\w\d\s]+)(")'#'(\w+=")(\s*\w+\s*)+(")'
   for text in texts:
     foundFeatures = re.findall(searchParameter3,text[1])
-    print("Foundall findet {} Treffer".format(len(foundFeatures)))
+    #print("Foundall findet {} Treffer".format(len(foundFeatures)))
     # Converting the list of features into a set for removing duplicates easily and then converting it into a list again
     foundFeatures = list(set(foundFeatures))
-    print("Text [0] is {}; Text[1][:50] is {}".format(text[0],text[1][:50]))
+    #print("Text [0] is {}; Text[1][:50] is {}".format(text[0],text[1][:50]))
     websiteName = text[0]
     websitesFeaturesList.append((websiteName,set(foundFeatures)))
-    print("\n- {} features in website text '{}' with a length of {}:\n{}\n\n".format(len(foundFeatures),websiteName[:100],len(text[1]),"---"))#foundFeatures))
+    #print("\n- {} features in website text '{}' with a length of {}:\n{}\n\n".format(len(foundFeatures),websiteName[:100],len(text[1]),"---"))#foundFeatures))
     #for feature in foundFeatures:
     #  print("\t",feature)
   commonFeatures=[]
@@ -111,7 +111,7 @@ featureFrequencyTop = []
 for featurePairs in featureFrequency:
   if featurePairs[1]>2:
     featureFrequencyTop.append(featurePairs)
-print("All features that occur on at least 3 websites:")    
+print("\nAll features that occur on at least 3 websites:")    
 for featureFreqPair in featureFrequencyTop:
   print(featureFreqPair)
 
@@ -142,51 +142,6 @@ def countSimilarity(listToCheck):
   print("Too high similarity count:",tooHighSimilarityCount)
   return tooHighSimilarityCount
 
-def learningAlgorithmAnnotatedText(learningTexts):
-  ## IMPORT
-  LearningTexts_raw = loadFromFile(learningTexts).read()
-  learningTextsList_raw = LearningTexts_raw.split("__________")
-  learningTextsList = []
-  for listItem in learningTextsList_raw:
-    if listItem != '':
-      learningTextsList.append(listItem)
-  print("Imported a list of {} learning texts..".format(len(learningTextsList)))
-  print(learningTextsList[0])
-  learningtextNameTuples = []
-  for textWithName in learningTextsList:
-    learningtextNameTuples.append((textWithName.split("\n")[1],textWithName.split("\n")[2]))
-  #print(learningtextNameTuples)
-  ## ACTUAL LEARNING
-  # DELETE THE "[0]" TO LEARN FROM ALL TEXTS
-  learnedFeatures=[]
-  for i in range(len(learningTextsList)):
-    #currentLearningTextTuple = learningtextNameTuples[i]
-    currentLearningText = learningTextsList[0]
-    learningPattern = "°§~"
-    startOfPatternPosition = -1
-    endOfFeaturePosition = -1
-    endOfPatternPosition = -1
-    print("Currently viewed text begins with {}".format(currentLearningText[:50]))
-    numberofstartofpatterns=0
-    for k in range (len(currentLearningText)):
-      currentChar = currentLearningText[k]
-      nextChar = ""
-      previousChar = ""
-      if k<len(currentLearningText)-1: nextChar = currentLearningText[k+1]
-      if k>0: previousChar = currentLearningText[k-1]
-      
-      if currentChar == learningPattern[0] and nextChar == learningPattern[1]:
-        print("Start of pattern found.")
-        startOfPatternPosition += (k+3)
-        numberofstartofpatterns+=1
-      elif currentChar == learningPattern[0] and nextChar != learningPattern[1]:
-        print("End of pattern found.")
-        endOfPatternPosition += (k+3)
-        learnedFeatures.append(currentLearningText[startOfPatternPosition:endOfPatternPosition])
-        #startOfPatternPosition=0
-        #endOfPatternPosition=0
-  print("Learning features:\n")
-  for feature in learnedFeatures: print(feature)
 
 def learningAlgorithmGivenInfo():
   from learningTextsGivenInfo import websiteTexts as learningTexts
@@ -213,7 +168,7 @@ def learningAlgorithmGivenInfo():
       dataName = dataEntry[0]
       actualData = dataEntry[1]
 
-      print("\22) Cycling through each data entry.\nCurrent data entry: {}".format(dataName))
+      print("···2) Cycling through each data entry.\nCurrent data entry: {}".format(dataName))
 
       # For each entity of actual data, e.g.:
       # +4923456789
@@ -222,9 +177,9 @@ def learningAlgorithmGivenInfo():
         dataEntity = actualData[l]
         searchParameter = '\s(\S*{}\S*)\s'.format(dataEntity)
         searchResults = re.findall(searchParameter,currentActualText)
-        print("Current findings of {}: {}".format(dataEntity,searchResults))
+        print("   Current findings of {}: {}".format(dataEntity,searchResults))
 
-        print("3) Cycling through each actual data.\nCurrent data: {}".format(dataEntity))
+        print("······3) Cycling through each actual data.\nCurrent data: {}".format(dataEntity))
 
         # For each search result, e.g.:
         # itemprop="telephone">+49 2131 9235-0</span><br
@@ -234,18 +189,29 @@ def learningAlgorithmGivenInfo():
           leftOfDataFind = currentSearchResult[:dataPositionInResult]
           rightOfDataFind = currentSearchResult[dataPositionInResult+len(dataEntity):]
 
-          print("4) Cycling through each search result.\nCurrent search result: {}".format(currentSearchResult))
+          print("·········4) Cycling through each search result.\n         Current search result: {}".format(currentSearchResult))
           
           if '"' in leftOfDataFind:
-            possibleFeature = leftOfDataFind.split('"')[1]
-            print("The feature could be {}".format(possibleFeature))
+            partsOfFind = currentSearchResult.find('"')
+            if partsOfFind==1:
+              possibleFeature = leftOfDataFind.split('"')[0]
+              print("         FINDE {}".format(partsOfFind))
+            elif partsOfFind>1:
+              possibleFeature = leftOfDataFind.split('"')[1]
+              print("         FINDE {}".format(partsOfFind))
+            print("         The feature could be {}".format(possibleFeature))
             featureList.append(possibleFeature)
   print("\nFull feature list:{}".format(featureList))
   loadedFeatures = loadFromFile("features.txt").readlines()
   listToSave = []
   listToSave.extend(loadedFeatures)
   listToSave.extend(featureList)
+  for i in range(len(listToSave)):
+    feature = listToSave[i]
+    if "\n" in feature:
+        listToSave[i]=feature.replace("\n","")
   listToSave = list(set(listToSave))
+  print("List to save:{}".format(listToSave))
   saveListToFile(listToSave,"features.txt")
 
 

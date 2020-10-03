@@ -48,8 +48,6 @@ def saveListToFile(listToSave,filename):
       f.write(listElement[1]+"\n__________\n")
       print("Saving tuple '{}' to file '{}'.".format(input, filename))
     elif isinstance(listElement,str):
-      if "\n" in listElement:
-        listElement=listElement.replace("\n","")
       f.write(listElement+"\n")#+"\n__________\n")
       print("Saving string '{}' to file '{}'.".format(listElement, filename))
     else: print("List contents unknown. List element was {}Nothing saved to file.".format(type(listElement)))
