@@ -52,10 +52,13 @@ def getMultipleWebsiteData(urlCollection):
       print("\n\t{} of {}: {}".format(i,len(urllist),website))
     if (typeOfUrlCollection is list and len(website)>=1):
       print("TEST1")
-      try: websiteText = getSingleWebsiteData(website)
-      except:print("Website not reachable. Moving on to the next.")
-      websitesTexts.append((website,websiteText))
-      print("Appending the following: {}".format((website,websiteText[:50])))
+      try: 
+        websiteText = getSingleWebsiteData(website)
+        websitesTexts.append((website,websiteText))
+        print("Appending the following: {}".format((website,websiteText[:50])))
+      except:
+        print("Website not reachable. Moving on to the next.")
+             
     elif "http" in website[0]:
       print("TEST2")
       
