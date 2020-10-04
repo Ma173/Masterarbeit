@@ -9,7 +9,11 @@ from collections import defaultdict
 # The function to get the text of a single website
 def getSingleWebsiteData(url):
   print("\tGathering single website data (text)...")
+  #print(url)
+  url = url if url.startswith('http') else ('http://' + url)
+  print("URL with appended protocol is: {}".format(url))
   websiteText=requests.get(url).text
+  print("Length of website text: {} characters.".format(len(websiteText)))
   websiteTextClean=""
   for line in websiteText.splitlines():
     if not line.endswith("</html>"):
@@ -21,34 +25,42 @@ def getSingleWebsiteData(url):
 
 def getMultipleWebsiteData(urlCollection):
   urllist=[]
+  typeOfUrlCollection = ""
   #print(type(urlCollection))
   if (urlCollection is list) or (isinstance(urlCollection,list)):
     print("Collection of urls as of list type detected")
     urllist=urlCollection[:]
+    typeOfUrlCollection = list
   elif isinstance(urlCollection,dict):#urlCollection is dict:
     print("Collection of urls as of dictionary type detected")
     for key,value in urlCollection.items():
       pair=[key,value]
       urllist.append(pair)
+    typeOfUrlCollection = dict
   else: 
     print("Type of collection not recognized. Type was {} No website retrieved from web.".format(type(urlCollection)))
     urllist=urlCollection[:10]
     print("First items of collection were: {}".format(urllist[:5]))
+    typeOfUrlCollection = None
   print("Gathering text data of {} websites...".format(len(urllist)))
   websitesTexts=[]
   # Iterating through all websites (Website Name & actual url) and saving a list of website name and website text to a list
   for i in range(len(urllist)):
     website =urllist[i]
     #print("website=urllist[i] is: {}".format(urllist[i]))
-    if i%50 == 0:
+    if i%1 == 0:
       print("\n\t{} of {}: {}".format(i,len(urllist),website))
-    if len(website)==1:
-      websitesTexts.append((website,getSingleWebsiteData(website)))
-      print("Appending the following: {}".format((website[1],getSingleWebsiteData(website[0])[:50])))
+    if (typeOfUrlCollection is list and len(website)>=1):
+      print("TEST1")
+      websiteText = getSingleWebsiteData(website)
+      websitesTexts.append(website,websiteText)
+      print("Appending the following: {}".format((website,websiteText[:50])))
     elif "http" in website[0]:
+      print("TEST2")
       websitesTexts.append((website[1],getSingleWebsiteData(website[0])))
       print("Appending the following: {}".format((website[1],getSingleWebsiteData(website[0])[:50])))
     elif "http" in website[1]:
+      print("TEST3")
       websitesTexts.append((website[0],getSingleWebsiteData(website[1])))
       print("Appending the following: {}".format((website[0],getSingleWebsiteData(website[1])[:50])))
   print("Done gathering text data of multiple websites.")
