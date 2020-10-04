@@ -37,6 +37,7 @@ def loadListOfTuplesFromFile(filename):
   print("First tuple for example is:{}".format((finalList[0][0][:100],finalList[0][1][:50])))
   return finalList
 
+# Write a list to a file and overwrite any existing data in file
 def saveListToFile(listToSave,filename):
   f= open(filename,"w+")
   for i in range(len(listToSave)):
@@ -46,11 +47,10 @@ def saveListToFile(listToSave,filename):
     if isinstance(listElement,tuple):
       f.write(listElement[0]+"\n")
       f.write(listElement[1]+"\n__________\n")
-      print("Saving tuple '{}' to file '{}'.".format(input, filename))
     elif isinstance(listElement,str):
       f.write(listElement+"\n")#+"\n__________\n")
-      print("Saving string '{}' to file '{}'.".format(listElement, filename))
     else: print("List contents unknown. List element was {}Nothing saved to file.".format(type(listElement)))
+  print("Saved a list of {} items to file '{}'.".format(len(listToSave), filename))
   f.close()
 
 def similarityOfStrings(listOfItemsToCompare,OutputType):

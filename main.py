@@ -11,9 +11,7 @@ def getSingleWebsiteData(url):
   print("\tGathering single website data (text)...")
   #print(url)
   url = url if url.startswith('http') else ('http://' + url)
-  print("URL with appended protocol is: {}".format(url))
   websiteText=requests.get(url).text
-  print("Length of website text: {} characters.".format(len(websiteText)))
   websiteTextClean=""
   for line in websiteText.splitlines():
     if not line.endswith("</html>"):
@@ -51,11 +49,11 @@ def getMultipleWebsiteData(urlCollection):
     if i%1 == 0:
       print("\n\t{} of {}: {}".format(i,len(urllist),website))
     if (typeOfUrlCollection is list and len(website)>=1):
-      print("TEST1")
       try: 
         websiteText = getSingleWebsiteData(website)
-        websitesTexts.append((website,websiteText))
-        print("Appending the following: {}".format((website,websiteText[:50])))
+        if len(websiteText)>1: 
+          websitesTexts.append((website,websiteText))
+          #print("Appending the following: {}".format((website,websiteText[:50])))
       except:
         print("Website not reachable. Moving on to the next.")
              
@@ -63,13 +61,14 @@ def getMultipleWebsiteData(urlCollection):
       print("TEST2")
       
       websitesTexts.append((website[1],getSingleWebsiteData(website[0])))
-      print("Appending the following: {}".format((website[1],getSingleWebsiteData(website[0])[:50])))
+      #print("Appending the following: {}".format((website[1],getSingleWebsiteData(website[0])[:50])))
     elif "http" in website[1]:
       print("TEST3")
       websitesTexts.append((website[0],getSingleWebsiteData(website[1])))
-      print("Appending the following: {}".format((website[0],getSingleWebsiteData(website[1])[:50])))
+      #print("Appending the following: {}".format((website[0],getSingleWebsiteData(website[1])[:50])))
+    if len(websitesTexts)%5==0:
+      saveListToFile(websitesTexts,"websitesTexts.txt")
   print("Done gathering text data of multiple websites.")
-  print("Length of file websitesTexts: {}".format(len(websitesTexts)))
   return websitesTexts
 
 # Getting the chancellery's name
@@ -135,7 +134,7 @@ if textImportMode == "LoadFromFile":
   websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
 elif textImportMode == "RetrieveFromWeb":
   websitesTexts = getMultipleWebsiteData(chancelleryUrls)#websitesDictWithChancelleryName)
-  saveListToFile(websitesTexts,"websitesTexts.txt")
+  #saveListToFile(websitesTexts,"websitesTexts.txt")
 
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
 print("Features that match all websites: ",list(matchingFeatures)[:10])
