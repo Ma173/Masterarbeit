@@ -1,5 +1,5 @@
-mailto:
-faxNumber
-telephone
-streetAddress
 postalCode
+streetAddress
+faxNumber
+mailto:
+telephone

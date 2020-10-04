@@ -22,7 +22,7 @@ def getSingleWebsiteData(url):
 def getMultipleWebsiteData(urlCollection):
   urllist=[]
   #print(type(urlCollection))
-  if urlCollection is list:
+  if (urlCollection is list) or (isinstance(urlCollection,list)):
     print("Collection of urls as of list type detected")
     urllist=urlCollection[:]
   elif isinstance(urlCollection,dict):#urlCollection is dict:
@@ -30,14 +30,18 @@ def getMultipleWebsiteData(urlCollection):
     for key,value in urlCollection.items():
       pair=[key,value]
       urllist.append(pair)
-  else: print("Type of collection not recognized. Type was {} No website retrieved from web. First items of collection were: {}".format(type(urlCollection),urllist[:5]))
+  else: 
+    print("Type of collection not recognized. Type was {} No website retrieved from web.".format(type(urlCollection)))
+    urllist=urlCollection[:10]
+    print("First items of collection were: {}".format(urllist[:5]))
   print("Gathering text data of {} websites...".format(len(urllist)))
   websitesTexts=[]
   # Iterating through all websites (Website Name & actual url) and saving a list of website name and website text to a list
   for i in range(len(urllist)):
     website =urllist[i]
     #print("website=urllist[i] is: {}".format(urllist[i]))
-    print("\n\t{} of {}".format(i,len(urllist)))
+    if i%50 == 0:
+      print("\n\t{} of {}: {}".format(i,len(urllist),website))
     if len(website)==1:
       websitesTexts.append((website,getSingleWebsiteData(website)))
       print("Appending the following: {}".format((website[1],getSingleWebsiteData(website[0])[:50])))
@@ -48,6 +52,7 @@ def getMultipleWebsiteData(urlCollection):
       websitesTexts.append((website[0],getSingleWebsiteData(website[1])))
       print("Appending the following: {}".format((website[0],getSingleWebsiteData(website[1])[:50])))
   print("Done gathering text data of multiple websites.")
+  print("Length of file websitesTexts: {}".format(len(websitesTexts)))
   return websitesTexts
 
 # Getting the chancellery's name
@@ -95,9 +100,14 @@ def textComparisonGetFeatures(texts):
 
 
 chancelleryUrls = loadFromFile("chancelleryURLs_2.txt").read().splitlines()
-print(chancelleryUrls[:10])
-print("ChancelleryUrls length is: {}",len(chancelleryUrls))
-#TODO: Checken, warum getMultipleWebsiteData in "urllist" keine Daten hat, obwohl ich die doch hier laden lasse und die im TextImport übergeben werden?!
+#chancelleryUrls=[]
+#with open("chancelleryURLs_2.txt") as file:
+#    for line in file:
+#        line = line.strip() #preprocess line
+#        chancelleryUrls.append(line)
+#print("Type of imported file: {}".format(type(chancelleryUrls)))
+#print(chancelleryUrls[:10])
+print("ChancelleryUrls length is: {}".format(len(chancelleryUrls)))
 
 
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
@@ -159,7 +169,7 @@ def learningAlgorithmGivenInfo():
   import re
 
   # Structure of learningTextsGivenInfo:
-  # List 'websiteTexts' = 
+  # List 'websitesTexts' = 
       # List of [websiteName, websiteText, websiteData]
       # website Data = List of [(dataName, [list of actual data])]
 
