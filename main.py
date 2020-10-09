@@ -250,7 +250,31 @@ def learningAlgorithmGivenInfo():
   listToSave = list(set(listToSave))
   print("List to save:{}".format(listToSave))
   saveListToFile(listToSave,"features.txt")
-
+import websitesAnnotated_2
+def learningAlgorithmAnnotatedTexts():
+  import os
+  from os import walk
+  #get working directory
+  os.getcwd()
+  os.listdir('/home/runner')
+  print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
+  websiteFiles = []
+  for (dirpath, dirnames, filenames) in walk("websitesAnnotated_2"):
+      websiteFiles.extend(filenames)
+      break
+  print(websiteFiles)
+  for i in range(len(websiteFiles)):
+    filename=websiteFiles[i]
+    if i<len(websiteFiles)-1:
+      nextWebsite=websiteFiles[i+1]
+    if i>0:
+      previousWebsite=websiteFiles[i-1]
+    if filename.endswith(".ann"):
+      websiteStyle="annotation"
+    elif filename.endswith(".txt"):
+      websiteStyle="websitetext"
+    if
+learningAlgorithmAnnotatedTexts()
 
 # SET TRUE IF NGRAM-APPROACH IS INTENDED
 nGramApproach=False
