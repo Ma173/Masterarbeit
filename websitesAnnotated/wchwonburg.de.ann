@@ -1,0 +1,34 @@
+T1	Strasse 263 281;282 310	Rudower Straße 132 Ecke Johannisthaler Chaussee
+T2	Ort 311 323	12351 Berlin
+R1	zuOrt Arg1:T2 Arg2:T1	
+T3	Tel 329 344	(030) 667 90 80
+T4	Rechtsgebiete 349 361	Arbeitsrecht
+T5	Rechtsgebiete 363 374	Sozialrecht
+T6	Rechtsgebiete 376 388	Medizinrecht
+T7	Rechtsgebiete 393 406	Verkehrsrecht
+T8	Anwalt 1314 1337	Rechtsanwalt Schwonburg
+T9	Fachanwalt 1352 1379	Fachanwalt für Arbeitsrecht
+T10	Fachanwalt 1391 1417	Fachanwalt für Sozialrecht
+T11	Anwaeltin 1419 1444	Rechtsanwältin Richlitzki
+T12	Fachanwalt 1471 1499	Fachanwältin für Sozialrecht
+T13	Fachanwalt 1546 1558	Medizinrecht
+T14	Rechtsgebiete 1998 2010	Arbeitsrecht
+T15	Rechtsgebiete 2910 2921	Sozialrecht
+T16	Rechtsgebiete 3802 3814	Medizinrecht
+T17	Rechtsgebiete 4288 4301	Verkehrsrecht
+T18	Rechtsgebiete 4736 4752;4753 4759;4760 4769	Vertragsrecht __ und __ Mietrecht
+T19	Anwalt 6308 6323	Gerd Schwonburg
+T20	Fachanwalt 6388 6415	Fachanwalt für Arbeitsrecht
+T21	Fachanwalt 6426 6452	Fachanwalt für Sozialrecht
+T22	Sprachen 6473 6481	Englisch
+T23	Sprachen 6486 6494	Spanisch
+T24	Anwaeltin 6591 6606	Jana Richlitzki
+T25	Fachanwalt 6713 6741	Fachanwältin für Sozialrecht
+T26	Fachanwalt 6792 6804	Medizinrecht
+T27	Tel 7163 7178	(030) 667 90 80
+T28	Fax 7184 7200	(030) 667 90 888
+T29	Strasse 7982 8000	Rudower Straße 132
+T30	Ort 8002 8014	12351 Berlin
+R2	zuOrt Arg1:T30 Arg2:T29	
+T31	Tel 3 18	(030) 667 90 80
+T32	Email 21 42	mail[at]schwonburg.de

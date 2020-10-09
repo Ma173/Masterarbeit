@@ -1,0 +1,45 @@
+T1	Rechtsgebiete 72 82	Strafrecht
+T2	Rechtsgebiete 229 242	Verkehrsrecht
+T3	Rechtsgebiete 402 413	Sozialrecht
+T4	Rechtsgebiete 588 606	Schadenersatzrecht
+T5	Rechtsgebiete 772 792	Ordnungswidrigkeiten
+T6	Rechtsgebiete 930 939	Mietrecht
+T7	Rechtsgebiete 1071 1080	Kaufrecht
+T8	Rechtsgebiete 1211 1227	Grundstücksrecht
+T9	Rechtsgebiete 1352 1360	Erbrecht
+T10	Rechtsgebiete 1474 1487	Familienrecht
+T11	Rechtsgebiete 1623 1641	Fahrerlaubnisrecht
+T12	Rechtsgebiete 1751 1759	Baurecht
+T13	Rechtsgebiete 1891 1913	Allgemeines Zivilrecht
+T14	Rechtsgebiete 2040 2052	Arbeitsrecht
+T15	Rechtsgebiete 2194 2204	Strafrecht
+T16	Rechtsgebiete 2351 2364	Verkehrsrecht
+T17	Rechtsgebiete 2524 2535	Sozialrecht
+T18	Rechtsgebiete 2710 2728	Schadenersatzrecht
+T19	Anwalt 2912 2926	Rudolf Serwaty
+T20	Anwalt 2974 2985	Marcus Link
+T21	Fachanwalt 2986 3014	Fachanwalt für Familienrecht
+T22	Anwalt 3028 3039	Ralf Mathey
+T23	Fachanwalt 3040 3068	Fachanwalt für Verkehrsrecht
+T24	Rechtsgebiete 3069 3082	Rechtsgebiete
+T25	Rechtsgebiete 3083 3094	Sozialrecht
+T26	Rechtsgebiete 3095 3113	Schadenersatzrecht
+T27	Rechtsgebiete 3114 3134	Ordnungswidrigkeiten
+T28	Rechtsgebiete 3135 3144	Mietrecht
+T29	Rechtsgebiete 3145 3154	Kaufrecht
+T30	Rechtsgebiete 3155 3171	Grundstücksrecht
+T32	Rechtsgebiete 3197 3215	Fahrerlaubnisrecht
+T33	Rechtsgebiete 3216 3224	Baurecht
+T34	Rechtsgebiete 3225 3247	Allgemeines Zivilrecht
+T35	Rechtsgebiete 3248 3260	Arbeitsrecht
+T36	Rechtsgebiete 3261 3271	Strafrecht
+T37	Rechtsgebiete 3272 3285	Verkehrsrecht
+T38	Strasse 3324 3343	Tiergartenstraße 35
+T39	Ort 3344 3354	54595 Prüm
+R1	zuOrt Arg1:T39 Arg2:T38	
+T40	Tel 3360 3370	06551 3034
+T41	Fax 3376 3386	06551 4809
+T42	Email 3394 3414	info@anwalt-pruem.de
+T43	Kanzlei 3419 3431	anwalt-pruem
+T31	Rechtsgebiete 3172 3180	Erbrecht
+T44	Rechtsgebiete 3183 3196	Familienrecht

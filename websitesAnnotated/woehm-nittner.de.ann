@@ -1,0 +1,127 @@
+T1	Kanzlei 0 36	SIEBERT - BÖHM - NITTNER - FLEISCHER
+T2	Rechtsgebiete 83 107	Bau-und Architektenrecht
+T3	Rechtsgebiete 108 143	Betreibungs-und Vollstreckungsrecht
+T4	Rechtsgebiete 144 158	Insolvenzrecht
+T5	Rechtsgebiete 159 171	Medizinrecht
+T6	Rechtsgebiete 172 196	Wirtschaftliche Beratung
+T7	Rechtsgebiete 197 228	Miet-und Wohnungseigentumsrecht
+T8	Bio 296 388	Gegründet wurde die Kanzlei von Herrn Rechtsanwalt und Notar a.D. Gert Siebert im Jahre 1953
+T9	Rechtsgebiete 660 687	Bau- und Architektenrechtes
+T10	Rechtsgebiete 693 708	Familienrechtes
+T11	Rechtsgebiete 710 723	Arbeitsrechts
+T12	Rechtsgebiete 725 735	Mietrechts
+T13	Rechtsgebiete 737 760	Wohnungseigentumsrechts
+T14	Rechtsgebiete 765 778	Medizinrechts
+T15	Rechtsgebiete 815 830	Insolvenzrechts
+T16	Rechtsgebiete 836 857	Forderungsbeitreibung
+T17	Rechtsgebiete 863 882	Zwangsvollstreckung
+T18	Rechtsgebiete 891 907	Zwangsverwaltung
+T20	Rechtsgebiete 1341 1383	gerichtlich angeordnete Zwangsverwaltungen
+T21	Rechtsgebiete 1850 1877	Bau- und Architektenrechtes
+T22	Fachanwalt 1883 1923	Fachanwalt für Bau- und Architektenrecht
+T23	Anwalt 1939 1959	Rechtsanwalt Nittner
+T24	Rechtsgebiete 2052 2075	Wohnungseigentumsrechts
+T25	Anwalt 2204 2216	MANFRED BÖHM
+T26	Bio 2217 2233;2234 2310	1974/75 bis 1980 Studium der Rechtswissenschaften an der Philipps-Universität in Marburg/Lahn
+T27	Bio 2311 2404	Tätig seit dem 01.04.1983 in der Rechtsanwalts- und Notarkanzlei Gert Siebert in Marburg/Lahn
+T28	Bio 2405 2445	Seit dem 01.01.1987 Partner der Sozietät
+T29	Kanzlei 2446 2482	Siebert, Böhm, Nittner und Fleischer
+T30	Anwalt 2483 2499	GUNTHART NITTNER
+T31	Bio 2500 2607	Studium der Rechtswissenschaften an der Georg-August-Universität Göttingen und Philipps-Universität Marburg
+T32	Fachanwalt 2613 2648	Fachanwalt für Bau-Architektenrecht
+T33	Bio 2649 2689	Seit dem 01.07.2016 Partner der Sozietät
+T34	Tel 2810 2829	+49 6421 / 68 50 40
+T35	Strasse 2831 2843	Krummbogen 1
+T36	Ort 2845 2858	35039 Marburg
+R1	zuOrt Arg1:T36 Arg2:T35	
+T37	Email 2860 2887	kanzlei(at)boehm-nittner.de
+T38	Fax 2889 2915	Telefax 06421 / 68 50 42 5
+T39	Kanzlei 3094 3124	Siebert-Böhm-Nittner-Fleischer
+T40	Strasse 3126 3138	Krummbogen 1
+T41	Ort 3140 3153	35037 Marburg
+T42	Kanzlei 3299 3335	SIEBERT - BÖHM - NITTNER - FLEISCHER
+T43	Rechtsgebiete 3382 3406	Bau-und Architektenrecht
+T44	Rechtsgebiete 3407 3442	Betreibungs-und Vollstreckungsrecht
+T45	Rechtsgebiete 3443 3457	Insolvenzrecht
+T46	Rechtsgebiete 3458 3470	Medizinrecht
+T47	Rechtsgebiete 3471 3495	Wirtschaftliche Beratung
+T48	Rechtsgebiete 3496 3527	Miet-und Wohnungseigentumsrecht
+T49	Bio 3595 3687	Gegründet wurde die Kanzlei von Herrn Rechtsanwalt und Notar a.D. Gert Siebert im Jahre 1953
+T50	Rechtsgebiete 3959 3986	Bau- und Architektenrechtes
+T51	Rechtsgebiete 3992 4007	Familienrechtes
+T52	Rechtsgebiete 4009 4022	Arbeitsrechts
+T53	Rechtsgebiete 4024 4034	Mietrechts
+T54	Rechtsgebiete 4036 4059	Wohnungseigentumsrechts
+T55	Rechtsgebiete 4064 4077	Medizinrechts
+T56	Rechtsgebiete 4114 4129	Insolvenzrechts
+T57	Rechtsgebiete 4135 4156	Forderungsbeitreibung
+T58	Rechtsgebiete 4162 4181	Zwangsvollstreckung
+T59	Rechtsgebiete 4190 4206	Zwangsverwaltung
+T60	Bio 4241 4326	Ein Schwerpunkt unserer Tätigkeit liegt daher auch auf dem Gebiet des Insolvenzrechts
+T19	Bio 942 1027	Ein Schwerpunkt unserer Tätigkeit liegt daher auch auf dem Gebiet des Insolvenzrechts
+T61	Rechtsgebiete 4640 4682	gerichtlich angeordnete Zwangsverwaltungen
+T62	Rechtsgebiete 4929 4972	Forderungsbeitreibung und des Inkassowesens
+T63	Rechtsgebiete 1630 1673	Forderungsbeitreibung und des Inkassowesens
+T64	Bio 5089 5176	Ein weiterer Schwerpunkt unseres Büros liegt im Bereich des Bau- und Architektenrechtes
+T65	Fachanwalt 5182 5222	Fachanwalt für Bau- und Architektenrecht
+T66	Anwalt 5238 5258	Rechtsanwalt Nittner
+T67	Anwalt 5503 5515	MANFRED BÖHM
+T68	Bio 5516 5532;5533 5609	1974/75 bis 1980 Studium der Rechtswissenschaften an der Philipps-Universität in Marburg/Lahn
+T69	Bio 5610 5703	Tätig seit dem 01.04.1983 in der Rechtsanwalts- und Notarkanzlei Gert Siebert in Marburg/Lahn
+T70	Anwalt 5782 5798	GUNTHART NITTNER
+T71	Bio 5799 5906	Studium der Rechtswissenschaften an der Georg-August-Universität Göttingen und Philipps-Universität Marburg
+T72	Fachanwalt 5912 5947	Fachanwalt für Bau-Architektenrecht
+T73	Bio 5948 5988	Seit dem 01.07.2016 Partner der Sozietät
+T74	Tel 6109 6128	+49 6421 / 68 50 40
+T75	Strasse 6130 6142	Krummbogen 1
+T76	Ort 6144 6157	35039 Marburg
+R2	zuOrt Arg1:T76 Arg2:T75	
+T77	Email 6159 6186	kanzlei(at)boehm-nittner.de
+T78	Fax 6188 6214	Telefax 06421 / 68 50 42 5
+T79	Kanzlei 6393 6423	Siebert-Böhm-Nittner-Fleischer
+T80	Strasse 6425 6437	Krummbogen 1
+T81	Ort 6439 6452	35037 Marburg
+R3	zuOrt Arg1:T81 Arg2:T80	
+T82	Kanzlei 6596 6632	SIEBERT - BÖHM - NITTNER - FLEISCHER
+T83	Rechtsgebiete 6679 6703	Bau-und Architektenrecht
+T84	Rechtsgebiete 6704 6739	Betreibungs-und Vollstreckungsrecht
+T85	Rechtsgebiete 6740 6754	Insolvenzrecht
+T86	Rechtsgebiete 6755 6767	Medizinrecht
+T87	Rechtsgebiete 6768 6792	Wirtschaftliche Beratung
+T88	Rechtsgebiete 6793 6824	Miet-und Wohnungseigentumsrecht
+T89	Bio 6892 6984	Gegründet wurde die Kanzlei von Herrn Rechtsanwalt und Notar a.D. Gert Siebert im Jahre 1953
+T90	Rechtsgebiete 7256 7283	Bau- und Architektenrechtes
+T91	Rechtsgebiete 7289 7304	Familienrechtes
+T92	Rechtsgebiete 7306 7319	Arbeitsrechts
+T93	Rechtsgebiete 7321 7331	Mietrechts
+T94	Rechtsgebiete 7333 7356	Wohnungseigentumsrechts
+T95	Rechtsgebiete 7361 7374	Medizinrechts
+T96	Rechtsgebiete 7411 7426	Insolvenzrechts
+T97	Rechtsgebiete 7432 7453	Forderungsbeitreibung
+T98	Rechtsgebiete 7459 7478	Zwangsvollstreckung
+T99	Rechtsgebiete 7487 7503	Zwangsverwaltung
+T100	Bio 7538 7623	Ein Schwerpunkt unserer Tätigkeit liegt daher auch auf dem Gebiet des Insolvenzrechts
+T101	Rechtsgebiete 7937 7979	gerichtlich angeordnete Zwangsverwaltungen
+T102	Bio 8386 8473	Ein weiterer Schwerpunkt unseres Büros liegt im Bereich des Bau- und Architektenrechtes
+T103	Fachanwalt 8479 8519	Fachanwalt für Bau- und Architektenrecht
+T104	Anwalt 8535 8555	Rechtsanwalt Nittner
+T106	Anwalt 8800 8812	MANFRED BÖHM
+T107	Bio 8813 8829;8830 8906	1974/75 bis 1980 Studium der Rechtswissenschaften an der Philipps-Universität in Marburg/Lahn
+T108	Bio 8907 9000	Tätig seit dem 01.04.1983 in der Rechtsanwalts- und Notarkanzlei Gert Siebert in Marburg/Lahn
+T109	Bio 9001 9041	Seit dem 01.01.1987 Partner der Sozietät
+T110	Anwalt 9079 9095	GUNTHART NITTNER
+T111	Bio 9096 9203	Studium der Rechtswissenschaften an der Georg-August-Universität Göttingen und Philipps-Universität Marburg
+T112	Fachanwalt 9209 9244	Fachanwalt für Bau-Architektenrecht
+T113	Bio 9245 9285	Seit dem 01.07.2016 Partner der Sozietät
+T114	Tel 9406 9425	+49 6421 / 68 50 40
+T115	Strasse 9427 9439	Krummbogen 1
+T116	Ort 9441 9454	35039 Marburg
+R4	zuOrt Arg1:T116 Arg2:T115	
+T117	Email 9456 9483	kanzlei(at)boehm-nittner.de
+T118	Fax 9485 9511	Telefax 06421 / 68 50 42 5
+T119	Kanzlei 9690 9720	Siebert-Böhm-Nittner-Fleischer
+T120	Strasse 9722 9734	Krummbogen 1
+T121	Ort 9736 9749	35037 Marburg
+R5	zuOrt Arg1:T121 Arg2:T120	
+R6	zuOrt Arg1:T41 Arg2:T40	
+T105	Rechtsgebiete 8648 8671	Wohnungseigentumsrechts

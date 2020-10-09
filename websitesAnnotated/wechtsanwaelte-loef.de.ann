@@ -1,0 +1,28 @@
+T1	Kanzlei 14 28	Loef & Partner
+T2	Anwalt 1529 1541	Hermann Loef
+T3	Anwalt 1543 1558	Christoph Brüse
+T4	Anwaeltin 1560 1582	Karin-Binder-Hübenthal
+T5	Anwalt 1587 1607	Christian Graf Dohna
+T6	Kanzlei 1621 1649	Rechtsanwälte Loef & Partner
+T7	Strasse 1650 1669	Rüngsdorfer Str. 24
+T8	Ort 1671 1681	53173 Bonn
+R1	zuOrt Arg1:T8 Arg2:T7	
+T9	Tel 1694 1717	49 (0) 228 / 9 56 97-0,
+T10	Fax 1723 1747	+49 (0) 228 / 9 56 97-30
+T11	Kanzlei 1835 1863	Rechtsanwälte Loef & Partner
+T12	Kanzlei 1891 1919	Rechtsanwälte Loef & Partner
+T13	Strasse 1921 1940	Rüngsdorfer Str. 24
+T14	Ort 1954 1982	D-53173 Bonn (Bad Godesberg)
+R2	zuOrt Arg1:T14 Arg2:T13	
+T15	Tel 1992 2015	+49 (0) 228 / 95 697 -0
+T16	Fax 2025 2049	+49 (0) 228 / 95 697 -30
+T17	Email 2259 2281	ra.loef(at)t-online.de
+T18	Email 2283 2308	bruese(at)loef-partner.de
+T19	Email 2310 2339	huebenthal(at)loef-partner.de
+T20	Email 2342 2382	christian.dohna(at)eschweiler-partner.de
+T21	Kanzlei 2641 2669	Rechtsanwälte Loef & Partner
+T22	Strasse 2670 2690	Rüngsdorfer Str. 24,
+T23	Ort 2691 2701	53173 Bonn
+R3	zuOrt Arg1:T23 Arg2:T22	
+T24	Tel 2713 2736	+49 (0) 228 / 9 56 97-0
+T25	Fax 2743 2767	+49 (0) 228 / 9 56 97-30

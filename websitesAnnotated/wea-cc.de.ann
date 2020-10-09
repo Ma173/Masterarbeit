@@ -1,0 +1,66 @@
+T1	Kanzlei 106 119;120 134	Rechtsanwälte Elsner & Appel
+T2	Strasse 136 157	Tschaikowskistraße 47
+T3	Ort 158 172	09130 Chemnitz
+T4	Tel 184 197	0371 444 77 0
+T5	Fax 208 222	0371 444 77 29
+R1	zuOrt Arg1:T3 Arg2:T2	
+T6	Ort 227 245	Hofheim/Oberbayern
+T7	Strasse 248 265	Zugspitzstraße 15
+T8	Ort 266 289	82418 Hofheim b. Murnau
+R2	zuOrt Arg1:T8 Arg2:T7	
+T9	Tel 301 314	08847 6959 77
+T10	Fax 326 339	08847 6959 88
+T11	Email 351 364	rea@rea-cc.de
+T12	Kanzlei 367 381	Elsner & Appel
+T13	Rechtsgebiete 541 557	Wirtschaftsrecht
+T14	Rechtsgebiete 559 577	Gesellschaftsrecht
+T15	Rechtsgebiete 579 592	Verkehrsrecht
+T16	Rechtsgebiete 594 606	Arbeitsrecht
+T17	Rechtsgebiete 608 617	Mietrecht
+T18	Rechtsgebiete 619 632	Familienrecht
+T19	Anwalt 704 723	Mark-Andreas Elsner
+T20	Anwalt 1535 1554	Mark-Andreas Elsner
+T21	Anwalt 1573 1590	Claus Peter Appel
+T22	Kanzlei 1827 1841	Elsner & Appel
+T23	Strasse 1843 1864	Tschaikowskistraße 47
+T24	Ort 1865 1879	09130 Chemnitz
+R3	zuOrt Arg1:T24 Arg2:T23	
+T25	Tel 1891 1904	0371 444 77 0
+T26	Fax 1915 1929	0371 444 77 29
+T28	Strasse 1955 1972	Zugspitzstraße 15
+T29	Ort 1973 1996	82418 Hofheim b. Murnau
+R4	zuOrt Arg1:T29 Arg2:T28	
+T30	Tel 2008 2021	08847 6959 77
+T31	Fax 2033 2046	08847 6959 88
+T32	Email 2058 2071	rea@rea-cc.de
+T33	Anwalt 2087 2106	Mark-Andreas Elsner
+T34	Anwalt 2124 2143	Mark-Andreas Elsner
+T35	Rechtsgebiete 2182 2198	Wirtschaftsrecht
+T36	Rechtsgebiete 2201 2232	Handels- und Gesellschaftsrecht
+T37	Rechtsgebiete 2235 2253	Versicherungsrecht
+T38	Rechtsgebiete 2256 2264	Baurecht
+T39	Rechtsgebiete 2267 2280	Verkehrsrecht
+T40	Rechtsgebiete 2283 2295	Arbeitsrecht
+T41	Rechtsgebiete 2298 2311	Familienrecht
+T42	Rechtsgebiete 2314 2340	Miet- und Grundstücksrecht
+T43	Kanzlei 2580 2594	Elsner & Appel
+T44	Strasse 2596 2617	Tschaikowskistraße 47
+T45	Ort 2618 2632	09130 Chemnitz
+R5	zuOrt Arg1:T45 Arg2:T44	
+T46	Tel 2644 2657	0371 444 77 0
+T47	Fax 2668 2682	0371 444 77 29
+T48	Ort 2687 2705	Hofheim/Oberbayern
+T49	Strasse 2708 2725	Zugspitzstraße 15
+T50	Ort 2726 2749	82418 Hofheim b. Murnau
+R6	zuOrt Arg1:T50 Arg2:T49	
+T51	Tel 2761 2774	08847 6959 77
+T52	Fax 2786 2799	08847 6959 88
+T53	Email 2811 2824	rea@rea-cc.de
+T54	Anwalt 2827 2857	Rechtsanwalt Claus Peter Appel
+T55	Anwalt 2875 2892	Claus Peter Appel
+T56	Rechtsgebiete 2929 2941	Medizinrecht
+T57	Rechtsgebiete 2944 2961	Arzthaftungsrecht
+T58	Rechtsgebiete 2964 3011	Produkthaftungsrecht von medzinischen Produkten
+T59	Rechtsgebiete 3014 3032	Versicherungsrecht
+T60	Rechtsgebiete 3035 3092	Rechtliche Beratung bei landwirtschaftlichen Hofübergaben
+T61	Rechtsgebiete 3095 3103	Erbrecht

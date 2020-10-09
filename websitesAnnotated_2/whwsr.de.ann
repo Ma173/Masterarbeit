@@ -1,0 +1,94 @@
+T5	Kanzlei 5578 5604	BINNEWIES / HENKELMANN GbR
+T11	Anwalt 4940 4952	Peter Krämer
+T12	Fachanwalt 4978 5005	Fachanwalt für Arbeitsrecht
+T13	Fachanwalt 5007 5035	Fachanwalt für Verkehrsrecht
+T15	Anwaeltin 4854 4866	Sophie Bömer
+T16	Anwalt 4801 4816	Jürgen Mankartz
+T17	Anwalt 4746 4765	Patrick J. Elixmann
+T18	Anwaeltin 4631 4641	Elke Ebers
+T19	Anwaeltin 4580 4593	Marion Schlaß
+T20	Anwaeltin 4525 4542	Katharina Britwin
+T21	Anwalt 4284 4296	Peter Krämer
+T26	Kanzlei 3296 3322	BINNEWIES / HENKELMANN GbR
+T32	Anwalt 2658 2670	Peter Krämer
+T33	Fachanwalt 2696 2723	Fachanwalt für Arbeitsrecht
+T34	Fachanwalt 2725 2753	Fachanwalt für Verkehrsrecht
+T36	Anwaeltin 2572 2584	Sophie Bömer
+T37	Anwalt 2519 2534	Jürgen Mankartz
+T38	Anwalt 2464 2483	Patrick J. Elixmann
+T39	Anwaeltin 2349 2359	Elke Ebers
+T40	Anwaeltin 2298 2311	Marion Schlaß
+T41	Anwaeltin 2243 2260	Katharina Britwin
+T42	Anwalt 2002 2014	Peter Krämer
+T47	Kanzlei 1014 1040	BINNEWIES / HENKELMANN GbR
+T53	Anwalt 439 451	Peter Krämer
+T54	Fachanwalt 477 504	Fachanwalt für Arbeitsrecht
+T55	Fachanwalt 506 534	Fachanwalt für Verkehrsrecht
+T59	Tel 1133 1150	0 29 21 / 35 80-0
+T60	Fax 1156 1174	0 29 21 / 35 80-20
+T61	Email 1175 1192	zentrale@bhwsr.de
+T62	Tel 1238 1255	0 29 02 / 80 44-0
+T63	Fax 1261 1279	0 29 02 / 80 44-80
+T64	Email 1280 1297	zentrale@bhwsr.de
+T65	Tel 1343 1360	0 29 41 / 97 55-0
+T66	Fax 1366 1384	0 29 41 / 97 55-20
+T67	Email 1385 1402	zentrale@bhwsr.de
+T43	Standorte 1405 1419;1420 1436	D-59602 Rüthen Hachtorstraße 45
+T68	Tel 1446 1463	0 29 52 / 97 46-0
+T69	Fax 1469 1487	0 29 52 / 97 46-20
+T70	Email 1488 1505	zentrale@bhwsr.de
+T73	Tel 3415 3432	0 29 21 / 35 80-0
+T74	Fax 3438 3456	0 29 21 / 35 80-20
+T75	Email 3457 3474	zentrale@bhwsr.de
+T76	Tel 3520 3537	0 29 02 / 80 44-0
+T77	Fax 3543 3561	0 29 02 / 80 44-80
+T78	Email 3562 3579	zentrale@bhwsr.de
+T79	Tel 3625 3642	0 29 41 / 97 55-0
+T80	Fax 3648 3666	0 29 41 / 97 55-20
+T81	Email 3667 3684	zentrale@bhwsr.de
+T82	Tel 3728 3745	0 29 52 / 97 46-0
+T83	Fax 3751 3769	0 29 52 / 97 46-20
+T84	Email 3770 3787	zentrale@bhwsr.de
+T10	Tel 5697 5714	0 29 21 / 35 80-0
+T87	Tel 5720 5738	0 29 21 / 35 80-20
+T88	Email 5739 5756	zentrale@bhwsr.de
+T89	Tel 5802 5819	0 29 02 / 80 44-0
+T90	Fax 5825 5843	0 29 02 / 80 44-80
+T91	Email 5844 5861	zentrale@bhwsr.de
+T92	Tel 5907 5924	0 29 41 / 97 55-0
+T93	Fax 5930 5948	0 29 41 / 97 55-20
+T94	Email 5949 5966	zentrale@bhwsr.de
+T95	Tel 6010 6027	0 29 52 / 97 46-0
+T96	Fax 6033 6051	0 29 52 / 97 46-20
+T97	Email 6052 6069	zentrale@bhwsr.de
+T46	Ort 1094 1107	D-59494 Soest
+T48	Strasse 1108 1123	Jakobistraße 11
+R1	zuOrt Arg1:T46 Arg2:T48	
+T45	Ort 1195 1211	D-59581 Warstein
+T49	Strasse 1212 1228	Bahnhofstraße 12
+R2	zuOrt Arg1:T45 Arg2:T49	
+T44	Ort 1300 1317	D-59555 Lippstadt
+T50	Strasse 1318 1333	Blumenstraße 10
+R3	zuOrt Arg1:T44 Arg2:T50	
+T25	Ort 3376 3389	D-59494 Soest
+T27	Strasse 3390 3405	Jakobistraße 11
+R4	zuOrt Arg1:T25 Arg2:T27	
+T24	Ort 3477 3493	D-59581 Warstein
+T28	Strasse 3494 3510	Bahnhofstraße 12
+T23	Ort 3582 3599	D-59555 Lippstadt
+T29	Strasse 3600 3615	Blumenstraße 10
+T22	Ort 3687 3701	D-59602 Rüthen
+T30	Strasse 3702 3718	Hachtorstraße 45
+R5	zuOrt Arg1:T22 Arg2:T30	
+T4	Ort 5658 5671	D-59494 Soest
+T6	Strasse 5672 5687	Jakobistraße 11
+R6	zuOrt Arg1:T4 Arg2:T6	
+T3	Ort 5759 5775	D-59581 Warstein
+T7	Strasse 5776 5792	Bahnhofstraße 12
+R7	zuOrt Arg1:T3 Arg2:T7	
+T2	Ort 5864 5881	D-59555 Lippstadt
+T8	Strasse 5882 5897	Blumenstraße 10
+R8	zuOrt Arg1:T2 Arg2:T8	
+T1	Ort 5969 5983	D-59602 Rüthen
+T9	Strasse 5984 6000	Hachtorstraße 45
+R9	zuOrt Arg1:T1 Arg2:T9	

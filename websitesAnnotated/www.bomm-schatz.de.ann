@@ -1,0 +1,85 @@
+T1	Anwalt 414 428	Felix Orlowski
+T2	Fachanwalt 430 457	Fachanwalt für Medizinrecht
+T3	Fachanwalt 458 491	Fachanwalt für Versicherungsrecht
+T4	Rechtsgebiete 511 523	Medizinrecht
+T5	Rechtsgebiete 524 542	Versicherungsrecht
+T6	Rechtsgebiete 587 600	Verkehrsrecht
+T7	Rechtsgebiete 601 619	Verkehrsstrafrecht
+T8	Rechtsgebiete 624 644	Ordnungswidrigkeiten
+T9	Rechtsgebiete 645 656	Sozialrecht
+T10	Rechtsgebiete 657 668	Markenrecht
+T11	Anwalt 678 695	Dr. Werner Linden
+T12	Fachanwalt 697 725	Fachanwalt für Arbeitsrecht
+T13	Rechtsgebiete 727 739	Arbeitsrecht
+T14	Rechtsgebiete 740 751	Umweltrecht
+T15	Rechtsgebiete 752 769	Privates Baurecht
+T16	Rechtsgebiete 771 798	Wirtschaftsverwaltungsrecht
+T17	Rechtsgebiete 799 813	Insolvenzrecht
+T18	Rechtsgebiete 814 834	Landwirtschaftsrecht
+T19	Anwalt 857 869	Nico Schmitz
+T20	Fachanwalt 871 899	Fachanwalt für Arbeitsrecht
+T21	Rechtsgebiete 901 913	Arbeitsrecht
+T22	Rechtsgebiete 914 948	privates Bau- und Architektenrecht
+T23	Rechtsgebiete 949 966	Werkvertragsrecht
+T24	Rechtsgebiete 967 976	Mietrecht
+T25	Rechtsgebiete 977 993	Verwaltungsrecht
+T26	Rechtsgebiete 994 1006	Nachbarrecht
+T27	Rechtsgebiete 1007 1017	Reiserecht
+T29	Kanzlei 2953 2978	BOMM SCHATZ Rechtsanwälte
+T30	Tel 3019 3033	(0651) 94803-0
+T31	Fax 3039 3054	(0651) 94803-99
+T32	Email 3061 3082	anwalt@bomm-schatz.de
+T33	Rechtsgebiete 3750 3766	Wirtschaftsrecht
+T34	Rechtsgebiete 3767 3798	Handels- und Gesellschaftsrecht
+T35	Rechtsgebiete 3799 3810	Steuerrecht
+T36	Rechtsgebiete 3811 3841	Insolvenz- und Sanierungsrecht
+T37	Rechtsgebiete 3842 3880	Privates Baurecht und Architektenrecht
+T38	Rechtsgebiete 3881 3913	Miet- und Wohnungseigentumsrecht
+T39	Rechtsgebiete 3947 3992	Zwangsvollstreckungs- und versteigerungsrecht
+T40	Anwalt 3993 4007	Felix Orlowski
+T41	Fachanwalt 4009 4036	Fachanwalt für Medizinrecht
+T42	Fachanwalt 4038 4071	Fachanwalt für Versicherungsrecht
+T43	Rechtsgebiete 4166 4183	Arzthaftungsrecht
+T44	Rechtsgebiete 4184 4196	Medizinrecht
+T45	Rechtsgebiete 4197 4215	Versicherungsrecht
+T46	Rechtsgebiete 4260 4273	Verkehrsrecht
+T47	Rechtsgebiete 4274 4317	Verkehrsstrafrecht und Ordnungswidrigkeiten
+T48	Rechtsgebiete 4318 4329	Sozialrecht
+T49	Anwalt 4342 4359	Dr. Werner Linden
+T50	Fachanwalt 4361 4388	Fachanwalt für Arbeitsrecht
+T51	Rechtsgebiete 4413 4425	Arbeitsrecht
+T52	Rechtsgebiete 4426 4437	Umweltrecht
+T53	Rechtsgebiete 4438 4455	Privates Baurecht
+T54	Rechtsgebiete 4456 4483	Wirtschaftsverwaltungsrecht
+T55	Rechtsgebiete 4484 4498	Insolvenzrecht
+T56	Rechtsgebiete 4499 4519	Landwirtschaftsrecht
+T57	Anwalt 4541 4553	Nico Schmitz
+T58	Fachanwalt 4555 4582	Fachanwalt für Arbeitsrecht
+T59	Rechtsgebiete 4607 4619	Arbeitsrecht
+T60	Rechtsgebiete 4620 4654	privates Bau- und Architektenrecht
+T61	Rechtsgebiete 4655 4672	Werkvertragsrecht
+T62	Rechtsgebiete 4673 4682	Mietrecht
+T63	Rechtsgebiete 4683 4699	Verwaltungsrecht
+T64	Rechtsgebiete 4700 4712	Nachbarrecht
+T65	Rechtsgebiete 4713 4723	Reiserecht
+T66	Kanzlei 4725 4750	BOMM SCHATZ Rechtsanwälte
+T68	Tel 4791 4805	(0651) 94803-0
+T69	Fax 4811 4826	(0651) 94803-99
+T70	Email 4833 4854	anwalt@bomm-schatz.de
+T71	Anwalt 3289 3306	Dr. Stefan Schatz
+T72	Rechtsgebiete 3483 3499	Wirtschaftsrecht
+T73	Rechtsgebiete 3500 3531	Handels- und Gesellschaftsrecht
+T74	Rechtsgebiete 3532 3541	Bankrecht
+T75	Rechtsgebiete 3542 3550	Erbrecht
+T76	Rechtsgebiete 3551 3564	Familienrecht
+T77	Rechtsgebiete 3565 3611	Wettbewerbsrecht und gewerblicher Rechtsschutz
+T78	Rechtsgebiete 3612 3626	Produkthaftung
+T79	Rechtsgebiete 3627 3647	Unternehmensgründung
+T80	Anwalt 3713 3726	Guido Tuschke
+T81	Rechtsgebiete 493 510	Arzthaftungsrecht
+T28	Strasse 2979 2999	Walramsneustraße 7/8
+T82	Ort 3000 3011	54290 Trier
+R1	zuOrt Arg1:T82 Arg2:T28	
+T67	Strasse 4751 4771	Walramsneustraße 7/8
+T83	Ort 4772 4783	54290 Trier
+R2	zuOrt Arg1:T83 Arg2:T67	

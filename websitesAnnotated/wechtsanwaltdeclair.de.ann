@@ -1,0 +1,29 @@
+T1	Kanzlei 13 29	Wolfgang Declair
+T2	Rechtsgebiete 59 67	Erbrecht
+T3	Rechtsgebiete 69 82	Verkehrsrecht
+T4	Rechtsgebiete 87 111	Ordnungswidrigkeitsrecht
+T5	Rechtsgebiete 113 137	Miet- und Eigentumsrecht
+T6	Rechtsgebiete 139 156	privates Baurecht
+T7	Rechtsgebiete 161 186	allgemeines Vertragsrecht
+T8	Rechtsgebiete 238 251	Verkehrsrecht
+T9	Rechtsgebiete 256 281	Ordnungswidrigkeitenrecht
+T11	Rechtsgebiete 1467 1476	Erbrechts
+T12	Rechtsgebiete 1991 2008	Privates Baurecht
+T13	Rechtsgebiete 2530 2555	Allgemeines Vertragsrecht
+T14	Rechtsgebiete 3160 3192	Miet- und Wohnungseigentumsrecht
+T16	Strasse 6300 6318	Pastoratsstraße 13
+T17	Ort 6319 6329	50997 Köln
+R1	zuOrt Arg1:T17 Arg2:T16	
+T18	Tel 6337 6350	02233 / 21450
+T20	Email 6378 6407	rechtsanwalt.declair@koeln.de
+T21	Strasse 6433 6451	Pastoratsstraße 13
+T22	Ort 6455 6459	Köln
+R2	zuOrt Arg1:T22 Arg2:T21	
+T23	Kanzlei 6900 6916	Wolfgang Declair
+T10	Bio 5190 5240	Wolfgang Declair ist am 13.10.1960 in Köln geboren
+T24	Bio 5242 5448	Er arbeitete während des Jura Studiums in Köln 1 ½ Jahre als studentischer Mitarbeiter im Dekanat der rechtswissenschaftlichen Fakultät der Universität Köln, sowie neun Monate in einer Kölner Anwaltskanzlei
+T25	Bio 5451 5615	Nach dem Studium überbrückte Wolfgang Declair die Zeit bis zum Beginn der Referendarausbildung im Februar 1992 als Sachbearbeiter beim Bundesamt für den Zivildienst
+T26	Bio 5618 5842	Sodann schloss er die Referendarausbildung im OLG-Bezirk Köln mit dem 2. Staatsexamens im November 1995 ab – währenddessen übte er ein Jahr lang eine Nebentätigkeit als Referendar in einer weiteren Kölner Anwaltssozietät aus
+T27	Bio 5845 6019;6020 6127	In Vorbereitung zur Selbständigkeit belegte er von Januar 1996 bis Juli 1996 den Lehrgang Steuerrecht für Wirtschaftswissenschaftler und Juristendes mibeg-Institutes in Köln. Seit Oktober 1996 ist Wolfgang Declair als selbständiger Rechtsanwalt mit Kanzleisitz im Kölner Süden tätig
+T19	Fax 6356 6369	02233 / 21458
+T15	Anwalt 6283 6299	Wolfgang Declair

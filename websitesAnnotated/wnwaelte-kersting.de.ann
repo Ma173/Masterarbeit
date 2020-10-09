@@ -1,0 +1,152 @@
+T3	Fachanwalt 308 349	Fachwältin für Familienrecht, Pferderecht
+T4	Kanzlei 357 387	Anwaltskanzlei Kersting Bochum
+T1	Kanzlei 389 418	Rechtsanwaltskanzlei Kersting
+T7	Fachanwalt 665 695	Fachanwältin für Familienrecht
+T9	Fachanwalt 742 770	Fachanwalt für Verkehrsrecht
+T10	Rechtsgebiete 847 859	Arbeitsrecht
+T11	Rechtsgebiete 861 873	Bußgeldrecht
+T12	Rechtsgebiete 875 883	Erbrecht
+T13	Rechtsgebiete 885 894	Mietrecht
+T14	Rechtsgebiete 895 933	Wohnungseigentums- und Immobilienrecht
+T15	Rechtsgebiete 935 946	Pferderecht
+T16	Rechtsgebiete 951 973	allgemeines Zivilrecht
+T17	Anwalt 1506 1523	Heribert Kersting
+T18	Anwaeltin 1525 1534	Heike Jez
+T19	Anwalt 1539 1556	Dennis Strothotte
+T20	Rechtsgebiete 1722 1752	Transport- und Speditionsrecht
+T21	Rechtsgebiete 1753 1766	Familienrecht
+T22	Rechtsgebiete 1767 1780	Verkehrsrecht
+T23	Rechtsgebiete 1802 1814	Arbeitsrecht
+T24	Rechtsgebiete 1815 1827	Bußgeldrecht
+T25	Rechtsgebiete 1828 1836	Erbrecht
+T26	Rechtsgebiete 1837 1846	Mietrecht
+T27	Rechtsgebiete 1847 1869	Wohnungseigentumsrecht
+T28	Rechtsgebiete 1870 1885	Immobilienrecht
+T29	Rechtsgebiete 1886 1897	Pferderecht
+T30	Rechtsgebiete 1898 1920	Allgemeines Zivilrecht
+T31	Kanzlei 1922 1930;1932 1954	KERSTING NOTARE • RECHTSANWÄLTE
+T32	Strasse 1956 1976	Hattinger Straße 397
+T33	Ort 1977 1989	44795 Bochum
+R1	zuOrt Arg1:T33 Arg2:T32	
+T34	Tel 1998 2013	(0234) 890319-0
+T35	Fax 2022 2038	(0234) 890319-19
+T36	Email 2047 2072	info@anwaelte-kersting.de
+T38	Bio 2412 2436	Rechtsanwältin seit 1986
+T39	Fachanwalt 2437 2477	Fachanwältin für Familienrecht seit 1997
+T40	Rechtsgebiete 2500 2511	Pferderecht
+T41	Bio 2512 2543	Jahrgang 1958, geboren in Herne
+T42	Anwaeltin 2559 2568	Heike Jez
+T43	Rechtsgebiete 2597 2610	Familienrecht
+T45	Bio 3243 3265	Rechtsanwalt seit 2008
+T46	Bio 3266 3298	Jahrgang 1978, geboren in Bochum
+T47	Bio 3467 3503	Rechtsabteilung der Sparkasse Bochum
+T48	Rechtsgebiete 3614 3654	Miet-, Pacht- und Wohnungseigentumsrecht
+T49	Rechtsgebiete 3844 3856	Arbeitsrecht
+T50	Rechtsgebiete 3861 3879	Versicherungsrecht
+T53	Bio 4156 4178	Rechtsanwalt seit 1983
+T54	Bio 4179 4194	Notar seit 2001
+T55	Bio 4195 4227	Jahrgang 1955, geboren in Bochum
+T56	Rechtsgebiete 4515 4528	Verkehrsrecht
+T57	Bio 4626 4658	Sohn eines Transportunternehmers
+T58	Fachanwalt 4793 4838	Fachanwalt für Transport- und Speditionsrecht
+T59	Rechtsgebiete 5003 5015	Arbeitsrecht
+T60	Rechtsgebiete 5017 5034	Werkvertragsrecht
+T61	Rechtsgebiete 5036 5067	Handels- und Gesellschaftsrecht
+T62	Rechtsgebiete 5087 5096	Arztrecht
+T63	Kanzlei 5244 5252	KERSTING
+T64	Strasse 5275 5295	Hattinger Straße 397
+T65	Ort 5296 5308	44795 Bochum
+R2	zuOrt Arg1:T65 Arg2:T64	
+T66	Tel 5317 5332	(0234) 890319-0
+T67	Fax 5341 5357	(0234) 890319-19
+T68	Email 5366 5391	info@anwaelte-kersting.de
+T69	Kanzlei 5896 5904	KERSTING
+T70	Strasse 5927 5947	Hattinger Straße 397
+T71	Ort 5948 5960	44795 Bochum
+R3	zuOrt Arg1:T71 Arg2:T70	
+T72	Tel 5969 5984	(0234) 890319-0
+T73	Fax 6000 6009	890319-19
+T74	Email 6018 6043	info@anwaelte-kersting.de
+T75	Anwaeltin 6470 6494	Rechtsanwältin Heike Jez
+T76	Fachanwalt 6495 6536	Fachwältin für Familienrecht, Pferderecht
+T77	Kanzlei 6544 6574	Anwaltskanzlei Kersting Bochum
+T78	Kanzlei 6576 6605	Rechtsanwaltskanzlei Kersting
+T79	Anwalt 6673 6696	Notar Heribert Kersting
+T80	Fachanwalt 6707 6753	Fachanwalt für Transport – und Speditionsrecht
+T81	Anwaeltin 6826 6850	Rechtsanwältin Heike Jez
+T82	Fachanwalt 6852 6882	Fachanwältin für Familienrecht
+T83	Anwalt 6887 6927	Notar und Rechtsanwalt Dennis Strothotte
+T84	Fachanwalt 6929 6957	Fachanwalt für Verkehrsrecht
+T85	Rechtsgebiete 7034 7046	Arbeitsrecht
+T86	Rechtsgebiete 7048 7060	Bußgeldrecht
+T87	Rechtsgebiete 7062 7070	Erbrecht
+T88	Rechtsgebiete 7072 7081	Mietrecht
+T89	Rechtsgebiete 7082 7120	Wohnungseigentums- und Immobilienrecht
+T90	Rechtsgebiete 7122 7133	Pferderecht
+T91	Rechtsgebiete 7138 7160	allgemeines Zivilrecht
+T92	Anwalt 7693 7710	Heribert Kersting
+T93	Anwaeltin 7712 7721	Heike Jez
+T94	Anwalt 7726 7743	Dennis Strothotte
+T95	Fachanwalt 7909 7939	Transport- und Speditionsrecht
+T96	Fachanwalt 7940 7953	Familienrecht
+T97	Fachanwalt 7954 7967	Verkehrsrecht
+T98	Rechtsgebiete 7989 8001	Arbeitsrecht
+T99	Rechtsgebiete 8002 8014	Bußgeldrecht
+T100	Rechtsgebiete 8015 8023	Erbrecht
+T101	Rechtsgebiete 8024 8033	Mietrecht
+T102	Rechtsgebiete 8034 8056	Wohnungseigentumsrecht
+T103	Rechtsgebiete 8057 8072	Immobilienrecht
+T104	Rechtsgebiete 8073 8084	Pferderecht
+T105	Rechtsgebiete 8085 8107	Allgemeines Zivilrecht
+T106	Kanzlei 8109 8117	KERSTING
+T107	Strasse 8143 8163	Hattinger Straße 397
+T108	Ort 8164 8176	44795 Bochum
+T109	Tel 8185 8200	(0234) 890319-0
+T110	Fax 8209 8225	(0234) 890319-19
+T111	Email 8234 8259	info@anwaelte-kersting.de
+T112	Kanzlei 8599 8628	Rechtsanwaltskanzlei Kersting
+T113	Anwalt 8696 8719	Notar Heribert Kersting
+T114	Fachanwalt 8730 8776	Fachanwalt für Transport – und Speditionsrecht
+T115	Anwaeltin 8849 8873	Rechtsanwältin Heike Jez
+T116	Fachanwalt 8875 8905	Fachanwältin für Familienrecht
+T117	Anwalt 8910 8950	Notar und Rechtsanwalt Dennis Strothotte
+T118	Fachanwalt 8952 8980	Fachanwalt für Verkehrsrecht
+T119	Rechtsgebiete 9057 9069	Arbeitsrecht
+T120	Rechtsgebiete 9071 9083	Bußgeldrecht
+T121	Rechtsgebiete 9085 9093	Erbrecht
+T122	Rechtsgebiete 9095 9104	Mietrecht
+T123	Rechtsgebiete 9105 9143	Wohnungseigentums- und Immobilienrecht
+T124	Rechtsgebiete 9145 9156	Pferderecht
+T125	Rechtsgebiete 9161 9183	allgemeines Zivilrecht
+T126	Anwalt 9783 9800	Dennis Strothotte
+T127	Fachanwalt 9802 9847	Fachanwalt für Transport- und Speditionsrecht
+T128	Rechtsgebiete 9849 9862	Familienrecht
+T129	Anwaeltin 9864 9873	Heike Jez
+T130	Anwalt 9875 9892	Heribert Kersting
+T131	Fachanwalt 9901 9927	Speditionsrecht Fachanwalt
+T132	Fachanwalt 9929 9943	Transportrecht
+T133	Fachanwalt 9945 9958	Verkehrsrecht
+T134	Fachanwalt 10123 10153	Transport- und Speditionsrecht
+T135	Fachanwalt 10154 10167	Familienrecht
+T136	Fachanwalt 10168 10181	Verkehrsrecht
+T137	Rechtsgebiete 10203 10215	Arbeitsrecht
+T138	Rechtsgebiete 10216 10228	Bußgeldrecht
+T139	Rechtsgebiete 10229 10237	Erbrecht
+T140	Rechtsgebiete 10238 10247	Mietrecht
+T141	Rechtsgebiete 10248 10270	Wohnungseigentumsrecht
+T142	Rechtsgebiete 10271 10286	Immobilienrecht
+T143	Rechtsgebiete 10287 10298	Pferderecht
+T144	Rechtsgebiete 10299 10321	Allgemeines Zivilrecht
+T145	Kanzlei 10323 10331	KERSTING
+T146	Strasse 10357 10377	Hattinger Straße 397
+T147	Ort 10378 10390	44795 Bochum
+R4	zuOrt Arg1:T147 Arg2:T146	
+T148	Tel 10399 10414	(0234) 890319-0
+T149	Fax 10423 10439	(0234) 890319-19
+T150	Email 10448 10473	info@anwaelte-kersting.de
+T2	Anwaeltin 298 307	Heike Jez
+T5	Anwaeltin 654 663	Heike Jez
+T6	Anwaeltin 723 740	Dennis Strothotte
+T8	Anwaeltin 2401 2410	Heike Jez
+T37	Anwalt 3224 3241	Dennis Strothotte
+T44	Anwalt 4137 4154	Heribert Kersting

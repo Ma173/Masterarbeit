@@ -1,0 +1,18 @@
+T1	Kanzlei 107 153	Anwälte von Bassewitz, Grüneberg, Gerlach & Co
+T2	Ort 97 104	Stendal
+T3	Strasse 155 173	Schönbeckstrasse 1
+T4	Ort 174 187	39576 Stendal
+R1	zuOrt Arg1:T4 Arg2:T3	
+T5	Tel 198 210	03931-216828
+T6	Ort 269 278	Salzwedel
+T7	Kanzlei 281 327	Anwälte von Bassewitz, Grüneberg, Gerlach & Co
+T8	Strasse 329 349	Karl-Marx-Strasse 25
+T9	Ort 350 365	29410 Salzwedel
+T10	Tel 376 388	03901-858730
+T11	Ort 447 453	Lüchow
+T12	Kanzlei 456 502	Anwälte von Bassewitz, Grüneberg, Gerlach & Co
+T13	Strasse 504 528	Salzwedeler Strasse 19 a
+T14	Ort 529 541	29349 Lüchow
+T15	Tel 552 564	05841-976950
+R2	zuOrt Arg1:T9 Arg2:T8	
+R3	zuOrt Arg1:T14 Arg2:T13	

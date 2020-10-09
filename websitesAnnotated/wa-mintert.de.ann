@@ -1,0 +1,56 @@
+T2	Anwalt 443 455	Helge Dinter
+T3	Rechtsgebiete 520 545	Arbeits- und Sozialrechts
+T4	Email 1117 1135	info@ra-mintert.de
+T5	Kanzlei 1146 1168	MINTERT ANWALTSKANZLEI
+T1	Kanzlei 85 107	MINTERT ANWALTSKANZLEI
+T6	Strasse 1170 1179	Röttgen 2
+T7	Ort 1180 1195	42109 Wuppertal
+R1	zuOrt Arg1:T7 Arg2:T6	
+T8	Tel 1203 1215	0202/70908-0
+T9	Email 1223 1241	info@ra-mintert.de
+T10	Tel 1343 1356	0202 70 90 80
+T11	Email 1357 1375	info@ra-mintert.de
+T12	Anwaeltin 1488 1502	Britta Sonntag
+T13	Anwalt 1517 1529	Dennis Kunze
+T14	Anwalt 1544 1556	Helge Dinter
+T15	Anwalt 1648 1666	Holger Morgenstern
+T16	Kanzlei 1687 1709	MINTERT ANWALTSKANZLEI
+T17	Strasse 1711 1720	Röttgen 2
+T18	Ort 1721 1736	42109 Wuppertal
+R2	zuOrt Arg1:T18 Arg2:T17	
+T19	Tel 1744 1756	0202/70908-0
+T20	Email 1764 1782	info@ra-mintert.de
+T21	Tel 1880 1893	0202 70 90 80
+T22	Email 1894 1912	info@ra-mintert.de
+T23	Kanzlei 2470 2492	MINTERT ANWALTSKANZLEI
+T24	Strasse 2494 2503	Röttgen 2
+T25	Ort 2504 2519	42109 Wuppertal
+R3	zuOrt Arg1:T25 Arg2:T24	
+T27	Email 2547 2565	info@ra-mintert.de
+T26	Tel 2527 2539	0202/70908-0
+T28	Tel 2667 2680	0202 70 90 80
+T29	Email 2681 2699	info@ra-mintert.de
+T30	Kanzlei 3011 3033	MINTERT ANWALTSKANZLEI
+T31	Strasse 3035 3044	Röttgen 2
+T32	Ort 3045 3060	42109 Wuppertal
+R4	zuOrt Arg1:T32 Arg2:T31	
+T33	Tel 3068 3080	0202/70908-0
+T34	Email 3088 3106	info@ra-mintert.de
+T35	Tel 3204 3217	0202 70 90 80
+T36	Email 3218 3236	info@ra-mintert.de
+T37	Kanzlei 3794 3816	MINTERT ANWALTSKANZLEI
+T38	Strasse 3818 3827	Röttgen 2
+T39	Ort 3828 3843	42109 Wuppertal
+R5	zuOrt Arg1:T39 Arg2:T38	
+T40	Tel 3851 3863	0202/70908-0
+T41	Email 3871 3889	info@ra-mintert.de
+T42	Tel 6 19	0202 70 90 80
+T43	Anwalt 20 38	info@ra-mintert.de
+T44	Ort 149 158	Wuppertal
+T45	Rechtsgebiete 173 194	Zivil- und Strafrecht
+T46	Anwalt 1438 1471	Rechtsanwalt Karl Raimund Mintert
+T47	Anwalt 2762 2795	Rechtsanwalt Karl Raimund Mintert
+T48	Anwaeltin 2797 2826	Rechtsanwältin Britta Sonntag
+T49	Anwalt 2828 2853	Rechtsanwalt Dennis Kunze
+T50	Anwalt 2939 2990	Kooperationspartner Rechtsanwalt Holger Morgenstern
+T51	Kanzlei 3708 3730	Mintert Anwaltskanzlei

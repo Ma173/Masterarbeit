@@ -1,0 +1,19 @@
+T1	Kanzlei 46 74	Rechtsanwaltskanzlei Ullmann
+T2	Tel 0 13	03338 6199982
+T3	Email 14 45	Kanzlei@Ullmann-Rechtsanwalt.de
+T4	Kanzlei 1746 1774	RECHTSANWALTSKANZLEI ULLMANN
+T5	Anwalt 1776 1799	Frank Alexander Ullmann
+T6	Strasse 1800 1816	Berliner Str. 16
+T7	Ort 1817 1840	16321 Bernau bei Berlin
+R1	zuOrt Arg1:T7 Arg2:T6	
+T8	Tel 1854 1873	(0 33 38) 61 99 982
+T9	Fax 1884 1902	(0 33 38) 75 77 13
+T10	Email 1904 1935	Kanzlei@Ullmann-Rechtsanwalt.de
+T11	Anwalt 2018 2054	Rechtsanwalt Frank Alexander Ullmann
+T12	Rechtsgebiete 2472 2480	Erbrecht
+T13	Rechtsgebiete 2481 2499	Gesellschaftsrecht
+T14	Rechtsgebiete 2500 2535	Ordnungswidrigkeits- und Strafrecht
+T15	Rechtsgebiete 2564 2596	Arbeits- und Dienstvertragsrecht
+T16	Rechtsgebiete 2597 2610	Verkehrsrecht
+T17	Tel 2722 2735	03338 6199982
+T18	Anwalt 3145 3181	Rechtsanwalt Frank Alexander Ullmann

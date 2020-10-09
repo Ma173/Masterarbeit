@@ -1,0 +1,20 @@
+T1	Kanzlei 2341 2355	Ralph Bergmann
+T2	Anwalt 85 99	RALPH BERGMANN
+T3	Fachanwalt 100 128	Fachanwalt für Verkehrsrecht
+T4	Fachanwalt 129 157	Fachanwalt für Familienrecht
+T5	Rechtsgebiete 240 262	Ehe- und Familienrecht
+T6	Rechtsgebiete 264 277	Verkehrsrecht
+T7	Rechtsgebiete 279 296	Arzthaftungsrecht
+T8	Rechtsgebiete 298 307	Mietrecht
+T9	Rechtsgebiete 309 327	Versicherungsrecht
+T10	Rechtsgebiete 343 365	Allgemeines Zivilrecht
+T11	Rechtsgebiete 367 374	Inkasso
+T12	Rechtsgebiete 376 413	Reisevertragsrecht und Maklerverträge
+T13	Tel 738 749	0551 450 78
+T14	Strasse 802 813	Am Kreuze 4
+T15	Ort 814 829	37075 Göttingen
+R1	zuOrt Arg1:T15 Arg2:T14	
+T16	Fachanwalt 831 855	Fachanwalt Familienrecht
+T17	Fachanwalt 933 957	Fachanwalt Verkehrsrecht
+T18	Anwalt 2177 2185	Bergmann
+T19	Fachanwalt 2203 2231	Fachanwalt für Verkehrsrecht

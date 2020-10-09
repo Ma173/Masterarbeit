@@ -129,7 +129,7 @@ print("ChancelleryUrls length is: {}".format(len(chancelleryUrls)))
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
 
 # SWITCH MODE TO UPDATE THE WEBSITES' TEXT FILES:
-textImportMode="RetrieveFromWeb"#LoadFromFile"
+textImportMode="LoadFromFile"#RetrieveFromWeb"
 if textImportMode == "LoadFromFile":
   websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
 elif textImportMode == "RetrieveFromWeb":
@@ -146,9 +146,9 @@ for i in range(len(websitesFeaturesList)):
 featureFrequency = frequency(websitesListOfFeaturesWithoutWebsitename)
 featureFrequencyTop = []
 for featurePairs in featureFrequency:
-  if featurePairs[1]>2:
+  if featurePairs[1]>=10:
     featureFrequencyTop.append(featurePairs)
-print("\nAll features that occur on at least 3 websites:")    
+print("\nAll features that occur on at least 10 websites:")    
 for featureFreqPair in featureFrequencyTop:
   print(featureFreqPair)
 

@@ -1,0 +1,100 @@
+T1	Kanzlei 45 52	ADVOVIS
+T2	Anwalt 119 136	Andreas J. Wehner
+T3	Fachanwalt 150 178	Fachanwalt für Familienrecht
+T4	Fachanwalt 179 206	Fachanwalt für Arbeitsrecht
+T6	Anwalt 216 243	Dr. jur. Christoph Hartmann
+T7	Fachanwalt 257 280	Fachanwalt für Erbrecht
+T8	Fachanwalt 281 324	Fachanwalt für Handels-& Gesellschaftsrecht
+T9	Fachanwalt 325 354	Fachanwalt für Insolvenzrecht
+T10	Anwaeltin 355 378	Stefanie Raab-Wilbrandt
+T11	Fachanwalt 407 436	Fachanwältin für Medizinrecht
+T12	Fachanwalt 437 465	Fachanwältin für Sozialrecht
+T13	Anwaeltin 466 484	Christine Hartmann
+T14	Rechtsgebiete 537 550	Familienrecht
+T15	Rechtsgebiete 551 561	Zivilrecht
+T16	Rechtsgebiete 562 572	Strafrecht
+T17	Anwaeltin 573 586	Sabine Wehner
+T18	Rechtsgebiete 639 654	Verwaltungsrech
+T19	Rechtsgebiete 1509 1522	Familienrecht
+T20	Rechtsgebiete 1779 1787	Erbrecht
+T21	Rechtsgebiete 2049 2061	Arbeitsrecht
+T22	Rechtsgebiete 2336 2365	Handels- & Gesellschaftsrecht
+T23	Rechtsgebiete 2589 2603	Insolvenzrecht
+T24	Rechtsgebiete 2798 2810	Medizinrecht
+T25	Rechtsgebiete 3048 3058	Strafrecht
+T26	Rechtsgebiete 3210 3223	Verkehrsrecht
+T27	Rechtsgebiete 3343 3353	Zivilrecht
+T28	Rechtsgebiete 3586 3597	Sozialrecht
+T29	Rechtsgebiete 4009 4018	Mietrecht
+T30	Rechtsgebiete 4231 4239	Mediator
+T31	Rechtsgebiete 4456 4464	Baurecht
+T32	Tel 4671 4682	0661-928090
+T33	Fax 4689 4699	0661-70605
+T34	Email 4710 4727	buero@advovis.com
+T35	Strasse 4743 4765	Am Alten Schlachthof 6
+T36	Ort 4767 4778	36073 Fulda
+R1	zuOrt Arg1:T36 Arg2:T35	
+T37	Kanzlei 4780 4787	ADVOVIS
+T38	Kanzlei 4789 4814	Wehner & Dr. Hartmann GbR
+T39	Strasse 4815 4837	Am Alten Schlachthof 6
+T40	Ort 4838 4849	36073 Fulda
+R2	zuOrt Arg1:T40 Arg2:T39	
+T41	Anwalt 5044 5061	Andreas J. Wehner
+T42	Fachanwalt 5115 5142	Fachanwalt für Familenrecht
+T43	Fachanwalt 5143 5170	Fachanwalt für Arbeitsrecht
+T44	Rechtsgebiete 5171 5179	Mediator
+T5	Rechtsgebiete 207 215	Mediator
+T45	Rechtsgebiete 5180 5198	Versicherungsrecht
+T46	Rechtsgebiete 5199 5210	Sozialrecht
+T47	Rechtsgebiete 5211 5222	Rentenrecht
+T48	Anwalt 5223 5250	Dr. jur. Christoph Hartmann
+T49	Fachanwalt 5304 5327	Fachanwalt für Erbrecht
+T50	Fachanwalt 5329 5375	Fachanwalt für Handels- und Gesellschaftsrecht
+T51	Fachanwalt 5377 5406	Fachanwalt für Insolvenzrecht
+T52	Rechtsgebiete 5408 5422	Familienrecht 
+T53	Rechtsgebiete 5423 5434	Strafrecht 
+T54	Anwaeltin 5435 5458	Stefanie Raab-Wilbrandt
+T55	Fachanwalt 5512 5535	Fachanwalt Medizinrecht
+T56	Fachanwalt 5536 5558	Fachanwalt Sozialrecht
+T57	Rechtsgebiete 5559 5570	Rentenrecht
+T58	Rechtsgebiete 5571 5581	Mietrecht 
+T59	Anwaeltin 5582 5600	Christine Hartmann
+T60	Rechtsgebiete 5654 5668	Familienrecht 
+T61	Rechtsgebiete 5681 5691	Strafrecht
+T62	Rechtsgebiete 5692 5705	Verkehrsrecht
+T63	Anwaeltin 5706 5719	Sabine Wehner
+T64	Rechtsgebiete 5773 5789	Verwaltungsrecht
+T65	Kanzlei 5790 5797	ADVOVIS
+T66	Kanzlei 5799 5824	Wehner & Dr. Hartmann GbR
+T67	Strasse 5825 5847	Am Alten Schlachthof 6
+T68	Ort 5848 5859	36073 Fulda
+R3	zuOrt Arg1:T68 Arg2:T67	
+T69	Anwalt 6054 6071	Andreas J. Wehner
+T70	Fachanwalt 6125 6152	Fachanwalt für Familenrecht
+T71	Fachanwalt 6153 6180	Fachanwalt für Arbeitsrecht
+T72	Rechtsgebiete 6181 6189	Mediator
+T73	Rechtsgebiete 6190 6208	Versicherungsrecht
+T74	Rechtsgebiete 6209 6220	Sozialrecht
+T75	Rechtsgebiete 6221 6232	Rentenrecht
+T76	Anwalt 6233 6260	Dr. jur. Christoph Hartmann
+T77	Fachanwalt 6314 6337	Fachanwalt für Erbrecht
+T78	Fachanwalt 6339 6385	Fachanwalt für Handels- und Gesellschaftsrecht
+T79	Fachanwalt 6387 6416	Fachanwalt für Insolvenzrecht
+T80	Rechtsgebiete 6418 6432	Familienrecht 
+T81	Rechtsgebiete 6433 6444	Strafrecht 
+T82	Anwaeltin 6445 6468	Stefanie Raab-Wilbrandt
+T83	Fachanwalt 6522 6545	Fachanwalt Medizinrecht
+T84	Fachanwalt 6546 6568	Fachanwalt Sozialrecht
+T85	Rechtsgebiete 6569 6580	Rentenrecht
+T86	Rechtsgebiete 6581 6591	Mietrecht 
+T87	Anwaeltin 6592 6610	Christine Hartmann
+T88	Rechtsgebiete 6664 6678	Familienrecht 
+T89	Rechtsgebiete 6691 6701	Strafrecht
+T90	Rechtsgebiete 6702 6715	Verkehrsrecht
+T91	Anwaeltin 6716 6729	Sabine Wehner
+T92	Rechtsgebiete 6783 6799	Verwaltungsrecht
+T93	Kanzlei 6800 6807	ADVOVIS
+T94	Kanzlei 6809 6834	Wehner & Dr. Hartmann GbR
+T95	Strasse 6835 6857	Am Alten Schlachthof 6
+T96	Ort 6858 6869	36073 Fulda
+R4	zuOrt Arg1:T96 Arg2:T95	

@@ -1,0 +1,78 @@
+T1	Kanzlei 174 195	Haibach Rechtsanwälte
+T2	Kanzlei 196 225	Haibach Rechtsanwälte & Notar
+T3	Ort 985 991	Gießen
+T4	Strasse 1089 1104	Moltkestraße 14
+T5	Ort 1269 1278	Frankfurt
+T6	Strasse 1337 1355	Wolfsgangstraße 83
+R1	zuOrt Arg1:T5 Arg2:T6	
+R2	zuOrt Arg1:T3 Arg2:T4	
+T7	Ort 1640 1647	München
+T8	Strasse 1671 1713	Mühlbaurstraße 1 / Ecke Prinzregentenplatz
+R3	zuOrt Arg1:T7 Arg2:T8	
+T9	Kanzlei 1772 1779	HAIBACH
+T10	Rechtsgebiete 1806 1819	Familienrecht
+T11	Rechtsgebiete 1822 1830	Erbrecht
+T12	Rechtsgebiete 4564 4595	Scheidungsrecht für Unternehmer
+T13	Anwalt 4142 4156	Rudolf Haibach
+T14	Anwalt 4493 4507	Rudolf Haibach
+T15	Anwalt 4729 4743	Rudolf Haibach
+T16	Ort 5329 5335	Gießen
+T17	Tel 5339 5360	49 (0)641 - 9 32 99-0
+T18	Fax 5362 5384	49 (0)641 - 9 32 99-65
+T19	Strasse 5393 5408	Moltkestraße 14
+T20	Ort 5409 5421	35390 Gießen
+R4	zuOrt Arg1:T20 Arg2:T19	
+T21	Ort 5494 5503	Frankfurt
+T22	Tel 5507 5530	49 (0)69 - 9 55 03 55-0
+T23	Fax 5532 5556	49 (0)69 - 9 55 03 55-20
+T24	Strasse 5560 5578	Wolfsgangstraße 83
+T25	Ort 5579 5602	60322 Frankfurt am Main
+R5	zuOrt Arg1:T25 Arg2:T24	
+T26	Ort 5679 5686	München
+T27	Tel 5690 5714	49 (0)89 - 41 42 43 97-0
+T28	Fax 5716 5740	49 (0)89 - 41 42 43 97-9
+T29	Strasse 5750 5766	Mühlbaurstraße 1
+T30	Ort 5767 5780	81677 München
+R6	zuOrt Arg1:T30 Arg2:T29	
+T31	Anwalt 5861 5875	Rudolf Haibach
+T32	Rechtsgebiete 6001 6014	FAMILIENRECHT
+T33	Rechtsgebiete 6015 6024	Scheidung
+T34	Rechtsgebiete 6025 6035	Ehevertrag
+T35	Rechtsgebiete 6036 6044	ERBRECHT
+T36	Fachanwalt 6167 6191	Fachanwalt Familienrecht
+T37	Tel 6209 6229	49 (0) 641 9 32 99-0
+T38	Fax 6241 6262	49 (0) 641 9 32 99-66
+T39	Anwalt 6275 6289	RUDOLF HAIBACH
+T40	Anwaeltin 6291 6309	Dr. Ulrike Haibach
+T41	Fachanwalt 6326 6352	Fachanwältin Familienrecht
+T42	Tel 6364 6385	49 (0) 69 955 0 355-0
+T43	Fax 6397 6419	49 (0) 69 955 0 355-20
+T44	Anwaeltin 6452 6465	Nicola Sommer
+T45	Fachanwalt 6504 6534	Fachanwältin für Familienrecht
+T46	Tel 6546 6566	49 (0) 641 9 32 99-0
+T47	Fax 6578 6599	49 (0) 641 9 32 99-66
+T48	Anwaeltin 6612 6625	NICOLA SOMMER
+T49	Rechtsgebiete 6845 6858	FAMILIENRECHT
+T50	Rechtsgebiete 6859 6868	Scheidung
+T51	Rechtsgebiete 6869 6879	Ehevertrag
+T52	Rechtsgebiete 6880 6888	ERBRECHT
+T53	Kanzlei 8361 8382	Haibach Rechtsanwälte
+T54	Strasse 8383 8401	Wolfsgangstraße 83
+T55	Ort 8402 8425	60322 Frankfurt am Main
+R7	zuOrt Arg1:T55 Arg2:T54	
+T56	Tel 8435 8447	069 95503550
+T57	Fax 8457 8470	069 955035520
+T58	Anwaeltin 8508 8526	Dr. Ulrike Haibach
+T59	Bio 539 579	Spezialisiert auf Familien- und Erbrecht
+T60	Bio 993 1064	Unsere Kanzlei in Gießen wurde von Rudolf Haibach senior 1951 gegründet
+T61	Email 1747 1767	muenchen@haibach.com
+T62	Bio 4116 4141	Der Gießener Promi-Anwalt
+T63	Ort 5008 5014	Gießen
+T64	Ort 5015 5024	Frankfurt
+T65	Ort 5025 5032	München
+T66	Email 5424 5443	giessen@haibach.com
+T67	Email 5607 5628	frankfurt@haibach.com
+T68	Email 5783 5803	muenchen@haibach.com
+T69	Kanzlei 6661 6698	Rechtsanwalt und Notar Rudolf Haibach
+T70	Bio 7095 7256	HAIBACH Rechtsanwälte ist eine Boutique-Kanzlei mit Spezialisierung im Familienrecht seit über 30 Jahren mit Standorten in Frankfurt am Main, München und Gießen.
+T71	Email 8536 8557	frankfurt@haibach.com

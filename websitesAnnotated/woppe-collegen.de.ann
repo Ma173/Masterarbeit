@@ -1,0 +1,75 @@
+T1	Kanzlei 18 34	HOPPE & COLLEGEN
+T2	Kanzlei 279 295	HOPPE & COLLEGEN
+T3	Rechtsgebiete 353 380	Bank- und Kapitalmarktrecht
+T4	Rechtsgebiete 381 408	Bank- und Kapitalmarktrecht
+T5	Rechtsgebiete 686 717	Handels- und Gesellschaftsrecht
+T6	Rechtsgebiete 718 749	Handels- und Gesellschaftsrecht
+T7	Rechtsgebiete 1053 1069	Wirtschaftsrecht
+T8	Rechtsgebiete 1070 1086	Wirtschaftsrecht
+T9	Rechtsgebiete 1317 1337	Forderungsmanagement
+T10	Rechtsgebiete 1338 1358	Forderungsmanagement
+T11	Rechtsgebiete 1611 1624	Vertragsrecht
+T12	Anwalt 1859 1873	JOHANNES HOPPE
+T13	Anwaeltin 1887 1898	SILKE HINTZ
+T14	Kanzlei 3562 3578	Hoppe & Collegen
+T15	Strasse 3579 3593	Eschenbrook 19
+T16	Ort 3595 3608	24113 Molfsee
+R1	zuOrt Arg1:T16 Arg2:T15	
+T17	Tel 3609 3626	+49 431 380 059 0
+T18	Email 3627 3649	info@hoppe-collegen.de
+T19	Kanzlei 3823 3839	HOPPE & COLLEGEN
+T20	Rechtsgebiete 3897 3924	Bank- und Kapitalmarktrecht
+T21	Rechtsgebiete 3925 3952	Bank- und Kapitalmarktrecht
+T22	Rechtsgebiete 4230 4261	Handels- und Gesellschaftsrecht
+T23	Rechtsgebiete 4262 4293	Handels- und Gesellschaftsrecht
+T24	Rechtsgebiete 4597 4613	Wirtschaftsrecht
+T25	Rechtsgebiete 4614 4630	Wirtschaftsrecht
+T26	Rechtsgebiete 4861 4881	Forderungsmanagement
+T27	Rechtsgebiete 4882 4902	Forderungsmanagement
+T28	Rechtsgebiete 5155 5168	Vertragsrecht
+T29	Anwalt 5403 5417	JOHANNES HOPPE
+T30	Anwaeltin 5431 5442	SILKE HINTZ
+T31	Kanzlei 7106 7122	Hoppe & Collegen
+T32	Strasse 7123 7137	Eschenbrook 19
+T33	Ort 7139 7152	24113 Molfsee
+R2	zuOrt Arg1:T33 Arg2:T32	
+T34	Tel 7154 7170	49 431 380 059 0
+T35	Email 7171 7193	info@hoppe-collegen.de
+T36	Kanzlei 7360 7376	HOPPE & COLLEGEN
+T37	Rechtsgebiete 7517 7544	Bank- und Kapitalmarktrecht
+T38	Rechtsgebiete 7545 7572	Bank- und Kapitalmarktrecht
+T39	Rechtsgebiete 7850 7881	Handels- und Gesellschaftsrecht
+T40	Rechtsgebiete 7882 7913	Handels- und Gesellschaftsrecht
+T41	Rechtsgebiete 8217 8233	Wirtschaftsrecht
+T42	Rechtsgebiete 8234 8250	Wirtschaftsrecht
+T44	Rechtsgebiete 8502 8522	Forderungsmanagement
+T45	Rechtsgebiete 8775 8788	Vertragsrecht
+T46	Anwalt 9023 9037	JOHANNES HOPPE
+T47	Anwaeltin 9051 9062	SILKE HINTZ
+T48	Kanzlei 9926 9950	Kanzlei Hoppe & Collegen
+T49	Kanzlei 10726 10742	Hoppe & Collegen
+T50	Strasse 10743 10757	Eschenbrook 19
+T51	Ort 10759 10772	24113 Molfsee
+R3	zuOrt Arg1:T51 Arg2:T50	
+T52	Tel 10773 10790	+49 431 380 059 0
+T53	Email 10791 10813	info@hoppe-collegen.de
+T54	Tel 10814 10832	+49 431 380 059 11
+T55	Kanzlei 10980 10996	HOPPE & COLLEGEN
+T56	Rechtsgebiete 11137 11164	Bank- und Kapitalmarktrecht
+T57	Rechtsgebiete 11165 11192	Bank- und Kapitalmarktrecht
+T58	Rechtsgebiete 11470 11501	Handels- und Gesellschaftsrecht
+T59	Rechtsgebiete 11502 11533	Handels- und Gesellschaftsrecht
+T60	Rechtsgebiete 11837 11853	Wirtschaftsrecht
+T61	Rechtsgebiete 11854 11870	Wirtschaftsrecht
+T62	Rechtsgebiete 12101 12121	Forderungsmanagement
+T63	Rechtsgebiete 12122 12142	Forderungsmanagement
+T64	Rechtsgebiete 12395 12408	Vertragsrecht
+T65	Anwalt 12643 12657	JOHANNES HOPPE
+T66	Anwaeltin 12671 12682	SILKE HINTZ
+T67	Kanzlei 14346 14362	Hoppe & Collegen
+T68	Strasse 14363 14377	Eschenbrook 19
+T69	Ort 14379 14392	24113 Molfsee
+R4	zuOrt Arg1:T69 Arg2:T68	
+T70	Tel 14393 14410	+49 431 380 059 0
+T71	Email 14411 14433	info@hoppe-collegen.de
+T72	Tel 14434 14452	+49 431 380 059 11

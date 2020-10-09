@@ -1,0 +1,20 @@
+T1	Strasse 1592 1604	Landvogtei 5
+T2	Ort 1610 1627	79312 Emmendingen
+R1	zuOrt Arg1:T2 Arg2:T1	
+T4	Anwalt 1832 1848	Johannes Fechner
+T5	Anwalt 1849 1864	Hartmut Mössner
+T6	Anwalt 1865 1880	Vinh Vinh Luong
+T3	Anwalt 1807 1822;1823 1830	Johannes Bürkle Dr. jur
+T7	Anwalt 2183 2208	Johannes Bürkle, Dr. jur.
+T8	Anwalt 2209 2225	Johannes Fechner
+T9	Anwalt 2227 2242	Hartmut Mössner
+T10	Strasse 2244 2256	Landvogtei 5
+T11	Ort 2262 2279	79312 Emmendingen
+R2	zuOrt Arg1:T11 Arg2:T10	
+T12	Tel 2288 2307	49 (0) 7641 9330933
+T13	Fax 2314 2333	49 (0) 7641 9330930
+T14	Email 2342 2368	info@kanzlei-am-rathaus.eu
+T15	Tel 1636 1655	49 (0) 7641 9330933
+T16	Fax 1662 1681	49 (0) 7641 9330930
+T17	Email 1690 1716	info@kanzlei-am-rathaus.eu
+T18	Kanzlei 1738 1759	kanzlei-am-rathaus.eu

@@ -1,0 +1,27 @@
+T1	Kanzlei 0 20	Dr. Leibold | Schmid
+T2	Tel 67 82	07022-217 809-0
+T3	Anwalt 93 116	Dr. iur. Jochen Leibold
+T4	Fachanwalt 118 159	Fachanwalt für Bank-und Kapitalmarktrecht
+T5	Fachanwalt 161 188	Fachanwalt für Arbeitsrecht
+T6	Anwaeltin 190 205	Melanie Klößner
+T7	Fachanwalt 207 246	Fachanwältin für Ehe- und Familienrecht
+T8	Anwalt 248 260	Mathias Hopp
+T9	Fachanwalt 262 293	Fachanwalt für Verwaltungsrecht
+T10	Anwaeltin 295 318	Katjana Gruber-Weckerle
+T11	Fachanwalt 320 359	Fachanwältin für Ehe- und Familienrecht
+T12	Anwalt 361 376	Wolfgang Schmid
+T13	Strasse 2871 2910	Ohmstraße 10/1 (Gewerbegebiet Bachhalde
+T14	Ort 2912 2927	72622 Nürtingen
+R1	zuOrt Arg1:T14 Arg2:T13	
+T15	Tel 2934 2947	07022 2178090
+T16	Fax 2953 2967	07022 21780919
+T17	Strasse 3026 3039	Wehrstraße 15
+T18	Ort 3040 3060	73230 Kirchheim Teck
+R2	zuOrt Arg1:T18 Arg2:T17	
+T19	Tel 3067 3079	07021 739161
+T20	Fax 3085 3097	07021 739163
+T21	Strasse 3150 3164	Fabrikstraße 2
+T22	Ort 3165 3181	73240 Wendlingen
+R3	zuOrt Arg1:T22 Arg2:T21	
+T23	Tel 3188 3198	07024 2292
+T24	Fax 3204 3215	07024 54889

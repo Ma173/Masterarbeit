@@ -1,0 +1,44 @@
+T1	Rechtsgebiete 940 968	Zivil- und Wirtschaftsrechts
+T2	Rechtsgebiete 970 982	Arbeitsrecht
+T3	Rechtsgebiete 984 1000	Verwaltungsrecht
+T4	Rechtsgebiete 1005 1017	Steuerrecht 
+T5	Rechtsgebiete 1027 1038	Strafrechts
+T6	Anwalt 1415 1430	Marc Lachenauer
+T7	Anwalt 1445 1464	Wolfgang Lachenauer
+T8	Fachanwalt 1497 1508	Steuerrecht
+T9	Kanzlei 1510 1534	LACHENAUER Rechtsanwälte
+T10	Strasse 1535 1551	Vangerowstr. 2/2
+T11	Ort 1552 1568	69115 Heidelberg
+R1	zuOrt Arg1:T11 Arg2:T10	
+T12	Tel 1575 1592	+49 (0)6221 21046
+T13	Fax 1598 1616	+49 (0)6221 165871
+T14	Fax 1625 1646	kanzlei@lachenauer.de
+T15	Kanzlei 1728 1752	LACHENAUER Rechtsanwälte
+T16	Anwalt 2176 2195	WOLFGANG LACHENAUER
+T17	Fachanwalt 2350 2361	Steuerrecht
+T18	Rechtsgebiete 2454 2472	Gesellschaftsrecht
+T19	Rechtsgebiete 2474 2486	Arbeitsrecht
+T20	Rechtsgebiete 2488 2500	Handelsrecht
+T21	Rechtsgebiete 2501 2510	Arztrecht
+T22	Rechtsgebiete 2511 2519	Baurecht
+T23	Anwalt 2546 2561	MARC LACHENAUER
+T24	Rechtsgebiete 2790 2803	Verkehrsrecht
+T25	Rechtsgebiete 2805 2814	Mietrecht
+T26	Rechtsgebiete 2815 2825	Zivilrecht
+T27	Rechtsgebiete 2827 2835	IT-Recht
+T28	Rechtsgebiete 2836 2846	Reiserecht
+T29	Tel 9 23	(06221) 210 46
+T30	Email 35 56	kanzlei@lachenauer.de
+T31	Kanzlei 119 143	LACHENAUER RECHTSANWÄLTE
+T32	Bio 152 220	Anwaltskanzlei wurde 1954 in Heidelberg in der Hauptstraße gegründet
+T33	Bio 237 270	2. und 3. Generation des Gründers
+T34	Tel 1986 1999	06221) 210 46
+T35	Email 2011 2032	kanzlei@lachenauer.de
+T36	Bio 2197 2275	Studium der Rechtswissenschaften in Heidelberg und Göttingen von 1967 bis 1974
+T37	Bio 2277 2313	Zulassung zum Rechtsanwalt seit 1977
+T38	Bio 2387 2419	Aufsichtsrat in zwei Unternehmen
+T39	Bio 2420 2452	Stadtrat in Heidelberg seit 1994
+T40	Bio 2563 2627	Studium der Rechtswissenschaften in Heidelberg von 2002 bis 2006
+T41	Bio 2629 2665	Zulassung zum Rechtsanwalt seit 2009
+T42	Bio 2726 2788	Abgeschlossene Ausbildung zum Bankkaufmann und Finanzassistent
+T43	Kanzlei 2882 2906	LACHENAUER Rechtsanwälte

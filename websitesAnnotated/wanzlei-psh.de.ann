@@ -1,0 +1,42 @@
+T1	Kanzlei 41 67	PSH Rechtsanwälte & Notare
+T2	Strasse 1475 1494	Hugenottenstraße 59
+T3	Ort 1502 1522	61381 Friedrichsdorf
+R1	zuOrt Arg1:T3 Arg2:T2	
+T4	Tel 1535 1549	49 6172 958 10
+T5	Tel 1562 1577	+49 6172 720 16
+T6	Email 1578 1597	info@kanzlei-psh.de
+T7	Anwalt 1632 1650	Karl Günther Petry
+T8	Anwalt 1652 1668	Dr.Thomas Scholz
+T9	Anwalt 1670 1681	Maik Henkes
+T10	Anwaeltin 1683 1703	Alexandra Eppelsheim
+T11	Kanzlei 2499 2525	PSH Rechtsanwälte & Notare
+T12	Strasse 3933 3952	Hugenottenstraße 59
+T13	Ort 3960 3980	61381 Friedrichsdorf
+R2	zuOrt Arg1:T13 Arg2:T12	
+T14	Tel 3992 4007	+49 6172 958 10
+T15	Tel 4020 4035	+49 6172 720 16
+T16	Email 4036 4055	info@kanzlei-psh.de
+T17	Anwalt 4090 4108	Karl Günther Petry
+T18	Anwalt 4110 4126	Dr.Thomas Scholz
+T19	Anwalt 4128 4139	Maik Henkes
+T20	Anwaeltin 4141 4161	Alexandra Eppelsheim
+T21	Kanzlei 4972 4998	PSH Rechtsanwälte & Notare
+T22	Strasse 6406 6425	Hugenottenstraße 59
+T23	Ort 6433 6453	61381 Friedrichsdorf
+T24	Tel 6465 6480	+49 6172 958 10
+T25	Fax 6493 6508	+49 6172 720 16
+T26	Email 6509 6528	info@kanzlei-psh.de
+T27	Anwalt 6563 6581	Karl Günther Petry
+T28	Anwalt 6583 6599	Dr.Thomas Scholz
+T29	Anwalt 6601 6612	Maik Henkes
+T30	Anwaeltin 6614 6634	Alexandra Eppelsheim
+T31	Kanzlei 7435 7461	PSH Rechtsanwälte & Notare
+T32	Strasse 8869 8888	Hugenottenstraße 59
+T33	Ort 8896 8916	61381 Friedrichsdorf
+T34	Tel 8928 8943	+49 6172 958 10
+T35	Fax 8956 8971	+49 6172 720 16
+T36	Email 8972 8991	info@kanzlei-psh.de
+T37	Anwalt 9026 9044	Karl Günther Petry
+T38	Anwalt 9046 9062	Dr.Thomas Scholz
+T39	Anwalt 9064 9075	Maik Henkes
+T40	Anwaeltin 9077 9097	Alexandra Eppelsheim

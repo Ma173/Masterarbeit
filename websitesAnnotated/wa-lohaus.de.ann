@@ -1,0 +1,21 @@
+T1	Tel 6 20	0209 / 361 763
+T2	Kanzlei 23 43	kanzlei@ra-lohaus.de
+T3	Anwalt 44 59	BERNHARD LOHAUS
+T4	Rechtsgebiete 483 498	Mietrecht / WEG
+T5	Rechtsgebiete 499 511	Arbeitsrecht
+T6	Rechtsgebiete 512 520	Baurecht
+T7	Rechtsgebiete 521 534	Verkehrsrecht
+T8	Rechtsgebiete 535 554	Verkehrsunfallrecht
+T9	Tel 995 1009	0209 / 3617635
+T10	Anwalt 1107 1122	Bernhard Lohaus
+T11	Strasse 1124 1138	Hochstr. 20-22
+T12	Ort 1140 1159	45894 Gelsenkirchen
+R1	zuOrt Arg1:T12 Arg2:T11	
+T13	Tel 1180 1195	209 / 361 763 5
+T14	Fax 1206 1222	0209 / 361 763 7
+T15	Email 1232 1252	kanzlei@ra-lohaus.de
+T16	Anwalt 88 116	Rechtsanwalt Bernhard Lohaus
+T19	Bio 596 644	Korrespondenz mit Ihrer Rechtsschutzversicherung
+T20	Bio 691 791	Vorsitzender des Kreisverbandes Mittleres Ruhrgebiet beim Bund der Wohnungs- und Grundeigentümer BWE
+T22	Anwalt 1065 1093	Rechtsanwalt Bernhard Lohaus
+T23	Anwalt 1301 1316	Bernhard Lohaus

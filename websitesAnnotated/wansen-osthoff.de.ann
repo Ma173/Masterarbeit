@@ -1,0 +1,14 @@
+T1	Strasse 0 19	Massenbergstraße 15
+T2	Ort 21 33	44787 Bochum
+R1	zuOrt Arg1:T2 Arg2:T1	
+T4	Tel 63 82	49 234  6 08 75 / 6
+T5	Kanzlei 627 651	Dr. Jansen & Dr. Osthoff
+T3	Strasse 679 698	Massenbergstraße 15
+T6	Ort 729 742	44787  Bochum
+R2	zuOrt Arg1:T6 Arg2:T3	
+T7	Tel 756 776	+49 (0) 234 / 608 75
+T8	Tel 787 809	+49 (0) 234 / 681 55 9
+T9	Fax 820 843	+49 (0) 234 / 640 60 05
+T10	Email 853 878	kanzlei@jansen-osthoff.de
+T11	Email 35 60	kanzlei@jansen-osthoff.de
+T12	Kanzlei 1022 1046	Dr. Jansen & Dr. Osthoff

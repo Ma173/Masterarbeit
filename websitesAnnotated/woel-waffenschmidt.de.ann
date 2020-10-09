@@ -1,0 +1,129 @@
+T1	Kanzlei 133 174	Kanzlei Noël – Waffenschmidt – Güldenberg
+T2	Fachanwalt 465 478	Verkehrsrecht
+T3	Fachanwalt 445 458	Familienrecht
+T4	Fachanwalt 435 443	Erbrecht
+T5	Fachanwalt 421 433	Arbeitsrecht
+T6	Fachanwalt 750 773	Erb- oder Familienrecht
+T7	Anwalt 893 902	Curt Noël
+T8	Bio 904 933	seit 1981 Partner der Kanzlei
+T9	Fachanwalt 939 975	Fachanwalt für Arbeits- und Erbrecht
+T10	Anwalt 977 995	Arnd Waffenschmidt
+T11	Bio 996 1029	arbeitet seit 1996 in der Kanzlei
+T12	Fachanwalt 1038 1078	Fachanwalt für Familienrecht sowie Notar
+T13	Anwalt 1093 1110	Oliver Güldenberg
+T14	Bio 1111 1146	stieß 2011 zu unserer Kanzlei hinzu
+T15	Fachanwalt 1155 1196	Fachanwalt für Arbeits- und Verkehrsrecht
+T16	Anwalt 1231 1240	Paul Noël
+T17	Rechtsgebiete 1258 1269	Steuerrecht
+T18	Rechtsgebiete 1276 1300	Zivil- und Vertragsrecht
+T19	Anwaeltin 1320 1339	Silke Waffenschmidt
+T20	Rechtsgebiete 1359 1373	Familienrechts
+T21	Rechtsgebiete 1450 1462	Arbeitsrecht
+T22	Rechtsgebiete 1464 1488	Familienrecht & Erbrecht
+T23	Rechtsgebiete 1613 1636	Straf- und Bußgeldrecht
+T24	Rechtsgebiete 1646 1658	Medizinrecht
+T25	Rechtsgebiete 1660 1673	Vertragsrecht
+T26	Rechtsgebiete 1678 1703	Miet- und Immobilienrecht
+T27	Ort 2047 2064	KANZLEI MEIDERICH
+T28	Strasse 2069 2089	Gabelsbergerstr. 7-9
+T29	Ort 2090 2104	47137 Duisburg
+R1	zuOrt Arg1:T29 Arg2:T28	
+T30	Tel 2115 2139	+49 (0) 2 03 / 4 55 68 0
+T31	Fax 2145 2163	02 03 / 4 55 68 20
+T32	Email 2173 2202	kanzlei@noel-waffenschmidt.de
+T33	Ort 2291 2305	KANZLEI VOERDE
+T34	Strasse 2310 2327	Alnwicker Ring 12
+T35	Ort 2328 2340	46562 Voerde
+R2	zuOrt Arg1:T35 Arg2:T34	
+T36	Tel 2351 2376	+49 (0) 28 55 / 8 997 210
+T37	Fax 2382 2401	0 28 55 / 8 997 220
+T38	Email 2405 2439	Mail:kanzlei@noel-waffenschmidt.de
+T39	Kanzlei 2521 2577	Rechtsanwälte & Notare Noël - Waffenschmidt - Güldenberg
+T40	Kanzlei 2971 3012	Kanzlei Noël – Waffenschmidt – Güldenberg
+T41	Fachanwalt 3259 3271	Arbeitsrecht
+T42	Fachanwalt 3273 3281	Erbrecht
+T43	Fachanwalt 3283 3316	Familienrecht sowie Verkehrsrecht
+T44	Anwalt 3731 3740	Curt Noël
+T45	Bio 3742 3771	seit 1981 Partner der Kanzlei
+T46	Fachanwalt 3777 3813	Fachanwalt für Arbeits- und Erbrecht
+T47	Anwalt 3815 3833	Arnd Waffenschmidt
+T48	Bio 3834 3867	arbeitet seit 1996 in der Kanzlei
+T49	Fachanwalt 3876 3916	Fachanwalt für Familienrecht sowie Notar
+T50	Anwalt 3918 3948	Rechtsanwalt Oliver Güldenberg
+T51	Bio 3949 3978	stieß 2011 zu unserer Kanzlei
+T52	Fachanwalt 3993 4034	Fachanwalt für Arbeits- und Verkehrsrecht
+T53	Anwalt 4056 4078	Rechtsanwalt Paul Noël
+T54	Rechtsgebiete 4096 4107	Steuerrecht
+T55	Rechtsgebiete 4114 4138	Zivil- und Vertragsrecht
+T56	Anwaeltin 4143 4177	Rechtsanwältin Silke Waffenschmidt
+T57	Rechtsgebiete 4197 4211	Familienrechts
+T58	Rechtsgebiete 4288 4300	Arbeitsrecht
+T59	Rechtsgebiete 4302 4326	Familienrecht & Erbrecht
+T60	Rechtsgebiete 4451 4474	Straf- und Bußgeldrecht
+T61	Rechtsgebiete 4484 4496	Medizinrecht
+T62	Rechtsgebiete 4498 4511	Vertragsrecht
+T63	Rechtsgebiete 4516 4541	Miet- und Immobilienrecht
+T64	Ort 4885 4902	KANZLEI MEIDERICH
+T65	Strasse 4907 4927	Gabelsbergerstr. 7-9
+T66	Ort 4928 4942	47137 Duisburg
+R3	zuOrt Arg1:T66 Arg2:T65	
+T67	Tel 4953 4977	+49 (0) 2 03 / 4 55 68 0
+T68	Fax 4983 5001	02 03 / 4 55 68 20
+T69	Email 5011 5040	kanzlei@noel-waffenschmidt.de
+T70	Ort 5129 5143	KANZLEI VOERDE
+T71	Strasse 5148 5165	Alnwicker Ring 12
+T72	Ort 5166 5178	46562 Voerde
+T73	Tel 5189 5214	+49 (0) 28 55 / 8 997 210
+T74	Fax 5220 5239	0 28 55 / 8 997 220
+T75	Email 5243 5277	Mail:kanzlei@noel-waffenschmidt.de
+T76	Anwalt 5771 5780	Curt Noël
+T77	Fachanwalt 5788 5815	Fachanwalt für Arbeitsrecht
+T78	Bio 5855 5918	Curt Noël ist am 10.07.1948 in Geisenheim/Krs. Rheingau geboren
+T79	Bio 5920 6005	Er ist verheiratet und Vater von vier Söhnen im Alter von inzwischen 35 und 26 Jahren
+T80	Bio 6011 6186	Nach dem Besuch der Volksschule in Voerde von 1955 bis 1959 erfolgte die weitere Schulausbildung am Otto-Hahn-Gymnasium in Dinslaken, wo er im Juli 1967 das Abitur absolvierte
+T81	Bio 6275 6362	Studium der Rechtswissenschaft in Berlin an der Freien Universität Berlin im April 1969
+T82	Bio 6461 6522	Münster dort im März 1974 die erste juristische Staatsprüfung
+T83	Bio 6617 6670	zweiten juristischen Staatsexamen im Juli 1977 endete
+T84	Bio 6676 6826	Seit August 1977 ist Curt Noël zuerst als Anwalt in unserer Kanzlei, in der er auch schon als Referendar tätig war, beschäftigt; 1981 wurde er Partner
+T85	Bio 6832 6950	Im Oktober 1986 wurde er zum Notar bestellt und war bis in das Jahr 2014 hinein der alleinige Notar in unserer Kanzlei
+T86	Rechtsgebiete 6956 6964	Erbrecht
+T87	Rechtsgebiete 7094 7106	Arbeitsrecht
+T88	Bio 7134 7175	seit 1990 als Fachanwalt für Arbeitsrecht
+T89	Bio 7402 7450	Seit Mai 2011 ist er als Fachanwalt für Erbrecht
+T90	Bio 8126 8274	Curt Noël hat mit Wirkung zum 31.07.2018 nach mehr als 30 Jahren als Notar die gesetzliche Altersgrenze erreicht und sein Amt als Notar niedergelegt
+T91	Bio 8276 8322	Als Rechtsanwalt ist Curt Noël weiterhin tätig
+T92	Kanzlei 8487 8571	Arnd Waffenschmidt »  |  Oliver Güldenberg »  |  Silke Waffenschmidt »  |  Paul Noël
+T93	Anwalt 9000 9009	Curt Noël
+T94	Fachanwalt 9017 9044	Fachanwalt für Arbeitsrecht
+T95	Bio 9056 9082	Rechtsanwalt und Notar a.D
+T96	Bio 9084 9147	Curt Noël ist am 10.07.1948 in Geisenheim/Krs. Rheingau geboren
+T97	Bio 9149 9234	Er ist verheiratet und Vater von vier Söhnen im Alter von inzwischen 35 und 26 Jahren
+T98	Bio 9383 9403	Juli 1967 das Abitur
+T99	Bio 9504 9591	Studium der Rechtswissenschaft in Berlin an der Freien Universität Berlin im April 1969
+T100	Bio 9690 9751	Münster dort im März 1974 die erste juristische Staatsprüfung
+T101	Bio 9846 9892	zweiten juristischen Staatsexamen im Juli 1977
+T102	Bio 9905 9972	Seit August 1977 ist Curt Noël zuerst als Anwalt in unserer Kanzlei
+T103	Bio 10061 10104	Im Oktober 1986 wurde er zum Notar bestellt
+T104	Rechtsgebiete 10185 10193	Erbrecht
+T105	Bio 10363 10404	seit 1990 als Fachanwalt für Arbeitsrecht
+T106	Bio 10636 10679	Mai 2011 ist er als Fachanwalt für Erbrecht
+T107	Bio 11355 11503	Curt Noël hat mit Wirkung zum 31.07.2018 nach mehr als 30 Jahren als Notar die gesetzliche Altersgrenze erreicht und sein Amt als Notar niedergelegt
+T108	Bio 11505 11551	Als Rechtsanwalt ist Curt Noël weiterhin tätig
+T109	Anwalt 11679 11692	Waffenschmidt
+T110	Anwalt 11697 11707	Güldenberg
+T111	Kanzlei 11716 11800	Arnd Waffenschmidt »  |  Oliver Güldenberg »  |  Silke Waffenschmidt »  |  Paul Noël
+T112	Anwalt 12229 12238	Curt Noël
+T113	Fachanwalt 12246 12273	Fachanwalt für Arbeitsrecht
+T114	Bio 12313 12376	Curt Noël ist am 10.07.1948 in Geisenheim/Krs. Rheingau geboren
+T115	Bio 12378 12463	Er ist verheiratet und Vater von vier Söhnen im Alter von inzwischen 35 und 26 Jahren
+T116	Bio 12612 12632	Juli 1967 das Abitur
+T117	Bio 12745 12820	Rechtswissenschaft in Berlin an der Freien Universität Berlin im April 1969
+T118	Bio 12919 12980	Münster dort im März 1974 die erste juristische Staatsprüfung
+T119	Bio 13075 13128	zweiten juristischen Staatsexamen im Juli 1977 endete
+T120	Bio 13134 13201	Seit August 1977 ist Curt Noël zuerst als Anwalt in unserer Kanzlei
+T121	Bio 13290 13333	Im Oktober 1986 wurde er zum Notar bestellt
+T122	Rechtsgebiete 13414 13422	Erbrecht
+T123	Bio 13597 13633	1990 als Fachanwalt für Arbeitsrecht
+T124	Bio 13860 13908	Seit Mai 2011 ist er als Fachanwalt für Erbrecht
+T125	Bio 14584 14732	Curt Noël hat mit Wirkung zum 31.07.2018 nach mehr als 30 Jahren als Notar die gesetzliche Altersgrenze erreicht und sein Amt als Notar niedergelegt
+T126	Kanzlei 15046 15102	Rechtsanwälte & Notare Noël - Waffenschmidt - Güldenberg

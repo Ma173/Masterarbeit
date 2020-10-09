@@ -1,0 +1,183 @@
+T1	Bio 3948 3970	Rechtsanwalt seit 1991
+T2	Fachanwalt 3971 3998	Fachanwalt für Arbeitsrecht
+T3	Bio 4071 4095	Rechtsanwältin seit 1994
+T4	Fachanwalt 4096 4126	Fachanwältin für Familienrecht
+T5	Bio 3272 3294	Rechtsanwalt seit 1994
+T7	Bio 3840 3862	Rechtsanwalt seit 1979
+T8	Fachanwalt 3863 3890	Fachanwalt für Arbeitsrecht
+T9	Bio 4251 4273	Rechtsanwalt seit 1995
+T10	Bio 4392 4414	Rechtsanwalt seit 2001
+T11	Bio 786 808	Rechtsanwalt seit 1979
+T13	Bio 894 916	Rechtsanwalt seit 1991
+T14	Fachanwalt 809 836	Fachanwalt für Arbeitsrecht
+T15	Fachanwalt 1042 1072	Fachanwältin für Familienrecht
+T16	Fachanwalt 917 944	Fachanwalt für Arbeitsrecht
+T17	Bio 1338 1360	Rechtsanwalt seit 2001
+T18	Bio 1197 1219	Rechtsanwalt seit 1995
+T19	Fachanwalt 1697 1726	Fachanwältin für Arbeitsrecht
+T20	Bio 1484 1506	Rechtsanwalt seit 2004
+T22	Fachanwalt 1855 1882	Fachanwalt für Arbeitsrecht
+T23	Bio 1832 1854	Rechtsanwalt seit 2008
+T24	Bio 2100 2122	Rechtsanwalt seit 2006
+T25	Bio 1959 1981	Rechtsanwalt seit 1994
+T26	Fachanwalt 2248 2278	Fachanwältin für Familienrecht
+T27	Fachanwalt 2123 2150	Fachanwalt für Arbeitsrecht
+T28	Bio 2799 2821	Rechtsanwalt seit 1995
+T30	Fachanwalt 4909 4936	Fachanwalt für Arbeitsrecht
+T31	Bio 4886 4908	Rechtsanwalt seit 2008
+T32	Fachanwalt 4751 4780	Fachanwältin für Arbeitsrecht
+T33	Bio 4538 4560	Rechtsanwalt seit 2004
+T34	Fachanwalt 5302 5332	Fachanwältin für Familienrecht
+T35	Fachanwalt 5177 5204	Fachanwalt für Arbeitsrecht
+T36	Bio 5154 5176	Rechtsanwalt seit 2006
+T37	Bio 5013 5035	Rechtsanwalt seit 1994
+T38	Bio 3086 3108	Rechtsanwalt seit 2004
+T39	Bio 2941 2963	Rechtsanwalt seit 2001
+T12	Kanzlei 297 320;321 343	Vetter Gerlach Hartmann Rechtsanwälte PartGmbB
+T41	Anwalt 767 785	Eberhard K. Vetter
+T42	Anwalt 876 893	Karlheinz Gerlach
+T43	Tel 957 970	07131/8975910
+T44	Email 978 994	gerlach@v-g-h.de
+T45	Anwaeltin 1005 1016	Antje Wurst
+T46	Bio 1017 1041	Rechtsanwältin seit 1994
+T47	Fachanwalt 1073 1122	Fachanwältin für Miet- und Wohnungseigentumsrecht
+T48	Tel 1135 1148	07131/8975920
+T49	Email 1156 1170	wurst@v-g-h.de
+T50	Anwalt 1181 1196	Martin Hartmann
+T51	Fachanwalt 1220 1260	Fachanwalt für Bau- und Architektenrecht
+T52	Tel 1273 1286	07131/8975930
+T53	Email 1294 1311	hartmann@v-g-h.de
+T54	Fachanwalt 1361 1401	Fachanwalt für Bau- und Architektenrecht
+T55	Tel 1414 1427	07131/8975930
+T56	Email 1435 1453	strenkert@v-g-h.de
+T57	Anwalt 1464 1483	Theo Fleßner, LL.M.
+T58	Fachanwalt 1507 1554	Fachanwalt für Miet- und Wohnungseigentumsrecht
+T59	Fachanwalt 1555 1595	Fachanwalt für Bau- und Architektenrecht
+T60	Tel 1608 1621	07131/8975920
+T61	Email 1629 1646	flessner@v-g-h.de
+T62	Anwaeltin 1657 1671	Constance Koch
+T63	Bio 1672 1696	Rechtsanwältin seit 2006
+T64	Fachanwalt 1727 1757	Fachanwältin für Verkehrsrecht
+T65	Tel 1770 1783	07131/8975910
+T66	Email 1791 1804	koch@v-g-h.de
+T67	Anwalt 1815 1831	Christoph Schöll
+T68	Tel 1895 1908	07131/8975920
+T69	Email 1916 1932	schoell@v-g-h.de
+T70	Fachanwalt 1982 2027	Fachanwalt für Transport- und Speditionsrecht
+T71	Tel 2040 2053	07131/8975930
+T72	Email 2061 2075	falla@v-g-h.de
+T73	Anwalt 2086 2099	Jochen Halter
+T74	Tel 2163 2176	07131/8975930
+T75	Email 2184 2199	halter@v-g-h.de
+T76	Anwaeltin 2210 2222	Beate Dimter
+T77	Bio 2223 2247	Rechtsanwältin seit 1993
+T78	Tel 2291 2304	07131/8975920
+T79	Email 2312 2327	dimter@v-g-h.de
+T29	Kanzlei 2338 2361;2362 2384	Vetter Gerlach Hartmann Rechtsanwälte PartGmbB
+T81	Anwalt 2732 2747	Martin Hartmann
+T82	Email 2756 2773	hartmann@v-g-h.de
+T83	Tel 2783 2796	07131/8975930
+T84	Fachanwalt 2822 2862	Fachanwalt für Bau- und Architektenrecht
+T85	Anwalt 2873 2888	Peter Strenkert
+T86	Email 2897 2915	strenkert@v-g-h.de
+T87	Tel 2925 2938	07131/8975930
+T88	Fachanwalt 2964 3004	Fachanwalt für Bau- und Architektenrecht
+T89	Anwalt 3015 3034	Theo Fleßner, LL.M.
+T90	Email 3043 3060	flessner@v-g-h.de
+T91	Tel 3070 3083	07131/8975920
+T92	Fachanwalt 3109 3156	Fachanwalt für Miet- und Wohnungseigentumsrecht
+T93	Fachanwalt 3157 3197	Fachanwalt für Bau- und Architektenrecht
+T94	Anwalt 3208 3223	Christian Falla
+T95	Fachanwalt 3295 3340	Fachanwalt für Transport- und Speditionsrecht
+T6	Kanzlei 3351 3374;3375 3397	Vetter Gerlach Hartmann Rechtsanwälte PartGmbB
+T97	Anwalt 3821 3839	Eberhard K. Vetter
+T98	Anwalt 3930 3947	Karlheinz Gerlach
+T99	Tel 4011 4024	07131/8975910
+T100	Email 4032 4048	gerlach@v-g-h.de
+T101	Anwaeltin 4059 4070	Antje Wurst
+T102	Fachanwalt 4127 4176	Fachanwältin für Miet- und Wohnungseigentumsrecht
+T103	Tel 4189 4202	07131/8975920
+T104	Email 4210 4224	wurst@v-g-h.de
+T105	Anwalt 4235 4250	Martin Hartmann
+T106	Fachanwalt 4274 4314	Fachanwalt für Bau- und Architektenrecht
+T107	Tel 4327 4340	07131/8975930
+T108	Email 4348 4365	hartmann@v-g-h.de
+T109	Anwalt 4376 4391	Peter Strenkert
+T110	Fachanwalt 4415 4455	Fachanwalt für Bau- und Architektenrecht
+T111	Tel 4468 4481	07131/8975930
+T112	Email 4489 4507	strenkert@v-g-h.de
+T113	Anwalt 4518 4537	Theo Fleßner, LL.M.
+T114	Fachanwalt 4561 4608	Fachanwalt für Miet- und Wohnungseigentumsrecht
+T115	Fachanwalt 4609 4649	Fachanwalt für Bau- und Architektenrecht
+T116	Tel 4662 4675	07131/8975920
+T117	Email 4683 4700	flessner@v-g-h.de
+T118	Anwaeltin 4711 4725	Constance Koch
+T119	Bio 4726 4750	Rechtsanwältin seit 2006
+T120	Fachanwalt 4781 4811	Fachanwältin für Verkehrsrecht
+T121	Tel 4824 4837	07131/8975910
+T122	Email 4845 4858	koch@v-g-h.de
+T123	Anwalt 4869 4885	Christoph Schöll
+T124	Tel 4949 4962	07131/8975920
+T125	Email 4970 4986	schoell@v-g-h.de
+T126	Anwalt 4997 5012	Christian Falla
+T127	Fachanwalt 5036 5081	Fachanwalt für Transport- und Speditionsrecht
+T128	Tel 5094 5107	07131/8975930
+T129	Email 5115 5129	falla@v-g-h.de
+T130	Anwalt 5140 5153	Jochen Halter
+T131	Tel 5217 5230	07131/8975930
+T132	Email 5238 5253	halter@v-g-h.de
+T133	Anwaeltin 5264 5276	Beate Dimter
+T134	Bio 5277 5301	Rechtsanwältin seit 1993
+T135	Tel 5345 5358	07131/8975920
+T136	Email 5366 5381	dimter@v-g-h.de
+T21	Kanzlei 5392 5415;5416 5438	Vetter Gerlach Hartmann Rechtsanwälte PartGmbB
+T80	Tel 391 404	07131 89759-0
+T138	Fax 415 429	07131 89759-99
+T140	Tel 2432 2445	07131 89759-0
+T141	Tel 2447 2470	Telefax: 07131 89759-99
+T142	Email 2472 2485	info@v-g-h.de
+T143	Email 3232 3246	falla@v-g-h.de
+T144	Tel 3256 3269	07131/8975930
+T145	Tel 3445 3458	07131 89759-0
+T146	Fax 3469 3483	07131 89759-99
+T147	Email 3485 3498	info@v-g-h.de
+T148	Tel 5486 5499	07131 89759-0
+T149	Fax 5510 5524	07131 89759-99
+T150	Email 5526 5539	info@v-g-h.de
+T152	Anwalt 582 600	Eberhard K. Vetter
+T153	Anwalt 601 618	Karlheinz Gerlach
+T154	Anwaeltin 619 630	Antje Wurst
+T155	Anwalt 631 646	Martin Hartmann
+T156	Anwalt 647 662	Peter Strenkert
+T157	Anwalt 663 682	Theo Fleßner, LL.M.
+T158	Anwalt 1322 1337	Peter Strenkert
+T159	Anwaeltin 683 697	Constance Koch
+T160	Anwalt 698 714	Christoph Schöll
+T161	Anwalt 715 730	Christian Falla
+T162	Anwalt 731 744	Jochen Halter
+T163	Anwaeltin 745 757	Beate Dimter
+T164	Anwalt 1943 1958	Christian Falla
+T165	Anwalt 3636 3654	Eberhard K. Vetter
+T166	Anwalt 3655 3672	Karlheinz Gerlach
+T167	Anwaeltin 3673 3684	Antje Wurst
+T168	Anwalt 3685 3700	Martin Hartmann
+T169	Anwalt 3701 3716	Peter Strenkert
+T170	Anwalt 3717 3735	Theo Fleßner, LL.M
+T171	Anwaeltin 3737 3751	Constance Koch
+T172	Anwalt 3752 3768	Christoph Schöll
+T173	Anwalt 3769 3784	Christian Falla
+T174	Anwalt 3785 3798	Jochen Halter
+T175	Anwaeltin 3799 3811	Beate Dimter
+T151	Email 431 444	info@v-g-h.de
+T40	Strasse 346 361	Kaiserstraße 23
+T176	Ort 363 380	D-74072 Heilbronn
+R1	zuOrt Arg1:T176 Arg2:T40	
+T139	Strasse 2387 2402	Kaiserstraße 23
+T177	Ort 2404 2421	D-74072 Heilbronn
+R2	zuOrt Arg1:T177 Arg2:T139	
+T96	Strasse 3400 3415	Kaiserstraße 23
+T178	Ort 3417 3434	D-74072 Heilbronn
+R3	zuOrt Arg1:T178 Arg2:T96	
+T137	Strasse 5441 5456	Kaiserstraße 23
+T179	Ort 5458 5475	D-74072 Heilbronn
+R4	zuOrt Arg1:T179 Arg2:T137	

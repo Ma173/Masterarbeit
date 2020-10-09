@@ -1,0 +1,28 @@
+T1	Email 1 20	info@rbb-partner.de
+T2	Kanzlei 268 281	RBB & Partner
+T3	Rechtsgebiete 695 713	IT und Datenschutz
+T4	Rechtsgebiete 714 734	Familie und Vorsorge
+T5	Rechtsgebiete 735 760	Wirtschaft und Verwaltung
+T6	Rechtsgebiete 761 783	Strafrecht und Verkehr
+T7	Rechtsgebiete 784 800	Bauen und Wohnen
+T8	Rechtsgebiete 801 819	Arbeit und Medizin
+T9	Rechtsgebiete 820 845	Banken und Versicherungen
+T10	Kanzlei 846 863	Rechtsanwälte RBB
+T11	Ort 1077 1085	Öhringen
+T12	Ort 1087 1095	Gaildorf
+T13	Ort 1097 1106	Rosenberg
+T14	Ort 1109 1124	Schwäbisch Hall
+T15	Kanzlei 1366 1394	RBB Beathalter & Partner mbB
+T16	Strasse 1395 1412	Schillerstraße 25
+T17	Ort 1414 1428	74613 Öhringen
+R1	zuOrt Arg1:T17 Arg2:T16	
+T18	Tel 1431 1449	+49 (7941) 92 06-0
+T19	Fax 1451 1470	+49 (7941) 92 06-99
+T20	Email 1472 1491	info@rbb-partner.de
+T21	Tel 22 40	+49 (7941) 92 06-0
+T22	Kanzlei 1502 1544	Rechtsanwälte RBB Beathalter & Partner mbB
+T23	Strasse 1580 1597	Schillerstraße 25
+T24	Ort 1599 1613	74613 Öhringen
+R2	zuOrt Arg1:T24 Arg2:T23	
+T25	Email 1616 1635	info@rbb-partner.de
+T26	Tel 1639 1657	+49 (7941) 92 06-0

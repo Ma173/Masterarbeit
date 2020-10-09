@@ -1,0 +1,7 @@
+T1	Kanzlei 518 547	Anwaltskanzlei Bauerle & Zeiß
+T3	Strasse 629 643	Bertoldstr. 44
+T4	Ort 645 659	79098 Freiburg
+R1	zuOrt Arg1:T4 Arg2:T3	
+T5	Tel 670 682	0761 / 32563
+T6	Fax 692 705	0761 / 286261
+T7	Email 714 734	info@rak-freiburg.de

@@ -1,0 +1,15 @@
+T1	Email 18 46	info@rechtsanwalt-lanters.de
+T2	Rechtsgebiete 481 493	Arbeitsrecht
+T3	Rechtsgebiete 494 504	Zivilrecht
+T4	Rechtsgebiete 505 525	Forderungsmanagement
+T5	Rechtsgebiete 526 550	Urheberrecht - Abmahnung
+T6	Rechtsgebiete 551 567	Verbraucherrecht
+T7	Kanzlei 1429 1449	Rechtsanwalt Lanters
+T8	Strasse 1299 1314	Hauptstraße 144
+T9	Ort 1316 1333	56575 Weißenthurm
+R1	zuOrt Arg1:T9 Arg2:T8	
+T10	Tel 1342 1359	02637 / 939 61 38
+T11	Fax 1366 1383	02637 / 939 61 39
+T12	Email 1392 1420	info@rechtsanwalt-lanters.de
+T13	Tel 0 17	02637 / 939 61 38
+T14	Tel 199 214	02637 939 61 38

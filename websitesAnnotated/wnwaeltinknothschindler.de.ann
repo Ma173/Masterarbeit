@@ -1,0 +1,23 @@
+T2	Strasse 29 41	Kiehlufer 19
+T3	Ort 43 55	12059 Berlin
+R1	zuOrt Arg1:T3 Arg2:T2	
+T4	Email 56 88	anwaeltinknothschindler@email.de
+T5	Bio 119 158	Mai 1992 als zugelassene Rechtsanwältin
+T8	Bio 299 396	Das Studium der Rechtswissenschaften habe ich an der Humboldt Universität zu Berlin abgeschlossen
+T9	Bio 441 477	Justitiarin in der freien Wirtschaft
+T10	Rechtsgebiete 1035 1047	Arbeitsrecht
+T11	Rechtsgebiete 1636 1661	Allgemeines Vertragsrecht
+T12	Rechtsgebiete 2215 2228	Familienrecht
+T13	Rechtsgebiete 2522 2531	Mietrecht
+T14	Rechtsgebiete 2694 2702	Erbrecht
+T15	Strasse 3092 3104	Kiehlufer 19
+T16	Ort 3106 3118	12059 Berlin
+R2	zuOrt Arg1:T16 Arg2:T15	
+T17	Anwaeltin 3214 3235	Beate Knoth-Schindler
+T18	Strasse 3237 3249	Kiehlufer 19
+T19	Ort 3251 3263	12059 Berlin
+R3	zuOrt Arg1:T19 Arg2:T18	
+T20	Email 3272 3304	anwaeltinknothschindler@email.de
+T22	Kanzlei 3387 3408	Beate Knoth-Schindler
+T1	Tel 0 19	(+49) 174 30 62 031
+T21	Tel 3314 3333	(+49) 174-30 62 031

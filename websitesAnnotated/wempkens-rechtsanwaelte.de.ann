@@ -1,0 +1,48 @@
+T1	Kanzlei 0 24	Kempkens | Rechtsanwälte
+T2	Tel 111 130	+49 (0) 351 8011960
+T3	Email 137 171	kontakt@kempkens-rechtsanwaelte.de
+T4	Strasse 172 191	place Glacisstr. 24
+T5	Ort 193 206	01099 Dresden
+R1	zuOrt Arg1:T5 Arg2:T4	
+T6	Rechtsgebiete 672 684	Arbeitsrecht
+T7	Rechtsgebiete 685 698	Familienrecht
+T8	Rechtsgebiete 699 707	Baurecht
+T9	Rechtsgebiete 708 738	Transport- und Speditionsrecht
+T10	Rechtsgebiete 739 784	Strafrecht (Wirtschafts- und Jugendstrafrecht
+T11	Anwalt 1863 1879	Stephan Kempkens
+T12	Anwalt 1893 1904	Jens Kappel
+T13	Anwalt 1932 1945	Jörg Theißen*
+T14	Anwalt 1959 1971	Mario Zimmer
+T15	Kanzlei 2143 2167	Kempkens | Rechtsanwälte
+T16	Tel 2254 2273	+49 (0) 351 8011960
+T17	Email 2280 2314	kontakt@kempkens-rechtsanwaelte.de
+T18	Strasse 2315 2334	place Glacisstr. 24
+T19	Ort 2336 2349	01099 Dresden
+R2	zuOrt Arg1:T19 Arg2:T18	
+T20	Anwalt 2365 2381	Stephan Kempkens
+T21	Rechtsgebiete 2688 2701	Familienrecht
+T22	Rechtsgebiete 2703 2730	Baurecht (privates Baurecht
+T23	Rechtsgebiete 2733 2763	Transport- und Speditionsrecht
+T24	Rechtsgebiete 2765 2810	Strafrecht (Wirtschafts- und Jugendstrafrecht
+T25	Anwalt 3054 3065	Jens Kappel
+T26	Rechtsgebiete 3267 3318	Arbeitsrecht (Individual- und Kollektivarbeitsrecht
+T27	Anwalt 3396 3408	Jörg Theißen
+T28	Rechtsgebiete 3763 3792	Strafrecht (Strafverteidigung
+T29	Rechtsgebiete 3795 3810	Betreuungsrecht
+T30	Rechtsgebiete 3812 3834	allgemeines Zivilrecht
+T31	Tel 3962 3982	+49 (0) 351 81151601
+T32	Fax 3993 4013	+49 (0) 351 81151602
+T33	Anwalt 4023 4040	ratheissen@web.de
+T34	Anwalt 4042 4058	Stephan Kempkens
+T35	Anwalt 4072 4083	Jens Kappel
+T36	Anwalt 4111 4123	Jörg Theißen
+T37	Anwalt 4138 4150	Mario Zimmer
+T39	Bio 2442 2505	Studium der Rechtswissenschaften an der Ruhr-Universität Bochum
+T40	Bio 2507 2549	Referendariat in Bochum, Speyer und Witten
+T41	Bio 2551 2686	Seit 1993 Rechtsanwalt in Dresden, 1993-2012 Partner der überörtlichen Sozietät, seit 2013 Inhaber der Kanzlei Kempkens | Rechtsanwälte
+T38	Bio 2383 2440	1965 in Bochum geboren und aufgewachsen, Abitur in Bochum
+T42	Bio 3411 3453	1963 im Rheinland geboren und aufgewachsen
+T43	Bio 3455 3533	Studium der Rechtswissenschaften an der Friedrich-Wilhelms-Universität in Bonn
+T44	Bio 3535 3586	Referendariat im Rheinland, Wahlstation in Montreal
+T45	Bio 3588 3681	1994-1996 Tätigkeit in der Rechtsabteilung eines Handelsunternehmens mit ca. 550 Mitarbeitern
+T46	Bio 3683 3761	Seit 1996 Tätigkeit als Rechtsanwalt, seit 1997 als selbständiger Rechtsanwalt

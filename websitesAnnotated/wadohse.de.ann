@@ -1,0 +1,91 @@
+T2	Rechtsgebiete 47 58	Arbeitsrech
+T3	Anwalt 197 202	Buhr 
+T4	Anwalt 168 173	Dohse
+T5	Anwalt 224 230	Kukuk 
+T6	Rechtsgebiete 384 396	Arbeitsrecht
+T7	Rechtsgebiete 398 412	Insolvenzrecht
+T8	Rechtsgebiete 414 422	Baurecht
+T9	Rechtsgebiete 424 459	Wirtschafts- und Gesellschaftsrecht
+T10	Rechtsgebiete 461 473	Steuerrecht 
+T11	Rechtsgebiete 477 491	Verkehrsrecht 
+T12	Fachanwalt 792 797	Dohse
+T13	Rechtsgebiete 817 829	Arbeitsrecht
+T14	Fachanwalt 892 896	Buhr
+T15	Rechtsgebiete 916 941	Bau- und Architektenrecht
+T16	Rechtsgebiete 1444 1456	Arbeitsrecht
+T17	Anwalt 1460 1465	DOHSE
+T18	Anwalt 1469 1473	BUHR
+T19	Rechtsgebiete 1474 1482	Baurecht
+T20	Anwalt 1486 1490	BUHR
+T21	Rechtsgebiete 1491 1505	Insolvenzrecht
+T22	Anwalt 1509 1514	DOHSE
+T23	Anwalt 1518 1523	KUKUK
+T24	Rechtsgebiete 1524 1535	Steuerrecht
+T25	Anwalt 1539 1543	BUHR
+T26	Rechtsgebiete 1544 1560	Wirtschaftsrecht
+T27	Anwalt 1564 1569	DOHSE
+T28	Anwalt 1573 1578	KUKUK
+T29	Rechtsgebiete 1579 1595	Architektenrecht
+T30	Anwalt 1599 1603	BUHR
+T31	Rechtsgebiete 1604 1620	Steuerstrafrecht
+T32	Anwalt 1624 1629	DOHSE
+T33	Rechtsgebiete 1630 1643	Verkehrsrecht
+T34	Anwalt 1647 1651	BUHR
+T35	Rechtsgebiete 1652 1686	Sanierungsberatung und -begleitung
+T36	Anwalt 1690 1695	DOHSE
+T37	Rechtsgebiete 1696 1714	Gesellschaftsrecht
+T38	Anwalt 1718 1723	DOHSE
+T39	Anwalt 1727 1732	KUKUK
+T40	Rechtsgebiete 1733 1743	Zivilrecht
+T41	Anwalt 1747 1751	BUHR
+T42	Rechtsgebiete 1752 1776	Ordnungswidrigkeitsrecht
+T43	Anwalt 1780 1784	BUHR
+T44	Rechtsgebiete 1785 1812	Außerger. Schuldnerberatung
+T45	Anwalt 1816 1821	KUKUK
+T46	Rechtsgebiete 1822 1834	Arbeitsrecht
+T47	Rechtsgebiete 1835 1869	Wirtschafts-und Gesellschaftsrecht
+T48	Rechtsgebiete 1870 1898	Steuer- und Steuerstrafrecht
+T49	Rechtsgebiete 1899 1924	Bau- und Architektenrecht
+T50	Rechtsgebiete 1925 1935	Zivilrecht
+T51	Rechtsgebiete 1936 1974	Verkehrs- und Ordnungswidrigkeitsrecht
+T52	Rechtsgebiete 1975 1989	Insolvenzrecht
+T53	Rechtsgebiete 1990 2025	Sanierungsberatung - und begleitung
+T54	Rechtsgebiete 2026 2063	außergerichtliche Schuldenbereinigung
+T55	Tel 2123 2137	0381-203 55 90
+T56	Tel 2149 2163	0381-490 49 74
+T57	Fax 2172 2188	0381 – 490 49 77
+T58	Tel 2212 2226	0381-203 55 93
+T59	Tel 2244 2258	0381-203 55 91
+T60	Tel 2276 2290	0381-203 55 94
+T61	Tel 2306 2320	0381-203 55 92
+T62	Fax 2341 2357	0381 – 203 55 99
+T64	Strasse 2533 2546	Hermannstr. 5
+T65	Ort 2547 2560	18055 Rostock
+R1	zuOrt Arg1:T65 Arg2:T64	
+T66	Tel 2567 2581	0381 | 2035590
+T67	Fax 2587 2601	0381 | 4904977
+T68	Strasse 5280 5295	Hermannstraße 5
+T69	Ort 5297 5310	18055 Rostock
+R2	zuOrt Arg1:T69 Arg2:T68	
+T70	Kanzlei 5426 5431	Dohse
+T71	Strasse 5432 5445	Hermannstr. 5
+T72	Ort 5446 5459	18055 Rostock
+R3	zuOrt Arg1:T72 Arg2:T71	
+T73	Rechtsgebiete 848 866	Insolvenzverwalter
+T74	Email 11355 11370	info@radohse.de
+T75	Email 8456 8471	info@radohse.de
+T76	Email 5571 5586	info@radohse.de
+T1	Kanzlei 20 45	RECHTSANWALTSKANZLEI DOHS
+T77	Bio 69 141	Die Kanzlei wurde durch Herrn Rechtsanwalt Dohse im Jahre 1991 gegründet
+T78	Kanzlei 2389 2415	RECHTSANWALTSKANZLEI DOHSE
+T63	Kanzlei 2506 2532	Rechtsanwaltskanzlei Dohse
+T79	Bio 2843 2915	Die Kanzlei wurde durch Herrn Rechtsanwalt Dohse im Jahre 1991 gegründet
+T80	Rechtsgebiete 3158 3170	Arbeitsrecht
+T81	Rechtsgebiete 3172 3186	Insolvenzrecht
+T82	Rechtsgebiete 3188 3196	Baurecht
+T83	Rechtsgebiete 3198 3233	Wirtschafts- und Gesellschaftsrecht
+T84	Rechtsgebiete 3235 3247	Steuerrecht 
+T85	Rechtsgebiete 3251 3265	Verkehrsrecht 
+T86	Fachanwalt 3576 3603	Fachanwalt für Arbeitsrecht
+T87	Rechtsgebiete 3622 3640	Insolvenzverwalter
+T88	Fachanwalt 3675 3715	Fachanwalt für Bau- und Architektenrecht

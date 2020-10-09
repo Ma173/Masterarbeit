@@ -1,0 +1,41 @@
+T1	Ort 386 399	Kanzlei Essen
+T2	Strasse 401 415	Moltkeplatz 34
+T3	Ort 416 427	45128 Essen
+R1	zuOrt Arg1:T3 Arg2:T2	
+T4	Tel 434 452	+49 (201) 74 789 0
+T5	Fax 458 477	+49 (201) 74 789 29
+T6	Email 486 501	essenjks-rae.de
+T7	Ort 503 516	Kanzlei Halle
+T8	Strasse 518 532	Am Steintor 19
+T9	Ort 533 544	06112 Halle
+R2	zuOrt Arg1:T9 Arg2:T8	
+T10	Tel 551 571	+49 (345) 12 29 88 0
+T11	Fax 577 598	+49 (345) 12 29 88 77
+T12	Email 607 622	hallejks-rae.de
+T13	Ort 624 642	Kanzlei Bitterfeld
+T14	Strasse 644 657	Lindenstr. 11
+T15	Ort 658 674	06749 Bitterfeld
+R3	zuOrt Arg1:T15 Arg2:T14	
+T16	Tel 681 700	+49 (3493) 92 21 70
+T17	Fax 706 725	+49 (3493) 92 21 72
+T18	Email 734 754	bitterfeldjks-rae.de
+T19	Kanzlei 758 777	jürges.knop.stiller
+T20	Strasse 1271 1285	Moltkeplatz 34
+T21	Ort 1286 1297	45128 Essen
+T24	Email 1356 1371	essenjks-rae.de
+T25	Ort 1373 1386	Kanzlei Halle
+T26	Strasse 1388 1402	Am Steintor 19
+T27	Ort 1403 1414	06112 Halle
+R4	zuOrt Arg1:T27 Arg2:T26	
+T28	Tel 1421 1441	+49 (345) 12 29 88 0
+T29	Fax 1447 1468	+49 (345) 12 29 88 77
+T30	Email 1477 1492	hallejks-rae.de
+T31	Ort 1494 1512	Kanzlei Bitterfeld
+T32	Strasse 1514 1527	Lindenstr. 11
+T33	Ort 1528 1544	06749 Bitterfeld
+R5	zuOrt Arg1:T33 Arg2:T32	
+T34	Tel 1551 1570	+49 (3493) 92 21 70
+T35	Fax 1576 1595	+49 (3493) 92 21 72
+T36	Email 1604 1624	bitterfeldjks-rae.de
+T22	Tel 1304 1322	+49 (201) 74 789 0
+T23	Fax 1328 1347	+49 (201) 74 789 29

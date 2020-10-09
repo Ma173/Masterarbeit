@@ -1,0 +1,64 @@
+T1	Kanzlei 184 208	LAMBERTY, SCHMITT, WOLFF
+T2	Anwalt 103 117	URBAN LAMBERTY
+T3	Anwaeltin 118 129	EVA SCHMITT
+T4	Anwalt 130 142	PIERRE WOLFF
+T5	Rechtsgebiete 143 157	ONLINEBERATUNG
+T6	Anwalt 223 237	Urban Lamberty
+T7	Anwaeltin 254 265	Eva Schmitt
+T8	Anwalt 280 292	Pierre Wolff
+T9	Kanzlei 349 371	Lamberty-Schmitt-Wolff
+T10	Ort 376 391	Bernkastel-Kues
+T11	Anwalt 1525 1539	URBAN LAMBERTY
+T12	Anwaeltin 1540 1551	EVA SCHMITT
+T13	Anwalt 1552 1564	PIERRE WOLFF
+T14	Rechtsgebiete 1565 1579	ONLINEBERATUNG
+T15	Anwalt 1604 1618	URBAN LAMBERTY
+T16	Fachanwalt 1619 1646	Fachanwalt für Arbeitsrecht
+T17	Fachanwalt 1648 1674	Fachanwalt für Steuerrecht
+T18	Anwalt 1693 1707	Urban Lamberty
+T19	Rechtsgebiete 1756 1770	Patientenrecht
+T20	Rechtsgebiete 1771 1784	Verkehrsrecht
+T21	Rechtsgebiete 1785 1810	Bau- und Architektenrecht
+T22	Ort 1969 1984	Bernkastel-Kues
+T23	Anwalt 2010 2024	Urban Lamberty
+T24	Rechtsgebiete 2064 2096	Arzthaftung bis Zwangsverwaltung
+T25	Anwalt 2465 2478	Herr Lamberty
+T26	Sprachen 2500 2511	französisch
+T27	Sprachen 2487 2495	englisch
+T28	Anwalt 2719 2733	URBAN LAMBERTY
+T29	Anwaeltin 2734 2745	EVA SCHMITT
+T30	Anwalt 2746 2758	PIERRE WOLFF
+T31	Anwaeltin 2798 2809	EVA SCHMITT
+T32	Fachanwalt 2810 2840	Fachanwältin für Familienrecht
+T33	Fachanwalt 2842 2871	Fachanwältin für Medizinrecht
+T34	Anwaeltin 2892 2903	Eva Schmitt
+T35	Rechtsgebiete 2956 2964	Erbrecht
+T38	Rechtsgebiete 3520 3528	Erbrecht
+T39	Rechtsgebiete 3537 3546	Mietrecht
+T40	Anwalt 3993 4005	PIERRE WOLFF
+T42	Rechtsgebiete 4114 4123	Mietrecht
+T43	Rechtsgebiete 4124 4134	Opferrecht
+T44	Rechtsgebiete 4135 4147	Nachbarrecht
+T45	Rechtsgebiete 5645 5664	Miet-/ Nachbarrecht
+T46	Rechtsgebiete 5674 5696	allgemeinen Zivilrecht
+T47	Anwalt 5746 5751	Wolff
+T48	Sprachen 5813 5827	Niederländisch
+T49	Sprachen 5800 5808	Englisch
+T50	Bio 1812 1832	2. Staatsexamen 1991
+T51	Bio 1834 1862	Rechtsanwalt seit April 1992
+T52	Fachanwalt 2105 2148	Fachanwalt für Arbeitsrecht und Steuerrecht
+T53	Bio 2966 3036	Frau Rechtsanwältin Eva Schmitt ist seit 1999 in Bernkastel-Kues tätig
+T54	Rechtsgebiete 3403 3415	Medizinrecht
+T55	Rechtsgebiete 3443 3485	Arzthaftungs- und Arztvertragsrechtssachen
+T56	Anwaeltin 3612 3634	Rechtsanwältin Schmitt
+T57	Sprachen 3670 3678	Englisch
+T58	Sprachen 3683 3691	Spanisch
+T59	Email 3694 3728	Eva.Schmitt@RAe-Bernkastel-Kues.de
+T60	Anwalt 4050 4062	Pierre Wolff
+T61	Bio 4149 4174	Studium in Bonn und Trier
+T62	Bio 4176 4196	2. Staatsexamen 2003
+T63	Fachanwalt 4229 4254	Fachanwalt für Strafrecht
+T64	Email 5830 5865	Pierre.Wolff@RAe-Bernkastel-Kues.de
+T36	Fachanwalt 3079 3109	Fachanwältin für Familienrecht
+T37	Fachanwalt 3353 3382	Fachanwältin für Medizinrecht
+T41	Fachanwalt 4006 4031	Fachanwalt für Strafrecht

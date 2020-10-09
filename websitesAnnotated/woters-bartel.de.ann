@@ -1,0 +1,33 @@
+T2	Strasse 0 10	Ostwall 24
+T3	Ort 12 30	59348 Lüdinghausen
+R1	zuOrt Arg1:T3 Arg2:T2	
+T4	Tel 40 50	02591 6035
+T5	Rechtsgebiete 74 86	Arbeitsrecht
+T6	Rechtsgebiete 88 110	Allgemeines Zivilrecht
+T7	Rechtsgebiete 112 145	Auftrags- und Dienstvertragsrecht
+T8	Rechtsgebiete 147 163	Bürgschaftsrecht
+T9	Rechtsgebiete 165 187	Kauf- und Leasingrecht
+T10	Rechtsgebiete 189 221	Recht der unerlaubten Handlungen
+T11	Rechtsgebiete 224 254	Schadenersatz und Unterlassung
+T12	Rechtsgebiete 256 268	Vereinsrecht
+T13	Rechtsgebiete 270 287	Werkvertragsrecht
+T14	Rechtsgebiete 289 314	Bau- und Architektenrecht
+T15	Rechtsgebiete 316 324	Erbrecht
+T16	Rechtsgebiete 326 337	Erbbaurecht
+T17	Rechtsgebiete 339 352	Familienrecht
+T18	Rechtsgebiete 354 385	Handels- und Gesellschaftsrecht
+T19	Rechtsgebiete 387 417	Landwirtschafts- und Höferecht
+T20	Rechtsgebiete 419 439	Miet- und Pachtrecht
+T21	Rechtsgebiete 441 466	Ordnungswidrigkeitenrecht
+T22	Rechtsgebiete 468 481	Bußgeldsachen
+T23	Rechtsgebiete 483 493	Strafrecht
+T24	Rechtsgebiete 496 512	Jugendstrafrecht
+T25	Rechtsgebiete 514 534	Straßenverkehrsrecht
+T26	Anwalt 634 648	Stephan Roters
+T27	Anwaeltin 662 674	Heike Bartel
+T28	Fachanwalt 694 724	Fachanwältin für Familienrecht
+T29	Kanzlei 884 897	roters-bartel
+T30	Anwalt 936 950	Stephan Roters
+T31	Anwaeltin 964 976	Heike Bartel
+T32	Fachanwalt 996 1026	Fachanwältin für Familienrecht
+T1	Email 51 72	info@roters-bartel.de

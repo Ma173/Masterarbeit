@@ -1,0 +1,227 @@
+T1	Sprachen 0 7	Deutsch
+T2	Sprachen 7 14	English
+T3	Tel 4138 4149	0921/7566-0
+T4	Fax 4159 4172	0921/7566-100
+T7	Tel 4243 4257	0911/37657-111
+T8	Fax 4267 4281	0911/37657-199
+T10	Tel 4350 4362	0961/48239-0
+T11	Fax 4372 4385	0961/48239-20
+T12	Sprachen 4433 4440	Deutsch
+T13	Sprachen 4440 4447	English
+T15	Tel 8571 8582	0921/7566-0
+T16	Fax 8592 8605	0921/7566-100
+T18	Tel 8676 8690	0911/37657-111
+T19	Fax 8700 8714	0911/37657-199
+T21	Tel 8783 8795	0961/48239-0
+T22	Fax 8805 8818	0961/48239-20
+T26	Tel 9606 9617	0921/7566-0
+T27	Tel 9627 9640	0921/7566-100
+T28	Tel 9711 9725	0911/37657-111
+T29	Fax 9735 9749	0911/37657-199
+T30	Tel 9818 9830	0961/48239-0
+T31	Fax 9840 9853	0961/48239-20
+T32	Sprachen 9929 9936	Deutsch
+T33	Sprachen 9936 9943	English
+T5	Strasse 4099 4112	Löhestraße 11
+T34	Ort 4114 4128	95444 Bayreuth
+R1	zuOrt Arg1:T34 Arg2:T5	
+T6	Strasse 4202 4217	Marthastraße 16
+T35	Ort 4219 4233	90482 Nürnberg
+R2	zuOrt Arg1:T35 Arg2:T6	
+T9	Strasse 4309 4326	Max-Reger-Str. 16
+T36	Ort 4328 4340	92637 Weiden
+R3	zuOrt Arg1:T36 Arg2:T9	
+T14	Strasse 8532 8545	Löhestraße 11
+T37	Ort 8547 8561	95444 Bayreuth
+R4	zuOrt Arg1:T37 Arg2:T14	
+T17	Strasse 8635 8650	Marthastraße 16
+T38	Ort 8652 8666	90482 Nürnberg
+R5	zuOrt Arg1:T38 Arg2:T17	
+T20	Strasse 8742 8759	Max-Reger-Str. 16
+T39	Ort 8761 8773	92637 Weiden
+R6	zuOrt Arg1:T39 Arg2:T20	
+T25	Strasse 9567 9580	Löhestraße 11
+T40	Ort 9582 9596	95444 Bayreuth
+R7	zuOrt Arg1:T40 Arg2:T25	
+T24	Strasse 9670 9685	Marthastraße 16
+T41	Ort 9687 9701	90482 Nürnberg
+R8	zuOrt Arg1:T41 Arg2:T24	
+T23	Strasse 9777 9794	Max-Reger-Str. 16
+T42	Ort 9796 9808	92637 Weiden
+R9	zuOrt Arg1:T42 Arg2:T23	
+T43	Email 10861 10887	ra.dr.fleischmann@fe-ls.de
+T44	Tel 10829 10851	+49 (0) 921 7566 - 260
+T45	Tel 11149 11171	+49 (0) 921 7566 - 266
+T79	Email 11181 11203	ra.dr.scheder@fe-ls.de
+T80	Anwalt 11230 11251	Dr. iur. Thomas Mronz
+T81	Fachanwalt 11252 11275	Fachanwalt für Erbrecht
+T82	Fachanwalt 11276 11316	Fachanwalt für Bau- und Architektenrecht
+T83	Tel 11452 11474	+49 (0) 921 7566 - 250
+T84	Email 11484 11504	ra.dr.mronz@fe-ls.de
+T85	Tel 11779 11801	+49 (0) 921 7566 - 270
+T86	Email 11811 11829	ra.steier@fe-ls.de
+T87	Anwalt 11856 11884	Dr. rer. pol. Tom F. Petrick
+T88	Fachanwalt 11885 11911	Fachanwalt für Steuerrecht
+T89	Fachanwalt 11912 11940	Fachanwalt für Verkehrsrecht
+T90	Rechtsgebiete 11942 11953	Steuerrecht
+T91	Rechtsgebiete 11955 11968	Vertragsrecht
+T92	Rechtsgebiete 11970 11989	IT- und Medienrecht
+T93	Rechtsgebiete 11991 12004	Verkehrsrecht
+T94	Rechtsgebiete 12006 12024	Versicherungsrecht
+T95	Rechtsgebiete 12026 12050	Marken- und Urheberrecht
+T96	Tel 12086 12108	+49 (0) 921 7566 - 240
+T97	Email 12118 12137	ra.petrick@fe-ls.de
+T98	Anwalt 12164 12178	Kurt Eschlwöch
+T99	Rechtsgebiete 12198 12216	Versicherungsrecht
+T100	Tel 12239 12261	+49 (0) 921 7566 - 220
+T101	Email 12271 12293	ra.eschlwoech@fe-ls.de
+T102	Anwalt 12320 12341	Karl-Friedrich Hacker
+T103	Tel 12489 12511	+49 (0) 921 7566 - 280
+T104	Email 12521 12539	ra.hacker@fe-ls.de
+T105	Anwalt 12566 12587	Dr. iur. Dieter Mronz
+T106	Rechtsgebiete 12383 12404	öffentliches Baurecht
+T107	Rechtsgebiete 12406 12424	öffentliches Recht
+T108	Rechtsgebiete 12426 12437	Umweltrecht
+T109	Rechtsgebiete 12439 12466	Wirtschaftsverwaltungsrecht
+T110	Rechtsgebiete 12589 12618	Wirtschafts-/Verwaltungsrecht
+T111	Rechtsgebiete 12620 12638	öffentliches Recht
+T112	Rechtsgebiete 12640 12653	Kommunalrecht
+T113	Rechtsgebiete 12655 12667	Beamtenrecht
+T114	Rechtsgebiete 12669 12678	Wehrrecht
+T115	Tel 12701 12723	+49 (0) 921 7566 - 286
+T116	Email 12733 12753	ra.dr.mronz@fe-ls.de
+T117	Anwalt 12780 12795	Oliver Schuster
+T118	Rechtsgebiete 12797 12819	Allgemeines Zivilrecht
+T119	Rechtsgebiete 12821 12846	gewerblicher Rechtsschutz
+T120	Rechtsgebiete 12848 12872	Marken- und Urheberrecht
+T121	Rechtsgebiete 12874 12911	Rechtsberatung im Unternehmensbereich
+T122	Tel 12934 12956	+49 (0) 921 7566 - 230
+T123	Email 12966 12986	ra.schuster@fe-ls.de
+T124	Anwalt 13013 13030	Michael Schädlich
+T125	Fachanwalt 13031 13059	Fachanwalt für Familienrecht
+T126	Fachanwalt 13060 13107	Fachanwalt für Miet- und Wohnungseigentumsrecht
+T127	Rechtsgebiete 13109 13122	Familienrecht
+T128	Rechtsgebiete 13124 13139	Scheidungsrecht
+T129	Rechtsgebiete 13141 13173	Miet- und Wohnungseigentumsrecht
+T130	Rechtsgebiete 13175 13185	Strafrecht
+T131	Rechtsgebiete 13187 13199	Nachbarrecht
+T132	Tel 13222 13244	+49 (0) 921 7566 - 290
+T133	Email 13254 13276	ra.schaedlich@fe-ls.de
+T134	Anwaeltin 13305 13333	Dr. iur. Monika Görtz-Leible
+T135	Fachanwalt 13334 13364	Fachanwältin für Familienrecht
+T136	Tel 13460 13482	+49 (0) 921 7566 - 210
+T137	Email 13492 13518	rain.goertzleible@fe-ls.de
+T138	Anwalt 13545 13560	Ulrich Eichbaum
+T139	Fachanwalt 13561 13589	Fachanwalt für Verkehrsrecht
+T140	Rechtsgebiete 13591 13604	Verkehrsrecht
+T141	Rechtsgebiete 13606 13618	Medizinrecht
+T142	Rechtsgebiete 13620 13645	Ordnungswidrigkeitenrecht
+T143	Rechtsgebiete 13647 13678	Flotten- und Fuhrparkmanagement
+T144	Rechtsgebiete 13680 13693	Vertragsrecht
+T145	Rechtsgebiete 13695 13702	Inkasso
+T146	Rechtsgebiete 13704 13714	Sportrecht
+T147	Tel 13737 13759	+49 (0) 921 7566 - 190
+T148	Email 13770 13790	ra.eichbaum@fe-ls.de
+T149	Rechtsgebiete 13859 13890	Flotten- und Fuhrparkmanagement
+T150	Rechtsgebiete 13892 13905	Verkehrsrecht
+T151	Rechtsgebiete 13907 13929	Allgemeines Zivilrecht
+T152	Tel 13952 13978	+49 (0) 0921 / 75 66 - 220
+T153	Email 13988 14005	ra.nolte@fe-ls.de
+T154	Anwalt 14032 14054	Dr. iur. Tobias Liebau
+T155	Fachanwalt 14055 14080	Fachanwalt für Strafrecht
+T156	Rechtsgebiete 14082 14092	Strafrecht
+T157	Rechtsgebiete 14107 14129	Wirtschaftsstrafrecht 
+T158	Tel 14152 14174	+49 (0) 921 7566 - 270
+T159	Email 14184 14205	ra.dr.liebau@fe-ls.de
+T160	Rechtsgebiete 14250 14266	Datenschutzrecht
+T161	Rechtsgebiete 14268 14276	IT-Recht
+T162	Rechtsgebiete 14278 14300	Allgemeines Zivilrecht
+T163	Anwalt 14232 14248	Christian Becker
+T164	Tel 14323 14346	+49 (0) 921 / 75 66-166
+T165	Email 14356 14374	ra.becker@fe-ls.de
+T166	Rechtsgebiete 14450 14463	Verkehrsrecht
+T167	Rechtsgebiete 14465 14478	Fuhrparkrecht
+T168	Rechtsgebiete 14480 14487	Inkasso
+T169	Tel 14510 14532	+49 (0) 961 482 39 - 0
+T170	Email 14542 14557	weiden@fe-ls.de
+T171	Anwalt 14584 14598	Hendrik Wilken
+T172	Rechtsgebiete 14600 14613	Verkehrsrecht
+T173	Rechtsgebiete 14615 14633	Versicherungsrecht
+T174	Rechtsgebiete 14635 14648	Vertragsrecht
+T175	Rechtsgebiete 14650 14672	Allgemeines Zivilrecht
+T176	Rechtsgebiete 14674 14694	Forderungsmanagement
+T177	Tel 14717 14739	+49 (0) 921 7566 - 276
+T178	Email 14749 14767	ra.wilken@fe-ls.de
+T179	Rechtsgebiete 13366 13379	Familienrecht
+T180	Rechtsgebiete 13426 13437	Sozialrecht
+T181	Anwaeltin 14403 14417	Melanie Brandt
+T182	Fachanwalt 14418 14448	Fachanwältin für Verkehrsrecht
+T183	Anwalt 14794 14807	Florian Dorth
+T184	Rechtsgebiete 14809 14819	Zivilrecht
+T185	Rechtsgebiete 14821 14833	Arbeitsrecht
+T186	Rechtsgebiete 14835 14866	Handels- und Gesellschaftsrecht
+T187	Rechtsgebiete 14868 14895	Bank- und Kapitalmarktrecht
+T188	Tel 14918 14940	+49 (0) 921 7566 - 216
+T189	Email 14950 14967	ra.dorth@fe-ls.de
+T190	Anwalt 14994 15010	Jürgen Feldsmann
+T191	Rechtsgebiete 15012 15025	Verkehrsrecht
+T192	Rechtsgebiete 15033 15077	Verkehrsstraf- und Ordnungswidrigkeitenrecht
+T193	Rechtsgebiete 15079 15101	Allgemeines Zivilrecht
+T194	Rechtsgebiete 15103 15115	Arbeitsrecht
+T195	Rechtsgebiete 15117 15135	Versicherungsrecht
+T196	Tel 15158 15179	+49 (0) 961 48239 - 0
+T197	Email 15189 15204	weiden@fe-ls.de
+T198	Strasse 15236 15249	Löhestraße 11
+T199	Ort 15251 15265	95444 Bayreuth
+T200	Tel 15275 15286	0921/7566-0
+T201	Fax 15296 15309	0921/7566-100
+T202	Strasse 15339 15354	Marthastraße 16
+T203	Ort 15356 15370	90482 Nürnberg
+T204	Tel 15380 15394	0911/37657-111
+T205	Fax 15404 15418	0911/37657-199
+T206	Strasse 15446 15463	Max-Reger-Str. 16
+R11	zuOrt Arg1:T199 Arg2:T198	
+R12	zuOrt Arg1:T203 Arg2:T202	
+T207	Ort 15465 15477	92637 Weiden
+R13	zuOrt Arg1:T207 Arg2:T206	
+T208	Tel 15487 15499	0961/48239-0
+T209	Fax 15509 15522	0961/48239-20
+T46	Rechtsgebiete 250 261	Steuerrecht
+T47	Rechtsgebiete 279 303	Medizin- und Arzthaftung
+T48	Rechtsgebiete 304 338	Privates Bau- und Architektenrecht
+T49	Rechtsgebiete 339 351	Arbeitsrecht
+T50	Rechtsgebiete 352 365	Verkehrsrecht
+T51	Rechtsgebiete 366 376	Strafrecht
+T52	Rechtsgebiete 377 390	Fuhrparkrecht
+T53	Rechtsgebiete 400 408	Erbrecht
+T54	Rechtsgebiete 409 416	Inkasso
+T55	Rechtsgebiete 417 430	Familienrecht
+T56	Rechtsgebiete 431 440	Mietrecht
+T57	Rechtsgebiete 443 454	WEG - Recht
+T58	Rechtsgebiete 4683 4694	Steuerrecht
+T59	Rechtsgebiete 4712 4736	Medizin- und Arzthaftung
+T60	Rechtsgebiete 4737 4771	Privates Bau- und Architektenrecht
+T61	Rechtsgebiete 4772 4784	Arbeitsrecht
+T62	Rechtsgebiete 4785 4798	Verkehrsrecht
+T63	Rechtsgebiete 4799 4809	Strafrecht
+T64	Rechtsgebiete 4810 4823	Fuhrparkrecht
+T65	Rechtsgebiete 4833 4841	Erbrecht
+T66	Rechtsgebiete 4842 4849	Inkasso
+T67	Rechtsgebiete 4850 4863	Familienrecht
+T68	Rechtsgebiete 4864 4887	Mietrecht / WEG - Recht
+T69	Rechtsgebiete 4888 4917	Betriebliche Altersversorgung
+T70	Rechtsgebiete 9129 9140	Steuerrecht
+T71	Rechtsgebiete 9141 9157	Kommunalberatung
+T72	Rechtsgebiete 9158 9182	Medizin- und Arzthaftung
+T73	Rechtsgebiete 9183 9217	Privates Bau- und Architektenrecht
+T74	Rechtsgebiete 9218 9230	Arbeitsrecht
+T75	Rechtsgebiete 9231 9244	Verkehrsrecht
+T76	Rechtsgebiete 9245 9255	Strafrecht
+T77	Rechtsgebiete 9256 9269	Fuhrparkrecht
+T78	Rechtsgebiete 9279 9287	Erbrecht
+T210	Rechtsgebiete 9296 9309	Familienrecht
+T211	Rechtsgebiete 9288 9295	Inkasso
+T212	Rechtsgebiete 9310 9333	Mietrecht / WEG - Recht
+T213	Rechtsgebiete 9334 9363	Betriebliche Altersversorgung
+T214	Rechtsgebiete 4695 4711	Kommunalberatung
+T215	Rechtsgebiete 262 278	Kommunalberatung

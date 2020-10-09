@@ -1,0 +1,22 @@
+T1	Kanzlei 34 69	Schild · Zeller · Winkler & Partner
+T2	Rechtsgebiete 89 101	Arbeitsrecht
+T4	Rechtsgebiete 498 510	Arbeitsrecht
+T5	Anwalt 1022 1042	Dr. Christian Schild
+T6	Fachanwalt 1044 1058;1060 1072	Fachanwalt für Arbeitsrecht
+T7	Anwaeltin 1074 1088	Manuela Zeller
+T8	Fachanwalt 1090 1106;1108 1120	Fachanwältin für Arbeitsrecht
+T9	Anwaeltin 1122 1135	Meike Winkler
+T10	Fachanwalt 1137 1153;1155 1167	Fachanwältin für Arbeitsrecht
+T11	Anwaeltin 1169 1183	Barbara Schild
+T12	Fachanwalt 1185 1201;1203 1215	Fachanwältin für Arbeitsrecht
+T13	Anwalt 1217 1230	Alfons Schild
+T14	Fachanwalt 1232 1246;1248 1260	Fachanwalt für Arbeitsrecht
+T15	Anwalt 1262 1278	Domingo Martinez
+T16	Kanzlei 1305 1344	Schild · Zeller · Winkler & Partner mbB
+T17	Fachanwalt 1346 1374	Fachanwälte für Arbeitsrecht
+T18	Strasse 1392 1406	Trothengasse 5
+T19	Ort 1408 1426	D-93047 Regensburg
+R1	zuOrt Arg1:T19 Arg2:T18	
+T20	Tel 1739 1750	0941 502770
+T21	Fax 1752 1764	0941 5027750
+T3	Kanzlei 1788 1827	Schild · Zeller · Winkler & Partner mbB

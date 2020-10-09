@@ -1,0 +1,153 @@
+T1	Kanzlei 575 604	Rechtsanwälte an der Residenz
+T2	Strasse 605 620	Residenzplatz 1
+T3	Ort 621 634	87435 Kempten
+R1	zuOrt Arg1:T3 Arg2:T2	
+T4	Tel 644 661	0831 – 96 04 68 0
+T5	Fax 670 688	0831 – 96 04 68 10
+T6	Email 696 730	kanzlei@rechtsanwaelte-residenz.de
+T7	Kanzlei 1620 1649	Rechtsanwälte an der Residenz
+T8	Strasse 1650 1665	Residenzplatz 1
+T9	Ort 1666 1679	87435 Kempten
+R2	zuOrt Arg1:T9 Arg2:T8	
+T10	Tel 1689 1706	0831 - 96 04 68 0
+T11	Fax 1715 1733	0831 - 96 04 68 10
+T12	Email 1741 1775	kanzlei@rechtsanwaelte-residenz.de
+T13	Kanzlei 2099 2128	Rechtsanwälte an der Residenz
+T14	Anwalt 2885 2899	Oliver Ahegger
+T15	Fachanwalt 2913 2938	Fachanwalt für Strafrecht
+T16	Fachanwalt 2939 2967	Fachanwalt für Verkehrsrecht
+T17	Rechtsgebiete 3133 3143	Strafrecht
+T18	Rechtsgebiete 3145 3170	Ordnungswidrigkeitenrecht
+T19	Rechtsgebiete 3172 3190	Fahrerlaubnisrecht
+T20	Rechtsgebiete 3192 3205	Verkehrsrecht
+T21	Rechtsgebiete 3207 3225	Versicherungsrecht
+T22	Rechtsgebiete 3227 3249	Allgemeines Zivilrecht
+T23	Anwalt 3266 3278	Rudolf Rapps
+T24	Fachanwalt 3292 3320	Fachanwalt für Familienrecht
+T25	Fachanwalt 3321 3344	Fachanwalt für Erbrecht
+T26	Rechtsgebiete 3345 3368	Testamentsvollstreckung
+T27	Rechtsgebiete 3463 3476	Familienrecht
+T28	Rechtsgebiete 3478 3486	Erbrecht
+T29	Rechtsgebiete 3488 3498	Zivilrecht
+T30	Anwalt 3515 3528	Thomas Wöhrle
+T31	Fachanwalt 3542 3569	Fachanwalt für Arbeitsrecht
+T32	Fachanwalt 3570 3612	Fachanwalt für Bank- und Kapitalmarktrecht
+T33	Rechtsgebiete 3794 3806	Arbeitsrecht
+T34	Rechtsgebiete 3808 3826	Kapitalanlagerecht
+T35	Rechtsgebiete 3828 3845	Arzthaftungsrecht
+T36	Rechtsgebiete 3847 3863	Forderungseinzug
+T37	Rechtsgebiete 3865 3892	Handels- und Vertriebsrecht
+T38	Rechtsgebiete 3894 3904	Zivilrecht
+T39	Rechtsgebiete 3906 3922	Wirtschaftsrecht
+T40	Anwalt 3939 3952	Ralf Brückner
+T41	Fachanwalt 3966 3994	Fachanwalt für Verkehrsrecht
+T42	Rechtsgebiete 4255 4268	Verkehrsrecht
+T43	Rechtsgebiete 4270 4290	Miet- und Pachtrecht
+T44	Rechtsgebiete 4292 4310	Verkehrsstrafrecht
+T45	Rechtsgebiete 4312 4337	Ordnungswidrigkeitenrecht
+T46	Rechtsgebiete 4339 4357	Versicherungsrecht
+T47	Rechtsgebiete 4359 4369	Zivilrecht
+T48	Anwalt 4386 4399	Marc Armatage
+T49	Fachanwalt 4432 4457	Fachanwalt für Strafrecht
+T50	Rechtsgebiete 4682 4692	Strafrecht
+T51	Rechtsgebiete 4694 4710	Steuerstrafrecht
+T52	Rechtsgebiete 4712 4730	Gesellschaftsrecht
+T53	Rechtsgebiete 4732 4748	Wirtschaftsrecht
+T54	Rechtsgebiete 4750 4770	Gewährleistungsrecht
+T55	Rechtsgebiete 4772 4797	Ordnungswidrigkeitenrecht
+T56	Rechtsgebiete 4799 4809	Zivilrecht
+T57	Rechtsgebiete 4811 4838	Handels- und Vertriebsrecht
+T58	Anwaeltin 4855 4871	Barbara Feneberg
+T59	Rechtsgebiete 5037 5049	Arbeitsrecht
+T60	Rechtsgebiete 5051 5067	Forderungseinzug
+T61	Rechtsgebiete 5069 5079	Zivilrecht
+T62	Anwaeltin 5096 5114	Annette Bartenbach
+T63	Fachanwalt 5150 5199	Fachanwältin für Miet- und Wohnungseigentumsrecht
+T64	Rechtsgebiete 5220 5229	Mietrecht
+T65	Rechtsgebiete 5231 5253	Wohnungseigentumsrecht
+T66	Rechtsgebiete 5255 5268	Familienrecht
+T67	Rechtsgebiete 5270 5292	Allgemeines Zivilrecht
+T68	Anwalt 5309 5322	Thomas Müller
+T69	Fachanwalt 5355 5395	Fachanwalt für Bau- und Architektenrecht
+T70	Rechtsgebiete 5416 5433	privates Baurecht
+T71	Rechtsgebiete 5435 5451	Architektenrecht
+T72	Rechtsgebiete 5453 5470	Werkvertragsrecht
+T73	Rechtsgebiete 5472 5485	Verkehrsrecht
+T74	Rechtsgebiete 5487 5515	Verkehrsordnungswidrigkeiten
+T75	Kanzlei 5780 5809	Rechtsanwälte an der Residenz
+T76	Strasse 5810 5825	Residenzplatz 1
+T77	Ort 5826 5839	87435 Kempten
+R3	zuOrt Arg1:T77 Arg2:T76	
+T78	Tel 5849 5866	0831 - 96 04 68 0
+T79	Fax 5875 5893	0831 - 96 04 68 10
+T80	Email 5901 5935	kanzlei@rechtsanwaelte-residenz.de
+T81	Kanzlei 6259 6288	Rechtsanwälte an der Residenz
+T82	Anwalt 7045 7059	Oliver Ahegger
+T83	Fachanwalt 7073 7098	Fachanwalt für Strafrecht
+T84	Fachanwalt 7099 7127	Fachanwalt für Verkehrsrecht
+T85	Rechtsgebiete 7293 7303	Strafrecht
+T86	Rechtsgebiete 7305 7330	Ordnungswidrigkeitenrecht
+T87	Rechtsgebiete 7332 7350	Fahrerlaubnisrecht
+T88	Rechtsgebiete 7352 7365	Verkehrsrecht
+T89	Rechtsgebiete 7367 7385	Versicherungsrecht
+T90	Rechtsgebiete 7387 7409	Allgemeines Zivilrecht
+T91	Anwalt 7426 7438	Rudolf Rapps
+T92	Fachanwalt 7452 7480	Fachanwalt für Familienrecht
+T93	Fachanwalt 7481 7504	Fachanwalt für Erbrecht
+T94	Rechtsgebiete 7505 7528	Testamentsvollstreckung
+T95	Rechtsgebiete 7623 7636	Familienrecht
+T96	Rechtsgebiete 7638 7646	Erbrecht
+T97	Rechtsgebiete 7648 7658	Zivilrecht
+T98	Anwalt 7675 7688	Thomas Wöhrle
+T99	Fachanwalt 7702 7729	Fachanwalt für Arbeitsrecht
+T100	Fachanwalt 7730 7772	Fachanwalt für Bank- und Kapitalmarktrecht
+T101	Rechtsgebiete 7954 7966	Arbeitsrecht
+T102	Rechtsgebiete 7968 7986	Kapitalanlagerecht
+T103	Rechtsgebiete 7988 8005	Arzthaftungsrecht
+T104	Rechtsgebiete 8007 8023	Forderungseinzug
+T105	Rechtsgebiete 8025 8052	Handels- und Vertriebsrecht
+T106	Rechtsgebiete 8054 8064	Zivilrecht
+T107	Rechtsgebiete 8066 8082	Wirtschaftsrecht
+T108	Anwalt 8099 8112	Ralf Brückner
+T109	Fachanwalt 8126 8154	Fachanwalt für Verkehrsrecht
+T110	Rechtsgebiete 8415 8428	Verkehrsrecht
+T111	Rechtsgebiete 8430 8450	Miet- und Pachtrecht
+T112	Rechtsgebiete 8452 8470	Verkehrsstrafrecht
+T113	Rechtsgebiete 8472 8497	Ordnungswidrigkeitenrecht
+T114	Rechtsgebiete 8499 8517	Versicherungsrecht
+T115	Rechtsgebiete 8519 8529	Zivilrecht
+T116	Anwalt 8546 8559	Marc Armatage
+T117	Fachanwalt 8592 8617	Fachanwalt für Strafrecht
+T118	Rechtsgebiete 8842 8852	Strafrecht
+T119	Rechtsgebiete 8854 8870	Steuerstrafrecht
+T120	Rechtsgebiete 8872 8890	Gesellschaftsrecht
+T121	Rechtsgebiete 8892 8908	Wirtschaftsrecht
+T122	Rechtsgebiete 8910 8930	Gewährleistungsrecht
+T123	Rechtsgebiete 8932 8957	Ordnungswidrigkeitenrecht
+T124	Rechtsgebiete 8959 8969	Zivilrecht
+T125	Rechtsgebiete 8971 8998	Handels- und Vertriebsrecht
+T126	Anwaeltin 9015 9031	Barbara Feneberg
+T127	Rechtsgebiete 9197 9209	Arbeitsrecht
+T128	Rechtsgebiete 9211 9227	Forderungseinzug
+T129	Rechtsgebiete 9229 9239	Zivilrecht
+T130	Anwaeltin 9256 9274	Annette Bartenbach
+T131	Fachanwalt 9310 9359	Fachanwältin für Miet- und Wohnungseigentumsrecht
+T132	Rechtsgebiete 9380 9389	Mietrecht
+T133	Rechtsgebiete 9391 9413	Wohnungseigentumsrecht
+T134	Rechtsgebiete 9415 9428	Familienrecht
+T135	Rechtsgebiete 9430 9452	Allgemeines Zivilrecht
+T136	Anwalt 9469 9482	Thomas Müller
+T137	Fachanwalt 9515 9555	Fachanwalt für Bau- und Architektenrecht
+T138	Rechtsgebiete 9576 9593	privates Baurecht
+T139	Rechtsgebiete 9595 9611	Architektenrecht
+T140	Rechtsgebiete 9613 9630	Werkvertragsrecht
+T141	Rechtsgebiete 9632 9645	Verkehrsrecht
+T142	Rechtsgebiete 9647 9675	Verkehrsordnungswidrigkeiten
+T143	Kanzlei 9940 9969	Rechtsanwälte an der Residenz
+T144	Strasse 9970 9985	Residenzplatz 1
+T145	Ort 9986 9999	87435 Kempten
+R4	zuOrt Arg1:T145 Arg2:T144	
+T146	Tel 10009 10026	0831 - 96 04 68 0
+T148	Fax 10035 10053	0831 - 96 04 68 10
+T147	Email 10061 10095	kanzlei@rechtsanwaelte-residenz.de
+T149	Kanzlei 10419 10448	Rechtsanwälte an der Residenz

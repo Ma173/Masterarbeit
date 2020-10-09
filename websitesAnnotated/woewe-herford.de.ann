@@ -1,0 +1,79 @@
+T1	Kanzlei 0 8	DR. LÖWE
+T2	Strasse 165 179	SCHILLERSTR. 3
+T3	Ort 180 193	32052 HERFORD
+R1	zuOrt Arg1:T3 Arg2:T2	
+T4	Tel 203 218	05221 - 1 66 80
+T5	Fax 228 243	05221 - 5 73 52
+T6	Email 244 271	EMAIL:INFO@LOEWE-HERFORD.DE
+T7	Kanzlei 379 387	DR. LÖWE
+T8	Anwalt 445 464	DR. JUR. HELGE LÖWE
+T9	Fachanwalt 489 517	Fachanwalt für Familienrecht
+T10	Rechtsgebiete 535 543	Erbrecht
+T11	Rechtsgebiete 544 562	Gesellschaftsrecht
+T12	Rechtsgebiete 563 579	Grundstücksrecht
+T13	Rechtsgebiete 580 595	Immobilienrecht
+T14	Rechtsgebiete 596 609	Familienrecht
+T15	Rechtsgebiete 610 632	Wohnungseigentumsrecht
+T16	Rechtsgebiete 633 642	Höferecht
+T17	Anwalt 661 683	JOCHEN MEYER ZU BEXTEN
+T18	Fachanwalt 698 723	Fachanwalt für Strafrecht
+T19	Fachanwalt 724 752	Fachanwalt für Verkehrsrecht
+T20	Rechtsgebiete 770 780	Strafrecht
+T21	Rechtsgebiete 781 809	Verkehrsordnungswidrigkeiten
+T22	Rechtsgebiete 810 823	Bußgeldsachen
+T23	Rechtsgebiete 824 842	Fahrerlaubnisrecht
+T24	Rechtsgebiete 843 852	Mietrecht
+T25	Rechtsgebiete 853 865	Nachbarrecht
+T27	Rechtsgebiete 889 898	Jagdrecht
+T26	Rechtsgebiete 866 888	Allgemeines Zivilrecht
+T28	Anwaeltin 916 927	HEIDE WOLFF
+T29	Fachanwalt 961 986	Fachanwältin für Erbrecht
+T30	Fachanwalt 987 1017	Fachanwältin für Familienrecht
+T31	Rechtsgebiete 1035 1043	Erbrecht
+T32	Rechtsgebiete 1044 1060	Grundstücksrecht
+T33	Rechtsgebiete 1061 1076	Immobilienrecht
+T34	Rechtsgebiete 1077 1099	Wohnungseigentumsrecht
+T35	Rechtsgebiete 1100 1124	Ehe- und Scheidungsrecht
+T36	Rechtsgebiete 1125 1156	Handels- und Gesellschaftsrecht
+T37	Rechtsgebiete 1157 1167	Zivilrecht
+T38	Anwaeltin 1189 1202	SABINE GÄTJEN
+T39	Fachanwalt 1219 1249	Fachanwältin für Familienrecht
+T40	Rechtsgebiete 1267 1275	Trennung
+T41	Rechtsgebiete 1276 1285	Scheidung
+T42	Rechtsgebiete 1286 1301	Kindesunterhalt
+T43	Rechtsgebiete 1302 1320	Ehegattenunterhalt
+T44	Rechtsgebiete 1321 1329	Zugewinn
+T45	Rechtsgebiete 1330 1366	sonstige Vermögensauseinandersetzung
+T46	Rechtsgebiete 1367 1387	Versorgungsausgleich
+T47	Rechtsgebiete 1388 1398	Sorgerecht
+T48	Rechtsgebiete 1399 1411	Umgangsrecht
+T49	Rechtsgebiete 1412 1422	Ehewohnung
+T50	Rechtsgebiete 1423 1430	Hausrat
+T51	Rechtsgebiete 1431 1443	Gewaltschutz
+T52	Rechtsgebiete 1444 1466	allgemeines Zivilrecht
+T53	Anwalt 1485 1497	ANDRÉ WUNRAM
+T54	Fachanwalt 1512 1540	Fachanwalt für Familienrecht
+T55	Rechtsgebiete 1558 1571	Familienrecht
+T56	Rechtsgebiete 1572 1597	Bau- und Architektenrecht
+T57	Rechtsgebiete 1598 1615	Werkvertragsrecht
+T58	Rechtsgebiete 1616 1628	Arbeitsrecht
+T59	Rechtsgebiete 1629 1651	Allgemeines Zivilrecht
+T60	Anwalt 1674 1688	MATHIAS STEUER
+T61	Fachanwalt 1703 1728	Fachanwalt für Strafrecht
+T62	Fachanwalt 1729 1757	Fachanwalt für Verkehrsrecht
+T63	Rechtsgebiete 1775 1785	Strafrecht
+T64	Rechtsgebiete 1786 1799	Verkehrsrecht
+T65	Rechtsgebiete 1800 1813	Bußgeldsachen
+T66	Rechtsgebiete 1814 1842	Fahrerlaubnisangelegenheiten
+T67	Rechtsgebiete 1843 1855	Arbeitsrecht
+T68	Rechtsgebiete 1856 1865	Kaufrecht
+T69	Rechtsgebiete 1866 1886	Miet- und Pachtrecht
+T70	Rechtsgebiete 1887 1905	Versicherungsrecht
+T71	Rechtsgebiete 1906 1916	Zivilrecht
+T72	Anwalt 1934 1954	DR. JUR. GERD WOLLNY
+T73	Strasse 2100 2114	SCHILLERSTR. 3
+T74	Ort 2115 2128	32052 HERFORD
+R2	zuOrt Arg1:T74 Arg2:T73	
+T75	Tel 2138 2153	05221 - 1 66 80
+T76	Fax 2163 2178	05221 - 5 73 52
+T77	Email 2179 2206	EMAIL:INFO@LOEWE-HERFORD.DE

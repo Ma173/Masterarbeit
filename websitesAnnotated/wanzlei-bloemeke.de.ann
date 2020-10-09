@@ -1,0 +1,11 @@
+T1	Kanzlei 0 15	Kanzlei Blömeke
+T2	Anwalt 30 50	Hans-Joachim Blömeke
+T3	Fachanwalt 52 79	Fachanwalt für Arbeitsrecht
+T4	Rechtsgebiete 103 116	Fluggastrecht
+T5	Rechtsgebiete 118 128	Reiserecht
+T6	Rechtsgebiete 130 143	Verkehrsrecht
+T7	Strasse 211 224	Bristolstr 23
+T8	Ort 226 238	13349 Berlin
+R1	zuOrt Arg1:T8 Arg2:T7	
+T9	Tel 245 257	030 45308815
+T10	Fax 264 276	030 45308816

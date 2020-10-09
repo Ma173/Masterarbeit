@@ -1,0 +1,9 @@
+T1	Kanzlei 20 49	ANWALTSKANZLEI GIER VIERNHEIM
+T2	Rechtsgebiete 51 63	Arbeitsrecht
+T3	Rechtsgebiete 65 78	Familienrecht
+T4	Rechtsgebiete 80 93	Verkehrsrecht
+T5	Rechtsgebiete 95 108	Vertragsrecht
+T6	Anwaeltin 277 290	Jeanette Gier
+T7	Strasse 321 333	Apostelplatz
+T8	Ort 348 357	Viernheim
+R1	zuOrt Arg1:T8 Arg2:T7	

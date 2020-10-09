@@ -1,0 +1,23 @@
+T1	Kanzlei 790 809	Kuhlmey und Kaussen
+T2	Strasse 811 822	Hofkamp 131
+T3	Ort 823 838	42103 Wuppertal
+R1	zuOrt Arg1:T3 Arg2:T2	
+T4	Tel 861 873	0202 / 80081
+T5	Fax 876 888	0202 / 80083
+T6	Anwalt 1386 1401	Manfred Kaussen
+T7	Ort 1517 1526	Wuppertal
+T8	Ort 1528 1539	Großräschen
+T9	Ort 1544 1555	Senftenberg
+T10	Anwalt 1570 1584	Michael Wundke
+T11	Ort 1687 1698	Großräschen
+T12	Ort 1703 1714	Senftenberg
+T13	Ort 1724 1733	Wuppertal
+T14	Kanzlei 1987 2006	Kuhlmey und Kaussen
+T15	Strasse 2008 2019	Hofkamp 131
+T16	Ort 2020 2035	42103 Wuppertal
+T17	Tel 2058 2070	0202 / 80081
+T18	Fax 2073 2085	0202 / 80083
+T19	Email 839 857	wpt@rae-kaussen.de
+T20	Bio 1403 1492	Studium an der Rheinischen-Friedrich- Wilhelm-Universität in Bonn Jahr der Zulassung 1990
+T21	Bio 1586 1662	Studium an der Martin-Luther-Universität Halle/Saale Jahr der Zulassung 2002
+T22	Email 2036 2054	wpt@rae-kaussen.de

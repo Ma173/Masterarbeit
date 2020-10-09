@@ -1,0 +1,147 @@
+T1	Kanzlei 61 98	Anwaltskanzlei Robert Pfenning & Coll
+T2	Rechtsgebiete 217 230	Verkehrsrecht
+T3	Rechtsgebiete 239 251	Arbeitsrecht
+T4	Fachanwalt 258 286	Fachanwalt für Verkehrsrecht
+T5	Fachanwalt 620 647	Fachanwalt für Arbeitsrecht
+T6	Rechtsgebiete 868 893	Sozialversicherungsrechts
+T7	Rechtsgebiete 909 937	Erwerbsminderungsrentenrecht
+T8	Rechtsgebiete 943 965	Schwerbehindertenrecht
+T9	Rechtsgebiete 985 1016	gesetzlichen Unfallversicherung
+T10	Anwalt 1547 1562	Robert Pfenning
+T11	Fachanwalt 1564 1591	Fachanwalt für Arbeitsrecht
+T12	Fachanwalt 1592 1620	Fachanwalt für Verkehrsrecht
+T13	Anwalt 1635 1650	Robert Pfenning
+T14	Fachanwalt 1652 1679	Fachanwalt für Arbeitsrecht
+T15	Fachanwalt 1680 1708	Fachanwalt für Verkehrsrecht
+T16	Rechtsgebiete 1733 1745	Arbeitsrecht
+T17	Rechtsgebiete 1746 1759	Verkehrsrecht
+T18	Rechtsgebiete 1760 1769	Mietrecht
+T19	Rechtsgebiete 1770 1786	Haftpflichtrecht
+T20	Fachanwalt 1814 1833	Online-Mahnbescheid
+T21	Kanzlei 2759 2796	Anwaltskanzlei Robert Pfenning & Coll
+T22	Strasse 2799 2810	Werastr. 22
+T23	Ort 2811 2826	70182 Stuttgart
+R1	zuOrt Arg1:T23 Arg2:T22	
+T24	Tel 2837 2851	0711 - 2364291
+T25	Fax 2861 2875	0711 - 2360313
+T26	Email 2885 2904	info@ra-pfenning.de
+T27	Anwalt 3642 3657	Robert Pfenning
+T28	Kanzlei 3659 3696	Anwaltskanzlei Robert Pfenning & Coll
+T29	Strasse 3699 3710	Werastr. 22
+T30	Ort 3711 3726	70182 Stuttgart
+R2	zuOrt Arg1:T30 Arg2:T29	
+T31	Tel 3737 3751	0711 - 2364291
+T32	Fax 3761 3775	0711 - 2360313
+T33	Email 3784 3803	info@ra-pfenning.de
+T34	Anwalt 4018 4033	Robert Pfenning
+T35	Fachanwalt 4035 4062	Fachanwalt für Arbeitsrecht
+T36	Fachanwalt 4063 4091	Fachanwalt für Verkehrsrecht
+T37	Strasse 4177 4191	Königstraße 14
+T38	Ort 4192 4207	70173 Stuttgart
+T39	Tel 4218 4236	07 11 / 22 21 55-0
+T40	Fax 4246 4265	07 11 / 22 21 55-11
+T41	Email 4273 4294	info@rak-stuttgart.de
+T42	Strasse 4425 4437	Hegelstr. 33
+T43	Ort 4438 4453	70174 Stuttgart
+R3	zuOrt Arg1:T43 Arg2:T42	
+T44	Tel 4464 4482	0711 / 6 19 48 - 0
+T45	Fax 4492 4512	0711 / 6 19 48 - 702
+T46	Email 4520 4542	mail@stbk-stuttgart.de
+T47	Kanzlei 17194 17231	Anwaltskanzlei Robert Pfenning & Coll
+T48	Rechtsgebiete 17350 17363	Verkehrsrecht
+T49	Rechtsgebiete 17372 17384	Arbeitsrecht
+T50	Fachanwalt 17406 17419	Verkehrsrecht
+T51	Fachanwalt 17768 17780	Arbeitsrecht
+T52	Rechtsgebiete 18001 18026	Sozialversicherungsrechts
+T53	Rechtsgebiete 18042 18070	Erwerbsminderungsrentenrecht
+T54	Rechtsgebiete 18076 18098	Schwerbehindertenrecht
+T55	Rechtsgebiete 18118 18149	gesetzlichen Unfallversicherung
+T56	Anwalt 18680 18695	Robert Pfenning
+T57	Fachanwalt 18697 18724	Fachanwalt für Arbeitsrecht
+T58	Fachanwalt 18725 18753	Fachanwalt für Verkehrsrecht
+T59	Anwalt 18768 18783	Robert Pfenning
+T60	Fachanwalt 18785 18812	Fachanwalt für Arbeitsrecht
+T61	Fachanwalt 18813 18841	Fachanwalt für Verkehrsrecht
+T62	Rechtsgebiete 18866 18878	Arbeitsrecht
+T63	Rechtsgebiete 18879 18892	Verkehrsrecht
+T64	Rechtsgebiete 18893 18902	Mietrecht
+T65	Rechtsgebiete 18903 18919	Haftpflichtrecht
+T66	Kanzlei 19892 19929	Anwaltskanzlei Robert Pfenning & Coll
+T67	Strasse 19932 19943	Werastr. 22
+T68	Ort 19944 19959	70182 Stuttgart
+R4	zuOrt Arg1:T68 Arg2:T67	
+T69	Tel 19970 19984	0711 - 2364291
+T70	Fax 19994 20008	0711 - 2360313
+T71	Email 20018 20037	info@ra-pfenning.de
+T72	Anwalt 20775 20790	Robert Pfenning
+T73	Kanzlei 20792 20829	Anwaltskanzlei Robert Pfenning & Coll
+T74	Strasse 20832 20843	Werastr. 22
+T75	Ort 20844 20859	70182 Stuttgart
+R5	zuOrt Arg1:T75 Arg2:T74	
+T76	Tel 20870 20884	0711 - 2364291
+T77	Fax 20894 20908	0711 - 2360313
+T78	Email 20917 20936	info@ra-pfenning.de
+T79	Anwalt 21151 21166	Robert Pfenning
+T80	Fachanwalt 21168 21195	Fachanwalt für Arbeitsrecht
+T81	Fachanwalt 21196 21224	Fachanwalt für Verkehrsrecht
+T82	Strasse 21310 21324	Königstraße 14
+T83	Ort 21325 21340	70173 Stuttgart
+R6	zuOrt Arg1:T83 Arg2:T82	
+T84	Tel 21351 21369	07 11 / 22 21 55-0
+T85	Fax 21379 21398	07 11 / 22 21 55-11
+T86	Email 21406 21427	info@rak-stuttgart.de
+T87	Strasse 21558 21570	Hegelstr. 33
+T88	Ort 21571 21586	70174 Stuttgart
+R7	zuOrt Arg1:T88 Arg2:T87	
+T89	Tel 21597 21615	0711 / 6 19 48 - 0
+T90	Fax 21625 21645	0711 / 6 19 48 - 702
+T91	Email 21653 21675	mail@stbk-stuttgart.de
+T92	Anwalt 41558 41573	Robert Pfenning
+T93	Fachanwalt 41575 41602	Fachanwalt für Arbeitsrecht
+T94	Fachanwalt 41603 41631	Fachanwalt für Verkehrsrecht
+T95	Anwalt 41646 41661	Robert Pfenning
+T96	Fachanwalt 41663 41690	Fachanwalt für Arbeitsrecht
+T97	Fachanwalt 41691 41719	Fachanwalt für Verkehrsrecht
+T98	Rechtsgebiete 41744 41756	Arbeitsrecht
+T99	Rechtsgebiete 41757 41770	Verkehrsrecht
+T100	Rechtsgebiete 41771 41780	Mietrecht
+T101	Rechtsgebiete 41781 41797	Haftpflichtrecht
+T102	Kanzlei 42770 42807	Anwaltskanzlei Robert Pfenning & Coll
+T103	Strasse 42810 42821	Werastr. 22
+T105	Tel 42848 42862	0711 - 2364291
+T106	Fax 42872 42886	0711 - 2360313
+T107	Email 42896 42915	info@ra-pfenning.de
+T108	Anwalt 43653 43668	Robert Pfenning
+T109	Kanzlei 43670 43707	Anwaltskanzlei Robert Pfenning & Coll
+T110	Strasse 43710 43721	Werastr. 22
+T111	Ort 43722 43737	70182 Stuttgart
+R9	zuOrt Arg1:T111 Arg2:T110	
+T112	Tel 43748 43762	0711 - 2364291
+T113	Fax 43772 43786	0711 - 2360313
+T114	Email 43795 43814	info@ra-pfenning.de
+T115	Anwalt 44029 44044	Robert Pfenning
+T116	Fachanwalt 44046 44073	Fachanwalt für Arbeitsrecht
+T117	Fachanwalt 44074 44102	Fachanwalt für Verkehrsrecht
+T118	Strasse 44188 44202	Königstraße 14
+T119	Ort 44203 44218	70173 Stuttgart
+R10	zuOrt Arg1:T119 Arg2:T118	
+T120	Tel 44229 44247	07 11 / 22 21 55-0
+T121	Fax 44257 44276	07 11 / 22 21 55-11
+T122	Email 44284 44305	info@rak-stuttgart.de
+T123	Strasse 44436 44448	Hegelstr. 33
+T124	Ort 44449 44464	70174 Stuttgart
+T125	Tel 44475 44493	0711 / 6 19 48 - 0
+T126	Fax 44503 44523	0711 / 6 19 48 - 702
+T127	Email 44531 44553	mail@stbk-stuttgart.de
+T128	Bio 140 185	Ich bin seit 1984 als Rechtsanwalt zugelassen
+T129	Rechtsgebiete 1087 1100	Verkehrsrecht
+T130	Rechtsgebiete 1110 1122	Arbeitsrecht
+T131	Fachanwalt 1410 1435	Fachanwalt für Strafrecht
+T132	Fachanwalt 1446 1479	Fachanwalt für Versicherungsrecht
+T133	Anwalt 1515 1543	Rechtsanwalt Robert Pfenning
+T134	Bio 3896 3914;3915 3919	Berufshaftpflicht: ERGO
+T135	Bio 17273 17318	Ich bin seit 1984 als Rechtsanwalt zugelassen
+T136	Fachanwalt 17885 17912	Fachanwalt für Arbeitsrecht
+T137	Anwalt 18648 18676	Rechtsanwalt Robert Pfenning
+T104	Ort 42822 42837	70182 Stuttgart
+R8	zuOrt Arg1:T104 Arg2:T103	

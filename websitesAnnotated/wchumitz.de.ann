@@ -1,0 +1,73 @@
+T1	Strasse 180 192	Marktplatz 1
+T2	Ort 196 200	Hamm
+R1	zuOrt Arg1:T2 Arg2:T1	
+T3	Strasse 762 774	Marktplatz 1
+T4	Ort 776 786	59065 Hamm
+R2	zuOrt Arg1:T4 Arg2:T3	
+T5	Tel 796 808	02381 924520
+T6	Fax 818 831	02381 9245266
+T7	Email 840 859	kanzlei@schumitz.de
+T8	Rechtsgebiete 1604 1626	Allgemeines Zivilrecht
+T9	Rechtsgebiete 1627 1639	Arbeitsrecht
+T10	Rechtsgebiete 1640 1667	Bank- und Kapitalmarktrecht
+T11	Rechtsgebiete 1668 1693	Bau- und Architektenrecht
+T12	Rechtsgebiete 1694 1702	Erbrecht
+T13	Rechtsgebiete 1703 1716	Familienrecht
+T14	Rechtsgebiete 1717 1748	Handels- und Gesellschaftsrecht
+T15	Rechtsgebiete 1749 1761	Medizinrecht
+T16	Rechtsgebiete 1762 1794	Miet- und Wohnungseigentumsrecht
+T17	Rechtsgebiete 1802 1813	Sozialrecht
+T18	Rechtsgebiete 1814 1849	Straf- und Strafvollstreckungsrecht
+T19	Rechtsgebiete 1850 1863	Verkehrsrecht
+T20	Rechtsgebiete 1864 1882	Versicherungsrecht
+T21	Rechtsgebiete 1883 1899	Verwaltungsrecht
+T22	Anwalt 1900 1914	Eckhard Adolph
+T23	Anwalt 1915 1930	Dr. Jörg Demmig
+T24	Anwalt 1931 1948	Burkhard Großmann
+T25	Anwalt 1949 1958	Jan Wilke
+T26	Anwalt 1959 1976	Dr. Markus Frisch
+T27	Anwaeltin 1977 2001	Gisela Görges-Bartkowiak
+T28	Anwalt 2002 2015	Dennis Kocker
+T29	Anwaeltin 2016 2032	Eva-Maria Franik
+T30	Anwaeltin 2033 2051	Désirée Wesselmann
+T31	Anwaeltin 2052 2068	Alexandra Löseke
+T32	Anwalt 2069 2084	Tim Schönfelder
+T33	Anwalt 2085 2101	Thorsten Winrich
+T34	Strasse 2125 2137	Marktplatz 1
+T35	Ort 2139 2149	59065 Hamm
+R3	zuOrt Arg1:T35 Arg2:T34	
+T36	Tel 2159 2171	02381 924520
+T37	Fax 2181 2194	02381 9245266
+T38	Email 2203 2222	kanzlei@schumitz.de
+T39	Rechtsgebiete 2967 2989	Allgemeines Zivilrecht
+T40	Rechtsgebiete 2990 3002	Arbeitsrecht
+T41	Rechtsgebiete 3003 3030	Bank- und Kapitalmarktrecht
+T42	Rechtsgebiete 3031 3056	Bau- und Architektenrecht
+T43	Rechtsgebiete 3057 3065	Erbrecht
+T44	Rechtsgebiete 3066 3079	Familienrecht
+T45	Rechtsgebiete 3080 3111	Handels- und Gesellschaftsrecht
+T46	Rechtsgebiete 3112 3124	Medizinrecht
+T47	Rechtsgebiete 3125 3157	Miet- und Wohnungseigentumsrecht
+T48	Rechtsgebiete 3165 3176	Sozialrecht
+T49	Rechtsgebiete 3177 3212	Straf- und Strafvollstreckungsrecht
+T50	Rechtsgebiete 3213 3226	Verkehrsrecht
+T51	Rechtsgebiete 3227 3245	Versicherungsrecht
+T52	Rechtsgebiete 3246 3262	Verwaltungsrecht
+T53	Anwalt 3263 3277	Eckhard Adolph
+T54	Anwalt 3278 3293	Dr. Jörg Demmig
+T55	Anwalt 3294 3311	Burkhard Großmann
+T56	Anwalt 3312 3321	Jan Wilke
+T57	Anwalt 3322 3339	Dr. Markus Frisch
+T58	Anwaeltin 3340 3364	Gisela Görges-Bartkowiak
+T59	Anwalt 3365 3378	Dennis Kocker
+T60	Anwaeltin 3379 3395	Eva-Maria Franik
+T61	Anwaeltin 3396 3414	Désirée Wesselmann
+T62	Anwaeltin 3415 3431	Alexandra Löseke
+T63	Anwalt 3432 3447	Tim Schönfelder
+T64	Anwalt 3448 3464	Thorsten Winrich
+T65	Strasse 3488 3500	Marktplatz 1
+T66	Ort 3502 3512	59065 Hamm
+T67	Tel 3522 3534	02381 924520
+T68	Fax 3544 3557	02381 9245266
+T69	Email 3566 3585	kanzlei@schumitz.de
+R4	zuOrt Arg1:T66 Arg2:T65	

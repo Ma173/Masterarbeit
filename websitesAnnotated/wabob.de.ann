@@ -1,0 +1,67 @@
+T1	Anwalt 294 314	RA Dr. Thomas Böhmer
+T2	Anwalt 315 333	RA Ulrich Oberdorf
+T4	Anwalt 724 744	RA Dr. Thomas Böhmer
+T5	Fachanwalt 746 774	Fachanwalt für Familienrecht
+T7	Rechtsgebiete 1113 1126	Familienrecht
+T8	Rechtsgebiete 1127 1135	Erbrecht
+T9	Rechtsgebiete 1136 1154	Gesellschaftsrecht
+T10	Rechtsgebiete 1155 1180	Immobilien- und Mietrecht
+T11	Rechtsgebiete 1181 1209	Steuer- und Steuerstrafrecht
+T12	Rechtsgebiete 1210 1232	allgemeines Zivilrecht
+T13	Sprachen 1249 1257	englisch
+T14	Sprachen 1259 1270	italienisch
+T15	Anwalt 1527 1545	RA Ulrich Oberdorf
+T16	Fachanwalt 1547 1574	Fachanwalt für Arbeitsrecht
+T18	Rechtsgebiete 1914 1926	Arbeitsrecht
+T19	Rechtsgebiete 1927 1943	Haftpflichtrecht
+T21	Rechtsgebiete 1962 1974	Medizinrecht
+T20	Rechtsgebiete 1944 1961	Privates Baurecht
+T22	Rechtsgebiete 1975 2007	Verkehrs- und Verkehrsstrafrecht
+T23	Rechtsgebiete 2008 2030	Allgemeines Zivilrecht
+T24	Sprachen 2047 2055	englisch
+T25	Sprachen 2060 2071	französisch
+T26	Anwalt 2225 2243	RA Ulrich Oberdorf
+T27	Anwalt 2244 2264	RA Dr. Thomas Böhmer
+T28	Anwalt 2417 2437	RA Dr. Thomas Böhmer
+T29	Anwalt 2438 2456	RA Ulrich Oberdorf
+T31	Tel 392 408	0621 - 529 62 22
+T32	Fax 417 433	0621 - 529 62 25
+T33	Email 435 451	kanzlei@rabob.de
+T6	Bio 776 815	Geboren am 7. Juni 1955 in Ludwigshafen
+T34	Bio 816 838	Rechtsanwalt seit 1988
+T35	Bio 839 911	Ausbildung zum Angestellten in steuer- und wirtschaftsberatenden Berufen
+T36	Bio 912 962	Studium an den Universitäten in Mannheim und Mainz
+T37	Bio 963 1017	Mitglied der Arbeitsgemeinschaft Famielienrecht im DAV
+T38	Bio 1018 1090	Mitglied des Vorstandes der Pfälzischen Rechtsanwaltskammer  Zweibrücken
+T17	Bio 1576 1616	Geboren am 10. August 1958 in Düsseldorf
+T39	Bio 1617 1644	Ausbildung zum Bankkaufmann
+T40	Bio 1645 1718	Studium der Rechtswissenschaften an den Universitäten Mainz  und Lausanne
+T41	Bio 1719 1741	Rechtsanwalt seit 1989
+T42	Bio 1742 1794	Mitglied der Arbeitsgemeinschaft Arbeitsrecht im DAV
+T43	Bio 1795 1854	Langjähriger Vorsitzender des Ludwigshafener Anwaltsvereins
+T44	Bio 1855 1891	Umfangreiche ehrenamtliche Tätigkeit
+T45	Tel 2515 2531	0621 - 529 62 22
+T46	Tel 2540 2556	0621 - 529 62 25
+T47	Email 2558 2574	kanzlei@rabob.de
+T48	Rechtsgebiete 169 181	Arbeitsrecht
+T49	Rechtsgebiete 182 190	Erbrecht
+T50	Rechtsgebiete 191 204	Familienrecht
+T51	Rechtsgebiete 205 223	Gesellschaftsrecht
+T52	Rechtsgebiete 224 246	Immobilien-/ Mietrecht
+T53	Rechtsgebiete 247 259	Medizinrecht
+T54	Rechtsgebiete 260 271	Steuerrecht
+T55	Rechtsgebiete 272 285	Verkehrsrecht
+T57	Rechtsgebiete 2292 2304	Arbeitsrecht
+T58	Rechtsgebiete 2370 2382	Medizinrecht
+T3	Strasse 344 363	Kurfürstenstraße 38
+T56	Ort 364 382	67061 Ludwigshafen
+R1	zuOrt Arg1:T56 Arg2:T3	
+T59	Rechtsgebiete 2305 2313	Erbrecht
+T60	Rechtsgebiete 2314 2327	Familienrecht
+T61	Rechtsgebiete 2328 2346	Gesellschaftsrecht
+T62	Rechtsgebiete 2347 2369	Immobilien-/ Mietrecht
+T63	Rechtsgebiete 2383 2394	Steuerrecht
+T64	Rechtsgebiete 2395 2408	Verkehrsrecht
+T30	Strasse 2467 2486	Kurfürstenstraße 38
+T65	Ort 2487 2505	67061 Ludwigshafen
+R2	zuOrt Arg1:T65 Arg2:T30	

@@ -1,0 +1,110 @@
+T1	Ort 5 12	Wetzlar
+T2	Tel 15 30	06441 / 44798-0
+T3	Ort 37 49	Reichelsheim
+T4	Tel 52 66	06035 / 9113-0
+T5	Email 68 89	info@gaerth-martin.de
+T6	Strasse 573 588	Am Leitz-Park 4
+T7	Ort 590 603	35578 Wetzlar
+R1	zuOrt Arg1:T7 Arg2:T6	
+T8	Strasse 702 717	Am Leitz-Park 4
+T9	Ort 718 731	35578 Wetzlar
+R2	zuOrt Arg1:T9 Arg2:T8	
+T10	Tel 732 747	06441 / 44798-0
+T11	Ort 694 701	Wetzlar
+T12	Ort 753 765	Reichelsheim
+T13	Strasse 766 786	Bad Nauheimer Str. 6
+T14	Ort 787 805	61203 Reichelsheim
+R3	zuOrt Arg1:T14 Arg2:T13	
+T15	Tel 1316 1331	06441 / 44798-0
+T16	Ort 1338 1350	Reichelsheim
+T17	Tel 1353 1367	06035 / 9113-0
+T18	Email 1369 1390	info@gaerth-martin.de
+T19	Anwalt 2120 2134	ROLAND HORSTEN
+T20	Fachanwalt 2158 2185	FACHANWALT FÜR ARBEITSRECHT
+T21	Anwalt 2621 2635	Roland Horsten
+T22	Ort 2666 2673	Wetzlar
+T23	Fachanwalt 2773 2800	Fachanwalt für Arbeitsrecht
+T24	Anwalt 3693 3708	ROMANUS SCHLEMM
+T25	Fachanwalt 3724 3752	FACHANWALT FÜR VERKEHRSRECHT
+T26	Rechtsgebiete 4384 4413	Baurecht und Architektenrecht
+T27	Anwalt 4445 4460	Romanus Schlemm
+T28	Rechtsgebiete 4569 4578	Baurechts
+T29	Rechtsgebiete 4550 4564	Verkehrsrechts
+T30	Fachanwalt 4611 4639	Fachanwalt für Verkehrsrecht
+T31	Ort 5151 5158	Wetzlar
+T32	Strasse 5159 5174	Am Leitz-Park 4
+T33	Ort 5175 5188	35578 Wetzlar
+R4	zuOrt Arg1:T33 Arg2:T32	
+T34	Tel 5189 5204	06441 / 44798-0
+T35	Ort 5210 5222	Reichelsheim
+T36	Strasse 5223 5243	Bad Nauheimer Str. 6
+T37	Ort 5244 5262	61203 Reichelsheim
+R5	zuOrt Arg1:T37 Arg2:T36	
+T38	Tel 5263 5277	06035 / 9113-0
+T39	Ort 5763 5770	Wetzlar
+T40	Tel 5773 5788	06441 / 44798-0
+T41	Ort 5795 5807	Reichelsheim
+T42	Tel 5810 5824	06035 / 9113-0
+T43	Email 5826 5847	info@gaerth-martin.de
+T44	Anwalt 6577 6591	ROLAND HORSTEN
+T45	Fachanwalt 6615 6642	FACHANWALT FÜR ARBEITSRECHT
+T46	Anwalt 7078 7092	Roland Horsten
+T47	Fachanwalt 7230 7257	Fachanwalt für Arbeitsrecht
+T48	Anwalt 8150 8165	ROMANUS SCHLEMM
+T49	Fachanwalt 8181 8209	FACHANWALT FÜR VERKEHRSRECHT
+T50	Ort 9608 9615	Wetzlar
+T51	Strasse 9616 9631	Am Leitz-Park 4
+T52	Ort 9632 9645	35578 Wetzlar
+R6	zuOrt Arg1:T52 Arg2:T51	
+T53	Tel 9646 9661	06441 / 44798-0
+T54	Anwalt 9667 9679	Reichelsheim
+T55	Strasse 9680 9700	Bad Nauheimer Str. 6
+T56	Ort 9701 9719	61203 Reichelsheim
+R7	zuOrt Arg1:T56 Arg2:T55	
+T57	Tel 9720 9734	06035 / 9113-0
+T58	Ort 27494 27501	Wetzlar
+T59	Strasse 27502 27517	Am Leitz-Park 4
+T60	Ort 27518 27531	35578 Wetzlar
+R8	zuOrt Arg1:T60 Arg2:T59	
+T61	Tel 27532 27547	06441 / 44798-0
+T62	Ort 27553 27565	Reichelsheim
+T63	Strasse 27566 27586	Bad Nauheimer Str. 6
+T64	Ort 27587 27605	61203 Reichelsheim
+R9	zuOrt Arg1:T64 Arg2:T63	
+T65	Kanzlei 992 1041	GÄRTH-MARTIN STEUERBERATER RECHTSANWÄLTE PartGmbB
+T66	Rechtsgebiete 2135 2140	NOTAR
+T67	Bio 3130 3208	Roland Horsten ist Vorstandsmitglied der Rechtsanwaltskammer Frankfurt am Main
+T68	Kanzlei 5449 5498	GÄRTH-MARTIN STEUERBERATER RECHTSANWÄLTE PartGmbB
+T69	Anwalt 8889 8917	Rechtsanwalt Romanus Schlemm
+T70	Rechtsgebiete 8988 9035	Rechtsgebieten des Verkehrsrechts und Baurechts
+T71	Bio 8934 8980	Zulassung zur Rechtsanwaltschaft im Jahre 1995
+T72	Fachanwalt 9068 9096	Fachanwalt für Verkehrsrecht
+T73	Tel 10230 10245	06441 / 44798-0
+T74	Ort 10247 10264	Büro Reichelsheim
+T75	Tel 10267 10281	06035 / 9113-0
+T76	Email 10283 10304	info@gaerth-martin.de
+T77	Anwalt 11034 11048	ROLAND HORSTEN
+T78	Fachanwalt 11072 11099	FACHANWALT FÜR ARBEITSRECHT
+T79	Anwalt 12607 12622	ROMANUS SCHLEMM
+T80	Fachanwalt 12638 12666	FACHANWALT FÜR VERKEHRSRECHT
+T81	Anwalt 13346 13374	Rechtsanwalt Romanus Schlemm
+T82	Bio 13391 13437	Zulassung zur Rechtsanwaltschaft im Jahre 1995
+T83	Fachanwalt 13464 13492	Verkehrsrechts und Baurechts
+T84	Ort 14060 14072	Büro Wetzlar
+T85	Strasse 14073 14088	Am Leitz-Park 4
+T86	Ort 14089 14102	35578 Wetzlar
+R10	zuOrt Arg1:T86 Arg2:T85	
+T87	Tel 14103 14118	06441 / 44798-0
+T88	Ort 14119 14136	Büro Reichelsheim
+T89	Strasse 14137 14157	Bad Nauheimer Str. 6
+T90	Ort 14158 14176	61203 Reichelsheim
+R11	zuOrt Arg1:T90 Arg2:T89	
+T91	Tel 14177 14191	06035 / 9113-0
+T92	Kanzlei 14363 14412	GÄRTH-MARTIN STEUERBERATER RECHTSANWÄLTE PartGmbB
+T93	Ort 14684 14696	Büro Wetzlar
+T94	Tel 14699 14714	06441 / 44798-0
+T95	Ort 14716 14733	Büro Reichelsheim
+T96	Tel 14736 14750	06035 / 9113-0
+T97	Email 14752 14773	info@gaerth-martin.de
+T98	Tel 27606 27620	06035 / 9113-0
+T99	Kanzlei 27792 27841	GÄRTH-MARTIN STEUERBERATER RECHTSANWÄLTE PartGmbB

@@ -1,0 +1,76 @@
+T2	Tel 112 126	(0385) 76034-0
+T3	Fax 136 151	(0385) 76034-99
+T5	Tel 518 532	(0385) 76034-0
+T6	Fax 542 557	(0385) 76034-99
+T7	Email 1065 1099	barklage@die-fachanwaltskanzlei.de
+T8	Anwalt 1100 1115	Jörg Brickwedde
+T9	Fachanwalt 1116 1144	Fachanwalt für Verkehrsrecht
+T10	Email 1229 1265	brickwedde@die-fachanwaltskanzlei.de
+T11	Anwalt 975 992	Bernhard Barklage
+T12	Fachanwalt 993 1020	Fachanwalt für Arbeitsrecht
+T13	Tel 1047 1062	(0385) 76034-21
+T14	Tel 1171 1186	(0385) 76034-81
+T15	Tel 1212 1227	(0385) 76034-54
+T16	Anwalt 1266 1286	Dr. Rainer Dahlmeier
+T18	Fachanwalt 1316 1345	Fachanwalt für Insolvenzrecht
+T17	Fachanwalt 1287 1315	Fachanwalt für Familienrecht
+T19	Tel 1387 1402	(0385) 76034-71
+T20	Tel 1445 1460	(0385) 76034-75
+T21	Email 1462 1497	dahlmeier@die-fachanwaltskanzlei.de
+T22	Anwalt 1498 1511	Andreas Roter
+T23	Fachanwalt 1512 1537	Fachanwalt für Strafrecht
+T24	Tel 1565 1580	(0385) 76034-31
+T25	Email 1583 1614	roter@die-fachanwaltskanzlei.de
+T26	Anwalt 1615 1632	Michael Ch. Field
+T27	Fachanwalt 1633 1660	Fachanwalt für Arbeitsrecht
+T28	Fachanwalt 1661 1695	Fachanwalt für Miet- und WEG-Recht
+T29	Tel 1721 1736	(0385) 76034-41
+T30	Email 1739 1770	field@die-fachanwaltskanzlei.de
+T31	Anwalt 1771 1786	Henning Linhart
+T32	Fachanwalt 1787 1820	Fachanwalt für Versicherungsrecht
+T33	Fachanwalt 1821 1848	Fachanwalt für Medizinrecht
+T34	Tel 1877 1892	(0385) 76034-11
+T36	Fachanwalt 1953 1981	Fachanwältin für Sozialrecht
+T35	Email 1895 1928	linhart@die-fachanwaltskanzlei.de
+T37	Anwaeltin 1929 1952	Constanze Palmedo-Roter
+T38	Tel 2012 2027	(0385) 76034-34
+T39	Email 2030 2069	palmedo-roter@die-fachanwaltskanzlei.de
+T40	Anwalt 2342 2359	Bernhard Barklage
+T41	Fachanwalt 2360 2387	Fachanwalt für Arbeitsrecht
+T42	Tel 2414 2429	(0385) 76034-21
+T43	Email 2432 2466	barklage@die-fachanwaltskanzlei.de
+T44	Anwalt 2467 2482	Jörg Brickwedde
+T45	Fachanwalt 2483 2511	Fachanwalt für Verkehrsrecht
+T46	Tel 2538 2553	(0385) 76034-81
+T47	Tel 2579 2594	(0385) 76034-54
+T48	Email 2596 2632	brickwedde@die-fachanwaltskanzlei.de
+T49	Anwalt 2633 2653	Dr. Rainer Dahlmeier
+T50	Fachanwalt 2654 2682	Fachanwalt für Familienrecht
+T51	Fachanwalt 2683 2712	Fachanwalt für Insolvenzrecht
+T52	Tel 2754 2769	(0385) 76034-71
+T53	Tel 2812 2827	(0385) 76034-75
+T54	Email 2829 2864	dahlmeier@die-fachanwaltskanzlei.de
+T55	Anwalt 2865 2878	Andreas Roter
+T56	Fachanwalt 2879 2904	Fachanwalt für Strafrecht
+T57	Tel 2932 2947	(0385) 76034-31
+T58	Email 2950 2981	roter@die-fachanwaltskanzlei.de
+T59	Anwalt 2982 2999	Michael Ch. Field
+T60	Fachanwalt 3000 3027	Fachanwalt für Arbeitsrecht
+T61	Fachanwalt 3028 3062	Fachanwalt für Miet- und WEG-Recht
+T62	Fachanwalt 3088 3103	(0385) 76034-41
+T63	Email 3106 3137	field@die-fachanwaltskanzlei.de
+T64	Anwalt 3138 3153	Henning Linhart
+T65	Fachanwalt 3154 3187	Fachanwalt für Versicherungsrecht
+T66	Fachanwalt 3188 3215	Fachanwalt für Medizinrecht
+T67	Tel 3244 3259	(0385) 76034-11
+T68	Email 3262 3295	linhart@die-fachanwaltskanzlei.de
+T69	Anwaeltin 3296 3319	Constanze Palmedo-Roter
+T70	Fachanwalt 3320 3348	Fachanwältin für Sozialrecht
+T71	Tel 3379 3394	(0385) 76034-34
+T72	Email 3397 3436	palmedo-roter@die-fachanwaltskanzlei.de
+T1	Strasse 72 86	Demmlerplatz 3
+T73	Ort 87 101	19053 Schwerin
+R1	zuOrt Arg1:T73 Arg2:T1	
+T4	Strasse 478 492	Demmlerplatz 3
+T74	Ort 493 507	19053 Schwerin
+R2	zuOrt Arg1:T74 Arg2:T4	

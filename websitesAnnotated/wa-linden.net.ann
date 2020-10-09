@@ -1,0 +1,45 @@
+T1	Kanzlei 141 154	Thomas Linden
+T2	Rechtsgebiete 1007 1021	zivilrechtlich
+T3	Tel 1349 1360	02323/13820
+T4	Fax 1361 1372	02323/54908
+T5	Email 1373 1394	RA-Linden@t-online.de
+T6	Anwalt 1408 1421	Thomas Linden
+T7	Strasse 1422 1444	Hermann-Löns-Str. 56 a
+T8	Ort 1445 1456	44623 Herne
+R1	zuOrt Arg1:T8 Arg2:T7	
+T9	Tel 3215 3226	02323/13820
+T10	Fax 3227 3238	02323/54908
+T11	Email 3239 3260	RA-Linden@t-online.de
+T12	Anwalt 3274 3287	Thomas Linden
+T13	Strasse 3288 3310	Hermann-Löns-Str. 56 a
+T14	Ort 3311 3322	44623 Herne
+R2	zuOrt Arg1:T14 Arg2:T13	
+T15	Tel 5081 5092	02323/13820
+T16	Fax 5093 5104	02323/54908
+T17	Email 5105 5126	RA-Linden@t-online.de
+T18	Anwalt 5140 5153	Thomas Linden
+T19	Strasse 5154 5176	Hermann-Löns-Str. 56 a
+T20	Ort 5177 5188	44623 Herne
+R3	zuOrt Arg1:T20 Arg2:T19	
+T21	Fachanwalt 6095 6108	Familienrecht
+T22	Fachanwalt 6126 6140	Verkehrsrecht 
+T23	Fachanwalt 6157 6193	Mietrecht und Wohnungseigentumsrecht
+T24	Rechtsgebiete 6414 6425	Sozialrecht
+T25	Rechtsgebiete 6527 6552	Personenbeförderungsrecht
+T26	Rechtsgebiete 6612 6624	Arbeitsrecht
+T27	Kanzlei 1836 1856;1857 1870	Rechtsanwaltskanzlei Thomas Linden
+T28	Bio 1905 2004	Verzahnung mit unserer Kooperationspartnerin, Frau Steuerberaterin Dipl-Kffr. Christiane Steinmeier
+T29	Bio 2034 2093	Kooperation mit Herrn Rechtsanwalt und Notar Wolfgang Bruch
+T30	Kanzlei 3331 3358	Rechtsanwaltskanzlei Linden
+T31	Kanzlei 3702 3722;3723 3736	Rechtsanwaltskanzlei Thomas Linden
+T32	Bio 3794 3870	Kooperationspartnerin, Frau Steuerberaterin Dipl-Kffr. Christiane Steinmeier
+T33	Bio 3900 3959	Kooperation mit Herrn Rechtsanwalt und Notar Wolfgang Bruch
+T34	Kanzlei 4595 4622	Rechtsanwaltskanzlei Linden
+T35	Kanzlei 5197 5224	Rechtsanwaltskanzlei Linden
+T36	Kanzlei 5565 5585;5586 5599	Rechtsanwaltskanzlei Thomas Linden
+T37	Bio 5629 5673	Thomas Linden ist seit 1987 als Rechtsanwalt
+T38	Rechtsgebiete 6275 6288	Verkehrsrecht
+T39	Rechtsgebiete 6637 6650	Familienrecht
+T40	Rechtsgebiete 6651 6681	Miet- & Wohnungseigentumsrecht
+T41	Rechtsgebiete 6682 6695	Verkehrsrecht
+T42	Kanzlei 7035 7062	Rechtsanwaltskanzlei Linden

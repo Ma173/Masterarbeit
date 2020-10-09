@@ -1,0 +1,31 @@
+T1	Kanzlei 47 68	Dr. Winzer & Kollegen
+T2	Anwalt 705 721	DR. FRITZ WINZER
+T3	Rechtsgebiete 760 768	Erbrecht
+T4	Rechtsgebiete 769 782	Vertragsrecht
+T5	Rechtsgebiete 783 799	Grundstücksrecht
+T6	Rechtsgebiete 800 811	Pferderecht
+T7	Rechtsgebiete 812 843	Handels- und Gesellschaftsrecht
+T8	Anwaeltin 845 861	ELISABETH WINZER
+T9	Rechtsgebiete 904 914	Strafrecht
+T10	Rechtsgebiete 915 927	Arbeitsrecht
+T11	Rechtsgebiete 928 937	Mietrecht
+T12	Rechtsgebiete 938 957	Verkehrsunfallrecht
+T13	Rechtsgebiete 958 969	allgemeines
+T14	Rechtsgebiete 982 991	Mediation
+T15	Anwalt 993 1009	ALEXANDER GOLDER
+T16	Fachanwalt 1024 1052	Fachanwalt für Familienrecht
+T17	Rechtsgebiete 1067 1080	Familienrecht
+T18	Rechtsgebiete 1082 1097	Unterhaltsrecht
+T19	Rechtsgebiete 1098 1108	Sorgerecht
+T20	Rechtsgebiete 1109 1121	Umgangsrecht
+T21	Rechtsgebiete 1122 1134	Urheberrecht
+T22	Rechtsgebiete 1135 1151	Wettbewerbsrecht
+T23	Rechtsgebiete 1152 1163	Waffenrecht
+T24	Rechtsgebiete 1164 1191	Vermögensauseinandersetzung
+T25	Strasse 1295 1309	Bergstraße 1 a
+T26	Ort 1314 1327	38518 Gifhorn
+R1	zuOrt Arg1:T26 Arg2:T25	
+T27	Tel 1337 1348	05371 98380
+T29	Email 1374 1396	info@kanzlei-winzer.de
+T30	Kanzlei 1535 1552	kanzlei-winzer.de
+T28	Fax 1357 1369	05371 983838

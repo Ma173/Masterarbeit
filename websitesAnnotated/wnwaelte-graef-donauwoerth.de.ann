@@ -1,0 +1,48 @@
+T1	Anwalt 65 75	Klaus Gräf
+T2	Anwaeltin 80 88	Eva Gräf
+T3	Bio 419 476	seit 1985 mit unserer Kanzlei im Ried in Donauwörth tätig
+T4	Rechtsgebiete 621 633	Arbeitsrecht
+T5	Rechtsgebiete 634 651	Privates Baurecht
+T6	Rechtsgebiete 652 665	Verkehrsrecht
+T7	Rechtsgebiete 666 676	Zivilrecht
+T8	Rechtsgebiete 677 690	Familienrecht
+T9	Rechtsgebiete 691 699	Erbrecht
+T10	Rechtsgebiete 700 709	Mietrecht
+T11	Strasse 836 854	Hindenburgstraße 7
+T12	Ort 855 871	86609 Donauwörth
+R1	zuOrt Arg1:T12 Arg2:T11	
+T13	Tel 887 897	0906-21019
+T14	Fax 903 913	0906-21911
+T15	Email 920 951	kanzlei.graef.don(@)t-online.de
+T16	Anwalt 1323 1346	Rechtsanwalt Klaus Gräf
+T17	Rechtsgebiete 1408 1420	Arbeitsrecht
+T18	Rechtsgebiete 1423 1440	Privates Baurecht
+T19	Rechtsgebiete 1443 1456	Verkehrsrecht
+T20	Rechtsgebiete 1459 1469	Zivilrecht
+T21	Anwaeltin 1472 1495	Rechtsanwältin Eva Gräf
+T22	Rechtsgebiete 1557 1570	Familienrecht
+T23	Rechtsgebiete 1573 1581	Erbrecht
+T24	Rechtsgebiete 1584 1593	Mietrecht
+T25	Sprachen 1658 1669	Französisch
+T26	Strasse 1856 1874	Hindenburgstraße 7
+T27	Ort 1875 1891	86609 Donauwörth
+R2	zuOrt Arg1:T27 Arg2:T26	
+T28	Tel 1907 1917	0906-21019
+T29	Fax 1923 1933	0906-21911
+T30	Email 1940 1971	kanzlei.graef.don(@)t-online.de
+T31	Kanzlei 2425 2448	Klaus Gräf und Eva Gräf
+T32	Bio 2779 2836	seit 1985 mit unserer Kanzlei im Ried in Donauwörth tätig
+T33	Rechtsgebiete 2981 2993	Arbeitsrecht
+T34	Rechtsgebiete 2994 3011	Privates Baurecht
+T35	Rechtsgebiete 3012 3025	Verkehrsrecht
+T36	Rechtsgebiete 3026 3036	Zivilrecht
+T37	Rechtsgebiete 3037 3050	Familienrecht
+T38	Rechtsgebiete 3051 3059	Erbrecht
+T39	Rechtsgebiete 3060 3069	Mietrecht
+T40	Strasse 3196 3214	Hindenburgstraße 7
+T41	Ort 3215 3231	86609 Donauwörth
+R3	zuOrt Arg1:T41 Arg2:T40	
+T42	Tel 3247 3257	0906-21019
+T43	Fax 3263 3273	0906-21911
+T44	Kanzlei 3280 3311	kanzlei.graef.don(@)t-online.de
+T45	Kanzlei 3478 3513	Rechtsanwälte Klaus Gräf & Eva Gräf

@@ -1,0 +1,57 @@
+T1	Kanzlei 252 270	Weinland · Straube
+T2	Strasse 272 291	Margaretenstraße 11
+T3	Ort 293 309	93047 Regensburg
+R1	zuOrt Arg1:T3 Arg2:T2	
+T4	Tel 317 329	0941-29718-0
+T5	Fax 336 346	0941-25650
+T6	Email 348 373	info(at)rae-regensburg.de
+T7	Anwaeltin 375 390	Christina Preis
+T8	Anwalt 391 405	Haymo Weinland
+T9	Anwalt 406 418	Karl Straube
+T10	Anwaeltin 419 436	Kristina Digutsch
+T11	Anwaeltin 437 452	Christina Preis
+T12	Anwalt 453 467	Haymo Weinland
+T13	Anwalt 1096 1110	Haymo Weinland
+T14	Fachanwalt 1125 1153	Fachanwalt für Verkehrsrecht
+T15	Fachanwalt 1156 1189	Fachanwalt für Versicherungsrecht
+T16	Anwalt 1192 1204	Karl Straube
+T17	Fachanwalt 1221 1283	Fach­an­walt für pri­va­tes Bau­recht und Ar­chi­tek­ten­recht
+T18	Fachanwalt 1286 1318	Fach­an­walt für Me­di­zin­recht
+T19	Anwaeltin 1321 1338	Kristina Digutsch
+T20	Fachanwalt 1359 1388	Fachanwältin für Medizinrecht
+T21	Rechtsgebiete 1484 1496	Arbeitsrecht
+T22	Rechtsgebiete 1498 1507	Mietrecht
+T23	Rechtsgebiete 1512 1537	allgemeinen Vertragsrecht
+T24	Anwaeltin 1549 1564	Christina Preis
+T25	Rechtsgebiete 1582 1604	Allgemeines Zivilrecht
+T26	Rechtsgebiete 1606 1616	Strafrecht
+T27	Kanzlei 1934 1952	Weinland · Straube
+T28	Strasse 1954 1973	Margaretenstraße 11
+T29	Ort 1975 1991	93047 Regensburg
+R2	zuOrt Arg1:T29 Arg2:T28	
+T30	Tel 1999 2011	0941-29718-0
+T31	Fax 2018 2028	0941-25650
+T32	Email 2030 2055	info(at)rae-regensburg.de
+T33	Anwalt 2684 2698	Haymo Weinland
+T34	Fachanwalt 2713 2741	Fachanwalt für Verkehrsrecht
+T35	Fachanwalt 2744 2777	Fachanwalt für Versicherungsrecht
+T36	Anwalt 2780 2792	Karl Straube
+T37	Fachanwalt 2809 2871	Fach­an­walt für pri­va­tes Bau­recht und Ar­chi­tek­ten­recht
+T38	Fachanwalt 2874 2906	Fach­an­walt für Me­di­zin­recht
+T39	Anwaeltin 2909 2926	Kristina Digutsch
+T40	Fachanwalt 2947 2976	Fachanwältin für Medizinrecht
+T41	Anwaeltin 3137 3152	Christina Preis
+T42	Rechtsgebiete 3170 3192	Allgemeines Zivilrecht
+T43	Rechtsgebiete 3194 3204	Strafrecht
+T44	Tel 3490 3502	0941-29718-0
+T45	Kanzlei 3522 3540	Weinland · Straube
+T46	Strasse 3542 3561	Margaretenstraße 11
+T47	Ort 3563 3579	93047 Regensburg
+T48	Tel 3587 3599	0941-29718-0
+T49	Fax 3606 3616	0941-25650
+T50	Email 3618 3643	info(at)rae-regensburg.de
+T51	Kanzlei 2296 2327	Anwaltskanzlei Weinland Straube
+T52	Rechtsgebiete 3072 3084	Arbeitsrecht
+T53	Rechtsgebiete 3086 3095	Mietrecht
+T54	Rechtsgebiete 3100 3125	allgemeinen Vertragsrecht
+T55	Kanzlei 3884 3915	Anwaltskanzlei Weinland Straube

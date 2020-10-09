@@ -1,0 +1,6 @@
+T1	Strasse 30 44	Poststr. 21-23
+T2	Ort 45 60	71032 Böblingen
+R1	zuOrt Arg1:T2 Arg2:T1	
+T3	Tel 67 80	07031 4607 -0
+T4	Fax 86 100	07031 4607 -90
+T5	Email 109 139	kanzlei.raich@kanzlei-raich.de

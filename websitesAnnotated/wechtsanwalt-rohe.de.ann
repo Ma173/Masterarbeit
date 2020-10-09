@@ -1,0 +1,23 @@
+T3	Rechtsgebiete 54 67	Familienrecht
+T4	Rechtsgebiete 68 81	Verkehrsrecht
+T5	Rechtsgebiete 82 92	Zivilrecht
+T6	Rechtsgebiete 93 103	Strafrecht
+T7	Rechtsgebiete 104 116	Arbeitsrecht
+T9	Anwalt 976 988	Michael Rohe
+T2	Kanzlei 21 38	Rechtsanwalt Rohe
+T10	Strasse 990 1011	Brackeler Hellweg 153
+T11	Ort 1012 1030	Dortmund NRW 44309
+R1	zuOrt Arg1:T11 Arg2:T10	
+T12	Tel 1033 1045	0231 9565098
+T13	Email 1048 1073	info@rechtsanwalt-rohe.de
+T14	Rechtsgebiete 1623 1636	Familienrecht
+T15	Rechtsgebiete 1637 1650	Verkehrsrecht
+T16	Rechtsgebiete 1651 1661	Zivilrecht
+T17	Rechtsgebiete 1662 1672	Strafrecht
+T18	Rechtsgebiete 1673 1685	Arbeitsrecht
+T20	Anwalt 2545 2557	Michael Rohe
+T21	Strasse 2559 2580	Brackeler Hellweg 153
+T22	Ort 2581 2599	Dortmund NRW 44309
+R2	zuOrt Arg1:T22 Arg2:T21	
+T23	Tel 2602 2614	0231 9565098
+T24	Email 2617 2642	info@rechtsanwalt-rohe.de

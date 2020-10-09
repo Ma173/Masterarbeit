@@ -1,0 +1,180 @@
+T1	Kanzlei 99 116	Zantke & Kollegen
+T2	Kanzlei 141 158	Zantke & Kollegen
+T3	Ort 894 902	Leonberg
+T4	Ort 910 919	Stuttgart
+T5	Kanzlei 1266 1283	Zantke & Kollegen
+T6	Rechtsgebiete 1291 1303	Arbeitsrecht
+T7	Rechtsgebiete 1915 1923	Erbrecht
+T8	Rechtsgebiete 2551 2564	Familienrecht
+T9	Rechtsgebiete 3226 3236	Kunstrecht
+T10	Rechtsgebiete 4094 4103	Mietrecht
+T11	Rechtsgebiete 4734 4750	Nachfolgeplanung
+T12	Rechtsgebiete 5432 5458	Seniorenrecht und Vorsorge
+T13	Rechtsgebiete 6150 6160	Zivilrecht
+T14	Rechtsgebiete 6767 6777	Strafrecht
+T15	Rechtsgebiete 7547 7556	Mediation
+T17	Strasse 8129 8141	Seestraße 21
+T18	Ort 8142 8156	71229 Leonberg
+R1	zuOrt Arg1:T18 Arg2:T17	
+T19	Tel 8166 8180	07152 / 9368-0
+T20	Fax 8190 8205	07152 / 9368-15
+T21	Email 8214 8228	info@zantke.de
+T16	Strasse 8262 8276	Königstraße 26
+T22	Ort 8277 8292	70173 Stuttgart
+R2	zuOrt Arg1:T22 Arg2:T16	
+T23	Tel 8302 8318	0711 / 18567-134
+T24	Rechtsgebiete 8571 8583	Arbeitsrecht
+T25	Rechtsgebiete 8584 8592	Erbrecht
+T26	Rechtsgebiete 8593 8606	Familienrecht
+T27	Rechtsgebiete 8607 8617	Kunstrecht
+T28	Rechtsgebiete 8618 8627	Mietrecht
+T29	Rechtsgebiete 8628 8638	Strafrecht
+T30	Rechtsgebiete 8639 8652	Verkehrsrecht
+T31	Rechtsgebiete 8653 8663	Zivilrecht
+T32	Kanzlei 8679 8696	Zantke & Kollegen
+T33	Strasse 10139 10151	Seestraße 21
+T34	Ort 10152 10166	71229 Leonberg
+R3	zuOrt Arg1:T34 Arg2:T33	
+T35	Tel 10176 10190	07152 / 9368-0
+T36	Fax 10200 10215	07152 / 9368-15
+T37	Email 10224 10238	info@zantke.de
+T38	Strasse 10272 10286	Königstraße 26
+T39	Ort 10287 10302	70173 Stuttgart
+R4	zuOrt Arg1:T39 Arg2:T38	
+T40	Tel 10312 10328	0711 / 18567-134
+T41	Rechtsgebiete 10581 10593	Arbeitsrecht
+T42	Rechtsgebiete 10594 10602	Erbrecht
+T43	Rechtsgebiete 10603 10616	Familienrecht
+T44	Rechtsgebiete 10617 10627	Kunstrecht
+T45	Rechtsgebiete 10628 10637	Mietrecht
+T46	Rechtsgebiete 10638 10648	Strafrecht
+T47	Rechtsgebiete 10649 10662	Verkehrsrecht
+T48	Rechtsgebiete 10663 10673	Zivilrecht
+T49	Strasse 12149 12161	Seestraße 21
+T50	Ort 12162 12176	71229 Leonberg
+R5	zuOrt Arg1:T50 Arg2:T49	
+T51	Tel 12186 12200	07152 / 9368-0
+T52	Fax 12210 12225	07152 / 9368-15
+T53	Email 12234 12248	info@zantke.de
+T54	Strasse 12282 12296	Königstraße 26
+T55	Ort 12297 12312	70173 Stuttgart
+T56	Tel 12322 12338	0711 / 18567-134
+R6	zuOrt Arg1:T55 Arg2:T54	
+T57	Rechtsgebiete 12591 12603	Arbeitsrecht
+T58	Rechtsgebiete 12604 12612	Erbrecht
+T59	Rechtsgebiete 12613 12626	Familienrecht
+T60	Rechtsgebiete 12627 12637	Kunstrecht
+T61	Rechtsgebiete 12638 12647	Mietrecht
+T62	Rechtsgebiete 12648 12658	Strafrecht
+T63	Rechtsgebiete 12659 12672	Verkehrsrecht
+T64	Rechtsgebiete 12673 12683	Zivilrecht
+T65	Kanzlei 13111 13136	Kanzlei Zantke & Kollegen
+T66	Anwalt 13137 13151	Hartmut Zantke
+T67	Rechtsgebiete 13189 13197	Erbrecht
+T68	Rechtsgebiete 13198 13214	Nachfolgeplanung
+T69	Rechtsgebiete 13215 13228	Vertragsrecht
+T70	Rechtsgebiete 13229 13240	Steuerrecht
+T71	Rechtsgebiete 13241 13259	Gesellschaftsrecht
+T72	Rechtsgebiete 13260 13277	Unternehmensrecht
+T73	Rechtsgebiete 13278 13298	Unternehmensberatung
+T74	Rechtsgebiete 13299 13309	Kunstrecht
+T75	Anwalt 13338 13354	Dr. Ulrich Bogun
+T76	Rechtsgebiete 13392 13410	Reisevertragsrecht
+T77	Rechtsgebiete 13411 13425	Mietrecht/ WEG
+T78	Rechtsgebiete 13426 13445	Nachbarschaftsrecht
+T79	Rechtsgebiete 13446 13461	Forderungsrecht
+T80	Rechtsgebiete 13462 13471	Tierrecht
+T81	Rechtsgebiete 13478 13489	Schuldrecht
+T82	Rechtsgebiete 13490 13519	Kirchenrecht/Eheannulierungen
+T83	Rechtsgebiete 13520 13530	Strafrecht
+T84	Anwalt 13551 13560	Dr. Bogun
+T85	Anwalt 13606 13622	Dr. Dirk Thümmel
+T86	Rechtsgebiete 13660 13668	Erbrecht
+T87	Rechtsgebiete 13669 13680	Steuerrecht
+T88	Rechtsgebiete 13681 13697	Nachfolgeplanung
+T90	Rechtsgebiete 13721 13733	Arbeitsrecht
+T89	Rechtsgebiete 13698 13720	Ehe- und Familienrecht
+T91	Rechtsgebiete 13734 13747	Vertragsrecht
+T92	Rechtsgebiete 13748 13764	Grundstücksrecht
+T93	Anwalt 13785 13795	Dr. Thümme
+T94	Anwalt 13798 13815	Dr. Otto Großmann
+T95	Rechtsgebiete 13854 13873	Steuer-) Strafrecht
+T96	Rechtsgebiete 13874 13891;13892 13916	Betriebsprüfungs- und Steuerfahndungsrecht
+T97	Rechtsgebiete 13917 13950	Haftungs- und Vollstreckungsrecht
+T98	Rechtsgebiete 13951 13973	Einspruchs-, Stundungs
+T99	Rechtsgebiete 13976 14002	Erlass- und Klageverfahren
+T100	Rechtsgebiete 14003 14059	Besteuerung der Einzelunternehmen und der Gesellschaften
+T101	Rechtsgebiete 14060 14095	Gesellschafts- und Verkaufsverträge
+T102	Rechtsgebiete 14096 14121	Arbeits- und Beamtenrecht
+T103	Anwalt 14142 14155	Dr. Grossmann
+T104	Strasse 14187 14199	Seestraße 21
+T105	Ort 14200 14214	71229 Leonberg
+R7	zuOrt Arg1:T105 Arg2:T104	
+T106	Tel 14224 14238	07152 / 9368-0
+T107	Fax 14248 14263	07152 / 9368-15
+T108	Email 14272 14286	info@zantke.de
+T109	Strasse 14320 14334	Königstraße 26
+T110	Ort 14335 14350	70173 Stuttgart
+T111	Tel 14351 14376	Telefon: 0711 / 18567-134
+T112	Rechtsgebiete 14629 14641	Arbeitsrecht
+T113	Rechtsgebiete 14642 14650	Erbrecht
+T114	Rechtsgebiete 14651 14664	Familienrecht
+T115	Rechtsgebiete 14665 14675	Kunstrecht
+T116	Rechtsgebiete 14676 14685	Mietrecht
+T117	Rechtsgebiete 14686 14696	Strafrecht
+T118	Rechtsgebiete 14697 14710	Verkehrsrecht
+T119	Rechtsgebiete 14711 14721	Zivilrecht
+T120	Kanzlei 15157 15174	Zantke & Kollegen
+T121	Anwalt 15175 15189	Hartmut Zantke
+T122	Rechtsgebiete 15227 15235	Erbrecht
+T123	Rechtsgebiete 15236 15252	Nachfolgeplanung
+T124	Rechtsgebiete 15253 15266	Vertragsrecht
+T125	Rechtsgebiete 15267 15278	Steuerrecht
+T126	Rechtsgebiete 15279 15297	Gesellschaftsrecht
+T127	Rechtsgebiete 15298 15315	Unternehmensrecht
+T128	Rechtsgebiete 15316 15336	Unternehmensberatung
+T129	Rechtsgebiete 15337 15347	Kunstrecht
+T130	Anwalt 15376 15392	Dr. Ulrich Bogun
+T131	Rechtsgebiete 15430 15448	Reisevertragsrecht
+T132	Rechtsgebiete 15449 15463	Mietrecht/ WEG
+T133	Rechtsgebiete 15464 15483	Nachbarschaftsrecht
+T134	Rechtsgebiete 15484 15499	Forderungsrecht
+T135	Rechtsgebiete 15500 15509	Tierrecht
+T136	Rechtsgebiete 15516 15527	Schuldrecht
+T137	Rechtsgebiete 15528 15557	Kirchenrecht/Eheannulierungen
+T138	Rechtsgebiete 15558 15568	Strafrecht
+T139	Anwalt 15644 15660	Dr. Dirk Thümmel
+T140	Rechtsgebiete 15698 15706	Erbrecht
+T141	Rechtsgebiete 15707 15718	Steuerrecht
+T142	Rechtsgebiete 15719 15735	Nachfolgeplanung
+T143	Rechtsgebiete 15736 15758	Ehe- und Familienrecht
+T144	Rechtsgebiete 15759 15771	Arbeitsrecht
+T145	Rechtsgebiete 15772 15785	Vertragsrecht
+T146	Rechtsgebiete 15786 15802	Grundstücksrecht
+T147	Anwalt 15836 15853	Dr. Otto Großmann
+T148	Rechtsgebiete 15892 15911	Steuer-) Strafrecht
+T149	Rechtsgebiete 15912 15929;15930 15954	Betriebsprüfungs- und Steuerfahndungsrecht
+T150	Rechtsgebiete 15955 15988	Haftungs- und Vollstreckungsrecht
+T151	Rechtsgebiete 15989 16012	Einspruchs-, Stundungs-
+T152	Rechtsgebiete 16014 16040	Erlass- und Klageverfahren
+T153	Rechtsgebiete 16041 16097	Besteuerung der Einzelunternehmen und der Gesellschaften
+T154	Rechtsgebiete 16098 16133	Gesellschafts- und Verkaufsverträge
+T155	Rechtsgebiete 16134 16159	Arbeits- und Beamtenrecht
+T156	Strasse 16225 16237	Seestraße 21
+T157	Ort 16238 16252	71229 Leonberg
+R8	zuOrt Arg1:T157 Arg2:T156	
+T158	Tel 16253 16276	Telefon: 07152 / 9368-0
+T159	Fax 16277 16301	Telefax: 07152 / 9368-15
+T160	Email 16310 16324	info@zantke.de
+T161	Strasse 16358 16372	Königstraße 26
+T162	Ort 16373 16388	70173 Stuttgart
+R9	zuOrt Arg1:T162 Arg2:T161	
+T163	Tel 16389 16414	Telefon: 0711 / 18567-134
+T164	Rechtsgebiete 16667 16679	Arbeitsrecht
+T165	Rechtsgebiete 16680 16688	Erbrecht
+T166	Rechtsgebiete 16689 16702	Familienrecht
+T167	Rechtsgebiete 16703 16713	Kunstrecht
+T168	Rechtsgebiete 16714 16723	Mietrecht
+T169	Rechtsgebiete 16724 16734	Strafrecht
+T170	Rechtsgebiete 16735 16748	Verkehrsrecht
+T171	Rechtsgebiete 16749 16759	Zivilrecht

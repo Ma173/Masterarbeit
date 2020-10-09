@@ -1,0 +1,28 @@
+T1	Anwalt 148 167	Dr. Reinhard Tuntke
+T2	Rechtsgebiete 504 516	Arbeitsrecht
+T3	Rechtsgebiete 517 530	Verkehrsrecht
+T4	Rechtsgebiete 531 563	Miet- und Wohnungseigentumsrecht
+T5	Kanzlei 814 833	Dr. Tuntke & Rüffer
+T6	Anwalt 1100 1114	Patrick Rüffer
+T7	Kanzlei 1180 1208	Kanzlei Krönig Rechtsanwälte
+T8	Strasse 1210 1226	Bilker Straße 27
+T9	Ort 1228 1244	40213 Düsseldorf
+R1	zuOrt Arg1:T9 Arg2:T8	
+T10	Rechtsgebiete 1377 1393	Wirtschaftsrecht
+T11	Rechtsgebiete 1395 1407	Arbeitsrecht
+T12	Rechtsgebiete 1430 1461	Handels- und Gesellschaftsrecht
+T13	Rechtsgebiete 1484 1495	Steuerrecht
+T14	Anwalt 1922 1936	Patrick Rüffer
+T15	Strasse 2032 2048	Bilker Straße 27
+T16	Ort 2050 2066	40213 Düsseldorf
+R2	zuOrt Arg1:T16 Arg2:T15	
+T17	Rechtsgebiete 2217 2229	Arbeitsrecht
+T18	Rechtsgebiete 2252 2283	Handels- und Gesellschaftsrecht
+T19	Rechtsgebiete 2306 2317	Steuerrecht
+T20	Tel 1 21	+49 2103 978 040 - 0
+T22	Kanzlei 1648 1667	Dr. Tuntke & Rüffer
+T23	Tel 1826 1842	+49 2103 978 040
+T24	Kanzlei 2470 2489	Dr. Tuntke & Rüffer
+T25	Email 22 43	kanzlei@ra-rueffer.de
+T21	Tel 1004 1024	+49 2103 978 040 - 0
+T26	Email 1025 1046	kanzlei@ra-rueffer.de

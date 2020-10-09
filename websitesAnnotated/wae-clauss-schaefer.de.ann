@@ -1,0 +1,139 @@
+T1	Anwalt 393 409	Wolfgang Schäfer
+T2	Fachanwalt 425 465	Fachanwalt für Bau- und Architektenrecht
+T3	Fachanwalt 466 513	Fachanwalt für Miet- und Wohnungseigentumsrecht
+T4	Anwalt 524 538	Hartmut Clauss
+T5	Rechtsgebiete 578 600	Ehe- und Familienrecht
+T6	Rechtsgebiete 602 610	Erbrecht
+T7	Rechtsgebiete 612 622	Strafrecht
+T8	Anwaeltin 633 649	Andrea Schlosser
+T9	Fachanwalt 667 696	Fachanwältin für Arbeitsrecht
+T10	Fachanwalt 697 725	Fachanwältin für Sozialrecht
+T11	Fachanwalt 726 755	Fachanwältin für Medizinrecht
+T12	Anwalt 766 779	Rafael Hummel
+T13	Rechtsgebiete 819 841	Ehe- und Familienrecht
+T14	Rechtsgebiete 843 851	Erbrecht
+T15	Rechtsgebiete 853 863	Strafrecht
+T16	Anwaeltin 874 903	Christine Rentschler-Beilharz
+T17	Rechtsgebiete 945 958	Familienrecht
+T18	Rechtsgebiete 960 968	Erbrecht
+T20	Kanzlei 1208 1252	Rechtsanwälte Klaska, Clauss, Schäfer & Koll
+T21	Anwalt 1677 1692	Wolgang Schäfer
+T22	Anwalt 1693 1707	Hartmut Clauss
+T23	Anwaeltin 1708 1724	Andrea Schlosser
+T24	Anwaeltin 1725 1754	Christine Rentschler-Beilharz
+T25	Anwalt 1755 1768	Rafael Hummel
+T26	Anwalt 2767 2783	Wolfgang Schäfer
+T27	Fachanwalt 2799 2839	Fachanwalt für Bau- und Architektenrecht
+T28	Fachanwalt 2840 2887	Fachanwalt für Miet- und Wohnungseigentumsrecht
+T29	Anwalt 2898 2912	Hartmut Clauss
+T30	Rechtsgebiete 2952 2974	Ehe- und Familienrecht
+T31	Rechtsgebiete 2976 2984	Erbrecht
+T32	Rechtsgebiete 2986 2996	Strafrecht
+T33	Anwaeltin 3007 3023	Andrea Schlosser
+T34	Fachanwalt 3041 3070	Fachanwältin für Arbeitsrecht
+T35	Fachanwalt 3071 3099	Fachanwältin für Sozialrecht
+T36	Fachanwalt 3100 3129	Fachanwältin für Medizinrecht
+T37	Anwalt 3140 3153	Rafael Hummel
+T38	Rechtsgebiete 3193 3215	Ehe- und Familienrecht
+T39	Rechtsgebiete 3217 3225	Erbrecht
+T40	Rechtsgebiete 3227 3237	Strafrecht
+T41	Anwaeltin 3248 3277	Christine Rentschler-Beilharz
+T42	Rechtsgebiete 3319 3332	Familienrecht
+T43	Rechtsgebiete 3334 3342	Erbrecht
+T44	Kanzlei 3353 3397	RECHTSANWÄLTE KLASKA, CLAUSS, SCHÄFER & KOLL
+T45	Kanzlei 3582 3626	Rechtsanwälte Klaska, Clauss, Schäfer & Koll
+T47	Anwalt 4051 4066	Wolgang Schäfer
+T48	Anwalt 4067 4081	Hartmut Clauss
+T49	Anwaeltin 4082 4098	Andrea Schlosser
+T50	Anwaeltin 4099 4128	Christine Rentschler-Beilharz
+T51	Anwalt 4129 4142	Rafael Hummel
+T52	Kanzlei 4255 4299	RECHTSANWÄLTE KLASKA, CLAUSS, SCHÄFER & KOLL
+T53	Kanzlei 5004 5038	Klaska, Clauss, Schäfer & Kollegen
+T54	Anwalt 5141 5157	Wolfgang Schäfer
+T55	Fachanwalt 5173 5213	Fachanwalt für Bau- und Architektenrecht
+T56	Fachanwalt 5214 5261	Fachanwalt für Miet- und Wohnungseigentumsrecht
+T57	Anwalt 5272 5286	Hartmut Clauss
+T58	Rechtsgebiete 5326 5348	Ehe- und Familienrecht
+T59	Rechtsgebiete 5350 5358	Erbrecht
+T60	Rechtsgebiete 5360 5370	Strafrecht
+T61	Anwaeltin 5381 5397	Andrea Schlosser
+T62	Fachanwalt 5415 5444	Fachanwältin für Arbeitsrecht
+T63	Fachanwalt 5445 5473	Fachanwältin für Sozialrecht
+T64	Fachanwalt 5474 5503	Fachanwältin für Medizinrecht
+T65	Anwalt 5514 5527	Rafael Hummel
+T66	Rechtsgebiete 5567 5589	Ehe- und Familienrecht
+T67	Rechtsgebiete 5591 5599	Erbrecht
+T68	Rechtsgebiete 5601 5611	Strafrecht
+T69	Anwaeltin 5622 5651	Christine Rentschler-Beilharz
+T70	Rechtsgebiete 5693 5706	Familienrecht
+T71	Rechtsgebiete 5708 5716	Erbrecht
+T72	Kanzlei 5727 5771	RECHTSANWÄLTE KLASKA, CLAUSS, SCHÄFER & KOLL
+T73	Kanzlei 5956 6000	Rechtsanwälte Klaska, Clauss, Schäfer & Koll
+T75	Anwalt 6425 6440	Wolgang Schäfer
+T76	Anwalt 6441 6455	Hartmut Clauss
+T77	Anwaeltin 6456 6472	Andrea Schlosser
+T78	Anwaeltin 6473 6502	Christine Rentschler-Beilharz
+T79	Anwalt 6503 6516	Rafael Hummel
+T80	Kanzlei 6629 6673	RECHTSANWÄLTE KLASKA, CLAUSS, SCHÄFER & KOLL
+T81	Kanzlei 7378 7433	Rechtsanwaltskanzlei Klaska, Clauss, Schäfer & Kollegen
+T82	Anwalt 7536 7552	Wolfgang Schäfer
+T83	Fachanwalt 7568 7608	Fachanwalt für Bau- und Architektenrecht
+T84	Fachanwalt 7609 7656	Fachanwalt für Miet- und Wohnungseigentumsrecht
+T85	Anwalt 7667 7681	Hartmut Clauss
+T86	Rechtsgebiete 7721 7743	Ehe- und Familienrecht
+T87	Rechtsgebiete 7745 7753	Erbrecht
+T88	Rechtsgebiete 7755 7765	Strafrecht
+T89	Anwaeltin 7776 7792	Andrea Schlosser
+T90	Fachanwalt 7810 7839	Fachanwältin für Arbeitsrecht
+T91	Fachanwalt 7840 7868	Fachanwältin für Sozialrecht
+T92	Fachanwalt 7869 7898	Fachanwältin für Medizinrecht
+T93	Rechtsgebiete 7962 7984	Ehe- und Familienrecht
+T94	Anwalt 7909 7922	Rafael Hummel
+T95	Rechtsgebiete 7986 7994	Erbrecht
+T96	Rechtsgebiete 7996 8006	Strafrecht
+T97	Anwaeltin 8017 8046	Christine Rentschler-Beilharz
+T98	Rechtsgebiete 8088 8101	Familienrecht
+T99	Rechtsgebiete 8103 8111	Erbrecht
+T100	Kanzlei 8122 8166	RECHTSANWÄLTE KLASKA, CLAUSS, SCHÄFER & KOLL
+T101	Kanzlei 8351 8395	Rechtsanwälte Klaska, Clauss, Schäfer & Koll
+T103	Anwalt 8820 8835	Wolgang Schäfer
+T104	Anwalt 8836 8850	Hartmut Clauss
+T105	Anwaeltin 8851 8867	Andrea Schlosser
+T106	Anwaeltin 8868 8897	Christine Rentschler-Beilharz
+T107	Anwalt 8898 8911	Rafael Hummel
+T108	Kanzlei 979 1023	RECHTSANWÄLTE KLASKA, CLAUSS, SCHÄFER & KOLL
+T109	Email 1107 1134	info@Rae-Clauss-schaefer.de
+T110	Tel 1286 1301	(07452) 69 0 61
+T111	Fax 1306 1319	(07452) 59 18
+T112	Email 1320 1347	info@rae-clauss-schaefer.de
+T113	Kanzlei 1881 1925	RECHTSANWÄLTE KLASKA, CLAUSS, SCHÄFER & KOLL
+T114	Kanzlei 2315 2370	RECHTSANWALTSKANZLEI KLASKA, CLAUSS, SCHÄFER & KOLLEGEN
+T115	Tel 3660 3675	(07452) 69 0 61
+T116	Tel 3680 3693	(07452) 59 18
+T117	Email 3694 3721	info@rae-clauss-schaefer.de
+T118	Kanzlei 4689 4744	RECHTSANWALTSKANZLEI KLASKA, CLAUSS, SCHÄFER & KOLLEGEN
+T119	Email 5855 5882	info@Rae-Clauss-schaefer.de
+T120	Tel 6034 6049	(07452) 69 0 61
+T121	Fax 6054 6067	(07452) 59 18
+T122	Email 6068 6095	info@rae-clauss-schaefer.de
+T123	Email 8250 8277	info@Rae-Clauss-schaefer.de
+T124	Tel 8429 8444	(07452) 69 0 61
+T125	Fax 8449 8462	(07452) 59 18
+T126	Email 8463 8490	info@rae-clauss-schaefer.de
+T127	Kanzlei 9024 9068	RECHTSANWÄLTE KLASKA, CLAUSS, SCHÄFER & KOLL
+T128	Kanzlei 235 290	Rechtsanwaltskanzlei Klaska, Clauss, Schäfer & Kollegen
+T129	Kanzlei 2609 2664	Rechtsanwaltskanzlei Klaska, Clauss, Schäfer & Kollegen
+T130	Email 3481 3508	info@Rae-Clauss-schaefer.de
+T131	Kanzlei 7084 7139	RECHTSANWALTSKANZLEI KLASKA, CLAUSS, SCHÄFER & KOLLEGEN
+T19	Strasse 1254 1268	Bahnhofstr. 34
+T132	Ort 1269 1281	72202 Nagold
+R1	zuOrt Arg1:T132 Arg2:T19	
+T46	Strasse 3628 3642	Bahnhofstr. 34
+T133	Ort 3643 3655	72202 Nagold
+R2	zuOrt Arg1:T133 Arg2:T46	
+T74	Strasse 6002 6016	Bahnhofstr. 34
+T134	Ort 6017 6029	72202 Nagold
+R3	zuOrt Arg1:T134 Arg2:T74	
+T102	Strasse 8397 8411	Bahnhofstr. 34
+T135	Ort 8412 8424	72202 Nagold
+R4	zuOrt Arg1:T135 Arg2:T102	

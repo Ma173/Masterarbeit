@@ -1,0 +1,34 @@
+T1	Kanzlei 181 210	ANWALTSKANZLEI REISSIG & KOLL
+T2	Bio 285 316	seit 1995 im Zentrum Heilbronns
+T3	Rechtsgebiete 501 513	Arbeitsrecht
+T4	Rechtsgebiete 519 535	Kündigungsschutz
+T5	Rechtsgebiete 537 562	Abfindungsangelegenheiten
+T6	Rechtsgebiete 564 567;568 598	das Verkehrs- sowie das Zivilrecht
+T7	Tel 754 768	07131/203 78 0
+T8	Kanzlei 877 910	Anwaltskanzlei Reissig & Kollegen
+T9	Strasse 911 919	Allee 64
+T10	Ort 920 935	74072 Heilbronn
+R1	zuOrt Arg1:T10 Arg2:T9	
+T11	Tel 937 951	07131/203 78 0
+T12	Bio 1313 1349	9 bestens ausgebildeten Mitarbeitern
+T13	Sprachen 1407 1415	türkisch
+T14	Sprachen 1417 1425	englisch
+T15	Sprachen 1427 1438	französisch
+T16	Sprachen 1443 1452	aramäisch
+T17	Anwalt 1974 1986	Herr Reissig
+T18	Anwaeltin 1991 2000	Frau Vogt
+T19	Tel 2893 2909	07131 / 203 78 0
+T20	Kanzlei 3811 3846	Anwaltskanzlei Reissig und Kollegen
+T21	Anwalt 4065 4085	KARL-MICHAEL REISSIG
+T22	Fachanwalt 4103 4130	Fachanwalt für Arbeitsrecht
+T23	Tel 4132 4148	07131 - 203 78 0
+T24	Email 4149 4179	info@anwaltskanzlei-reissig.de
+T25	Anwaeltin 4180 4190	HEIKE VOGT
+T26	Fachanwalt 4210 4239	Fachanwältin für Arbeitsrecht
+T27	Tel 4240 4256	07131 - 203 78 0
+T28	Email 4257 4287	info@anwaltskanzlei-reissig.de
+T29	Kanzlei 4859 4892	Anwaltskanzlei Reissig & Kollegen
+T30	Strasse 4893 4901	Allee 64
+T31	Ort 4902 4917	74072 Heilbronn
+R2	zuOrt Arg1:T31 Arg2:T30	
+T32	Tel 4919 4933	07131/203 78 0

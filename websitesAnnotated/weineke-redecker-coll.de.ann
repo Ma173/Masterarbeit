@@ -1,0 +1,40 @@
+T1	Kanzlei 143 150;151 175	Kanzlei Reineke, Redecker & Coll
+T2	Kanzlei 203 227	Reineke, Redecker & Coll
+T3	Anwalt 820 841	Rechtsanwalt Redecker
+T4	Fachanwalt 852 880	Fachanwalt für Familienrecht
+T5	Fachanwalt 885 913	Fachanwalt für Verkehrsrecht
+T6	Rechtsgebiete 1153 1165	Arbeitsrecht
+T7	Rechtsgebiete 1170 1192	allgemeinem Zivilrecht
+T8	Kanzlei 1788 1812	Reineke, Redecker & Coll
+T9	Strasse 1814 1830	Osterdeich 107 F
+T10	Ort 1831 1843	28205 Bremen
+R1	zuOrt Arg1:T10 Arg2:T9	
+T11	Tel 1854 1865	0421/490073
+T12	Fax 1875 1886	0421/490076
+T13	Email 1895 1926	reineke-coll.bremen@t-online.de
+T14	Kanzlei 2085 2109	Reineke, Redecker & Coll
+T15	Anwalt 2334 2352	Raymund G. Reineke
+T16	Anwalt 2367 2384	Christof Redecker
+T17	Anwalt 2399 2419	Dr. Christian Tietze
+T18	Anwalt 2434 2448	Jörg H. Boehme
+T19	Kanzlei 2458 2482	Reineke, Redecker & Coll
+T20	Strasse 2484 2500	Osterdeich 107 F
+T21	Ort 2501 2513	28205 Bremen
+R2	zuOrt Arg1:T21 Arg2:T20	
+T22	Tel 2524 2535	0421/490073
+T23	Fax 2545 2556	0421/490076
+T24	Email 2565 2596	reineke-coll.bremen@t-online.de
+T25	Kanzlei 2755 2779	Reineke, Redecker & Coll
+T26	Sprachen 3650 3658	Portugal
+T27	Sprachen 799 807	Portugal
+T28	Anwalt 3684 3692	Redecker
+T29	Fachanwalt 3703 3731	Fachanwalt für Familienrecht
+T30	Fachanwalt 3736 3764	Fachanwalt für Verkehrsrecht
+T31	Rechtsgebiete 4004 4016	Arbeitsrecht
+T32	Kanzlei 4639 4663	Reineke, Redecker & Coll
+T33	Strasse 4665 4681	Osterdeich 107 F
+T34	Ort 4682 4694	28205 Bremen
+R3	zuOrt Arg1:T34 Arg2:T33	
+T35	Tel 4705 4716	0421/490073
+T36	Fax 4726 4737	0421/490076
+T37	Email 4746 4777	reineke-coll.bremen@t-online.de

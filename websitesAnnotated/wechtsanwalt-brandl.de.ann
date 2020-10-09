@@ -1,0 +1,25 @@
+T1	Rechtsgebiete 186 203	Arzthaftungsrecht
+T2	Rechtsgebiete 498 510	Medizinrecht
+T3	Rechtsgebiete 803 821	Versicherungsrecht
+T4	Rechtsgebiete 1055 1068	Verkehrsrecht
+T5	Anwalt 1403 1415	Bernd Brandl
+T6	Fachanwalt 1687 1752	Fachanwalt für Medizinrecht und Fachanwalt für Versicherungsrecht
+T7	Anwalt 1676 1682	Brandl
+T8	Strasse 2549 2585	Rechtsanwalt Brandl Neusser Str. 182
+T9	Ort 2586 2596	50733 Köln
+R1	zuOrt Arg1:T9 Arg2:T8	
+T10	Email 2608 2635	info@rechtsanwalt-brandl.de
+T11	Tel 2648 2664	0221/ 9433 80 20
+T12	Fax 2673 2689	0221/ 9433 80 25
+T13	Kanzlei 2752 2774	rechtsanwalt-brandl.de
+T14	Anwalt 2886 2898	Bernd Brandl
+T15	Fachanwalt 2917 2967	Fachanwalt für Medizinrecht und Versicherungsrecht
+T16	Fachanwalt 3006 3071	Fachanwalt für Medizinrecht und Fachanwalt für Versicherungsrecht
+T17	Sprachen 4147 4155	Englisch
+T18	Sprachen 4160 4171	Französisch
+T19	Strasse 4194 4230	Rechtsanwalt Brandl Neusser Str. 182
+T20	Ort 4231 4241	50733 Köln
+R2	zuOrt Arg1:T20 Arg2:T19	
+T21	Email 4253 4280	info@rechtsanwalt-brandl.de
+T22	Tel 4293 4309	0221/ 9433 80 20
+T23	Fax 4318 4334	0221/ 9433 80 25

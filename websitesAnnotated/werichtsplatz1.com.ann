@@ -1,0 +1,89 @@
+T1	Strasse 230 245	Gerichtsplatz 1
+T2	Ort 246 259	03046 Cottbus
+R1	zuOrt Arg1:T2 Arg2:T1	
+T3	Tel 266 276	0355 25040
+T4	Strasse 278 296	Friedrichsstr. 10a
+T5	Ort 297 314	02977 Hoyerswerda
+R2	zuOrt Arg1:T5 Arg2:T4	
+T6	Tel 321 333	03571 428251
+T7	Rechtsgebiete 476 487	UNTERNEHMEN
+T8	Rechtsgebiete 490 498	BAURECHT
+T9	Rechtsgebiete 501 511	STRAFRECHT
+T10	Rechtsgebiete 514 526	ARBEITSRECHT
+T11	Rechtsgebiete 529 542	VERKEHRSRECHT
+T12	Kanzlei 572 601	Rechtsanwaltskanzlei Sinapius
+T14	Kanzlei 740 762	Rechtsanwälte Sinapius
+T16	Rechtsgebiete 1339 1347	Erbrecht
+T17	Rechtsgebiete 1349 1362	Familienrecht
+T18	Rechtsgebiete 1364 1376	Handelsrecht
+T19	Rechtsgebiete 1378 1393	Immobilienrecht
+T20	Rechtsgebiete 1395 1404	Mietrecht
+T21	Rechtsgebiete 1406 1445	Versicherungsrecht und Forderungseinzug
+T22	Rechtsgebiete 1641 1649	Baurecht
+T23	Rechtsgebiete 1651 1661	Strafrecht
+T24	Rechtsgebiete 1663 1679	Verwaltungsrecht
+T25	Rechtsgebiete 1684 1697	Verkehrsrecht
+T26	Rechtsgebiete 2440 2448	Baurecht
+T27	Rechtsgebiete 2449 2459	Strafrecht
+T28	Rechtsgebiete 2460 2472	Arbeitsrecht
+T29	Rechtsgebiete 2473 2486	Verkehrsrecht
+T30	Rechtsgebiete 2487 2503	Verwaltungsrecht
+T31	Rechtsgebiete 2504 2512	Erbrecht
+T32	Rechtsgebiete 2513 2526	Familienrecht
+T33	Rechtsgebiete 2527 2539	Handelsrecht
+T34	Rechtsgebiete 2540 2555	Immobilienrecht
+T35	Rechtsgebiete 2556 2565	Mietrecht
+T36	Rechtsgebiete 2566 2584	Versicherungsrecht
+T37	Rechtsgebiete 2585 2601	Forderungseinzug
+T38	Kanzlei 2663 2679	Kanzlei Sinapius
+T39	Strasse 3150 3165	Gerichtsplatz 1
+T40	Ort 3166 3179	03046 Cottbus
+R3	zuOrt Arg1:T40 Arg2:T39	
+T41	Tel 3186 3196	0355 25040
+T42	Strasse 3198 3216	Friedrichsstr. 10a
+T43	Ort 3217 3234	02977 Hoyerswerda
+R4	zuOrt Arg1:T43 Arg2:T42	
+T44	Tel 3241 3253	03571 428251
+T45	Rechtsgebiete 3407 3415	BAURECHT
+T46	Rechtsgebiete 3418 3428	STRAFRECHT
+T47	Rechtsgebiete 3431 3443	ARBEITSRECHT
+T48	Rechtsgebiete 3446 3459	VERKEHRSRECHT
+T49	Rechtsgebiete 3461 3472	UNTERNEHMEN
+T50	Anwaeltin 3489 3504	Sabine Sinapius
+T51	Anwalt 3506 3518	Roman Knapik
+T52	Anwalt 3520 3536	Michael Sinapius
+T53	Anwalt 3538 3556	Christian Sinapius
+T54	Anwaeltin 3558 3576	Christine Sinapius
+T55	Anwalt 3578 3594	Hartmut Sinapius
+T56	Anwaeltin 3842 3857	Sabine Sinapius
+T57	Anwalt 3871 3883	Roman Knapik
+T58	Fachanwalt 3886 3914	Fachanwalt für Verkehrsrecht
+T59	Anwalt 3928 3944	Michael Sinapius
+T61	Anwalt 4022 4040	Christian Sinapius
+T63	Anwaeltin 4139 4157	Christine Sinapius
+T64	Anwalt 4171 4187	Hartmut Sinapius
+T65	Rechtsgebiete 4630 4638	Baurecht
+T66	Rechtsgebiete 4639 4649	Strafrecht
+T67	Rechtsgebiete 4650 4662	Arbeitsrecht
+T68	Rechtsgebiete 4663 4676	Verkehrsrecht
+T69	Rechtsgebiete 4677 4693	Verwaltungsrecht
+T70	Rechtsgebiete 4694 4702	Erbrecht
+T71	Rechtsgebiete 4703 4716	Familienrecht
+T72	Rechtsgebiete 4717 4729	Handelsrecht
+T73	Rechtsgebiete 4730 4745	Immobilienrecht
+T74	Rechtsgebiete 4746 4755	Mietrecht
+T75	Rechtsgebiete 4756 4774	Versicherungsrecht
+T76	Rechtsgebiete 4775 4791	Forderungseinzug
+T77	Kanzlei 4853 4869	Kanzlei Sinapius
+T13	Fachanwalt 630 654	Fachanwälte für Baurecht
+T78	Fachanwalt 656 666	Strafrecht
+T79	Fachanwalt 668 684	Verwaltungsrecht
+T80	Fachanwalt 689 702	Verkehrsrecht
+T15	Fachanwalt 1147 1170	Fachanwalt für Baurecht
+T81	Fachanwalt 1172 1182	Strafrecht
+T82	Fachanwalt 1184 1200	Verwaltungsrecht
+T83	Fachanwalt 1202 1215	Verkehrsrecht
+T60	Fachanwalt 3947 3978	Fachanwalt für Verwaltungsrecht
+T84	Fachanwalt 3983 4008	Fachanwalt für Strafrecht
+T62	Fachanwalt 4043 4089	Fachanwaltschaft für Bau- und Architektenrecht
+T85	Fachanwalt 4096 4123	Fachanwalt für Arbeitsrecht

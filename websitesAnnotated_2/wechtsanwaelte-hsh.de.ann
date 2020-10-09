@@ -1,0 +1,60 @@
+T2	Kanzlei 236 260	HSH & Daun Rechtsanwälte
+T3	Anwalt 1886 1899	Marco Di Palo
+T6	Fachanwalt 1986 2035	Fachanwältin für Sozialrecht und für Medizinrecht
+T4	Fachanwalt 1901 1968	Fachanwalt für Familienrecht sowie für Miet- und Wohneigentumsrecht
+T5	Anwaeltin 1970 1984	Danuta Weßolly
+T7	Anwalt 2037 2050	Ekkehard Daun
+T8	Fachanwalt 2052 2100	Fachanwalt für Arbeitsrecht und für Medizinrecht
+T9	Anwalt 2102 2125	Dr. Hans-Peter Cullmann
+T14	Kanzlei 3588 3612	HSH & Daun Rechtsanwälte
+T15	Kanzlei 3679 3703	HSH & Daun Rechtsanwälte
+T16	Anwalt 5238 5251	Marco Di Palo
+T17	Fachanwalt 5253 5320	Fachanwalt für Familienrecht sowie für Miet- und Wohneigentumsrecht
+T18	Fachanwalt 5338 5387	Fachanwältin für Sozialrecht und für Medizinrecht
+T19	Anwaeltin 5322 5336	Danuta Weßolly
+T20	Anwalt 5389 5402	Ekkehard Daun
+T21	Fachanwalt 5404 5452	Fachanwalt für Arbeitsrecht und für Medizinrecht
+T22	Anwalt 5454 5477	Dr. Hans-Peter Cullmann
+T27	Tel 114 133	+49 (0212) 38 37 50
+T28	Email 134 163	kanzlei@rechtsanwaelte-hsh.de
+T30	Rechtsgebiete 463 487	Zivil- und Vertragsrecht
+T31	Rechtsgebiete 506 518	Arbeitsrecht
+T32	Rechtsgebiete 524 556	Miet- und Wohnungseigentumsrecht
+T33	Rechtsgebiete 562 575	Verkehrsrecht
+T34	Rechtsgebiete 584 592	Baurecht
+T35	Kanzlei 1234 1258	HSH & Daun Rechtsanwälte
+T29	Kanzlei 327 351	HSH & Daun Rechtsanwälte
+T36	Rechtsgebiete 1417 1429	Arbeitsrecht
+T37	Rechtsgebiete 1430 1443	Familienrecht
+T38	Rechtsgebiete 1452 1464	Medizinrecht
+T39	Rechtsgebiete 1465 1494	Miet-/Wohnungs-eigentumsrecht
+T40	Rechtsgebiete 1495 1512	Privates Baurecht
+T41	Rechtsgebiete 1513 1520;1521 1526	Sozial- recht
+T42	Rechtsgebiete 1527 1536;1537 1542	Verkehrs- recht
+T43	Rechtsgebiete 1543 1552;1553 1558	Vertrags- recht
+T44	Rechtsgebiete 1559 1576	Verwaltungs-recht
+T45	Kanzlei 1624 1648	Rechtsanwälte HSH & Daun
+T49	Tel 3466 3485	+49 (0212) 38 37 50
+T50	Email 3486 3515	kanzlei@rechtsanwaelte-hsh.de
+T51	Rechtsgebiete 3815 3839	Zivil- und Vertragsrecht
+T52	Rechtsgebiete 3858 3870	Arbeitsrecht
+T53	Rechtsgebiete 3876 3908	Miet- und Wohnungseigentumsrecht
+T54	Rechtsgebiete 3914 3927	Verkehrsrecht
+T55	Rechtsgebiete 3936 3944	Baurecht
+T56	Kanzlei 4586 4610	HSH & Daun Rechtsanwälte
+T57	Rechtsgebiete 4769 4781	Arbeitsrecht
+T58	Rechtsgebiete 4782 4795	Familienrecht
+T59	Rechtsgebiete 4804 4816	Medizinrecht
+T60	Rechtsgebiete 4817 4846	Miet-/Wohnungs-eigentumsrecht
+T61	Rechtsgebiete 4847 4864	Privates Baurecht
+T62	Rechtsgebiete 4865 4872;4873 4878	Sozial- recht
+T63	Rechtsgebiete 4879 4888;4889 4894	Verkehrs- recht
+T64	Rechtsgebiete 4895 4904;4905 4910	Vertrags- recht
+T65	Rechtsgebiete 4911 4928	Verwaltungs-recht
+T66	Kanzlei 4976 5000	Rechtsanwälte HSH & Daun
+T1	Strasse 70 98	Friedrich-Ebert-Straße 75-77
+T68	Ort 99 113	42719 Solingen
+R1	zuOrt Arg1:T68 Arg2:T1	
+T10	Strasse 3422 3450	Friedrich-Ebert-Straße 75-77
+T11	Ort 3451 3465	42719 Solingen
+R2	zuOrt Arg1:T11 Arg2:T10	

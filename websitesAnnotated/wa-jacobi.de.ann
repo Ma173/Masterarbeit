@@ -1,0 +1,23 @@
+T1	Rechtsgebiete 19 37	Versicherungsrecht
+T2	Rechtsgebiete 40 51	Sozialrecht
+T3	Rechtsgebiete 54 67	Verkehrsrecht
+T6	Tel 444 459	03327 66 80 617
+T7	Fax 465 480	03327-66 80 618
+T8	Email 489 509	service@ra-jacobi.de
+T4	Fachanwalt 128 146	Versicherungsrecht
+T5	Fachanwalt 147 158	Sozialrecht
+T10	Fachanwalt 159 172	Verkehrsrecht
+T11	Tel 196 211	030 213 000 300
+T12	Fax 217 232	030 213 000 303
+T13	Email 241 261	service@ra-jacobi.de
+T14	Strasse 263 279	Ansbacher Str. 5
+T15	Ort 280 292	10787 Berlin
+R1	zuOrt Arg1:T15 Arg2:T14	
+T9	Strasse 511 536	Karl-Liebknecht-Str. 33 b
+T16	Ort 537 557	14542 Werder / Havel
+R2	zuOrt Arg1:T16 Arg2:T9	
+T17	Kanzlei 68 74;75 95	Jacobi Rechtsanwaltskanzlei
+T18	Ort 173 189	Berlin Hauptsitz
+T19	Ort 423 437	Werder / Havel
+T20	Rechtsgebiete 16379 16390	Berufsrecht
+T21	Rechtsgebiete 22136 22147	Berufsrecht

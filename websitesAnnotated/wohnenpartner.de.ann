@@ -1,0 +1,78 @@
+T1	Kanzlei 62 90	KOHNEN PARTNER Rechtsanwälte
+T2	Fachanwalt 196 222	Baurecht & Immobilienrecht
+T3	Bio 247 322	Gründung im Jahre 2000 durch den Fachanwalt für Baurecht Dr. Dominic Kohnen
+T4	Rechtsgebiete 365 368	Bau
+T5	Rechtsgebiete 371 381	Immobilien
+T6	Rechtsgebiete 387 403	Architektenrecht
+T7	Rechtsgebiete 735 778	deutschen und internationalen Bauwirtschaft
+T8	Rechtsgebiete 1042 1059	Bau- & Anlagenbau
+T9	Rechtsgebiete 1060 1093	Internationaler Bau- & Anlagenbau
+T10	Rechtsgebiete 1094 1118	Architekten & Ingenieure
+T11	Rechtsgebiete 1119 1146	Öffentliche Auftragsvergabe
+T12	Rechtsgebiete 1147 1183	Dispute Resolution & Projektcoaching
+T13	Rechtsgebiete 1184 1218	Kompetenznetzwerk Klinikimmobilien
+T14	Email 1287 1308	info@kohnenpartner.de
+T15	Strasse 1330 1356	Holzstraße 2 (Media Tower)
+T16	Ort 1357 1375	D-40221 Düsseldorf
+R1	zuOrt Arg1:T16 Arg2:T15	
+T17	Tel 1379 1400	+49 (0)211 210 940-40
+T18	Fax 1403 1425	+49 (0)211 210 940-449
+T19	Email 1427 1455	duesseldorf@kohnenpartner.de
+T20	Ort 1457 1475	Standort Stuttgart
+T21	Strasse 1477 1496	Felix-Dahn-Straße 4
+T22	Ort 1497 1514	D-70597 Stuttgart
+R2	zuOrt Arg1:T22 Arg2:T21	
+T23	Tel 1518 1539	+49 (0)711 400 514-50
+T24	Fax 1542 1563	+49 (0)711 400 514-59
+T25	Email 1565 1591	stuttgart@kohnenpartner.de
+T26	Ort 1593 1608	Standort Berlin
+T27	Strasse 1610 1632	Düsseldorfer Straße 12
+T28	Ort 1633 1647	D-10719 Berlin
+R3	zuOrt Arg1:T28 Arg2:T27	
+T29	Tel 1651 1671	+49 (0)30 88 62-5022
+T30	Fax 1674 1694	+49 (0)30 88 62-8415
+T31	Email 1696 1719	berlin@kohnenpartner.de
+T32	Ort 1721 1738	Standort Nettetal
+T33	Strasse 1740 1752	Bergstraße 9
+T34	Ort 1753 1778	D-41334 Nettetal-Hinsbeck
+R4	zuOrt Arg1:T34 Arg2:T33	
+T35	Tel 1782 1801	+49 (0)2153 9510-50
+T36	Fax 1804 1823	+49 (0)2153 9510-95
+T37	Email 1825 1850	nettetal@kohnenpartner.de
+T38	Kanzlei 1861 1893	KOHNEN PARTNER mbB Rechtsanwälte
+T39	Rechtsgebiete 2288 2331	deutschen und internationalen Bauwirtschaft
+T40	Anwalt 2517 2535	Dr. Dominic Kohnen
+T41	Anwaeltin 2550 2565	Brigitte Kohnen
+T42	Anwalt 2582 2596	Dirk Rothstein
+T43	Anwaeltin 2611 2630	Anke Vander-Philipp
+T44	Anwalt 2647 2662	Stefan Bouillon
+T45	Anwalt 2689 2702	Peter Ottmann
+T46	Ort 2819 2838	Standort Düsseldorf
+T47	Strasse 2840 2865	Holzstraße 2 (Media Tower
+T48	Ort 2867 2885	D-40221 Düsseldorf
+R5	zuOrt Arg1:T48 Arg2:T47	
+T49	Tel 2889 2910	+49 (0)211 210 940-40
+T50	Fax 2913 2935	+49 (0)211 210 940-449
+T51	Email 2937 2965	duesseldorf@kohnenpartner.de
+T52	Ort 2967 2985	Standort Stuttgart
+T53	Strasse 2987 3006	Felix-Dahn-Straße 4
+T54	Ort 3007 3024	D-70597 Stuttgart
+R6	zuOrt Arg1:T54 Arg2:T53	
+T55	Tel 3028 3049	+49 (0)711 400 514-50
+T56	Fax 3052 3073	+49 (0)711 400 514-59
+T57	Email 3075 3101	stuttgart@kohnenpartner.de
+T58	Ort 3103 3118	Standort Berlin
+T59	Strasse 3120 3142	Düsseldorfer Straße 12
+T60	Ort 3143 3157	D-10719 Berlin
+R7	zuOrt Arg1:T60 Arg2:T59	
+T61	Tel 3161 3181	+49 (0)30 88 62-5022
+T62	Fax 3184 3204	+49 (0)30 88 62-8415
+T63	Email 3206 3229	berlin@kohnenpartner.de
+T64	Ort 3231 3248	Standort Nettetal
+T65	Strasse 3250 3262	Bergstraße 9
+T66	Ort 3263 3288	D-41334 Nettetal-Hinsbeck
+R8	zuOrt Arg1:T66 Arg2:T65	
+T67	Tel 3292 3311	+49 (0)2153 9510-50
+T68	Fax 3314 3333	+49 (0)2153 9510-95
+T69	Email 3335 3360	nettetal@kohnenpartner.de
+T70	Kanzlei 3371 3403	KOHNEN PARTNER mbB Rechtsanwälte

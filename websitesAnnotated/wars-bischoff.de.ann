@@ -1,0 +1,8 @@
+T1	Kanzlei 125 146	Kanzlei Lars Bischoff
+T2	Anwalt 1214 1227	Lars Bischoff
+T3	Strasse 1229 1243	Frankendamm 34
+T4	Ort 1245 1260	18439 Stralsund
+T5	Tel 1268 1280	03831/2867-0
+T6	Fax 1287 1300	03831/2867-29
+T7	Email 1310 1344	rechtsanwalt [at] lars-bischoff.de
+R1	zuOrt Arg1:T4 Arg2:T3	

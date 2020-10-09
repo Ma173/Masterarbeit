@@ -1,0 +1,83 @@
+T1	Tel 23 38	49 631 36226-22
+T2	Rechtsgebiete 280 314	Wohnungseigentumsrecht & Mietrecht
+T3	Rechtsgebiete 316 334;335 343	Architektenrecht & Baurecht
+T4	Rechtsgebiete 384 397	Verkehrsrecht
+T5	Rechtsgebiete 374 375	i
+T6	Rechtsgebiete 360 368	Erbrecht
+T7	Rechtsgebiete 345 358	Familienrecht
+T8	Ort 417 431	Kaiserslautern
+T9	Rechtsgebiete 746 768	Wohnungseigentumsrecht
+T10	Rechtsgebiete 770 779	Mietrecht
+T11	Rechtsgebiete 781 789	Baurecht
+T12	Rechtsgebiete 791 807	Architektenrecht
+T13	Rechtsgebiete 809 822	Familienrecht
+T15	Rechtsgebiete 833 848	Immobilienrecht
+T16	Rechtsgebiete 850 862	Arbeitsrecht
+T17	Rechtsgebiete 864 892	Sozial- und Verwaltungsrecht
+T18	Rechtsgebiete 894 921	Arzt- und Arzthaftungsrecht
+T19	Rechtsgebiete 923 936	Vertragsrecht
+T20	Rechtsgebiete 938 951	Verkehrsrecht
+T14	Ort 1068 1082	Kaiserslautern
+T21	Kanzlei 1568 1590	Rechtsanwälte Fuhrmann
+T22	Strasse 1592 1609	Karl-Marx-Str. 15
+T23	Ort 1611 1631	67655 Kaiserslautern
+R1	zuOrt Arg1:T23 Arg2:T22	
+T24	Tel 1637 1650	0631 36226-22
+T25	Email 1660 1678	info@rafuhrmann.de
+T26	Strasse 1776 1795	Karl-Marx-Straße 15
+T27	Ort 1755 1775	67655 Kaiserslautern
+R2	zuOrt Arg1:T27 Arg2:T26	
+T28	Tel 1802 1817	49 631 36226-22
+T29	Fax 1826 1841	49 631 36226-77
+T30	Email 1850 1868	info@rafuhrmann.de
+T31	Kanzlei 2039 2061	Rechtsanwälte Fuhrmann
+T32	Rechtsgebiete 2125 2147	Wohnungseigentumsrecht
+T33	Rechtsgebiete 2148 2177	Baurecht und Architektenrecht
+T34	Rechtsgebiete 2178 2191	Familienrecht
+T35	Rechtsgebiete 2201 2216	Immobilienrecht
+T36	Rechtsgebiete 2217 2229	Arbeitsrecht
+T37	Rechtsgebiete 2192 2200	Erbrecht
+T38	Rechtsgebiete 2230 2241	Sozialrecht
+T39	Rechtsgebiete 2242 2269	Arzt- und Arzthaftungsrecht
+T40	Rechtsgebiete 2270 2283	Vertragsrecht
+T41	Rechtsgebiete 2284 2297	Verkehrsrecht
+T42	Rechtsgebiete 2304 2311	Bußgeld
+T43	Rechtsgebiete 2312 2322	Strafrecht
+T44	Rechtsgebiete 2323 2349	Forderungseinzug / Inkasso
+T45	Rechtsgebiete 2350 2391	Zwangsvollstreckung / Zwangsversteigerung
+T46	Rechtsgebiete 2462 2471	Mietrecht
+T47	Anwalt 2648 2669	Klaus Jürgen Fuhrmann
+T48	Anwaeltin 2685 2700	Christina Rumpf
+T49	Kanzlei 2719 2741	Rechtsanwälte Fuhrmann
+T50	Rechtsgebiete 2472 2488	Verwaltungsrecht
+T51	Tel 2567 2582	49 631 36226-22
+T52	Rechtsgebiete 2805 2827	Wohnungseigentumsrecht
+T53	Rechtsgebiete 2828 2857	Baurecht und Architektenrecht
+T54	Rechtsgebiete 2858 2871	Familienrecht
+T55	Rechtsgebiete 2872 2880	Erbrecht
+T56	Rechtsgebiete 2881 2896	Immobilienrecht
+T57	Rechtsgebiete 2897 2909	Arbeitsrecht
+T58	Rechtsgebiete 2910 2921	Sozialrecht
+T59	Rechtsgebiete 2922 2949	Arzt- und Arzthaftungsrecht
+T60	Rechtsgebiete 2950 2963	Vertragsrecht
+T61	Anwalt 3328 3349	Klaus Jürgen Fuhrmann
+T62	Anwaeltin 3365 3380	Christina Rumpf
+T63	Kanzlei 3399 3421	Rechtsanwälte Fuhrmann
+T64	Email 3485 3507	Wohnungseigentumsrecht
+T65	Email 3508 3537	Baurecht und Architektenrecht
+T66	Email 3538 3551	Familienrecht
+T67	Email 3552 3560	Erbrecht
+T68	Email 3561 3576	Immobilienrecht
+T69	Email 3577 3589	Arbeitsrecht
+T70	Email 3590 3601	Sozialrecht
+T71	Email 3602 3629	Arzt- und Arzthaftungsrecht
+T72	Email 3630 3643	Vertragsrecht
+T73	Email 3644 3657	Verkehrsrecht
+T75	Rechtsgebiete 3822 3831	Mietrecht
+T76	Rechtsgebiete 3832 3848	Verwaltungsrecht
+T77	Rechtsgebiete 2992 3002	Strafrecht
+T78	Rechtsgebiete 3142 3151	Mietrecht
+T74	Rechtsgebiete 2964 2991	Verkehrsrecht incl. Bußgeld
+T79	Rechtsgebiete 3003 3029	Forderungseinzug / Inkasso
+T80	Rechtsgebiete 3030 3071	Zwangsvollstreckung / Zwangsversteigerung
+T81	Tel 3246 3262	+49 631 36226-22

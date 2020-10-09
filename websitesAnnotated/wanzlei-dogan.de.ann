@@ -1,0 +1,19 @@
+T1	Anwalt 1750 1761	Özkan Dogan
+T2	Strasse 1762 1779	Bleichenbrücke 11
+T3	Ort 1780 1793	20354 Hamburg
+R1	zuOrt Arg1:T3 Arg2:T2	
+T4	Tel 1803 1817	(040) 41307813
+T5	Fax 1827 1841	(040) 41307815
+T6	Email 1850 1878	kanzlei-dogan[at]t-online.de
+T7	Kanzlei 1882 1895	Kanzlei Dogan
+T8	Anwalt 3376 3387	Özkan Dogan
+T9	Strasse 3388 3405	Bleichenbrücke 11
+T10	Ort 3406 3419	20354 Hamburg
+R2	zuOrt Arg1:T10 Arg2:T9	
+T11	Tel 3429 3443	(040) 41307813
+T12	Fax 3453 3467	(040) 41307815
+T13	Email 3476 3504	kanzlei-dogan[at]t-online.de
+T14	Rechtsgebiete 276 298	Allgemeinen Zivilrecht
+T15	Rechtsgebiete 303 316	Verkehrsrecht
+T16	Rechtsgebiete 321 337	Wirtschaftsrecht
+T17	Rechtsgebiete 345 370	Miet- und Immobilienrecht

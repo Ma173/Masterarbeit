@@ -1,0 +1,23 @@
+T1	Kanzlei 21 46	Klein Fuchs Rechtsanwälte
+T2	Kanzlei 84 107	Kanzlei Klein und Fuchs
+T3	Anwalt 110 122	Harald Klein
+T4	Anwalt 127 139	Alfons Fuchs
+T5	Kanzlei 1256 1281	Klein Fuchs Rechtsanwälte
+T6	Anwalt 1345 1357	Harald Klein
+T7	Anwalt 1362 1374	Alfons Fuchs
+T8	Kanzlei 2504 2529	Klein Fuchs Rechtsanwälte
+T9	Anwalt 2536 2548	Harald Klein
+T10	Bio 144 236	Mai 1978 nahm der Kanzleigründer Harald Klein seine Tätigkeit als selbständiger Rechtsanwalt
+T11	Bio 419 468	Partner Alfons Fuchs trat 1983 in die Kanzlei ein
+T12	Strasse 540 555	Rheinstrasse 62
+T13	Ort 557 580	56235 Ransbach-Baumbach
+R1	zuOrt Arg1:T13 Arg2:T12	
+T14	Bio 1379 1471	Mai 1978 nahm der Kanzleigründer Harald Klein seine Tätigkeit als selbständiger Rechtsanwalt
+T15	Bio 1654 1703	Partner Alfons Fuchs trat 1983 in die Kanzlei ein
+T16	Bio 2600 2689	Studium der Volkswirtschaftslehre und der Rechtswissenschaften an der Universität zu Köln
+T17	Bio 2690 2728	1974: 1. juristisches Staatsexamen NRW
+T18	Bio 2729 2779	1978: 2. juristisches Staatsexamen Rheinland-Pfalz
+T19	Bio 2780 2847	1978: Zulassung als Rechtsanwalt und Gründung einer eigenen Kanzlei
+T20	Fachanwalt 2859 2886	Fachanwalt für Arbeitsrecht
+T21	Rechtsgebiete 3055 3082	Familien- und Verkehrsrecht
+T22	Bio 3550 3588	Vorsitzender der FDP-Kreistagsfraktion

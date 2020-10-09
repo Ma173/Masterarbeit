@@ -1,0 +1,18 @@
+T1	Tel 21 46	+49 (0) 3943 / 94 44 06 6
+T2	Rechtsgebiete 302 315	Verkehrsrecht
+T3	Rechtsgebiete 330 341	Steuerrecht
+T4	Rechtsgebiete 356 369	Familienrecht
+T5	Rechtsgebiete 384 396	Arbeitsrecht
+T6	Kanzlei 445 465	Rechtsanwälte Zocher
+T7	Strasse 466 497	Johann-Sebastian-Bach-Straße 13
+T8	Ort 498 515	38855 Wernigerode
+R1	zuOrt Arg1:T8 Arg2:T7	
+T9	Tel 517 542	+49 (0) 3943 / 94 44 06 6
+T10	Email 544 570	info@zocher-wernigerode.de
+T11	Rechtsgebiete 637 649	Arbeitsrecht
+T12	Rechtsgebiete 650 658	Erbrecht
+T13	Rechtsgebiete 659 672	Familienrecht
+T14	Rechtsgebiete 673 682	Mietrecht
+T15	Rechtsgebiete 683 694	Steuerrecht
+T16	Rechtsgebiete 695 708	Verkehrsrecht
+T17	Kanzlei 727 747	Rechtsanwälte Zocher

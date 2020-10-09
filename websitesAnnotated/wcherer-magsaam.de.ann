@@ -1,0 +1,61 @@
+T1	Kanzlei 36 57	Scherer & Dr. Magsaam
+T2	Ort 91 99	Büdingen
+T3	Kanzlei 371 403	Kanz­lei Sche­rer & Dr. Mag­saam
+T4	Strasse 422 434	Casa Atri­um
+T5	Ort 438 447	Büdin­gen
+R1	zuOrt Arg1:T5 Arg2:T4	
+T6	Fachanwalt 958 998	Fach­an­walt­schaft das Fami­li­en­recht
+T7	Anwalt 1453 1466	Fritz Scherer
+T8	Fachanwalt 1493 1526	Fach­an­walt für Fami­li­en­recht
+T9	Anwaeltin 1528 1545	Ann-Christin Bach
+T10	Anwalt 1566 1588	Dr. jur. Niels Magsaam
+T11	Kanzlei 1641 1662	Scherer & Dr. Magsaam
+T12	Strasse 1664 1682	An der Fahr­bach 1
+T13	Ort 1683 1698	63654 Büdin­gen
+R2	zuOrt Arg1:T13 Arg2:T12	
+T14	Tel 1705 1721	06042 — 97 96 50
+T15	Fax 1727 1744	06042 — 97 96 528
+T16	Kanzlei 2553 2585	Kanz­lei Sche­rer & Dr. Mag­saam
+T17	Strasse 2604 2616	Casa Atri­um
+T18	Ort 2620 2629	Büdin­gen
+R3	zuOrt Arg1:T18 Arg2:T17	
+T19	Fachanwalt 3140 3180	Fach­an­walt­schaft das Fami­li­en­recht
+T20	Rechtsgebiete 2975 2985	Miet­recht
+T21	Rechtsgebiete 2987 3002	Ver­kehrs­recht
+T22	Rechtsgebiete 3004 3012	Erbrecht
+T23	Rechtsgebiete 3026 3037	Straf­recht
+T24	Rechtsgebiete 3042 3071	Ord­nungs­wid­rig­keits­recht
+T25	Rechtsgebiete 793 803	Miet­recht
+T26	Rechtsgebiete 805 820	Ver­kehrs­recht
+T27	Rechtsgebiete 822 830	Erbrecht
+T28	Rechtsgebiete 844 855	Straf­recht
+T29	Rechtsgebiete 860 889	Ord­nungs­wid­rig­keits­recht
+T30	Anwalt 3635 3648	Fritz Scherer
+T31	Fachanwalt 3675 3708	Fach­an­walt für Fami­li­en­recht
+T32	Anwaeltin 3710 3727	Ann-Christin Bach
+T33	Anwalt 3748 3770	Dr. jur. Niels Magsaam
+T34	Kanzlei 3823 3844	Scherer & Dr. Magsaam
+T35	Strasse 3846 3864	An der Fahr­bach 1
+T36	Ort 3865 3880	63654 Büdin­gen
+R4	zuOrt Arg1:T36 Arg2:T35	
+T37	Tel 3887 3903	06042 — 97 96 50
+T38	Fax 3909 3926	06042 — 97 96 528
+T39	Kanzlei 4735 4767	Kanz­lei Sche­rer & Dr. Mag­saam
+T40	Strasse 4786 4798	Casa Atri­um
+T41	Ort 4802 4811	Büdin­gen
+R5	zuOrt Arg1:T41 Arg2:T40	
+T42	Rechtsgebiete 5157 5167	Miet­recht
+T43	Rechtsgebiete 5169 5184	Ver­kehrs­recht
+T44	Rechtsgebiete 5186 5194	Erbrecht
+T45	Rechtsgebiete 5208 5219	Straf­recht
+T46	Rechtsgebiete 5224 5253	Ord­nungs­wid­rig­keits­recht
+T47	Fachanwalt 5322 5362	Fach­an­walt­schaft das Fami­li­en­recht
+T48	Anwalt 5817 5830	Fritz Scherer
+T49	Fachanwalt 5857 5890	Fach­an­walt für Fami­li­en­recht
+T50	Anwaeltin 5892 5909	Ann-Christin Bach
+T51	Anwalt 5930 5952	Dr. jur. Niels Magsaam
+T52	Kanzlei 6005 6026	Scherer & Dr. Magsaam
+T53	Strasse 6028 6046	An der Fahr­bach 1
+T54	Ort 6047 6062	63654 Büdin­gen
+T55	Tel 6069 6085	06042 — 97 96 50
+T56	Fax 6091 6108	06042 — 97 96 528

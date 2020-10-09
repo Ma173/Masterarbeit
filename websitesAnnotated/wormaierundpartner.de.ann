@@ -1,0 +1,198 @@
+T1	Tel 51 62	089/8573030
+T2	Anwalt 707 722	Stefan Kormaier
+T3	Anwalt 724 745	Dr. Florian Ponholzer
+T4	Anwalt 750 764	Klaus Kormaier
+T5	Rechtsgebiete 815 836	allgemeine Zivilrecht
+T6	Rechtsgebiete 842 868	Verkehrs- und Arbeitsrecht
+T7	Rechtsgebiete 874 902	Miet- und Wohneigentumsrecht
+T8	Rechtsgebiete 913 921	Erbrecht
+T9	Rechtsgebiete 978 1009	Handels- und Gesellschaftsrecht
+T10	Rechtsgebiete 1016 1033	privatem Baurecht
+T11	Tel 1421 1432	089/8573030
+T12	Rechtsgebiete 1544 1566	Allgemeines Zivilrecht
+T13	Rechtsgebiete 1567 1613	Verkehrsrecht in Zivil-, Owi-, und Strafsachen
+T14	Rechtsgebiete 1614 1626	Arbeitsrecht
+T15	Rechtsgebiete 1627 1659	Miet- und Wohnungseigentumsrecht
+T16	Rechtsgebiete 1660 1668	Erbrecht
+T17	Rechtsgebiete 1669 1686	privates Baurecht
+T18	Rechtsgebiete 1687 1718	Handels- und Gesellschaftsrecht
+T19	Rechtsgebiete 1719 1736	Forderungsinkasso
+T20	Anwalt 1895 1910	Stefan Kormaier
+T21	Fachanwalt 1935 1963	Fachanwalt für Verkehrsrecht
+T22	Anwalt 1965 1986	Dr. Florian Ponholzer
+T23	Fachanwalt 1988 2014	Fachanwalt für Steuerrecht
+T24	Fachanwalt 2016 2044;2046 2055	Fachanwalt für Mietrecht und WEG-Recht
+T25	Anwalt 2057 2071	Klaus Kormaier
+T26	Anwalt 2096 2111	Stefan Kormaier
+T27	Fachanwalt 2139 2167	Fachanwalt für Verkehrsrecht
+T28	Bio 2169 2178	geb. 1973
+T29	Bio 2183 2234	Studium der Rechtswissenschaften an der LMU München
+T30	Bio 2236 2269	1. und 2. Staatsexamen in München
+T31	Rechtsgebiete 2628 2636	Erbrecht
+T32	Rechtsgebiete 2642 2673	Handels- und Gesellschaftsrecht
+T33	Rechtsgebiete 2684 2705	allgemeine Zivilrecht
+T34	Anwalt 2789 2810	Dr. Florian Ponholzer
+T35	Fachanwalt 2815 2841	Fachanwalt für Steuerrecht
+T36	Fachanwalt 2843 2881	Fachanwalt für Mietrecht und WEG-Recht
+T37	Bio 2883 2903	geb. 1980 in München
+T38	Bio 2905 2919	Promotion 2013
+T39	Bio 2924 2946	Rechtsanwalt seit 2008
+T40	Bio 2948 2976	Eintritt in die Kanzlei 2017
+T41	Bio 2978 3051	Dozent für Privatrecht bei der Handwerkskammer für München und Oberbayern
+T42	Rechtsgebiete 3081 3109	Mietrecht (Wohnraum, Gewerbe
+T43	Rechtsgebiete 3112 3122	Pachtrecht
+T44	Rechtsgebiete 3124 3139	Immobilienrecht
+T45	Rechtsgebiete 3141 3174	Grundstücksrecht und Nachbarrecht
+T46	Rechtsgebiete 3215 3227	Arbeitsrecht
+T47	Rechtsgebiete 3229 3240	Steuerrecht
+T48	Rechtsgebiete 3242 3258	Steuerstrafrecht
+T49	Anwalt 3260 3274	Klaus Kormaier
+T50	Bio 3302 3311	geb. 1948
+T51	Bio 3316 3367	Studium der Rechtswissenschaften an der LMU München
+T52	Bio 3369 3402	1. und 2. Staatsexamen in München
+T53	Bio 3404 3470	Rechtsanwalt Klaus Kormaier hat im Jahr 1978 die Kanzlei gegründet
+T54	Rechtsgebiete 3511 3534	allgemeinen Zivilrechts
+T55	Rechtsgebiete 3540 3575	Gesellschafts- und Immobilienrechts
+T56	Rechtsgebiete 3581 3594	Arbeitsrechts
+T57	Rechtsgebiete 3605 3623	privaten Baurechts
+T58	Rechtsgebiete 3744 3767	Testamentsvollstreckung
+T59	Tel 4216 4227	089/8573030
+T60	Strasse 6739 6755	Bahnhofstraße 34
+T61	Ort 6758 6771	82152 Planegg
+R1	zuOrt Arg1:T61 Arg2:T60	
+T62	Kanzlei 6855 6873	Kormaier & Partner
+T63	Strasse 6875 6891	Bahnhofstraße 34
+T64	Ort 6892 6905	82152 Planegg
+R2	zuOrt Arg1:T64 Arg2:T63	
+T65	Tel 6916 6931	089 / 857 30 30
+T66	Fax 6937 6952	089 / 857 53 65
+T67	Email 6953 6982	kanzlei@kormaierundpartner.de
+T68	Anwalt 8028 8043	Stefan Kormaier
+T69	Anwalt 8045 8066	Dr. Florian Ponholzer
+T70	Anwalt 8071 8085	Klaus Kormaier
+T71	Rechtsgebiete 8136 8157	allgemeine Zivilrecht
+T72	Rechtsgebiete 8163 8189	Verkehrs- und Arbeitsrecht
+T73	Rechtsgebiete 8195 8223	Miet- und Wohneigentumsrecht
+T74	Rechtsgebiete 8234 8242	Erbrecht
+T75	Rechtsgebiete 8299 8330	Handels- und Gesellschaftsrecht
+T76	Rechtsgebiete 8346 8354	Baurecht
+T77	Tel 8742 8753	089/8573030
+T78	Rechtsgebiete 8865 8887	Allgemeines Zivilrecht
+T79	Rechtsgebiete 8888 8934	Verkehrsrecht in Zivil-, Owi-, und Strafsachen
+T80	Rechtsgebiete 8935 8947	Arbeitsrecht
+T81	Rechtsgebiete 8948 8980	Miet- und Wohnungseigentumsrecht
+T82	Rechtsgebiete 8981 8989	Erbrecht
+T83	Rechtsgebiete 8990 9007	privates Baurecht
+T84	Rechtsgebiete 9008 9039	Handels- und Gesellschaftsrecht
+T85	Rechtsgebiete 9040 9057	Forderungsinkasso
+T86	Anwalt 9196 9211	Stefan Kormaier
+T87	Fachanwalt 9236 9264	Fachanwalt für Verkehrsrecht
+T88	Anwalt 9266 9287	Dr. Florian Ponholzer
+T89	Fachanwalt 9289 9315	Fachanwalt für Steuerrecht
+T90	Fachanwalt 9317 9345;9347 9356	Fachanwalt für Mietrecht und WEG-Recht
+T91	Anwalt 9358 9372	Klaus Kormaier
+T92	Anwalt 9397 9412	Stefan Kormaier
+T93	Fachanwalt 9440 9468	Fachanwalt für Verkehrsrecht
+T94	Bio 9470 9479	geb. 1973
+T95	Bio 9484 9535	Studium der Rechtswissenschaften an der LMU München
+T96	Bio 9537 9570	1. und 2. Staatsexamen in München
+T97	Rechtsgebiete 9929 9937	Erbrecht
+T98	Rechtsgebiete 9943 9974	Handels- und Gesellschaftsrecht
+T99	Rechtsgebiete 9985 10006	allgemeine Zivilrecht
+T100	Anwalt 10090 10111	Dr. Florian Ponholzer
+T101	Fachanwalt 10116 10142	Fachanwalt für Steuerrecht
+T102	Fachanwalt 10144 10182	Fachanwalt für Mietrecht und WEG-Recht
+T103	Bio 10184 10204	geb. 1980 in München
+T104	Bio 10206 10220	Promotion 2013
+T105	Bio 10225 10247	Rechtsanwalt seit 2008
+T106	Bio 10249 10277	Eintritt in die Kanzlei 2017
+T107	Bio 10279 10352	Dozent für Privatrecht bei der Handwerkskammer für München und Oberbayern
+T108	Rechtsgebiete 10382 10410	Mietrecht (Wohnraum, Gewerbe
+T109	Rechtsgebiete 10413 10423	Pachtrecht
+T110	Rechtsgebiete 10425 10440	Immobilienrecht
+T111	Rechtsgebiete 10442 10475	Grundstücksrecht und Nachbarrecht
+T112	Rechtsgebiete 10516 10528	Arbeitsrecht
+T113	Rechtsgebiete 10530 10541	Steuerrecht
+T114	Rechtsgebiete 10543 10559	Steuerstrafrecht
+T115	Anwalt 10561 10575	Klaus Kormaier
+T116	Bio 10603 10612	geb. 1948
+T117	Bio 10617 10668	Studium der Rechtswissenschaften an der LMU München
+T118	Bio 10670 10703	1. und 2. Staatsexamen in München
+T119	Bio 10705 10771	Rechtsanwalt Klaus Kormaier hat im Jahr 1978 die Kanzlei gegründet
+T120	Rechtsgebiete 10812 10835	allgemeinen Zivilrechts
+T121	Rechtsgebiete 10841 10876	Gesellschafts- und Immobilienrechts
+T122	Rechtsgebiete 10882 10895	Arbeitsrechts
+T123	Rechtsgebiete 10906 10924	privaten Baurechts
+T124	Rechtsgebiete 11045 11068	Testamentsvollstreckung
+T125	Tel 11517 11528	089/8573030
+T126	Strasse 14040 14056	Bahnhofstraße 34
+T127	Ort 14059 14072	82152 Planegg
+T128	Kanzlei 14156 14174	Kormaier & Partner
+T129	Strasse 14176 14192	Bahnhofstraße 34
+T130	Ort 14193 14206	82152 Planegg
+T131	Tel 14217 14232	089 / 857 30 30
+T132	Fax 14238 14253	089 / 857 53 65
+T133	Email 14254 14283	kanzlei@kormaierundpartner.de
+T134	Tel 14673 14684	089/8573030
+T135	Anwalt 15329 15344	Stefan Kormaier
+T136	Anwalt 15346 15367	Dr. Florian Ponholzer
+T137	Anwalt 15372 15386	Klaus Kormaier
+T138	Rechtsgebiete 15437 15458	allgemeine Zivilrecht
+T139	Rechtsgebiete 15464 15490	Verkehrs- und Arbeitsrecht
+T140	Rechtsgebiete 15496 15524	Miet- und Wohneigentumsrecht
+T141	Rechtsgebiete 15535 15543	Erbrecht
+T142	Rechtsgebiete 15600 15631	Handels- und Gesellschaftsrecht
+T143	Rechtsgebiete 15638 15655	privatem Baurecht
+T144	Tel 16043 16054	089/8573030
+T145	Rechtsgebiete 16189 16235	Verkehrsrecht in Zivil-, Owi-, und Strafsachen
+T146	Rechtsgebiete 16236 16248	Arbeitsrecht
+T147	Rechtsgebiete 16249 16281	Miet- und Wohnungseigentumsrecht
+T148	Rechtsgebiete 16282 16290	Erbrecht
+T149	Rechtsgebiete 16291 16308	privates Baurecht
+T150	Rechtsgebiete 16309 16340	Handels- und Gesellschaftsrecht
+T151	Rechtsgebiete 16341 16358	Forderungsinkasso
+T152	Anwalt 16497 16512	Stefan Kormaier
+T153	Fachanwalt 16537 16565	Fachanwalt für Verkehrsrecht
+T154	Anwalt 16567 16588	Dr. Florian Ponholzer
+T155	Fachanwalt 16590 16616	Fachanwalt für Steuerrecht
+T156	Fachanwalt 16618 16646;16648 16657	Fachanwalt für Mietrecht und WEG-Recht
+T157	Anwalt 16659 16673	Klaus Kormaier
+T158	Anwalt 16698 16713	Stefan Kormaier
+T159	Fachanwalt 16741 16769	Fachanwalt für Verkehrsrecht
+T160	Bio 16771 16780	geb. 1973
+T161	Bio 16785 16836	Studium der Rechtswissenschaften an der LMU München
+T162	Bio 16838 16871	1. und 2. Staatsexamen in München
+T163	Rechtsgebiete 17230 17238	Erbrecht
+T164	Rechtsgebiete 17244 17275	Handels- und Gesellschaftsrecht
+T165	Rechtsgebiete 17286 17307	allgemeine Zivilrecht
+T166	Anwalt 17391 17412	Dr. Florian Ponholzer
+T167	Fachanwalt 17417 17443	Fachanwalt für Steuerrecht
+T168	Fachanwalt 17445 17483	Fachanwalt für Mietrecht und WEG-Recht
+T169	Bio 17485 17505	geb. 1980 in München
+T170	Bio 17507 17521	Promotion 2013
+T171	Bio 17526 17548	Rechtsanwalt seit 2008
+T172	Bio 17550 17578	Eintritt in die Kanzlei 2017
+T173	Bio 17580 17653	Dozent für Privatrecht bei der Handwerkskammer für München und Oberbayern
+T174	Rechtsgebiete 17683 17711	Mietrecht (Wohnraum, Gewerbe
+T175	Rechtsgebiete 17714 17724	Pachtrecht
+T176	Rechtsgebiete 17726 17741	Immobilienrecht
+T177	Rechtsgebiete 17743 17776	Grundstücksrecht und Nachbarrecht
+T178	Rechtsgebiete 17817 17829	Arbeitsrecht
+T179	Rechtsgebiete 17831 17842	Steuerrecht
+T180	Rechtsgebiete 17844 17860	Steuerstrafrecht
+T181	Anwalt 17862 17876	Klaus Kormaier
+T182	Bio 17904 17913	geb. 1948
+T183	Bio 17918 17969	Studium der Rechtswissenschaften an der LMU München
+T184	Bio 18006 18072	Rechtsanwalt Klaus Kormaier hat im Jahr 1978 die Kanzlei gegründet
+T185	Rechtsgebiete 18346 18369	Testamentsvollstreckung
+T186	Tel 18818 18829	089/8573030
+T187	Strasse 21341 21357	Bahnhofstraße 34
+T188	Ort 21360 21373	82152 Planegg
+R3	zuOrt Arg1:T188 Arg2:T187	
+T189	Kanzlei 21443 21456;21457 21475	Rechtsanwälte Kormaier & Partner
+T190	Strasse 21477 21493	Bahnhofstraße 34
+T191	Ort 21494 21507	82152 Planegg
+R4	zuOrt Arg1:T191 Arg2:T190	
+T192	Tel 21518 21533	089 / 857 30 30
+T193	Fax 21539 21554	089 / 857 53 65
+T194	Email 21555 21584	kanzlei@kormaierundpartner.de

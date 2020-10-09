@@ -1,0 +1,49 @@
+T1	Kanzlei 59 77	Kanzlei am Rondell
+T2	Strasse 82 91	Rondell 3
+T3	Ort 92 105	66424 Homburg
+T4	Tel 117 129	06841 - 3011
+T5	Fax 135 147	06841 - 3022
+T6	Email 158 183	info@kanzlei-amrondell.de
+T7	Kanzlei 186 204	Kanzlei AM RONDELL
+T8	Ort 211 223	Homburg/Saar
+T9	Rechtsgebiete 337 350	Familienrecht
+T10	Anwalt 834 846	Horst Kiefer
+T11	Anwalt 981 992	Lutz Riebel
+T12	Fachanwalt 997 1025	Fachanwalt für Familienrecht
+T13	Anwalt 1238 1251	Erhard Rubert
+T14	Rechtsgebiete 1264 1289	Bau- und Architektenrecht
+T15	Rechtsgebiete 1295 1307	Arbeitsrecht
+T16	Rechtsgebiete 1316 1334	WEG- und Mietrecht
+T17	Strasse 1926 1935	Rondell 3
+T18	Ort 1937 1950	66424 Homburg
+R1	zuOrt Arg1:T18 Arg2:T17	
+T19	Anwalt 2346 2359	Erhard Rubert
+T20	Anwalt 2378 2389	Lutz Riebel
+T21	Fachanwalt 2390 2435	Rechtsanwalt und Fachanwalt für Familienrecht
+T22	Kanzlei 2619 2637	Kanzlei am Rondell
+T23	Strasse 2642 2651	Rondell 3
+T24	Ort 2652 2665	66424 Homburg
+R2	zuOrt Arg1:T24 Arg2:T23	
+T25	Tel 2677 2689	06841 - 3011
+T26	Fax 2695 2707	06841 - 3022
+T27	Email 2718 2743	info@kanzlei-amrondell.de
+T28	Anwalt 2759 2772	Erhard Rubert
+T29	Anwalt 2787 2800	Erhard Rubert
+T30	Rechtsgebiete 2840 2865	Bau- und Architektenrecht
+T31	Rechtsgebiete 2866 2898	Miet- und Wohnungseigentumsrecht
+T32	Rechtsgebiete 2899 2910	Arbeitsrech
+T33	Kanzlei 3251 3269	Kanzlei am Rondell
+T34	Strasse 3274 3283	Rondell 3
+T35	Ort 3284 3297	66424 Homburg
+T36	Tel 3309 3321	06841 - 3011
+T37	Fax 3327 3339	06841 - 3022
+T38	Email 3350 3375	info@kanzlei-amrondell.de
+T39	Anwalt 3391 3402	Lutz Riebel
+T40	Fachanwalt 3404 3432	Fachanwalt für Familienrecht
+T41	Fachanwalt 3452 3480	Fachanwalt für Familienrecht
+T42	Anwalt 3484 3495	Lutz Riebel
+T43	Rechtsgebiete 3537 3550	Familienrecht
+T44	Rechtsgebiete 3551 3559	Erbrecht
+T45	Rechtsgebiete 3560 3573	Vorsorgerecht
+T46	Rechtsgebiete 3574 3587	Verkehrsrecht
+T47	Rechtsgebiete 3588 3597	Zivilrech

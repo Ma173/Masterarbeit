@@ -1,0 +1,244 @@
+T1	Kanzlei 16 32	SEIBEL & PARTNER
+T2	Anwaeltin 1056 1075	Dr. Marina Bolinski
+T3	Fachanwalt 1091 1120	Fachanwältin für Arbeitsrecht
+T4	Fachanwalt 1121 1154	Fachanwältin für Verwaltungsrecht
+T5	Anwalt 1168 1185	Dr. Andreas Dymke
+T6	Fachanwalt 1199 1232	Fachanwalt für Versicherungsrecht
+T7	Fachanwalt 1233 1260	Fachanwalt für Medizinrecht
+T8	Anwaeltin 1275 1284	Eva Meyer
+T9	Anwaeltin 1313 1326	Linn van Raay
+T10	Fachanwalt 1342 1372	Fachanwältin für Familienrecht
+T11	Fachanwalt 1373 1418	Fachanwältin für Informationstechnologierecht
+T12	Fachanwalt 1419 1449	Fachanwältin für Verkehrsrecht
+T13	Anwalt 1463 1481	Bernhard C. Seibel
+T14	Fachanwalt 1513 1539	Fachanwalt für Steuerrecht
+T15	Fachanwalt 1540 1569	Fachanwalt für Insolvenzrecht
+T16	Fachanwalt 1570 1610	Fachanwalt für Bau- und Architektenrecht
+T17	Anwalt 1625 1643	Dr. Wilhelm Denzer
+T19	Rechtsgebiete 2118 2134	Architektenrecht
+T21	Rechtsgebiete 2169 2177	Baurecht
+T23	Rechtsgebiete 2224 2241	privates Baurecht
+T25	Rechtsgebiete 2280 2301	öffentliches Baurecht
+T26	Rechtsgebiete 2304 2320	Datenschutzrecht
+T29	Rechtsgebiete 2400 2408	Erbrecht
+T30	Anwaeltin 2410 2434	Rechtsanwältin Eva Meyer
+T31	Rechtsgebiete 2436 2450	Insolvenzrecht
+T32	Anwalt 2452 2483	Rechtsanwalt Bernhard C. Seibel
+T33	Anwaeltin 2485 2509	Rechtsanwältin Eva Meyer
+T34	Rechtsgebiete 2514 2519	Recht
+T35	Rechtsgebiete 2521 2537	Datenschutzrecht
+T36	Anwaeltin 2539 2567	Rechtsanwältin Linn van Raay
+T37	Rechtsgebiete 2569 2582	Familienrecht
+T38	Anwaeltin 2596 2624	Rechtsanwältin Linn van Raay
+T39	Anwaeltin 2626 2650	Rechtsanwältin Eva Meyer
+T40	Rechtsgebiete 2652 2664	Medizinrecht
+T41	Anwalt 2666 2696	Rechtsanwalt Dr. Andreas Dymke
+T42	Rechtsgebiete 2698 2717	Miet- und WEG-Recht
+T43	Anwaeltin 2719 2743	Rechtsanwältin Eva Meyer
+T44	Anwaeltin 2745 2779	Rechtsanwältin Dr. Marina Bolinski
+T45	Rechtsgebiete 2781 2792	Pferderecht
+T46	Anwalt 2793 2823	Rechtsanwalt Dr. Andreas Dymke
+T47	Rechtsgebiete 2824 2834	Reiserecht
+T48	Anwaeltin 2836 2870	Rechtsanwältin Dr. Marina Bolinski
+T49	Rechtsgebiete 2872 2883	Steuerrecht
+T50	Anwalt 2885 2916	Rechtsanwalt Bernhard C. Seibel
+T51	Rechtsgebiete 2918 2930	Vergaberecht
+T52	Anwalt 2944 2975	Rechtsanwalt Bernhard C. Seibel
+T53	Anwaeltin 2977 3011	Rechtsanwältin Dr. Marina Bolinski
+T54	Rechtsgebiete 3013 3026	Verkehrsrecht
+T55	Anwaeltin 3028 3058	Rechtsanwalt Dr. Andreas Dymke
+T56	Anwaeltin 3060 3084	Rechtsanwältin Eva Meyer
+T57	Anwaeltin 3086 3114	Rechtsanwältin Linn van Raay
+T58	Rechtsgebiete 3116 3134	Versicherungsrecht
+T59	Anwalt 3136 3166	Rechtsanwalt Dr. Andreas Dymke
+T60	Rechtsgebiete 3168 3184	Verwaltungsrecht
+T61	Anwaeltin 3198 3232	Rechtsanwältin Dr. Marina Bolinski
+T62	Kanzlei 3558 3574	Seibel & Partner
+T63	Strasse 3610 3623	Postfach 2004
+T64	Ort 3624 3635	54210 Trier
+R1	zuOrt Arg1:T64 Arg2:T63	
+T65	Email 3637 3659	info@seibel-partner.de
+T66	Strasse 3679 3694	Böhmerstraße 16
+T67	Ort 3696 3709	D-54290 Trier
+R2	zuOrt Arg1:T67 Arg2:T66	
+T68	Tel 3720 3739	(06 51) 9 75 90 - 0
+T69	Fax 3750 3770	(06 51) 9 75 90 - 90
+T70	Kanzlei 4014 4038	Kanzlei Seibel & Partner
+T71	Anwaeltin 5164 5183	Dr. Marina Bolinski
+T72	Fachanwalt 5199 5228	Fachanwältin für Arbeitsrecht
+T73	Fachanwalt 5229 5262	Fachanwältin für Verwaltungsrecht
+T74	Anwaeltin 5276 5293	Dr. Andreas Dymke
+T75	Fachanwalt 5307 5340	Fachanwalt für Versicherungsrecht
+T76	Fachanwalt 5341 5368	Fachanwalt für Medizinrecht
+T77	Anwaeltin 5383 5392	Eva Meyer
+T78	Anwaeltin 5421 5434	Linn van Raay
+T79	Fachanwalt 5450 5480	Fachanwältin für Familienrecht
+T80	Fachanwalt 5481 5526	Fachanwältin für Informationstechnologierecht
+T81	Fachanwalt 5527 5557	Fachanwältin für Verkehrsrecht
+T82	Anwalt 5571 5589	Bernhard C. Seibel
+T83	Fachanwalt 5590 5620	Rechtsanwalt und Steuerberater
+T84	Fachanwalt 5621 5647	Fachanwalt für Steuerrecht
+T85	Fachanwalt 5648 5677	Fachanwalt für Insolvenzrecht
+T86	Fachanwalt 5678 5718	Fachanwalt für Bau- und Architektenrecht
+T87	Anwaeltin 5733 5751	Dr. Wilhelm Denzer
+T88	Anwaeltin 6190 6224	Rechtsanwältin Dr. Marina Bolinski
+T89	Rechtsgebiete 6226 6242	Architektenrecht
+T90	Anwalt 6244 6275	Rechtsanwalt Bernhard C. Seibel
+T91	Rechtsgebiete 6277 6285	Baurecht
+T92	Anwalt 6312 6330	Bernhard C. Seibel
+T93	Rechtsgebiete 6332 6349	privates Baurecht
+T94	Anwaeltin 6367 6386	Dr. Marina Bolinski
+T95	Rechtsgebiete 6388 6409	öffentliches Baurecht
+T96	Rechtsgebiete 6412 6428	Datenschutzrecht
+T97	Anwaeltin 6457 6476	Dr. Marina Bolinski
+T98	Anwaeltin 6493 6506	Linn van Raay
+T99	Rechtsgebiete 6508 6516	Erbrecht
+T100	Anwaeltin 6533 6542	Eva Meyer
+T101	Rechtsgebiete 6544 6558	Insolvenzrecht
+T102	Anwalt 6573 6591	Bernhard C. Seibel
+T103	Anwaeltin 6608 6617	Eva Meyer
+T104	Rechtsgebiete 6619 6627	IT-Recht
+T105	Rechtsgebiete 6629 6645	Datenschutzrecht
+T106	Anwaeltin 6662 6675	Linn van Raay
+T107	Rechtsgebiete 6677 6690	Familienrecht
+T108	Anwaeltin 6719 6732	Linn van Raay
+T109	Anwaeltin 6749 6758	Eva Meyer
+T110	Rechtsgebiete 6760 6772	Medizinrecht
+T111	Anwalt 6787 6804	Dr. Andreas Dymke
+T112	Rechtsgebiete 6806 6825	Miet- und WEG-Recht
+T113	Anwaeltin 6842 6851	Eva Meyer
+T114	Anwaeltin 6868 6887	Dr. Marina Bolinski
+T115	Rechtsgebiete 6889 6900	Pferderecht
+T116	Anwalt 6914 6931	Dr. Andreas Dymke
+T117	Anwaeltin 6959 6978	Dr. Marina Bolinski
+T118	Rechtsgebiete 6932 6942	Reiserecht
+T119	Rechtsgebiete 6980 6991	Steuerrecht
+T120	Anwalt 7006 7024	Bernhard C. Seibel
+T121	Rechtsgebiete 7026 7038	Vergaberecht
+T122	Anwalt 7065 7083	Bernhard C. Seibel
+T123	Anwaeltin 7100 7119	Dr. Marina Bolinski
+T124	Rechtsgebiete 7121 7134	Verkehrsrecht
+T125	Anwalt 7149 7166	Dr. Andreas Dymke
+T126	Anwaeltin 7183 7192	Eva Meyer
+T127	Anwaeltin 7209 7222	Linn van Raay
+T128	Rechtsgebiete 7224 7242	Versicherungsrecht
+T129	Anwaeltin 7257 7274	Dr. Andreas Dymke
+T130	Rechtsgebiete 7276 7292	Verwaltungsrecht
+T131	Anwaeltin 7321 7340	Dr. Marina Bolinski
+T132	Kanzlei 7568 7584	Seibel & Partner
+T133	Strasse 7620 7633	Postfach 2004
+T134	Ort 7634 7645	54210 Trier
+R3	zuOrt Arg1:T134 Arg2:T133	
+T135	Email 7647 7669	info@seibel-partner.de
+T136	Strasse 7689 7704	Böhmerstraße 16
+T137	Ort 7706 7719	D-54290 Trier
+R4	zuOrt Arg1:T137 Arg2:T136	
+T138	Tel 7730 7749	(06 51) 9 75 90 - 0
+T139	Fax 7760 7780	(06 51) 9 75 90 - 90
+T140	Kanzlei 8024 8048	Kanzlei Seibel & Partner
+T141	Anwaeltin 8203 8222	Dr. Marina Bolinski
+T142	Fachanwalt 8238 8267	Fachanwältin für Arbeitsrecht
+T143	Fachanwalt 8268 8301	Fachanwältin für Verwaltungsrecht
+T144	Anwalt 8315 8332	Dr. Andreas Dymke
+T145	Fachanwalt 8346 8379	Fachanwalt für Versicherungsrecht
+T146	Fachanwalt 8380 8407	Fachanwalt für Medizinrecht
+T147	Anwaeltin 8422 8431	Eva Meyer
+T148	Anwaeltin 8460 8473	Linn van Raay
+T149	Fachanwalt 8489 8519	Fachanwältin für Familienrecht
+T150	Fachanwalt 8520 8565	Fachanwältin für Informationstechnologierecht
+T151	Fachanwalt 8566 8596	Fachanwältin für Verkehrsrecht
+T152	Anwalt 8610 8628	Bernhard C. Seibel
+T153	Fachanwalt 8660 8686	Fachanwalt für Steuerrecht
+T154	Fachanwalt 8687 8716	Fachanwalt für Insolvenzrecht
+T155	Fachanwalt 8717 8757	Fachanwalt für Bau- und Architektenrecht
+T156	Anwalt 8772 8790	Dr. Wilhelm Denzer
+T157	Kanzlei 8904 8920	Seibel & Partner
+T158	Strasse 8956 8969	Postfach 2004
+T159	Ort 8970 8981	54210 Trier
+R5	zuOrt Arg1:T159 Arg2:T158	
+T160	Strasse 8993 9008	Böhmerstraße 16
+T161	Ort 9010 9023	D-54290 Trier
+R6	zuOrt Arg1:T161 Arg2:T160	
+T162	Tel 9034 9053	(06 51) 9 75 90 - 0
+T163	Fax 9064 9084	(06 51) 9 75 90 - 90
+T164	Kanzlei 9202 9226	Kanzlei Seibel & Partner
+T165	Anwaeltin 9383 9402	Dr. Marina Bolinski
+T166	Fachanwalt 9419 9452	Fachanwältin für Verwaltungsrecht
+T167	Fachanwalt 9453 9482	Fachanwältin für Arbeitsrecht
+T168	Rechtsgebiete 10053 10069	Verwaltungsrecht
+T169	Rechtsgebiete 10070 10081	Umweltrecht
+T170	Rechtsgebiete 10082 10094	Arbeitsrecht
+T171	Rechtsgebiete 10095 10111	Datenschutzrecht
+T172	Rechtsgebiete 10112 10148	Allgemeines Zivil- und Vertragsrecht
+T173	Sprachen 10165 10173	Englisch
+T174	Sprachen 10175 10186	Französisch
+T175	Kanzlei 10243 10267	Kanzlei Seibel & Partner
+T176	Anwalt 10423 10441	Bernhard C. Seibel
+T177	Fachanwalt 10474 10500	Fachanwalt für Steuerrecht
+T178	Fachanwalt 10501 10530	Fachanwalt für Insolvenzrecht
+T179	Fachanwalt 10531 10571	Fachanwalt für Bau- und Architektenrecht
+T180	Fachanwalt 10912 10940	Steuer- und Wirtschaftsrecht
+T181	Fachanwalt 10942 10956	Insolvenzrecht
+T182	Fachanwalt 10958 10977	Insolvenzverwaltung
+T183	Fachanwalt 10979 11013	Privates Bau- und Architektenrecht
+T184	Fachanwalt 11015 11024	Bankrecht
+T185	Sprachen 11041 11049	Englisch
+T186	Sprachen 11052 11063	Französisch
+T187	Kanzlei 11120 11144	Kanzlei Seibel & Partner
+T188	Anwalt 11300 11318	Bernhard C. Seibel
+T190	Fachanwalt 11351 11377	Fachanwalt für Steuerrecht
+T191	Fachanwalt 11378 11407	Fachanwalt für Insolvenzrecht
+T192	Fachanwalt 11408 11448	Fachanwalt für Bau- und Architektenrecht
+T189	Fachanwalt 11789 11817	Steuer- und Wirtschaftsrecht
+T193	Fachanwalt 11819 11833	Insolvenzrecht
+T194	Fachanwalt 11835 11854	Insolvenzverwaltung
+T195	Fachanwalt 11856 11890	Privates Bau- und Architektenrecht
+T196	Fachanwalt 11892 11901	Bankrecht
+T197	Sprachen 11918 11926	Englisch
+T198	Sprachen 11929 11940	Französisch
+T199	Kanzlei 11997 12021	Kanzlei Seibel & Partner
+T200	Anwaeltin 12178 12197	Dr. Marina Bolinski
+T201	Fachanwalt 12214 12247	Fachanwältin für Verwaltungsrecht
+T202	Fachanwalt 12248 12277	Fachanwältin für Arbeitsrecht
+T203	Rechtsgebiete 12848 12864	Verwaltungsrecht
+T204	Rechtsgebiete 12865 12876	Umweltrecht
+T205	Rechtsgebiete 12877 12889	Arbeitsrecht
+T206	Rechtsgebiete 12890 12906	Datenschutzrecht
+T207	Rechtsgebiete 12907 12943	Allgemeines Zivil- und Vertragsrecht
+T208	Sprachen 12960 12968	Englisch
+T209	Sprachen 12970 12981	Französisch
+T210	Kanzlei 13038 13062	Kanzlei Seibel & Partner
+T211	Anwaeltin 13219 13238	Dr. Marina Bolinski
+T212	Fachanwalt 13255 13288	Fachanwältin für Verwaltungsrecht
+T213	Fachanwalt 13289 13318	Fachanwältin für Arbeitsrecht
+T214	Rechtsgebiete 13889 13905	Verwaltungsrecht
+T215	Rechtsgebiete 13906 13917	Umweltrecht
+T216	Rechtsgebiete 13918 13930	Arbeitsrecht
+T217	Rechtsgebiete 13931 13947	Datenschutzrecht
+T218	Rechtsgebiete 13948 13984	Allgemeines Zivil- und Vertragsrecht
+T219	Sprachen 14001 14009	Englisch
+T220	Sprachen 14011 14022	Französisch
+T221	Kanzlei 14079 14103	Kanzlei Seibel & Partner
+T222	Anwaeltin 14255 14268	Linn van Raay
+T223	Fachanwalt 14285 14315	Fachanwältin für Familienrecht
+T224	Fachanwalt 14316 14361	Fachanwältin für Informationstechnologierecht
+T225	Fachanwalt 14362 14392	Fachanwältin für Verkehrsrecht
+T226	Rechtsgebiete 14693 14706	Verkehrsrecht
+T227	Rechtsgebiete 14763 14776	Familienrecht
+T228	Rechtsgebiete 14881 14889	IT-Recht
+T229	Sprachen 14966 14977	Französisch
+T230	Sprachen 14979 14987	Englisch
+T231	Kanzlei 15044 15068	Kanzlei Seibel & Partner
+T232	Anwaeltin 15216 15225	Eva Meyer
+T233	Rechtsgebiete 15571 15579	Erbrecht
+T234	Rechtsgebiete 15580 15593	Verkehrsrecht
+T235	Rechtsgebiete 15594 15603	Mietrecht
+T236	Rechtsgebiete 15604 15618	Insolvenzrecht
+T237	Sprachen 15635 15643	Englisch
+T238	Sprachen 15645 15656	Französisch
+T18	Anwaeltin 2097 2116	Dr. Marina Bolinski
+T20	Anwaeltin 2149 2167	Bernhard C. Seibel
+T22	Anwaeltin 2204 2222	Bernhard C. Seibel
+T24	Anwaeltin 2259 2278	Dr. Marina Bolinski
+T27	Anwaeltin 2349 2368	Dr. Marina Bolinski
+T28	Anwaeltin 2385 2398	Linn van Raay

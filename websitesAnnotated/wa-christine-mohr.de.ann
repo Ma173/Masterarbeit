@@ -1,0 +1,123 @@
+T1	Strasse 16498 16516	Residenzstraße 65A
+T2	Ort 16517 16543	86633 Neuburg an der Donau
+R1	zuOrt Arg1:T2 Arg2:T1	
+T3	Strasse 22239 22257	Residenzstraße 65A
+T4	Ort 22258 22284	86633 Neuburg an der Donau
+R2	zuOrt Arg1:T4 Arg2:T3	
+T5	Anwaeltin 5001 5015	Christine Mohr
+T6	Strasse 5017 5035	Residenzstraße 65A
+T7	Ort 5036 5062	86633 Neuburg an der Donau
+R3	zuOrt Arg1:T7 Arg2:T6	
+T8	Tel 5069 5079	08431-7233
+T9	Email 5081 5106	info@ra-christine-mohr.de
+T10	Anwaeltin 10741 10755	Christine Mohr
+T11	Strasse 10757 10775	Residenzstraße 65A
+T12	Ort 10776 10802	86633 Neuburg an der Donau
+R4	zuOrt Arg1:T12 Arg2:T11	
+T13	Tel 10809 10819	08431-7233
+T14	Email 10821 10846	info@ra-christine-mohr.de
+T15	Rechtsgebiete 7252 7272	Straßenverkehrsrecht
+T16	Rechtsgebiete 7273 7298	Allgemeines Vertragsrecht
+T17	Rechtsgebiete 7299 7312	Familienrecht
+T18	Rechtsgebiete 7313 7323	Strafrecht
+T19	Rechtsgebiete 7324 7332	Erbrecht
+T20	Rechtsgebiete 7333 7345	Arbeitsrecht
+T23	Rechtsgebiete 12979 12992	Rechtsgebiete
+T24	Rechtsgebiete 12993 13013	Straßenverkehrsrecht
+T25	Rechtsgebiete 13014 13039	Allgemeines Vertragsrecht
+T26	Rechtsgebiete 13040 13053	Familienrecht
+T27	Rechtsgebiete 13054 13064	Strafrecht
+T28	Rechtsgebiete 13065 13073	Erbrecht
+T29	Rechtsgebiete 13074 13086	Arbeitsrecht
+T30	Anwaeltin 16482 16496	Christine Mohr
+T31	Tel 16550 16560	08431-7233
+T32	Email 16562 16587	info@ra-christine-mohr.de
+T33	Rechtsgebiete 18734 18754	Straßenverkehrsrecht
+T34	Rechtsgebiete 18755 18780	Allgemeines Vertragsrecht
+T35	Rechtsgebiete 18781 18794	Familienrecht
+T36	Rechtsgebiete 18795 18805	Strafrecht
+T37	Rechtsgebiete 18806 18814	Erbrecht
+T38	Rechtsgebiete 18815 18827	Arbeitsrecht
+T39	Anwaeltin 22223 22237	Christine Mohr
+T40	Tel 22291 22301	08431-7233
+T41	Email 22303 22328	info@ra-christine-mohr.de
+T42	Rechtsgebiete 24475 24495	Straßenverkehrsrecht
+T43	Rechtsgebiete 24496 24521	Allgemeines Vertragsrecht
+T44	Rechtsgebiete 24522 24535	Familienrecht
+T45	Rechtsgebiete 24536 24546	Strafrecht
+T46	Rechtsgebiete 24547 24555	Erbrecht
+T47	Rechtsgebiete 24556 24568	Arbeitsrecht
+T48	Anwaeltin 27964 27978	Christine Mohr
+T49	Strasse 27980 27998	Residenzstraße 65A
+T50	Ort 27999 28025	86633 Neuburg an der Donau
+R5	zuOrt Arg1:T50 Arg2:T49	
+T51	Tel 28032 28042	08431-7233
+T52	Email 28044 28069	info@ra-christine-mohr.de
+T54	Tel 0 10	08431-7233
+T55	Email 11 36	info@ra-christine-mohr.de
+T56	Rechtsgebiete 275 300	allgemeines Vertragsrecht
+T57	Rechtsgebiete 302 314	Arbeitsrecht
+T58	Rechtsgebiete 316 329	Familienrecht
+T59	Rechtsgebiete 331 339	Erbrecht
+T60	Rechtsgebiete 341 351	Strafrecht
+T61	Rechtsgebiete 356 376	Straßenverkehrsrecht
+T64	Rechtsgebiete 1512 1532	Straßenverkehrsrecht
+T65	Rechtsgebiete 1533 1558	Allgemeines Vertragsrecht
+T66	Rechtsgebiete 1559 1572	Familienrecht
+T67	Rechtsgebiete 1573 1583	Strafrecht
+T68	Rechtsgebiete 1584 1592	Erbrecht
+T69	Rechtsgebiete 1593 1605	Arbeitsrecht
+T72	Bio 4092 4159	Cagliari, der Hauptstadt der italienischen Insel Sardinien, geboren
+T73	Bio 4236 4265	1987 das humanistische Abitur
+T74	Bio 4328 4387	Studium der Rechtswissenschaften in Regensburg und Augsburg
+T75	Bio 4397 4442	1992 mit dem ersten juristischen Staatsexamen
+T76	Bio 4482 4597	Referendarszeit in Neuburg, Ingolstadt, Pfaffenhofen und München habe ich mit dem zweiten juristischen Staatsexamen
+T77	Bio 4758 4851	angestellte Rechtsanwältin in der alteingesessenen Rechtsanwaltskanzlei Steigemann in Neuburg
+T78	Bio 4853 4915	die ich dann im Jahr 1997 als selbständige Anwältin übernommen
+T79	Tel 5740 5750	08431-7233
+T80	Email 5751 5776	info@ra-christine-mohr.de
+T82	Rechtsgebiete 6015 6040	allgemeines Vertragsrecht
+T83	Rechtsgebiete 6042 6054	Arbeitsrecht
+T84	Rechtsgebiete 6056 6069	Familienrecht
+T85	Rechtsgebiete 6071 6079	Erbrecht
+T86	Rechtsgebiete 6081 6091	Strafrecht
+T87	Rechtsgebiete 6096 6116	Straßenverkehrsrecht
+T90	Bio 9832 9899	Cagliari, der Hauptstadt der italienischen Insel Sardinien, geboren
+T91	Bio 9971 10005	Jahr 1987 das humanistische Abitur
+T92	Bio 10068 10182	Studium der Rechtswissenschaften in Regensburg und Augsburg, das ich 1992 mit dem ersten juristischen Staatsexamen
+T93	Bio 10241 10337	Neuburg, Ingolstadt, Pfaffenhofen und München habe ich mit dem zweiten juristischen Staatsexamen
+T94	Bio 10498 10591	angestellte Rechtsanwältin in der alteingesessenen Rechtsanwaltskanzlei Steigemann in Neuburg
+T95	Bio 10593 10655	die ich dann im Jahr 1997 als selbständige Anwältin übernommen
+T97	Tel 11481 11491	08431-7233
+T98	Email 11492 11517	info@ra-christine-mohr.de
+T100	Rechtsgebiete 11756 11781	allgemeines Vertragsrecht
+T101	Rechtsgebiete 11783 11795	Arbeitsrecht
+T102	Rechtsgebiete 11797 11810	Familienrecht
+T103	Rechtsgebiete 11812 11820	Erbrecht
+T104	Rechtsgebiete 11822 11832	Strafrecht
+T105	Rechtsgebiete 11837 11857	Straßenverkehrsrecht
+T108	Bio 15573 15631	Cagliari, der Hauptstadt der italienischen Insel Sardinien
+T109	Bio 15712 15746	Jahr 1987 das humanistische Abitur
+T110	Bio 15809 15923	Studium der Rechtswissenschaften in Regensburg und Augsburg, das ich 1992 mit dem ersten juristischen Staatsexamen
+T111	Bio 15982 16078	Neuburg, Ingolstadt, Pfaffenhofen und München habe ich mit dem zweiten juristischen Staatsexamen
+T112	Bio 16239 16332	angestellte Rechtsanwältin in der alteingesessenen Rechtsanwaltskanzlei Steigemann in Neuburg
+T113	Bio 16334 16396	die ich dann im Jahr 1997 als selbständige Anwältin übernommen
+T116	Tel 17222 17232	08431-7233
+T117	Email 17233 17258	info@ra-christine-mohr.de
+T118	Rechtsgebiete 17497 17522	allgemeines Vertragsrecht
+T119	Rechtsgebiete 17524 17536	Arbeitsrecht
+T120	Rechtsgebiete 17538 17551	Familienrecht
+T121	Rechtsgebiete 17553 17561	Erbrecht
+T122	Rechtsgebiete 17563 17573	Strafrecht
+T123	Rechtsgebiete 17578 17598	Straßenverkehrsrecht
+T126	Rechtsgebiete 18828 18848	Straßenverkehrsrecht
+T53	Anwaeltin 68 82	Christine Mohr
+T62	Anwaeltin 5808 5822	Christine Mohr
+T63	Anwaeltin 11278 11292	Christine Mohr
+T81	Anwaeltin 11549 11563	Christine Mohr
+T96	Anwaeltin 5537 5551	Christine Mohr
+T99	Anwaeltin 17019 17033	Christine Mohr
+T114	Anwaeltin 17290 17304	Christine Mohr
+T88	Anwaeltin 22760 22774	Christine Mohr
+T89	Anwaeltin 23031 23045	Christine Mohr
+T21	Anwaeltin 28501 28515	Christine Mohr

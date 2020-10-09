@@ -1,0 +1,50 @@
+T1	Anwalt 1924 1937	Thomas Müller
+T2	Fachanwalt 1940 1967	Fachanwalt für Arbeitsrecht
+T4	Anwaeltin 2021 2043	Daniela Mammoliti-Lück
+T5	Fachanwalt 2046 2075	Fachanwältin für Arbeitsrecht
+T6	Anwaeltin 2091 2112	Christiane Bergweiler
+T7	Fachanwalt 2115 2140	Fachanwältin für Erbrecht
+T8	Rechtsgebiete 2142 2155	Familienrecht
+T9	Anwaeltin 2191 2208	Christina Sjögren
+T10	Fachanwalt 2211 2259	Fachanwältin für Familienrecht und Verkehrsrecht
+T11	Anwalt 2287 2298	Emre Yilmaz
+T16	Fachanwalt 3176 3203	Fachanwalt für Arbeitsrecht
+T17	Anwalt 3218 3231	Thomas Müller
+T19	Fachanwalt 3272 3295	Fachanwalt für Erbrecht
+T20	Anwaeltin 3312 3333	Christiane Bergweiler
+T21	Fachanwalt 3335 3363	Fachanwalt für Familienrecht
+T22	Anwaeltin 3380 3397	Christina Sjögren
+T23	Fachanwalt 3399 3427	Fachanwalt für Verkehrsrecht
+T24	Anwalt 3442 3455	Thomas Müller
+T25	Anwaeltin 3471 3488	Christina Sjögren
+T26	Fachanwalt 3490 3523	Fachanwalt für Versicherungsrecht
+T27	Anwalt 3538 3551	Thomas Müller
+T31	Kanzlei 1452 1471	msk-DIE FACHANWÄLTE
+T32	Tel 1507 1524	0 63 41 / 92 85-0
+T33	Fax 1531 1549	0 63 41 / 92 85 92
+T34	Email 1552 1566	info@msk-ld.de
+T3	Rechtsgebiete 1969 1982	Verkehrsrecht
+T12	Rechtsgebiete 1987 2005	Versicherungsrecht
+T13	Kanzlei 231 250	msk-DIE FACHANWÄLTE
+T37	Tel 2373 2390	0 63 41 / 92 85-0
+T38	Fax 2397 2415	0 63 41 / 92 85 92
+T39	Email 2418 2432	info@msk-ld.de
+T40	Tel 3611 3628	0 63 41 / 92 85-0
+T41	Fax 3635 3653	0 63 41 / 92 85 92
+T42	Email 3656 3670	info@msk-ld.de
+T43	Tel 5172 5189	0 63 41 / 92 85-0
+T44	Fax 5196 5214	0 63 41 / 92 85 92
+T45	Email 5217 5231	info@msk-ld.de
+T29	Strasse 5139 5149	Nordring 1
+T46	Ort 5152 5164	76829 Landau
+R1	zuOrt Arg1:T46 Arg2:T29	
+T28	Strasse 3578 3588	Nordring 1
+T47	Ort 3591 3603	76829 Landau
+R2	zuOrt Arg1:T47 Arg2:T28	
+T18	Anwaeltin 3247 3269	Daniela Mammoliti-Lück
+T15	Strasse 2340 2350	Nordring 1
+T48	Ort 2353 2365	76829 Landau
+R3	zuOrt Arg1:T48 Arg2:T15	
+T30	Strasse 1474 1484	Nordring 1
+T49	Ort 1487 1499	76829 Landau
+R4	zuOrt Arg1:T49 Arg2:T30	

@@ -1,0 +1,62 @@
+T1	Kanzlei 165 185	SCHARFFETTER & BLATT
+T2	Ort 248 258	Hildesheim
+T3	Rechtsgebiete 523 536	Verkehrsrecht
+T4	Rechtsgebiete 922 944	Familien- und Erbrecht
+T5	Rechtsgebiete 946 958	Medizinrecht
+T6	Rechtsgebiete 969 991	allgemeinen Zivilrecht
+T7	Kanzlei 1515 1535	SCHARFFETTER & BLATT
+T8	Anwalt 1616 1636	Michael Scharffetter
+T9	Rechtsgebiete 1704 1717	Verkehrsrecht
+T10	Rechtsgebiete 1950 1963	Verkehrsrecht
+T11	Rechtsgebiete 1968 1986	Versicherungsrecht
+T12	Anwaeltin 1987 2011	Dr. Arlett Rassel-Blanke
+T13	Fachanwalt 2189 2219	Fachanwältin für Verkehrsrecht
+T14	Anwaeltin 2454 2467	Elisa Füldner
+T15	Fachanwalt 2716 2745	Fachanwaltes für Medizinrecht
+T16	Anwalt 2746 2766	Bastian Scharffetter
+T17	Fachanwalt 3097 3125	Fachanwalt für Verkehrsrecht
+T18	Kanzlei 3188 3216	Kanzlei Scharffetter & Blatt
+T19	Anwalt 3217 3232	Siegfried Blatt
+T20	Fachanwalt 3469 3495	Fachanwalt für Steuerrecht
+T21	Rechtsgebiete 3520 3530	Zivilrecht
+T22	Rechtsgebiete 3532 3543	Steuerrecht
+T23	Rechtsgebiete 3545 3558	Familienrecht
+T24	Rechtsgebiete 3560 3572	Arbeitsrecht
+T25	Rechtsgebiete 3577 3586	Mietrecht
+T26	Anwaeltin 3587 3604	Dr. Aline Winkler
+T27	Anwaeltin 3626 3643	Dr. Aline Winkler
+T28	Kanzlei 3671 3699	Kanzlei Scharffetter & Blatt
+T29	Strasse 3818 3830	Sedanstr. 51
+T30	Ort 3832 3850	D-31134 Hildesheim
+R1	zuOrt Arg1:T30 Arg2:T29	
+T31	Tel 3861 3872	05121/967-7
+T32	Fax 3878 3891	05121/967-999
+T33	Email 3899 3923	zentrale@schucht-coll.de
+T34	Kanzlei 4265 4285	SCHARFFETTER & BLATT
+T35	Anwalt 4366 4386	Michael Scharffetter
+T36	Rechtsgebiete 4700 4713	Verkehrsrecht
+T37	Rechtsgebiete 4718 4736	Versicherungsrecht
+T38	Anwaeltin 4737 4761	Dr. Arlett Rassel-Blanke
+T39	Rechtsgebiete 4925 4938	Verkehrsrecht
+T40	Fachanwalt 4939 4969	Fachanwältin für Verkehrsrecht
+T41	Anwaeltin 5204 5217	Elisa Füldner
+T42	Fachanwalt 5466 5495	Fachanwaltes für Medizinrecht
+T43	Anwalt 5496 5516	Bastian Scharffetter
+T44	Rechtsgebiete 5833 5846	Verkehrsrecht
+T45	Fachanwalt 5847 5875	Fachanwalt für Verkehrsrecht
+T46	Anwalt 5967 5982	Siegfried Blatt
+T47	Fachanwalt 6219 6245	Fachanwalt für Steuerrecht
+T48	Rechtsgebiete 6270 6280	Zivilrecht
+T49	Rechtsgebiete 6282 6293	Steuerrecht
+T50	Rechtsgebiete 6295 6308	Familienrecht
+T51	Rechtsgebiete 6310 6322	Arbeitsrecht
+T52	Rechtsgebiete 6327 6336	Mietrecht
+T53	Anwaeltin 6337 6354	Dr. Aline Winkler
+T54	Kanzlei 6421 6449	Kanzlei Scharffetter & Blatt
+T55	Kanzlei 6538 6566	Kanzlei Schucht und Kollegen
+T56	Strasse 6568 6580	Sedanstr. 51
+T57	Ort 6582 6600	D-31134 Hildesheim
+R2	zuOrt Arg1:T57 Arg2:T56	
+T58	Tel 6611 6622	05121/967-7
+T59	Fax 6628 6641	05121/967-999
+T60	Email 6649 6673	zentrale@schucht-coll.de

@@ -1,0 +1,254 @@
+T1	Kanzlei 0 14;15 33;34 48	Anwaltskanzlei Arkaden am Gericht SBZW Göttingen
+T2	Rechtsgebiete 2538 2550	Arbeitsrecht
+T3	Anwalt 3064 3088	Zilian, Werk, Dr. Haeder
+T4	Rechtsgebiete 3090 3106	Verwaltungsrecht
+T5	Anwalt 3594 3606	Zilian, Werk
+T6	Rechtsgebiete 3608 3620	Energierecht
+T7	Rechtsgebiete 4180 4208	Bank- und Kapitalanlagerecht
+T9	Rechtsgebiete 4610 4625	Immobilienrecht
+T11	Anwalt 4174 4178	Werk
+T8	Anwalt 4583 4596	Dr. Bodenburg
+T12	Anwalt 4598 4608	Dr. Haeder
+T10	Anwalt 5079 5092	Dr. Bodenburg
+T13	Anwalt 5094 5100	Zilian
+T14	Anwalt 5102 5106	Werk
+T15	Anwalt 5108 5113	Tibbe
+T16	Rechtsgebiete 5115 5128	Familienrecht
+T17	Anwalt 5491 5501	Fasterding
+T18	Anwalt 5503 5512	Hüstebeck
+T19	Rechtsgebiete 5514 5522	Erbrecht
+T20	Anwalt 5971 5984	Dr. Bodenburg
+T21	Anwalt 5986 5992	Zilian
+T22	Anwalt 5994 5998	Werk
+T23	Anwalt 6000 6009	Hüstebeck
+T24	Anwalt 6011 6016	Tibbe
+T25	Rechtsgebiete 6018 6036	Versicherungsrecht
+T26	Anwalt 6553 6563	Dr. Haeder
+T27	Rechtsgebiete 6565 6587	Straf- & Verkehrsrecht
+T28	Rechtsgebiete 6588 6652	Strafverteidigung, Wirtschaftsstrafrecht, Neben- und Privatklage
+T29	Anwalt 7265 7271	Zilian
+T30	Rechtsgebiete 7273 7283	Compliance
+T31	Rechtsgebiete 7284 7316	Prävention von Gesetzesverstößen
+T32	Anwalt 7807 7820	Dr. Bodenburg
+T33	Anwalt 7822 7826	Werk
+T34	Rechtsgebiete 7837 7847	Immobilien
+T35	Rechtsgebiete 7850 7868	Gesellschaftsrecht
+T36	Anwalt 8409 8422	Dr. Bodenburg
+T37	Anwalt 8424 8430	Zilian
+T38	Anwalt 8432 8437	Tibbe
+T39	Rechtsgebiete 8439 8451	Medizinrecht
+T40	Anwalt 8960 8973	Dr. Bodenburg
+T41	Anwalt 8975 8985	Fasterding
+T42	Rechtsgebiete 8987 9009	Vertrags- & Zivilrecht
+T43	Anwalt 9374 9387	Dr. Bodenburg
+T44	Anwalt 9389 9395	Zilian
+T45	Anwalt 9397 9401	Werk
+T46	Anwalt 9403 9413	Dr. Haeder
+T47	Rechtsgebiete 9415 9440	Bau- und Architektenrecht
+T48	Anwalt 9866 9870	Werk
+T49	Rechtsgebiete 9872 9890	Gesellschaftsrecht
+T50	Anwalt 10322 10335	Dr. Bodenburg
+T51	Anwalt 10337 10341	Werk
+T52	Anwalt 10343 10348	Tibbe
+T53	Anwalt 10350 10360	Dr. Haeder
+T54	Anwalt 11705 11719	Michael Zilian
+T55	Anwalt 11729 11751	Dr. Reinhard Bodenburg
+T56	Kanzlei 14343 14381	SBZW Rechtsanwaltskanzlei und Notariat
+T57	Anwalt 14382 14404	Dr. Reinhard Bodenburg
+T58	Anwalt 14414 14428	Michael Zilian
+T59	Anwalt 14438 14448	Hasso Werk
+T60	Strasse 14450 14468	Berliner Straße 10
+T61	Ort 14470 14485	37073 Göttingen
+R1	zuOrt Arg1:T61 Arg2:T60	
+T62	Tel 14496 14507	0551 497070
+T63	Fax 14514 14526	0551 4970777
+T64	Email 14536 14548	info@sbzw.de
+T65	Tel 16071 16089	+49 (0)551 49707-0
+T66	Fax 16091 16110	+49 (0)551 49707-77
+T67	Email 16112 16131	r.bodenburg@sbzw.de
+T68	Anwalt 16167 16181	MICHAEL ZILIAN
+T69	Tel 16757 16775	+49 (0)551 49707-0
+T70	Fax 16777 16796	+49 (0)551 49707-77
+T71	Email 16798 16814	m.zilian@sbzw.de
+T72	Anwalt 16849 16859	HASSO WERK
+T73	Tel 17601 17619	+49 (0)551 49707-0
+T74	Fax 17621 17640	+49 (0)551 49707-77
+T75	Email 17642 17656	h.werk@sbzw.de
+T76	Anwaeltin 17693 17710	ANNEKE FASTERDING
+T77	Tel 18295 18313	+49 (0)551 49707-0
+T78	Fax 18315 18334	+49 (0)551 49707-77
+T79	Anwaeltin 18386 18403	CLAUDIA HÜSTEBECK
+T80	Tel 18894 18912	+49 (0)551 49707-0
+T81	Fax 18914 18933	+49 (0)551 49707-77
+T82	Email 18935 18955	c.huestebeck@sbzw.de
+T83	Anwalt 18985 18998	MICHAEL TIBBE
+T84	Tel 19423 19441	+49 (0)551 49707-0
+T85	Fax 19443 19462	+49 (0)551 49707-77
+T86	Email 19464 19479	m.tibbe@sbzw.de
+T87	Anwalt 19511 19528	DR. STEFAN HAEDER
+T88	Tel 20402 20420	+49 (0)551 49707-0
+T89	Fax 20422 20441	+49 (0)551 49707-77
+T90	Email 20443 20459	s.haeder@sbzw.de
+T91	Anwaeltin 20492 20505	MANUELA ORLOB
+T92	Tel 20972 20990	+49 (0)551 49707-0
+T93	Fax 20992 21011	+49 (0)551 49707-77
+T94	Email 21013 21028	m.orlob@sbzw.de
+T95	Kanzlei 21108 21133	SBZW Rechtsanwaltskanzlei
+T96	Anwalt 21379 21401	DR. REINHARD BODENBURG
+T97	Tel 22111 22129	+49 (0)551 49707-0
+T98	Fax 22131 22150	+49 (0)551 49707-77
+T99	Email 22152 22171	r.bodenburg@sbzw.de
+T100	Anwalt 22207 22221	MICHAEL ZILIAN
+T101	Email 22838 22854	m.zilian@sbzw.de
+T102	Anwalt 22889 22899	HASSO WERK
+T103	Email 23682 23696	h.werk@sbzw.de
+T104	Anwaeltin 23733 23750	ANNEKE FASTERDING
+T105	Email 24376 24396	a.fasterding@sbzw.de
+T106	Anwaeltin 24426 24443	CLAUDIA HÜSTEBECK
+T107	Email 24975 24995	c.huestebeck@sbzw.de
+T108	Anwalt 25025 25038	MICHAEL TIBBE
+T109	Anwalt 25504 25519	m.tibbe@sbzw.de
+T110	Anwalt 25551 25568	DR. STEFAN HAEDER
+T111	Email 26483 26499	s.haeder@sbzw.de
+T112	Anwaeltin 26532 26545	MANUELA ORLOB
+T113	Email 27053 27068	m.orlob@sbzw.de
+T114	Anwalt 27420 27442	DR. REINHARD BODENBURG
+T115	Email 28193 28212	r.bodenburg@sbzw.de
+T116	Anwalt 28248 28262	MICHAEL ZILIAN
+T117	Email 28879 28895	m.zilian@sbzw.de
+T118	Anwalt 28930 28940	HASSO WERK
+T119	Email 29723 29737	h.werk@sbzw.de
+T120	Anwaeltin 29774 29791	ANNEKE FASTERDING
+T121	Email 30417 30437	a.fasterding@sbzw.de
+T122	Anwaeltin 30467 30484	CLAUDIA HÜSTEBECK
+T123	Email 31016 31036	c.huestebeck@sbzw.de
+T124	Anwalt 31066 31079	MICHAEL TIBBE
+T125	Email 31545 31560	m.tibbe@sbzw.de
+T126	Anwalt 31592 31609	DR. STEFAN HAEDER
+T127	Email 32524 32540	s.haeder@sbzw.de
+T128	Anwaeltin 32573 32586	MANUELA ORLOB
+T129	Email 33094 33109	m.orlob@sbzw.de
+T130	Tel 22797 22815	+49 (0)551 49707-0
+T131	Fax 22817 22836	+49 (0)551 49707-77
+T132	Tel 23641 23659	+49 (0)551 49707-0
+T133	Fax 23661 23680	+49 (0)551 49707-77
+T134	Tel 24335 24353	+49 (0)551 49707-0
+T135	Fax 24355 24374	+49 (0)551 49707-77
+T136	Tel 24934 24952	+49 (0)551 49707-0
+T137	Fax 24954 24973	+49 (0)551 49707-77
+T138	Tel 25463 25481	+49 (0)551 49707-0
+T139	Fax 25483 25502	+49 (0)551 49707-77
+T140	Tel 26442 26460	+49 (0)551 49707-0
+T141	Fax 26462 26481	+49 (0)551 49707-77
+T142	Tel 27012 27030	+49 (0)551 49707-0
+T143	Fax 27032 27051	+49 (0)551 49707-77
+T144	Tel 28152 28170	+49 (0)551 49707-0
+T145	Fax 28172 28191	+49 (0)551 49707-77
+T146	Tel 28838 28856	+49 (0)551 49707-0
+T147	Fax 28858 28877	+49 (0)551 49707-77
+T148	Tel 29682 29700	+49 (0)551 49707-0
+T149	Email 29702 29721	+49 (0)551 49707-77
+T150	Tel 30376 30394	+49 (0)551 49707-0
+T151	Fax 30396 30415	+49 (0)551 49707-77
+T152	Tel 30975 30993	+49 (0)551 49707-0
+T153	Fax 30995 31014	+49 (0)551 49707-77
+T154	Tel 31504 31522	+49 (0)551 49707-0
+T155	Fax 31524 31543	+49 (0)551 49707-77
+T156	Tel 32483 32501	+49 (0)551 49707-0
+T157	Fax 32503 32522	+49 (0)551 49707-77
+T158	Tel 33053 33071	+49 (0)551 49707-0
+T159	Fax 33073 33092	+49 (0)551 49707-77
+T160	Bio 32603 32709	Manuela Orlob studierte von 2003 bis 2010 Rechtswissenschaft an der Friedrich-Schiller-Universität in Jena
+T161	Bio 32713 32904	ch zwei Jahren Referendariat am Justizzentrum Gera, wo die gebürtige Leinefelderin für die Staatsanwaltschaft sowie das Landgericht Gera tätig war, wurde sie 2012 als Rechtanwältin zugelassen
+T162	Bio 32916 33050	nd arbeitete Manuela Orlob sieben Jahre lang in Naumburg als angestellte Rechtsanwältin, ehe sie sich 2019 SBZW in Göttingen anschloss
+T163	Bio 31624 31768	Dr. Stefan Haeder studierte ab 1990 Jura an der Julius-Maximilians-Universität in Würzburg und legte 1998 in Hessen sein zweites Staatsexamen ab
+T164	Bio 31770 31864	An der Universität zu Köln promovierte er zu einem notarrechtlichen Thema („summa cum laude“).
+T165	Bio 31865 32114	Von September 1998 bis März 1999 fungierte Dr. Stefan Haeder zunächst als Syndikus bei der Notarkammer Frankfurt am Main, bevor er zwischen April 1999 und Mai 2006 für die Bundesnotarkammer tätig war (seit 2003 als stellvertretender Geschäftsführer)
+T166	Bio 32116 32260	Seit Juni 2006 arbeitete der Kasselaner als Rechtsanwalt mit den Schwerpunkten Arbeitsrecht, Handels- und Gesellschaftsrecht sowie Vertragsrecht
+T167	Bio 32386 32480	Im Februar 2013 trat Dr. Stefan Haeder als Fachanwalt für Arbeitsrecht in die Kanzlei SBZW ein
+T168	Bio 31107 31282	Nach dem Abitur am Max-Planck-Gymnasium in Göttingen studierte Michael Tibbe Rechtswissenschaften in Tübingen und Hannover und legte 1970 und 1974 seine beiden Staatsexamen ab
+T169	Bio 31284 31399	1974 wurde er als Rechtsanwalt zugelassen und war von 1974 bis 1988 Rechtsberater des Mietervereins Göttingen e. V.
+T171	Bio 30732 30908	Seit 2006 ist die gebürtige Herbornerin als Rechtsanwältin zugelassen, hat sich seither auf das Familienrecht konzentriert und ist seit 2014 Fachanwältin in ihrem Spezialgebiet
+T170	Bio 30501 30730	Nach ihrem Abitur studierte Claudia Hüstebeck von 1991 bis 1996 Rechtswissenschaften an der Justus-Liebig-Universität in Gießen, gefolgt von ihrem Referendariat im Landgerichtsbezirk Hagen/Westfalen sowie dem zweiten Staatsexamen
+T172	Bio 30910 30972	Im August 2016 nahm sie ihre Tätigkeit in der Kanzlei SBZW auf
+T173	Bio 29808 29964	Die Braunschweigerin studierte ab 1995 Rechtswissenschaften an der Georg-August-Universität Göttingen sowie an der Rijksuniversiteit Groningen (Niederlande)
+T174	Bio 29966 30172	Nach Abschluss ihres Studiums (Prädikatsexamen) war sie von 2001 bis 2003 Referendarin am Landgericht Hildesheim, beim Auswärtigen Amt, bei der Staatsanwaltschaft Hannover sowie beim Oberlandesgericht Celle
+T175	Bio 30174 30310	2004, dem Jahr ihrer Zulassung als Rechtsanwältin, begann sie ihre Tätigkeit bei SBZW mit dem Schwerpunkt Medizinrecht/Arzthaftungsrecht
+T176	Bio 30312 30373	Seit 2014 ist Anneke Fasterding Fachanwältin für Medizinrecht
+T177	Bio 28955 29078	Von 1986 bis 1992 absolvierte Hasso Werk sein Studium der Rechtswissenschaften an der Georg-August-Universität in Göttingen
+T178	Bio 29080 29215	Während seines Referendariats war er als wissenschaftlicher Mitarbeiter für das European Business Development Institute in Zürich tätig
+T179	Bio 29217 29301	Seit 1995 ist der gebürtige Eutiner Rechtsanwalt bei SBZW und seit 1998 deren Sozius
+T180	Bio 29303 29486	Von 2008 bis 2010 war Hasso Werk Vertrauensanwalt des Automobilclubs von Deutschland (AvD) sowie von 2010 bis 2014 Vize-Präsident des AvD mit dem Geschäftsbereich „Recht und Verkehr“.
+T181	Bio 29487 29562	Er war langjähriger Dozent für Bankrecht an der Bankakademie Frankfurt/Main
+T182	Bio 29564 29679	Herr Werk ist zudem Autor mehrerer Fachbücher zu den Themen: „internationale Geschäftsbeziehungen“ und „QM & Recht“
+T183	Bio 28285 28448	Michael Zilian studierte bis 1989 Rechts- und Staatswissenschaften an der Ludwig-Maximilians-Universität in München sowie der Georg-August-Universität in Göttingen
+T184	Bio 28450 28638	Nach vier Jahren als Anwalt der Rechts- und Personalabteilung eines Versicherungs- und Finanzunternehmens schloss sich der gebürtige Bad Harzburger 1993 SBZW an, deren Sozius er 1996 wurde
+T185	Bio 28640 28759	1998 war Michael Zilian Dozent für Bankrecht am Bankkolleg sowie Vorstandsmitglied der Rechtsanwaltskammer Braunschweig
+T186	Bio 28761 28835	Seit 2010 ist er Vertrauensanwalt des Automobilclubs von Deutschland (AvD)
+T187	Bio 27465 27632	Nach seiner Ausbildung zum Bankkaufmann studierte Reinhard Bodenburg Rechtswissenschaften und der Betriebswirtschaftslehre an der Georg-August-Universität in Göttingen
+T188	Bio 27634 27716	Dem zweiten juristischen Staatsexamen folgte 1979 seine Zulassung als Rechtsanwalt
+T189	Bio 27718 27848	Seine Promotion widmete der gebürtige Einumer dem Thema: „Der ärztliche Kunstfehler als Funktionsbegriff zivilrechtlicher Dogmatik
+T190	Bio 27851 28058	Seit 1982 ist Dr. Bodenburg Sozius in der Rechtsanwaltskanzlei Beyer/Sobirey in Göttingen und seit 1984 Mitglied im Prüfungsausschuss für Bankfachwirte der IHK Braunschweig, deren Vorsitzender er derzeit ist
+T191	Bio 26562 26668	Manuela Orlob studierte von 2003 bis 2010 Rechtswissenschaft an der Friedrich-Schiller-Universität in Jena
+T192	Bio 26670 26863	Nach zwei Jahren Referendariat am Justizzentrum Gera, wo die gebürtige Leinefelderin für die Staatsanwaltschaft sowie das Landgericht Gera tätig war, wurde sie 2012 als Rechtanwältin zugelassen
+T193	Bio 26865 27009	Anschließend arbeitete Manuela Orlob sieben Jahre lang in Naumburg als angestellte Rechtsanwältin, ehe sie sich 2019 SBZW in Göttingen anschloss
+T194	Bio 25583 25727	Dr. Stefan Haeder studierte ab 1990 Jura an der Julius-Maximilians-Universität in Würzburg und legte 1998 in Hessen sein zweites Staatsexamen ab
+T195	Bio 25729 25822	An der Universität zu Köln promovierte er zu einem notarrechtlichen Thema („summa cum laude“)
+T196	Bio 25824 26074	Von September 1998 bis März 1999 fungierte Dr. Stefan Haeder zunächst als Syndikus bei der Notarkammer Frankfurt am Main, bevor er zwischen April 1999 und Mai 2006 für die Bundesnotarkammer tätig war (seit 2003 als stellvertretender Geschäftsführer).
+T197	Bio 26075 26219	Seit Juni 2006 arbeitete der Kasselaner als Rechtsanwalt mit den Schwerpunkten Arbeitsrecht, Handels- und Gesellschaftsrecht sowie Vertragsrecht
+T198	Bio 26221 26344	Er ist Autor verschiedener juristischer Veröffentlichungen, unter anderem Mitautor eines Kommentars zum Gesellschaftsrecht.
+T199	Bio 26345 26439	Im Februar 2013 trat Dr. Stefan Haeder als Fachanwalt für Arbeitsrecht in die Kanzlei SBZW ein
+T200	Bio 25066 25241	Nach dem Abitur am Max-Planck-Gymnasium in Göttingen studierte Michael Tibbe Rechtswissenschaften in Tübingen und Hannover und legte 1970 und 1974 seine beiden Staatsexamen ab
+T201	Bio 25243 25358	1974 wurde er als Rechtsanwalt zugelassen und war von 1974 bis 1988 Rechtsberater des Mietervereins Göttingen e. V.
+T202	Bio 24460 24689	Nach ihrem Abitur studierte Claudia Hüstebeck von 1991 bis 1996 Rechtswissenschaften an der Justus-Liebig-Universität in Gießen, gefolgt von ihrem Referendariat im Landgerichtsbezirk Hagen/Westfalen sowie dem zweiten Staatsexamen
+T203	Bio 24691 24867	Seit 2006 ist die gebürtige Herbornerin als Rechtsanwältin zugelassen, hat sich seither auf das Familienrecht konzentriert und ist seit 2014 Fachanwältin in ihrem Spezialgebiet
+T204	Bio 24869 24931	Im August 2016 nahm sie ihre Tätigkeit in der Kanzlei SBZW auf
+T205	Bio 23767 23923	Die Braunschweigerin studierte ab 1995 Rechtswissenschaften an der Georg-August-Universität Göttingen sowie an der Rijksuniversiteit Groningen (Niederlande)
+T206	Bio 23925 24131	Nach Abschluss ihres Studiums (Prädikatsexamen) war sie von 2001 bis 2003 Referendarin am Landgericht Hildesheim, beim Auswärtigen Amt, bei der Staatsanwaltschaft Hannover sowie beim Oberlandesgericht Celle
+T207	Bio 24133 24269	2004, dem Jahr ihrer Zulassung als Rechtsanwältin, begann sie ihre Tätigkeit bei SBZW mit dem Schwerpunkt Medizinrecht/Arzthaftungsrecht
+T208	Bio 24271 24332	Seit 2014 ist Anneke Fasterding Fachanwältin für Medizinrecht
+T209	Bio 22914 23037	Von 1986 bis 1992 absolvierte Hasso Werk sein Studium der Rechtswissenschaften an der Georg-August-Universität in Göttingen
+T210	Bio 23039 23174	Während seines Referendariats war er als wissenschaftlicher Mitarbeiter für das European Business Development Institute in Zürich tätig
+T211	Bio 23176 23260	Seit 1995 ist der gebürtige Eutiner Rechtsanwalt bei SBZW und seit 1998 deren Sozius
+T212	Bio 23262 23444	Von 2008 bis 2010 war Hasso Werk Vertrauensanwalt des Automobilclubs von Deutschland (AvD) sowie von 2010 bis 2014 Vize-Präsident des AvD mit dem Geschäftsbereich „Recht und Verkehr“
+T213	Bio 23446 23521	Er war langjähriger Dozent für Bankrecht an der Bankakademie Frankfurt/Main
+T214	Bio 22244 22407	Michael Zilian studierte bis 1989 Rechts- und Staatswissenschaften an der Ludwig-Maximilians-Universität in München sowie der Georg-August-Universität in Göttingen
+T215	Bio 22409 22597	Nach vier Jahren als Anwalt der Rechts- und Personalabteilung eines Versicherungs- und Finanzunternehmens schloss sich der gebürtige Bad Harzburger 1993 SBZW an, deren Sozius er 1996 wurde
+T216	Bio 22599 22718	1998 war Michael Zilian Dozent für Bankrecht am Bankkolleg sowie Vorstandsmitglied der Rechtsanwaltskammer Braunschweig
+T217	Bio 21424 21591	Nach seiner Ausbildung zum Bankkaufmann studierte Reinhard Bodenburg Rechtswissenschaften und der Betriebswirtschaftslehre an der Georg-August-Universität in Göttingen
+T218	Bio 21593 21675	Dem zweiten juristischen Staatsexamen folgte 1979 seine Zulassung als Rechtsanwalt
+T219	Bio 21677 21807	Seine Promotion widmete der gebürtige Einumer dem Thema: „Der ärztliche Kunstfehler als Funktionsbegriff zivilrechtlicher Dogmatik
+T220	Bio 21810 22017	Seit 1982 ist Dr. Bodenburg Sozius in der Rechtsanwaltskanzlei Beyer/Sobirey in Göttingen und seit 1984 Mitglied im Prüfungsausschuss für Bankfachwirte der IHK Braunschweig, deren Vorsitzender er derzeit ist
+T221	Bio 20522 20628	Manuela Orlob studierte von 2003 bis 2010 Rechtswissenschaft an der Friedrich-Schiller-Universität in Jena
+T222	Bio 20630 20823	Nach zwei Jahren Referendariat am Justizzentrum Gera, wo die gebürtige Leinefelderin für die Staatsanwaltschaft sowie das Landgericht Gera tätig war, wurde sie 2012 als Rechtanwältin zugelassen
+T223	Bio 20825 20969	Anschließend arbeitete Manuela Orlob sieben Jahre lang in Naumburg als angestellte Rechtsanwältin, ehe sie sich 2019 SBZW in Göttingen anschloss
+T224	Bio 19543 19687	Dr. Stefan Haeder studierte ab 1990 Jura an der Julius-Maximilians-Universität in Würzburg und legte 1998 in Hessen sein zweites Staatsexamen ab
+T225	Bio 19689 19782	An der Universität zu Köln promovierte er zu einem notarrechtlichen Thema („summa cum laude“)
+T226	Bio 19784 20033	Von September 1998 bis März 1999 fungierte Dr. Stefan Haeder zunächst als Syndikus bei der Notarkammer Frankfurt am Main, bevor er zwischen April 1999 und Mai 2006 für die Bundesnotarkammer tätig war (seit 2003 als stellvertretender Geschäftsführer)
+T227	Bio 20181 20303	Er ist Autor verschiedener juristischer Veröffentlichungen, unter anderem Mitautor eines Kommentars zum Gesellschaftsrecht
+T228	Bio 20305 20399	Im Februar 2013 trat Dr. Stefan Haeder als Fachanwalt für Arbeitsrecht in die Kanzlei SBZW ein
+T229	Bio 19026 19201	Nach dem Abitur am Max-Planck-Gymnasium in Göttingen studierte Michael Tibbe Rechtswissenschaften in Tübingen und Hannover und legte 1970 und 1974 seine beiden Staatsexamen ab
+T230	Bio 19203 19318	1974 wurde er als Rechtsanwalt zugelassen und war von 1974 bis 1988 Rechtsberater des Mietervereins Göttingen e. V.
+T231	Bio 19320 19420	1980 wurde Michael Tibbe zum Notar ernannt – ein Amt, aus dem er im Mai 2016 altersbedingt ausschied
+T232	Bio 18420 18649	Nach ihrem Abitur studierte Claudia Hüstebeck von 1991 bis 1996 Rechtswissenschaften an der Justus-Liebig-Universität in Gießen, gefolgt von ihrem Referendariat im Landgerichtsbezirk Hagen/Westfalen sowie dem zweiten Staatsexamen
+T233	Bio 18651 18827	Seit 2006 ist die gebürtige Herbornerin als Rechtsanwältin zugelassen, hat sich seither auf das Familienrecht konzentriert und ist seit 2014 Fachanwältin in ihrem Spezialgebiet
+T234	Bio 18829 18891	Im August 2016 nahm sie ihre Tätigkeit in der Kanzlei SBZW auf
+T235	Bio 17727 17883	Die Braunschweigerin studierte ab 1995 Rechtswissenschaften an der Georg-August-Universität Göttingen sowie an der Rijksuniversiteit Groningen (Niederlande)
+T236	Bio 17885 18091	Nach Abschluss ihres Studiums (Prädikatsexamen) war sie von 2001 bis 2003 Referendarin am Landgericht Hildesheim, beim Auswärtigen Amt, bei der Staatsanwaltschaft Hannover sowie beim Oberlandesgericht Celle
+T237	Bio 18093 18229	2004, dem Jahr ihrer Zulassung als Rechtsanwältin, begann sie ihre Tätigkeit bei SBZW mit dem Schwerpunkt Medizinrecht/Arzthaftungsrecht
+T238	Bio 18231 18292	Seit 2014 ist Anneke Fasterding Fachanwältin für Medizinrecht
+T239	Bio 16874 16997	Von 1986 bis 1992 absolvierte Hasso Werk sein Studium der Rechtswissenschaften an der Georg-August-Universität in Göttingen
+T240	Bio 16999 17134	Während seines Referendariats war er als wissenschaftlicher Mitarbeiter für das European Business Development Institute in Zürich tätig
+T241	Bio 17136 17220	Seit 1995 ist der gebürtige Eutiner Rechtsanwalt bei SBZW und seit 1998 deren Sozius
+T242	Bio 17222 17404	Von 2008 bis 2010 war Hasso Werk Vertrauensanwalt des Automobilclubs von Deutschland (AvD) sowie von 2010 bis 2014 Vize-Präsident des AvD mit dem Geschäftsbereich „Recht und Verkehr“
+T243	Bio 17406 17481	Er war langjähriger Dozent für Bankrecht an der Bankakademie Frankfurt/Main
+T244	Bio 17483 17598	Herr Werk ist zudem Autor mehrerer Fachbücher zu den Themen: „internationale Geschäftsbeziehungen“ und „QM & Recht“
+T245	Bio 16204 16367	Michael Zilian studierte bis 1989 Rechts- und Staatswissenschaften an der Ludwig-Maximilians-Universität in München sowie der Georg-August-Universität in Göttingen
+T246	Bio 16369 16557	Nach vier Jahren als Anwalt der Rechts- und Personalabteilung eines Versicherungs- und Finanzunternehmens schloss sich der gebürtige Bad Harzburger 1993 SBZW an, deren Sozius er 1996 wurde
+T247	Bio 16559 16678	1998 war Michael Zilian Dozent für Bankrecht am Bankkolleg sowie Vorstandsmitglied der Rechtsanwaltskammer Braunschweig
+T248	Bio 16680 16754	Seit 2010 ist er Vertrauensanwalt des Automobilclubs von Deutschland (AvD)
+T249	Bio 15384 15551	Nach seiner Ausbildung zum Bankkaufmann studierte Reinhard Bodenburg Rechtswissenschaften und der Betriebswirtschaftslehre an der Georg-August-Universität in Göttingen
+T250	Bio 15553 15635	Dem zweiten juristischen Staatsexamen folgte 1979 seine Zulassung als Rechtsanwalt
+T251	Bio 15637 15768	Seine Promotion widmete der gebürtige Einumer dem Thema: „Der ärztliche Kunstfehler als Funktionsbegriff zivilrechtlicher Dogmatik“
+T252	Bio 15770 15977	Seit 1982 ist Dr. Bodenburg Sozius in der Rechtsanwaltskanzlei Beyer/Sobirey in Göttingen und seit 1984 Mitglied im Prüfungsausschuss für Bankfachwirte der IHK Braunschweig, deren Vorsitzender er derzeit ist
+T253	Bio 15979 16068	Darüber hinaus ist Dr. Reinhard Bodenburg Notar und zertifizierter Testamentsvollstrecker

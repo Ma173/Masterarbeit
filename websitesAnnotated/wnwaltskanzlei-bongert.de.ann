@@ -1,0 +1,7 @@
+T1	Kanzlei 132 165	Anwaltskanzlei Bongert & Kollegen
+T2	Tel 119 130	0234 150 95
+T3	Strasse 166 176	Hellweg 16
+T4	Ort 177 189	44787 Bochum
+R1	zuOrt Arg1:T4 Arg2:T3	
+T5	Tel 201 211	0234 15095
+T6	Email 220 243	info@kanzlei-bongert.de

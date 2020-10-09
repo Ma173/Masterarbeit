@@ -1,0 +1,15 @@
+T1	Kanzlei 0 20	Schneider & Kollegen
+T2	Strasse 862 875	Teichstraße 5
+T3	Ort 877 893	35075 Gladenbach
+R1	zuOrt Arg1:T3 Arg2:T2	
+T4	Tel 903 924	(+49) 0 64 62/93 84-0
+T5	Fax 930 952	(+49) 0 64 62/93 84-40
+T6	Email 961 992	info (at) schneider-kollegen.de
+T7	Anwalt 2796 2809	Nils M. Eidam
+T8	Anwalt 2811 2837	Michael Schneider (Inhaber
+T9	Anwaeltin 2840 2854	Andrea Einhaus
+T10	Anwalt 2856 2875	Rudolf H. Schneider
+T11	Anwalt 4513 4526	Nils M. Eidam
+T12	Anwalt 4528 4555	Michael Schneider (Inhaber)
+T13	Anwaeltin 4557 4571	Andrea Einhaus
+T14	Anwalt 4573 4592	Rudolf H. Schneider

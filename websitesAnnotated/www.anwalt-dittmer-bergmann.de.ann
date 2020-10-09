@@ -1,0 +1,49 @@
+T1	Kanzlei 63 97	Rechtsanwälte Dittmer und Bergmann
+T2	Anwalt 138 153	Joachim Dittmer
+T3	Anwalt 155 170	Joachim Dittmer
+T4	Fachanwalt 172 199	Fachanwalt für Arbeitsrecht
+T5	Rechtsgebiete 222 234	Arbeitsrecht
+T6	Rechtsgebiete 236 245	Mietrecht
+T7	Rechtsgebiete 247 260	Schadensrecht
+T8	Rechtsgebiete 271 279	Baurecht
+T9	Rechtsgebiete 281 297	Architektenrecht
+T10	Rechtsgebiete 299 316	Strafverteidigung
+T11	Rechtsgebiete 331 348	Jugend-Strafrecht
+T12	Anwaeltin 380 394	Sabine Dittmer
+T13	Anwaeltin 396 410	Sabine Dittmer
+T14	Rechtsgebiete 449 462	Familienrecht
+T15	Rechtsgebiete 464 479	Unterhaltsrecht
+T16	Rechtsgebiete 481 497	Kindschaftsrecht
+T17	Rechtsgebiete 499 515	Ehevertragsrecht
+T18	Rechtsgebiete 517 525	Erbrecht
+T19	Rechtsgebiete 527 552	Zwangsvollstreckungsrecht
+T20	Anwalt 567 582	Volker Bergmann
+T21	Anwalt 584 599	Volker Bergmann
+T22	Fachanwalt 601 629	Fachanwalt für Familienrecht
+T23	Rechtsgebiete 652 665	Familienrecht
+T24	Rechtsgebiete 667 678	Sozialrecht
+T25	Rechtsgebiete 681 693	Arbeitsrecht
+T26	Rechtsgebiete 695 711	Verwaltungsrecht
+T27	Rechtsgebiete 714 731	Strafverteidigung
+T29	Tel 802 825	056 61/80 88 und 7375-0
+T30	Fax 832 856	056 61/89 87 und 7375-29
+T31	Email 865 896	info@anwalt-dittmer-bergmann.de
+T33	Tel 963 978	036 95/82 48 86
+T34	Fax 985 1000	036 95/82 50 00
+T35	Email 1009 1040	info@anwalt-dittmer-bergmann.de
+T36	Anwalt 1303 1318	Joachim Dittmer
+T37	Anwalt 1323 1338	Volker Bergmann
+T38	Anwaeltin 1343 1357	Sabine Dittmer
+T41	Email 2413 2444	info@anwalt-dittmer-bergmann.de
+T42	Anwalt 2461 2476	Joachim Dittmer
+T43	Anwalt 2477 2492	Volker Bergmann
+T44	Anwaeltin 2493 2507	Sabine Dittmer
+T47	Anwalt 3612 3627	Joachim Dittmer
+T48	Anwalt 3628 3643	Volker Bergmann
+T49	Anwaeltin 3644 3658	Sabine Dittmer
+T50	Email 3564 3595	info@anwalt-dittmer-bergmann.de
+T28	Strasse 756 774	Schlachthofstr. 14
+T53	Ort 776 791	34212 Melsungen
+T32	Strasse 917 935	Große Amtsgasse 14
+T54	Ort 937 952	36469 Tiefenort
+R1	zuOrt Arg1:T54 Arg2:T32	

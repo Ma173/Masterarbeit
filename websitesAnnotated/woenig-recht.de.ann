@@ -1,0 +1,37 @@
+T1	Kanzlei 642 663	König | Rechtsanwälte
+T2	Strasse 664 689	Gustav-Schickedanz-Str. 8
+T3	Ort 690 701	90762 Fürth
+R1	zuOrt Arg1:T3 Arg2:T2	
+T4	Tel 709 723	0911 740 999-0
+T5	Fax 729 744	0911 740 999-22
+T6	Email 753 776	kanzlei@koenig-recht.de
+T7	Anwalt 1032 1045	Michael König
+T8	Anwalt 1046 1059	Martin Müller
+T9	Anwalt 1060 1074	Harald Maußner
+T10	Anwalt 1075 1092	Dr. Oliver Köppen
+T11	Anwaeltin 1093 1107	Stefanie Meier
+T12	Anwalt 1108 1124	Egbert Schwemmer
+T13	Anwalt 1125 1138	Michael König
+T14	Bio 1144 1223	Studium der Rechtswissenschaften an der Julius-Maximilians-Universität Würzburg
+T15	Anwalt 1224 1246	Rechtsanwalt seit 1999
+T16	Bio 1247 1298	Syndikusanwalt Rechtsabteilung Quelle GmbH bis 2009
+T17	Bio 1299 1334	Selbständiger Rechtsanwalt bis 2013
+T18	Bio 1335 1377	Kanzlei Held, Dr. vom Dorp, König bis 2014
+T19	Bio 1378 1409	König | Rechtsanwälte seit 2014
+T20	Fachanwalt 1410 1453	Fachanwalt für Informationstechnologierecht
+T21	Rechtsgebiete 1466 1477	Abmahnungen
+T22	Rechtsgebiete 1478 1487	AGB-Recht
+T23	Rechtsgebiete 1488 1500	Handelsrecht
+T24	Rechtsgebiete 1501 1525	IT-Recht / Internetrecht
+T25	Rechtsgebiete 1526 1535	Kaufrecht
+T26	Rechtsgebiete 1536 1552	Onlineshop-Recht
+T27	Rechtsgebiete 1553 1565	Urheberrecht
+T28	Rechtsgebiete 1566 1600	Vertragsrecht & Vertragsgestaltung
+T29	Rechtsgebiete 1601 1617	Wettbewerbsrecht
+T30	Kanzlei 1896 1917	König | Rechtsanwälte
+T31	Strasse 1918 1943	Gustav-Schickedanz-Str. 8
+T32	Ort 1944 1955	90762 Fürth
+R2	zuOrt Arg1:T32 Arg2:T31	
+T33	Tel 1963 1977	0911 740 999-0
+T34	Fax 1983 1998	0911 740 999-22
+T35	Email 2007 2030	kanzlei@koenig-recht.de

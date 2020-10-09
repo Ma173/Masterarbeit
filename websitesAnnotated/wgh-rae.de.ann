@@ -1,0 +1,43 @@
+T1	Kanzlei 53 82	PIEHLER | GESIERICH | HAMMERL
+T2	Rechtsgebiete 646 659	Verkehrsrecht
+T3	Rechtsgebiete 661 673	Arbeitsrecht
+T4	Rechtsgebiete 675 688	Vertragsrecht
+T5	Rechtsgebiete 690 712	Familien- und Erbrecht
+T6	Kanzlei 714 743;744 773	Piehler | Gesierich | Hammerl Rechtsanwälte und Fachanwälte
+T7	Strasse 775 790	Bahnhofstraße 8
+T8	Ort 791 810	D-92648 Vohenstrauß
+R1	zuOrt Arg1:T8 Arg2:T7	
+T9	Tel 832 848	09651 - 91 60 36
+T10	Fax 858 874	09651 - 91 60 37
+T11	Email 881 896	info@pgh-rae.de
+T12	Anwalt 1293 1322	RECHTSANWALT BERNHARD PIEHLER
+T13	Bio 1323 1335	Geboren 1963
+T14	Bio 1336 1397	Nach dem Studium und Referendariat in Würzburg und Regensburg
+T15	Bio 1412 1444	Anwalt in Weiden und Vohenstrauß
+T16	Fachanwalt 1563 1591	Fachanwalt für Verkehrsrecht
+T17	Anwalt 1592 1622	RECHTSANWALT STEPHAN GESIERICH
+T18	Bio 1623 1635	Geboren 1981
+T19	Bio 1636 1688	Studium und Referendariat in Regensburg und Nürnberg
+T20	Bio 1700 1754	Dozententätigkeit bei der Industrie- und Handelskammer
+T21	Rechtsgebiete 1772 1784	Arbeitsrecht
+T22	Rechtsgebiete 1786 1817	Handels- und Gesellschaftsrecht
+T23	Rechtsgebiete 1822 1846	gewerblichen Rechtschutz
+T24	Fachanwalt 1847 1874	Fachanwalt für Arbeitsrecht
+T25	Anwalt 1875 1888	PETER HAMMERL
+T26	Bio 1909 1921	Geboren 1953
+T27	Bio 1922 1972	Studium und Referendariat in Erlangen und Nürnberg
+T28	Bio 1973 2024	1984 Gründung Anwaltskanzlei Hammerl in Vohenstrauß
+T29	Kanzlei 2025 2054;2055 2084	Piehler | Gesierich | Hammerl Rechtsanwälte und Fachanwälte
+T30	Strasse 2086 2101	Bahnhofstraße 8
+T31	Ort 2102 2121	D-92648 Vohenstrauß
+R2	zuOrt Arg1:T31 Arg2:T30	
+T32	Tel 2143 2159	09651 - 91 60 36
+T33	Fax 2169 2185	09651 - 91 60 37
+T34	Email 2192 2207	info@pgh-rae.de
+T35	Kanzlei 2709 2738;2739 2768	Piehler | Gesierich | Hammerl Rechtsanwälte und Fachanwälte
+T36	Strasse 2770 2785	Bahnhofstraße 8
+T37	Ort 2786 2805	D-92648 Vohenstrauß
+T38	Tel 2827 2843	09651 - 91 60 36
+T39	Fax 2853 2869	09651 - 91 60 37
+T40	Email 2876 2891	info@pgh-rae.de
+R3	zuOrt Arg1:T37 Arg2:T36	

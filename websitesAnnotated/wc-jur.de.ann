@@ -1,0 +1,111 @@
+T1	Kanzlei 66 87	A. Cordier & Kollegen
+T2	Kanzlei 2574 2603	Kanzlei A. Cordier & Kollegen
+T3	Tel 2637 2657	+49 (0) 7641 – 51840
+T4	Fax 2660 2680	+49 (0) 7641 – 52748
+T5	Email 2682 2699	kanzlei@ac-jur.de
+T6	Rechtsgebiete 2723 2735	Arbeitsrecht
+T7	Rechtsgebiete 2736 2749	Familienrecht
+T8	Rechtsgebiete 2750 2758	Erbrecht
+T9	Rechtsgebiete 2759 2767	Baurecht
+T10	Rechtsgebiete 2768 2777	Mietrecht
+T11	Rechtsgebiete 2778 2788	Reiserecht
+T12	Rechtsgebiete 2789 2802	Verkehrsrecht
+T13	Rechtsgebiete 2803 2819	Existenzgründung
+T14	Rechtsgebiete 2820 2836	Wohnungseigentum
+T15	Strasse 2848 2868	Hindenburgstraße 18a
+T16	Ort 2869 2885	D-79331 Teningen
+R1	zuOrt Arg1:T16 Arg2:T15	
+T17	Tel 2889 2909	+49 (0) 7641 – 51840
+T18	Tel 2912 2932	+49 (0) 7641 – 52748
+T19	Email 2934 2951	kanzlei@ac-jur.de
+T20	Kanzlei 3159 3180	A. Cordier & Kollegen
+T21	Anwalt 3939 3954	Andreas Cordier
+T22	Fachanwalt 3956 3983	Fachanwalt für Arbeitsrecht
+T23	Fachanwalt 3984 4012	Fachanwalt für Familienrecht
+T24	Anwalt 4049 4061	Steffen Dold
+T28	Tel 4095 4108	07641 / 51840
+T25	Rechtsgebiete 4063 4079;4080 4092	Miet-, Verkehrs- und Baurecht
+T26	Email 4110 4126	s.dold@ac-jur.de
+T27	Anwaeltin 4128 4143	Janetta Cordier
+T29	Fachanwalt 4145 4176	Rechtsanwältin für Arbeitsrecht
+T30	Tel 4201 4214	07641 / 51840
+T31	Email 4216 4233	kanzlei@ac-jur.de
+T32	Kanzlei 4256 4285	Kanzlei A. Cordier & Kollegen
+T33	Tel 4319 4339	+49 (0) 7641 – 51840
+T34	Fax 4342 4362	+49 (0) 7641 – 52748
+T35	Kanzlei 4364 4381	kanzlei@ac-jur.de
+T36	Strasse 4393 4413	Hindenburgstraße 18a
+T37	Ort 4414 4430	D-79331 Teningen
+R2	zuOrt Arg1:T37 Arg2:T36	
+T38	Tel 4434 4454	+49 (0) 7641 – 51840
+T39	Fax 4457 4477	+49 (0) 7641 – 52748
+T40	Email 4479 4496	kanzlei@ac-jur.de
+T41	Kanzlei 4704 4725	A. Cordier & Kollegen
+T42	Anwalt 5483 5498	Andreas Cordier
+T43	Fachanwalt 5500 5527	Fachanwalt für Arbeitsrecht
+T44	Fachanwalt 5528 5556	Fachanwalt für Familienrecht
+T45	Tel 5559 5572	07641 / 51840
+T46	Email 5574 5591	kanzlei@ac-jur.de
+T47	Anwalt 5593 5605	Steffen Dold
+T48	Rechtsgebiete 5607 5623;5624 5636	Miet-, Verkehrs- und Baurecht
+T49	Tel 5639 5652	07641 / 51840
+T50	Email 5654 5670	s.dold@ac-jur.de
+T51	Anwaeltin 5672 5687	Janetta Cordier
+T52	Fachanwalt 5689 5720	Rechtsanwältin für Arbeitsrecht
+T53	Tel 5745 5758	07641 / 51840
+T54	Kanzlei 5760 5777	kanzlei@ac-jur.de
+T55	Kanzlei 5800 5829	Kanzlei A. Cordier & Kollegen
+T56	Tel 5863 5883	+49 (0) 7641 – 51840
+T57	Fax 5886 5906	+49 (0) 7641 – 52748
+T58	Email 5908 5925	kanzlei@ac-jur.de
+T59	Strasse 5937 5957	Hindenburgstraße 18a
+T60	Ort 5958 5974	D-79331 Teningen
+T61	Tel 5978 5998	+49 (0) 7641 – 51840
+T62	Fax 6001 6021	+49 (0) 7641 – 52748
+T63	Email 6023 6040	kanzlei@ac-jur.de
+T64	Anwalt 7028 7043	Andreas Cordier
+T65	Fachanwalt 7045 7072	Fachanwalt für Arbeitsrecht
+T66	Fachanwalt 7073 7101	Fachanwalt für Familienrecht
+T67	Tel 7104 7117	07641 / 51840
+T68	Email 7119 7136	kanzlei@ac-jur.de
+T69	Anwalt 7138 7150	Steffen Dold
+T70	Rechtsgebiete 7152 7168;7169 7181	Miet-, Verkehrs- und Baurecht
+T71	Tel 7184 7197	07641 / 51840
+T72	Email 7199 7215	s.dold@ac-jur.de
+T73	Anwaeltin 7217 7232	Janetta Cordier
+T74	Fachanwalt 7234 7265	Rechtsanwältin für Arbeitsrecht
+T75	Tel 7290 7303	07641 / 51840
+T76	Email 7305 7322	kanzlei@ac-jur.de
+T77	Kanzlei 7345 7374	Kanzlei A. Cordier & Kollegen
+T78	Tel 7409 7428	49 (0) 7641 – 51840
+T79	Fax 7431 7451	+49 (0) 7641 – 52748
+T80	Email 7453 7470	kanzlei@ac-jur.de
+T81	Strasse 7482 7502	Hindenburgstraße 18a
+T82	Ort 7503 7519	D-79331 Teningen
+T83	Tel 7523 7543	+49 (0) 7641 – 51840
+T84	Fax 7546 7566	+49 (0) 7641 – 52748
+T85	Email 7568 7585	kanzlei@ac-jur.de
+T86	Anwalt 8573 8588	Andreas Cordier
+T87	Fachanwalt 8590 8617	Fachanwalt für Arbeitsrecht
+T88	Fachanwalt 8618 8646	Fachanwalt für Familienrecht
+T89	Email 8664 8681	kanzlei@ac-jur.de
+T90	Anwalt 8683 8695	Steffen Dold
+T91	Rechtsgebiete 8697 8713;8714 8726	Miet-, Verkehrs- und Baurecht
+T92	Tel 8729 8742	07641 / 51840
+T93	Email 8744 8760	s.dold@ac-jur.de
+T94	Anwaeltin 8762 8777	Janetta Cordier
+T95	Fachanwalt 8779 8810	Rechtsanwältin für Arbeitsrecht
+T96	Tel 8835 8848	07641 / 51840
+T97	Email 8850 8867	kanzlei@ac-jur.de
+T98	Kanzlei 8890 8919	Kanzlei A. Cordier & Kollegen
+T99	Tel 8953 8973	+49 (0) 7641 – 51840
+T100	Fax 8976 8996	+49 (0) 7641 – 52748
+T101	Email 8998 9015	kanzlei@ac-jur.de
+T102	Strasse 9027 9047	Hindenburgstraße 18a
+T103	Ort 9048 9064	D-79331 Teningen
+R3	zuOrt Arg1:T103 Arg2:T102	
+T104	Tel 9068 9088	+49 (0) 7641 – 51840
+T105	Fax 9091 9111	+49 (0) 7641 – 52748
+T106	Email 9113 9130	kanzlei@ac-jur.de
+R4	zuOrt Arg1:T60 Arg2:T59	
+R5	zuOrt Arg1:T82 Arg2:T81	

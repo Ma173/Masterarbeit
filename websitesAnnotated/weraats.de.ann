@@ -1,0 +1,26 @@
+T1	Kanzlei 24 42	GERAATS & KOLLEGEN
+T2	Rechtsgebiete 447 459	Arbeitsrecht
+T3	Rechtsgebiete 461 474	Familienrecht
+T4	Rechtsgebiete 476 489	Verkehrsrecht
+T5	Rechtsgebiete 491 525	Mietrecht sowie das Franchiserecht
+T6	Rechtsgebiete 534 558	gewerbliche Rechtsschutz
+T7	Kanzlei 585 603	GERAATS & KOLLEGEN
+T8	Kanzlei 1987 2005	GERAATS & KOLLEGEN
+T9	Kanzlei 2298 2316	Geraats & Kollegen
+T10	Strasse 2317 2333	Hammer Straße 39
+T11	Ort 2334 2347	48153 Münster
+T12	Email 2350 2373	rechtsanwalt@geraats.de
+T13	Tel 2376 2390	0251 - 89907-0
+T14	Fax 2392 2407	0251 - 89907-10
+T15	Anwalt 2816 2831	Herbert Geraats
+T16	Anwalt 2855 2872	Dr. Claus Höpfner
+T17	Anwaeltin 2888 2907	Gabriele Ostermeier
+T18	Anwalt 2921 2934	Stefan Brakel
+T19	Kanzlei 3012 3030	Geraats & Kollegen
+T20	Strasse 3031 3047	Hammer Straße 39
+T21	Ort 3048 3061	48153 Münster
+T22	Email 3064 3087	rechtsanwalt@geraats.de
+T23	Tel 3090 3104	0251 - 89907-0
+T24	Fax 3106 3121	0251 - 89907-10
+R1	zuOrt Arg1:T21 Arg2:T20	
+R2	zuOrt Arg1:T11 Arg2:T10	

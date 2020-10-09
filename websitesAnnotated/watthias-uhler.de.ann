@@ -1,0 +1,147 @@
+T1	Kanzlei 2354 2386	Anwaltskanzlei Matthias F. Uhler
+T2	Tel 2389 2407	+49 (611) 72384183
+T3	Email 2410 2442	matthias.uhler@matthias-uhler.de
+T4	Strasse 2446 2460	Rheinstraße 75
+T5	Ort 2463 2478	65185 Wiesbaden
+R1	zuOrt Arg1:T5 Arg2:T4	
+T6	Rechtsgebiete 3109 3122	Familienrecht
+T7	Rechtsgebiete 3123 3135	Arbeitsrecht
+T8	Rechtsgebiete 3136 3145	Mietrecht
+T9	Rechtsgebiete 3146 3168	Wohnungseigentumsrecht
+T10	Kanzlei 5332 5364	Anwaltskanzlei Matthias F. Uhler
+T11	Email 5388 5420	matthias.uhler@matthias-uhler.de
+T12	Tel 5367 5385	+49 (611) 72384183
+T13	Strasse 5424 5438	Rheinstraße 75
+T14	Ort 5441 5456	65185 Wiesbaden
+R2	zuOrt Arg1:T14 Arg2:T13	
+T15	Anwaeltin 6083 6100	Barbara Rosenbaum
+T16	Email 6110 6130	mu@matthias-uhler.de
+T17	Tel 6136 6154	+49 (611) 72384183
+T18	Rechtsgebiete 6170 6178	Erbrecht
+T19	Rechtsgebiete 6181 6194	Familienrecht
+T20	Rechtsgebiete 6197 6206	Mediation
+T21	Fachanwalt 6237 6267	Fachanwältin für Familienrecht
+T22	Sprachen 6315 6323	Englisch
+T23	Anwalt 6347 6361	Matthias Uhler
+T24	Email 6369 6389	mu@matthias-uhler.de
+T25	Tel 6395 6413	+49 (611) 72384183
+T26	Rechtsgebiete 6429 6441	Arbeitsrecht
+T27	Rechtsgebiete 6444 6453	Mietrecht
+T28	Rechtsgebiete 6456 6478	Wohnungseigentumsrecht
+T29	Fachanwalt 6507 6534	Fachanwalt für Arbeitsrecht
+T30	Fachanwalt 6535 6570	Fachanwalt für Miet- und Weg- Recht
+T31	Sprachen 6595 6606	Französisch
+T32	Anwalt 6630 6645	Theodor Eliades
+T33	Email 6653 6672	theoeliades@aol.com
+T34	Tel 6678 6696	+49 (611) 72384183
+T35	Rechtsgebiete 6712 6721	Mietrecht
+T36	Rechtsgebiete 6724 6742	Verkehrszivilrecht
+T37	Rechtsgebiete 6745 6756	Sozialrecht
+T38	Sprachen 6809 6819	Griechisch
+T39	Kanzlei 7414 7446	Anwaltskanzlei Matthias F. Uhler
+T40	Tel 7449 7467	+49 (611) 72384183
+T41	Email 7470 7502	matthias.uhler@matthias-uhler.de
+T42	Strasse 7506 7520	Rheinstraße 75
+T43	Ort 7523 7538	65185 Wiesbaden
+R3	zuOrt Arg1:T43 Arg2:T42	
+T44	Anwaeltin 8165 8182	Barbara Rosenbaum
+T45	Email 8192 8212	mu@matthias-uhler.de
+T46	Tel 8218 8236	+49 (611) 72384183
+T47	Rechtsgebiete 8252 8260	Erbrecht
+T48	Rechtsgebiete 8263 8276	Familienrecht
+T49	Rechtsgebiete 8279 8288	Mediation
+T50	Fachanwalt 8319 8349	Fachanwältin für Familienrecht
+T51	Sprachen 8397 8405	Englisch
+T52	Anwalt 8429 8443	Matthias Uhler
+T53	Email 8451 8471	mu@matthias-uhler.de
+T54	Tel 8477 8495	+49 (611) 72384183
+T55	Rechtsgebiete 8511 8523	Arbeitsrecht
+T56	Rechtsgebiete 8526 8535	Mietrecht
+T57	Rechtsgebiete 8538 8560	Wohnungseigentumsrecht
+T58	Fachanwalt 8589 8616	Fachanwalt für Arbeitsrecht
+T59	Fachanwalt 8617 8652	Fachanwalt für Miet- und Weg- Recht
+T60	Sprachen 8677 8688	Französisch
+T61	Anwalt 8712 8727	Theodor Eliades
+T62	Email 8735 8754	theoeliades@aol.com
+T63	Tel 8760 8778	+49 (611) 72384183
+T64	Rechtsgebiete 8794 8803	Mietrecht
+T65	Rechtsgebiete 8806 8824	Verkehrszivilrecht
+T66	Rechtsgebiete 8827 8838	Sozialrecht
+T67	Sprachen 8891 8901	Griechisch
+T68	Kanzlei 9496 9528	Anwaltskanzlei Matthias F. Uhler
+T69	Tel 9531 9549	+49 (611) 72384183
+T70	Email 9552 9584	matthias.uhler@matthias-uhler.de
+T71	Strasse 9588 9602	Rheinstraße 75
+T72	Ort 9605 9620	65185 Wiesbaden
+R4	zuOrt Arg1:T72 Arg2:T71	
+T73	Sprachen 6324 6331	Deutsch
+T74	Sprachen 6611 6612	s
+T75	Sprachen 6820 6827	Deutsch
+T76	Sprachen 8406 8413	Deutsch
+T77	Sprachen 8689 8696	Deutsch
+T78	Sprachen 8902 8909	Deutsch
+T79	Anwaeltin 10247 10264	Barbara Rosenbaum
+T80	Email 10274 10294	mu@matthias-uhler.de
+T81	Tel 10300 10318	+49 (611) 72384183
+T82	Rechtsgebiete 10334 10342	Erbrecht
+T83	Rechtsgebiete 10345 10358	Familienrecht
+T84	Rechtsgebiete 10361 10370	Mediation
+T85	Fachanwalt 10401 10431	Fachanwältin für Familienrecht
+T86	Sprachen 10479 10487	Englisch
+T87	Sprachen 10488 10495	Deutsch
+T88	Anwalt 10511 10525	Matthias Uhler
+T89	Email 10533 10553	mu@matthias-uhler.de
+T90	Email 10559 10577	+49 (611) 72384183
+T91	Rechtsgebiete 10593 10605	Arbeitsrecht
+T92	Rechtsgebiete 10608 10617	Mietrecht
+T93	Rechtsgebiete 10620 10642	Wohnungseigentumsrecht
+T94	Fachanwalt 10671 10698	Fachanwalt für Arbeitsrecht
+T95	Fachanwalt 10699 10734	Fachanwalt für Miet- und Weg- Recht
+T96	Sprachen 10759 10770	Französisch
+T97	Sprachen 10771 10778	Deutsch
+T98	Anwalt 10794 10809	Theodor Eliades
+T99	Email 10817 10836	theoeliades@aol.com
+T100	Tel 10842 10860	+49 (611) 72384183
+T101	Rechtsgebiete 10876 10885	Mietrecht
+T102	Rechtsgebiete 10888 10906	Verkehrszivilrecht
+T103	Rechtsgebiete 10909 10920	Sozialrecht
+T104	Sprachen 10973 10983	Griechisch
+T105	Sprachen 10984 10991	Deutsch
+T106	Kanzlei 11578 11610	Anwaltskanzlei Matthias F. Uhler
+T107	Tel 11613 11631	+49 (611) 72384183
+T108	Email 11634 11666	matthias.uhler@matthias-uhler.de
+T109	Strasse 11670 11684	Rheinstraße 75
+T110	Ort 11687 11702	65185 Wiesbaden
+R5	zuOrt Arg1:T110 Arg2:T109	
+T111	Anwaeltin 12329 12346	Barbara Rosenbaum
+T112	Email 12356 12376	mu@matthias-uhler.de
+T113	Tel 12382 12400	+49 (611) 72384183
+T114	Rechtsgebiete 12416 12424	Erbrecht
+T115	Rechtsgebiete 12427 12440	Familienrecht
+T116	Fachanwalt 12483 12513	Fachanwältin für Familienrecht
+T117	Sprachen 12561 12569	Englisch
+T118	Sprachen 12570 12577	Deutsch
+T119	Anwalt 12593 12607	Matthias Uhler
+T120	Email 12615 12635	mu@matthias-uhler.de
+T121	Tel 12641 12659	+49 (611) 72384183
+T122	Rechtsgebiete 12675 12687	Arbeitsrecht
+T123	Rechtsgebiete 12690 12699	Mietrecht
+T124	Rechtsgebiete 12702 12724	Wohnungseigentumsrecht
+T125	Fachanwalt 12753 12780	Fachanwalt für Arbeitsrecht
+T126	Fachanwalt 12781 12816	Fachanwalt für Miet- und Weg- Recht
+T127	Sprachen 12841 12852	Französisch
+T128	Sprachen 12853 12860	Deutsch
+T129	Anwalt 12876 12891	Theodor Eliades
+T130	Email 12899 12918	theoeliades@aol.com
+T131	Tel 12924 12942	+49 (611) 72384183
+T132	Rechtsgebiete 12958 12967	Mietrecht
+T133	Rechtsgebiete 12970 12988	Verkehrszivilrecht
+T134	Rechtsgebiete 12991 13002	Sozialrecht
+T135	Sprachen 13055 13065	Griechisch
+T136	Sprachen 13066 13073	Deutsch
+T137	Kanzlei 13660 13692	Anwaltskanzlei Matthias F. Uhler
+T138	Tel 13695 13713	+49 (611) 72384183
+T139	Email 13716 13748	matthias.uhler@matthias-uhler.de
+T140	Strasse 13752 13766	Rheinstraße 75
+T141	Ort 13769 13784	65185 Wiesbaden
+R6	zuOrt Arg1:T141 Arg2:T140	

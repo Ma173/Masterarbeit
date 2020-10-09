@@ -1,0 +1,22 @@
+T1	Rechtsgebiete 219 231	ARBEITSRECHT
+T2	Rechtsgebiete 234 249	IMMOBILIENRECHT
+T3	Rechtsgebiete 252 269	UNTERNEHMENSRECHT
+T4	Bio 276 313	Gründung unserer Kanzlei im Jahr 1989
+T5	Rechtsgebiete 511 523	Arbeitsrecht
+T6	Rechtsgebiete 525 540	Immobilienrecht
+T7	Rechtsgebiete 545 562	Unternehmensrecht
+T8	Rechtsgebiete 772 784	Arbeitsrecht
+T9	Rechtsgebiete 787 796	Mietrecht
+T10	Rechtsgebiete 799 821	Wohnungseigentumsrecht
+T11	Rechtsgebiete 822 830	Baurecht
+T12	Rechtsgebiete 833 849	Architektenrecht
+T13	Rechtsgebiete 852 868	Verwaltungsrecht
+T14	Anwalt 875 892	Rechtsanwalt Wink
+T16	Rechtsgebiete 982 990	Erbrecht
+T17	Rechtsgebiete 993 1006	Verkehrsrecht
+T18	Rechtsgebiete 1009 1022	Familienrecht
+T19	Strasse 1059 1081	Möllenkotter Straße 3F
+T20	Ort 1082 1095	58332 Schwelm
+R1	zuOrt Arg1:T20 Arg2:T19	
+T21	Tel 1102 1117	02336 40 89 - 0
+T22	Fax 1123 1139	02336 40 89 - 20

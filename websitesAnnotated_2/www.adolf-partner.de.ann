@@ -1,0 +1,58 @@
+T3	Kanzlei 1080 1112	Kanzlei Adolf Buckenleib Angerer
+T4	Kanzlei 2433 2465	Kanzlei Adolf Buckenleib Angerer
+T5	Anwalt 2871 2888	Werner Buckenleib
+T6	Bio 2889 2919	Geboren 1968 in Weiden i.d.Opf
+T7	Bio 2921 2994	1987 Abitur am mathematisch-naturwissenschaftlichen Gymnasium Neustadt/WN
+T8	Bio 2995 3041	Studium der Rechtswissenschaften in Regensburg
+T9	Bio 3042 3079	1993 Erstes Juristisches Staatsexamen
+T10	Bio 3080 3133	Referendarzeit in Regensburg, Neustadt/WN und München
+T11	Bio 3134 3171	09.01.1996 Zulassung zur Anwaltschaft
+T12	Bio 3172 3215	Seit 2005 auch Fachanwalt für Verkehrsrecht
+T15	Anwalt 3281 3292	Heinz Adolf
+T16	Bio 3293 3323	Geboren 1946 in Weiden i.d.Opf
+T17	Bio 3325 3397	1966 Abitur am mathematisch-naturwissenschaftlichen Gymnasium in Kelheim
+T18	Bio 3398 3444	Studium der Rechtswissenschaften in Regensburg
+T19	Bio 3445 3482	1973 Erstes Juristisches Staatsexamen
+T20	Bio 3483 3521	Referendariat in Regensburg und Weiden
+T21	Bio 3522 3560	1976 Zweites Juristisches Staatsexamen
+T22	Bio 3561 3598	05.10.1976 Zulassung zur Anwaltschaft
+T23	Anwalt 3700 3714	Martin Angerer
+T24	Bio 3715 3747	Geboren 1953 in Hirschau i.d.Opf
+T25	Bio 3749 3794	1972 Abitur am Augustinus-Gymnasium in Weiden
+T26	Bio 3795 3841	Studium der Rechtswissenschaften in Regensburg
+T27	Bio 3842 3879	1979 Erstes Juristisches Staatsexamen
+T28	Bio 3880 3918	Referendariat in Regensburg und Weiden
+T29	Bio 3919 3957	1982 Zweites Juristisches Staatsexamen
+T30	Bio 3958 3995	07.12.1982 Zulassung zur Anwaltschaft
+T31	Tel 1154 1166	0961 / 34077
+T32	Fax 1176 1188	0961 / 37493
+T33	Email 1197 1218	info@adolf-partner.de
+T34	Tel 2507 2519	0961 / 34077
+T35	Fax 2529 2541	0961 / 37493
+T36	Email 2550 2571	info@adolf-partner.de
+T37	Kanzlei 1227 1263	Kanzlei Adolf - Buckenleib - Angerer
+T38	Kanzlei 0 15	Adolf & Partner
+T39	Kanzlei 2580 2616	Kanzlei Adolf - Buckenleib - Angerer
+T40	Kanzlei 4004 4040	Kanzlei Adolf - Buckenleib - Angerer
+T41	Anwalt 197 206	Max Adolf
+T42	Anwalt 327 336	Max Adolf
+T43	Anwalt 351 362	Heinz Adolf
+T44	Anwalt 444 456	Rainer Stamm
+T45	Anwalt 628 642	Martin Angerer
+T46	Anwalt 703 714	Heinz Adolf
+T47	Anwalt 716 728	Rainer Stamm
+T48	Anwalt 733 747	Martin Angerer
+T49	Anwalt 1550 1559	Max Adolf
+T50	Anwalt 1680 1689	Max Adolf
+T51	Anwalt 1704 1715	Heinz Adolf
+T52	Anwalt 1797 1809	Rainer Stamm
+T53	Anwalt 1981 1995	Martin Angerer
+T54	Anwalt 2056 2067	Heinz Adolf
+T55	Anwalt 2069 2081	Rainer Stamm
+T56	Anwalt 2086 2100	Martin Angerer
+T1	Strasse 1113 1130	Sebastianstraße 4
+T57	Ort 1131 1143	92637 Weiden
+R1	zuOrt Arg1:T57 Arg2:T1	
+T2	Strasse 2466 2483	Sebastianstraße 4
+T58	Ort 2484 2496	92637 Weiden
+R2	zuOrt Arg1:T58 Arg2:T2	

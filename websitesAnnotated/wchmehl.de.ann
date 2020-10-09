@@ -1,0 +1,13 @@
+T2	Anwalt 537 566	Dr. iur. Hans-Henning Schmehl
+T5	Kanzlei 635 661	Dr. Schmehl Anwaltskanzlei
+T3	Anwalt 571 599	Prof. Dr. iur. Matthias Wenn
+T4	Anwalt 604 633	Prof. Dr. iur. Dieter Rössner
+T6	Strasse 664 678	Doblerstraße 1
+T7	Ort 681 695	72074 Tübingen
+R1	zuOrt Arg1:T7 Arg2:T6	
+T8	Email 698 719	kanzlei(at)schmehl.de
+T1	Kanzlei 293 319	Dr. Schmehl Anwaltskanzlei
+T9	Strasse 322 336	Doblerstraße 1
+T10	Ort 339 353	72074 Tübingen
+R2	zuOrt Arg1:T10 Arg2:T9	
+T11	Email 356 377	kanzlei(at)schmehl.de

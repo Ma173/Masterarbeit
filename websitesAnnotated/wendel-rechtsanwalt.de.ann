@@ -1,0 +1,17 @@
+T1	Kanzlei 30 42	PETER MENDEL
+T2	Rechtsgebiete 463 481	Firmenrechtsschutz
+T3	Rechtsgebiete 619 651	Wohnungseigentums- und Mietrecht
+T4	Rechtsgebiete 984 996	Arbeitsrecht
+T5	Anwalt 1155 1167	Peter Mendel
+T6	Anwalt 2860 2872	Peter Mendel
+T7	Strasse 2887 2904	Hausener Weg 112a
+T8	Ort 2905 2928	60489 Frankfurt am Main
+R1	zuOrt Arg1:T8 Arg2:T7	
+T9	Tel 2934 2950	+49 (0)69 728387
+T10	Fax 2956 2972	+49 (0)69 723213
+T11	Email 2981 3005	peter_mendel@t-online.de
+T12	Bio 1169 1250	Ich wurde 1951 geboren, bin seit 1974 verheiratet und habe einen erwachsenen Sohn
+T13	Bio 1253 1445	1971 habe ich auf dem Grimmelshausen Gymnasium Gelnhausen Abitur gemacht, war sodann für 2 Jahre Zeitsoldat, Reserveoffizier und zuletzt nach Wehrübungen Hauptmann der Reserve und Kompaniechef
+T14	Bio 1448 1612	1973 habe ich mit dem juristischen Studium in der Johann-Wolfgang-von-Goethe-Universität in Frankfurt am Main begonnen und mein 2. Staatsexamen 1982 mit 3,0 beendet
+T15	Bio 1615 1701	Seit 1982 bin ich als Anwalt, zunächst in der Anwaltssozietät Sandmann & Mendel, tätig
+T16	Bio 1705 1795	Seit 2006, nach Auflösung der Sozietät, führe ich meine „Anwaltsboutique“ als Einzelanwalt

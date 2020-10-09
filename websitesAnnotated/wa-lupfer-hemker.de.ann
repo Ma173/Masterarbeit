@@ -1,0 +1,159 @@
+T1	Kanzlei 14 29	Lupfer & Hemker
+T2	Tel 638 656	02541 / 84 20 84-0
+T3	Anwalt 741 754	Volker Lupfer
+T4	Anwaeltin 770 783	Ulrike Hemker
+T5	Anwaeltin 799 810	Ilka Tetsch
+T6	Strasse 866 879	Kellerstr. 10
+T7	Ort 880 894	48653 Coesfeld
+R1	zuOrt Arg1:T7 Arg2:T6	
+T8	Tel 904 918	02541/842084-0
+T9	Fax 928 942	02541/842084-5
+T10	Email 949 973	info@ra-lupfer-hemker.de
+T11	Tel 1762 1780	02541 / 84 20 84-0
+T12	Anwalt 1865 1878	Volker Lupfer
+T13	Anwaeltin 1894 1907	Ulrike Hemker
+T14	Anwaeltin 1923 1934	Ilka Tetsch
+T15	Strasse 1990 2003	Kellerstr. 10
+T16	Ort 2004 2018	48653 Coesfeld
+R2	zuOrt Arg1:T16 Arg2:T15	
+T17	Tel 2028 2042	02541/842084-0
+T18	Fax 2052 2066	02541/842084-5
+T19	Email 2073 2097	info@ra-lupfer-hemker.de
+T20	Anwalt 2421 2434	Volker Lupfer
+T25	Anwaeltin 4159 4172	Ulrike Hemker
+T21	Rechtsgebiete 2850 2863	Verkehrsrecht
+T22	Rechtsgebiete 2865 2875	Strafrecht
+T23	Rechtsgebiete 2880 2896	Wettbewerbsrecht
+T24	Rechtsgebiete 2836 2848	Arbeitsrecht
+T27	Anwaeltin 5259 5270	Ilka Tetsch
+T28	Rechtsgebiete 5688 5703	mietrechtlicher
+T29	Rechtsgebiete 5705 5724	verkehrsrechtlicher
+T30	Rechtsgebiete 5731 5747	strafrechtlicher
+T31	Tel 5789 5807	02541 / 84 20 84-0
+T32	Anwalt 5892 5905	Volker Lupfer
+T33	Anwaeltin 5921 5934	Ulrike Hemker
+T34	Anwaeltin 5950 5961	Ilka Tetsch
+T35	Kanzlei 5979 6016	Lupfer, Hemker, Tetsch, Rechtsanwälte
+T36	Strasse 6017 6030	Kellerstr. 10
+T37	Ort 6031 6045	48653 Coesfeld
+R3	zuOrt Arg1:T37 Arg2:T36	
+T38	Tel 6055 6069	02541/842084-0
+T39	Fax 6079 6093	02541/842084-5
+T40	Email 6100 6124	info@ra-lupfer-hemker.de
+T41	Anwalt 6448 6461	Volker Lupfer
+T42	Rechtsgebiete 6863 6875	Arbeitsrecht
+T43	Rechtsgebiete 6877 6890	Verkehrsrecht
+T44	Rechtsgebiete 6892 6902	Strafrecht
+T45	Rechtsgebiete 6907 6923	Wettbewerbsrecht
+T46	Anwaeltin 8186 8199	Ulrike Hemker
+T47	Fachanwalt 8410 8423	Familienrecht
+T48	Anwaeltin 9286 9297	Ilka Tetsch
+T49	Rechtsgebiete 9715 9730	mietrechtlicher
+T50	Rechtsgebiete 9732 9751	verkehrsrechtlicher
+T51	Rechtsgebiete 9758 9774	strafrechtlicher
+T52	Tel 9816 9834	02541 / 84 20 84-0
+T53	Anwalt 9919 9932	Volker Lupfer
+T54	Anwaeltin 9948 9961	Ulrike Hemker
+T55	Anwaeltin 9977 9988	Ilka Tetsch
+T56	Kanzlei 10006 10043	Lupfer, Hemker, Tetsch, Rechtsanwälte
+T57	Strasse 10044 10057	Kellerstr. 10
+T58	Ort 10058 10072	48653 Coesfeld
+T59	Tel 10082 10096	02541/842084-0
+T60	Fax 10106 10120	02541/842084-5
+T61	Email 10127 10151	info@ra-lupfer-hemker.de
+T62	Anwalt 10456 10469	Volker Lupfer
+T63	Rechtsgebiete 10871 10883	Arbeitsrecht
+T64	Rechtsgebiete 10885 10898	Verkehrsrecht
+T65	Rechtsgebiete 10900 10910	Strafrecht
+T66	Rechtsgebiete 10915 10931	Wettbewerbsrecht
+T67	Tel 12211 12229	02541 / 84 20 84-0
+T68	Anwalt 12314 12327	Volker Lupfer
+T69	Anwaeltin 12343 12356	Ulrike Hemker
+T70	Anwaeltin 12372 12383	Ilka Tetsch
+T71	Kanzlei 12401 12438	Lupfer, Hemker, Tetsch, Rechtsanwälte
+T72	Strasse 12439 12452	Kellerstr. 10
+T73	Ort 12453 12467	48653 Coesfeld
+T74	Tel 12477 12491	02541/842084-0
+T75	Fax 12501 12515	02541/842084-5
+T76	Email 12522 12546	info@ra-lupfer-hemker.de
+T77	Anwaeltin 12851 12864	Ulrike Hemker
+T78	Fachanwalt 13075 13088	Familienrecht
+T79	Tel 13968 13986	02541 / 84 20 84-0
+T80	Anwalt 14071 14084	Volker Lupfer
+T81	Anwaeltin 14100 14113	Ulrike Hemker
+T82	Anwaeltin 14129 14140	Ilka Tetsch
+T83	Kanzlei 14158 14195	Lupfer, Hemker, Tetsch, Rechtsanwälte
+T84	Strasse 14196 14209	Kellerstr. 10
+T85	Ort 14210 14224	48653 Coesfeld
+R4	zuOrt Arg1:T85 Arg2:T84	
+T86	Tel 14234 14248	02541/842084-0
+T87	Fax 14258 14272	02541/842084-5
+T88	Email 14279 14303	info@ra-lupfer-hemker.de
+T89	Anwaeltin 14606 14617	Ilka Tetsch
+T90	Tel 15136 15154	02541 / 84 20 84-0
+T91	Anwalt 15239 15252	Volker Lupfer
+T92	Anwaeltin 15268 15281	Ulrike Hemker
+T93	Anwaeltin 15297 15308	Ilka Tetsch
+T94	Kanzlei 15326 15363	Lupfer, Hemker, Tetsch, Rechtsanwälte
+T95	Strasse 15364 15377	Kellerstr. 10
+T96	Ort 15378 15392	48653 Coesfeld
+T97	Tel 15402 15416	02541/842084-0
+T98	Fax 15426 15440	02541/842084-5
+T99	Email 15447 15471	info@ra-lupfer-hemker.de
+T101	Bio 576 618	Rechtsanwalt in Coesfeld, Münster und Hamm
+T103	Kanzlei 828 865	Lupfer, Hemker, Tetsch, Rechtsanwälte
+T104	Bio 1700 1742	Rechtsanwalt in Coesfeld, Münster und Hamm
+T106	Kanzlei 1952 1989	Lupfer, Hemker, Tetsch, Rechtsanwälte
+T107	Bio 2436 2448	geboren 1969
+T108	Bio 2450 2471	verheiratet, 2 Kinder
+T109	Bio 2473 2505	Bankausbildung von 1989 bis 1992
+T110	Bio 2507 2574	Tätigkeit als Bankkaufmann im Bereich Kreditwesen von 1992 bis 1993
+T111	Bio 2576 2637	Studium der Rechtswissenschaften in Münster von 1993 bis 1998
+T112	Bio 2639 2670	Referendariat von 1998 bis 2000
+T113	Bio 2672 2703	2000 Zulassung als Rechtsanwalt
+T114	Bio 2705 2764	2005 Zulassung als Rechtsanwalt beim Oberlandesgericht Hamm
+T115	Anwalt 2771 2790	Rechtsanwalt Lupfer
+T116	Rechtsgebiete 3321 3333	Arbeitsrecht
+T117	Anwalt 3693 3712	Rechtsanwalt Lupfer
+T118	Rechtsgebiete 3900 3920	Straßenverkehrsrecht
+T119	Anwalt 3934 3953	Rechtsanwalt Lupfer
+T120	Bio 4174 4186	geboren 1967
+T121	Bio 4188 4212	verheiratet, drei Kinder
+T122	Bio 4214 4281	Studium der Rechtswissenschaften in Konstanz (Bodensee) und Münster
+T123	Bio 4283 4317	2. Juristisches Staatsexamen: 1998
+T124	Bio 4319 4350	Zulassung zur Anwaltschaft 2003
+T126	Bio 5272 5284	geboren 1972
+T127	Bio 5286 5307	verheiratet, 2 Kinder
+T128	Bio 5309 5366	Studium der Rechtswissenschaften in Bielefeld und Münster
+T129	Bio 5368 5389	Referendarexamen 1997
+T130	Bio 5391 5427	Referendariat in Münster 1998 – 2001
+T131	Bio 5429 5476	Assessorexamen 2001 beim Oberlandesgericht Hamm
+T132	Bio 5478 5540	zugelassen als Rechtsanwältin am Landgericht Münster seit 2004
+T133	Bio 5548 5634	Rechtsanwältin Tetsch ist freie Mitarbeiterin der Rechtsanwaltskanzlei Lupfer & Hemker
+T134	Bio 6463 6475	geboren 1969
+T135	Bio 6477 6498	verheiratet, 2 Kinder
+T136	Bio 6500 6532	Bankausbildung von 1989 bis 1992
+T137	Bio 6534 6601	Tätigkeit als Bankkaufmann im Bereich Kreditwesen von 1992 bis 1993
+T138	Bio 6603 6664	Studium der Rechtswissenschaften in Münster von 1993 bis 1998
+T139	Bio 6666 6697	Referendariat von 1998 bis 2000
+T140	Bio 6699 6730	2000 Zulassung als Rechtsanwalt
+T141	Bio 6732 6791	2005 Zulassung als Rechtsanwalt beim Oberlandesgericht Hamm
+T142	Anwalt 6798 6817	Rechtsanwalt Lupfer
+T143	Rechtsgebiete 7348 7360	Arbeitsrecht
+T144	Anwalt 7720 7739	Rechtsanwalt Lupfer
+T145	Rechtsgebiete 7927 7947	Straßenverkehrsrecht
+T146	Bio 8201 8213	geboren 1967
+T147	Bio 8215 8239	verheiratet, drei Kinder
+T148	Bio 8241 8308	Studium der Rechtswissenschaften in Konstanz (Bodensee) und Münster
+T149	Bio 8310 8344	2. Juristisches Staatsexamen: 1998
+T150	Bio 8346 8377	Zulassung zur Anwaltschaft 2003
+T151	Anwaeltin 9208 9229	Rechtsanwältin Hemker
+T152	Bio 9299 9311	geboren 1972
+T153	Bio 9313 9334	verheiratet, 2 Kinder
+T154	Bio 9336 9393	Studium der Rechtswissenschaften in Bielefeld und Münster
+T155	Bio 9395 9416	Referendarexamen 1997
+T156	Bio 9418 9454	Referendariat in Münster 1998 – 2001
+T157	Bio 9456 9503	Assessorexamen 2001 beim Oberlandesgericht Hamm
+T158	Bio 9505 9567	zugelassen als Rechtsanwältin am Landgericht Münster seit 2004
+T159	Bio 9575 9661	Rechtsanwältin Tetsch ist freie Mitarbeiterin der Rechtsanwaltskanzlei Lupfer & Hemker
+T26	Fachanwalt 4366 4396	Fachanwältin für Familienrecht

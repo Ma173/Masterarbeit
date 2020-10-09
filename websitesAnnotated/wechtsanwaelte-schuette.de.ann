@@ -1,0 +1,146 @@
+T1	Kanzlei 111 121	SH-Partner
+T2	Rechtsgebiete 441 482	Leitungsrechte von Versorgungsunternehmen
+T3	Rechtsgebiete 501 526	Landesvergaberecht in M-V
+T4	Rechtsgebiete 546 589	Gebührenkalkulation in der Wasserversorgung
+T5	Rechtsgebiete 615 639	Arbeitnehmer-Datenschutz
+T6	Rechtsgebiete 661 692	Haus- und Grundstücksanschlüsse
+T7	Rechtsgebiete 784 795	Wasserrecht
+T8	Rechtsgebiete 796 806	Agrarrecht
+T9	Rechtsgebiete 807 819	Vergaberecht
+T10	Rechtsgebiete 820 840	Forderungsmanagement
+T11	Rechtsgebiete 841 864	Arbeits und Dienstrecht
+T12	Rechtsgebiete 1145 1156	Wasserrecht
+T13	Strasse 1185 1199	Neuer Markt 17
+T14	Ort 1200 1213	18055 Rostock
+R1	zuOrt Arg1:T14 Arg2:T13	
+T15	Tel 1219 1231	0381-4930260
+T16	Email 1232 1249	hro@sh-partner.de
+T17	Strasse 1250 1265	Goethestraße 27
+T18	Ort 1266 1283	18209 Bad Doberan
+R2	zuOrt Arg1:T18 Arg2:T17	
+T19	Tel 1289 1300	038203-7769
+T20	Email 1301 1318	dbr@sh-partner.de
+T21	Strasse 1319 1349	Plauener Straße 163-165 Haus G
+T22	Ort 1350 1362	13053 Berlin
+R3	zuOrt Arg1:T22 Arg2:T21	
+T23	Tel 1368 1380	030-24625386
+T24	Email 1381 1401	berlin@sh-partner.de
+T25	Rechtsgebiete 2473 2484	Wasserrecht
+T26	Rechtsgebiete 2485 2495	Agrarrecht
+T27	Rechtsgebiete 2496 2508	Vergaberecht
+T28	Rechtsgebiete 2509 2529	Forderungsmanagement
+T29	Rechtsgebiete 2530 2553	Arbeits und Dienstrecht
+T30	Rechtsgebiete 2834 2845	Wasserrecht
+T31	Strasse 2874 2888	Neuer Markt 17
+T32	Ort 2889 2902	18055 Rostock
+R4	zuOrt Arg1:T32 Arg2:T31	
+T33	Tel 2908 2920	0381-4930260
+T34	Email 2921 2938	hro@sh-partner.de
+T35	Strasse 2939 2954	Goethestraße 27
+T36	Ort 2955 2972	18209 Bad Doberan
+R5	zuOrt Arg1:T36 Arg2:T35	
+T37	Tel 2978 2989	038203-7769
+T38	Email 2990 3007	dbr@sh-partner.de
+T39	Strasse 3008 3038	Plauener Straße 163-165 Haus G
+T40	Ort 3039 3051	13053 Berlin
+R6	zuOrt Arg1:T40 Arg2:T39	
+T41	Tel 3057 3069	030-24625386
+T42	Email 3070 3090	berlin@sh-partner.de
+T43	Kanzlei 3494 3504	SH-Partner
+T44	Kanzlei 3339 3365	rechtsanwaelte-schuette.de
+T45	Anwalt 3510 3527	Dieter B. Schütte
+T46	Anwalt 3584 3602	Michael Horstkotte
+T47	Fachanwalt 3618 3649	Fachanwalt für Verwaltungsrecht
+T48	Fachanwalt 3651 3691	Fachanwalt für Vergaberecht und Mediator
+T49	Email 3702 3721	www.mediation-mv.de
+T50	Anwalt 3722 3737	Olaf Hünemörder
+T51	Fachanwalt 3753 3780	Fachanwalt für Vergaberecht
+T52	Anwalt 3790 3809	Matthias Veihelmann
+T53	Fachanwalt 3825 3852	Fachanwalt für Arbeitsrecht
+T54	Anwalt 3862 3880	Dr. Martin Dimieff
+T56	Anwalt 3922 3931	Ben Buder
+T55	Strasse 4665 4679	Neuer Markt 17
+T57	Ort 4680 4693	18055 Rostock
+R7	zuOrt Arg1:T57 Arg2:T55	
+T58	Tel 4699 4711	0381-4930260
+T59	Email 4712 4729	hro@sh-partner.de
+T60	Strasse 4730 4745	Goethestraße 27
+T61	Ort 4746 4763	18209 Bad Doberan
+R8	zuOrt Arg1:T61 Arg2:T60	
+T62	Tel 4769 4780	038203-7769
+T63	Email 4781 4798	dbr@sh-partner.de
+T64	Strasse 4799 4829	Plauener Straße 163-165 Haus G
+T65	Ort 4830 4842	13053 Berlin
+T66	Tel 4848 4860	030-24625386
+T67	Email 4861 4881	berlin@sh-partner.de
+T68	Kanzlei 5289 5299	SH-Partner
+T69	Anwalt 5308 5325	Dieter B. Schütte
+T70	Anwalt 5382 5400	Michael Horstkotte
+T71	Fachanwalt 5416 5447	Fachanwalt für Verwaltungsrecht
+T72	Fachanwalt 5449 5489	Fachanwalt für Vergaberecht und Mediator
+T73	Email 5500 5519	www.mediation-mv.de
+T74	Anwalt 5520 5535	Olaf Hünemörder
+T75	Fachanwalt 5551 5578	Fachanwalt für Vergaberecht
+T76	Anwalt 5588 5607	Matthias Veihelmann
+T77	Fachanwalt 5623 5650	Fachanwalt für Arbeitsrecht
+T78	Anwalt 5660 5678	Dr. Martin Dimieff
+T79	Anwalt 5720 5729	Ben Buder
+T80	Rechtsgebiete 5833 5844	Wasserrecht
+T81	Strasse 5873 5887	Neuer Markt 17
+T82	Ort 5888 5901	18055 Rostock
+R9	zuOrt Arg1:T82 Arg2:T81	
+T83	Tel 5907 5919	0381-4930260
+T84	Email 5920 5937	hro@sh-partner.de
+T85	Strasse 5938 5953	Goethestraße 27
+T86	Ort 5954 5971	18209 Bad Doberan
+R10	zuOrt Arg1:T86 Arg2:T85	
+T87	Tel 5977 5988	038203-7769
+T88	Email 5989 6006	dbr@sh-partner.de
+T89	Strasse 6007 6037	Plauener Straße 163-165 Haus G
+T90	Ort 6038 6050	13053 Berlin
+R11	zuOrt Arg1:T90 Arg2:T89	
+T91	Tel 6056 6068	030-24625386
+T92	Email 6069 6089	berlin@sh-partner.de
+T93	Kanzlei 6294 6304	SH-Partner
+T94	Kanzlei 6338 6364	rechtsanwaelte-schuette.de
+T95	Kanzlei 6513 6523	SH-Partner
+T96	Rechtsgebiete 6867 6878	Wasserrecht
+T97	Rechtsgebiete 6879 6889	Agrarrecht
+T98	Rechtsgebiete 6890 6902	Vergaberecht
+T99	Rechtsgebiete 6903 6923	Forderungsmanagement
+T100	Rechtsgebiete 6924 6947	Arbeits und Dienstrecht
+T101	Kanzlei 7151 7161	SH-Partner
+T102	Rechtsgebiete 7303 7314	Wasserrecht
+T103	Strasse 7343 7357	Neuer Markt 17
+T104	Ort 7358 7371	18055 Rostock
+R12	zuOrt Arg1:T104 Arg2:T103	
+T105	Tel 7377 7389	0381-4930260
+T106	Email 7390 7407	hro@sh-partner.de
+T107	Strasse 7408 7423	Goethestraße 27
+T108	Ort 7424 7441	18209 Bad Doberan
+R13	zuOrt Arg1:T108 Arg2:T107	
+T109	Tel 7447 7458	038203-7769
+T110	Email 7459 7476	dbr@sh-partner.de
+T111	Strasse 7477 7507	Plauener Straße 163-165 Haus G
+T112	Ort 7508 7520	13053 Berlin
+T113	Tel 7526 7538	030-24625386
+T114	Email 7539 7559	berlin@sh-partner.de
+T115	Kanzlei 7764 7774	SH-Partner
+T116	Kanzlei 7808 7834	rechtsanwaelte-schuette.de
+T117	Strasse 8902 8916	Neuer Markt 17
+T118	Ort 8917 8930	18055 Rostock
+R14	zuOrt Arg1:T118 Arg2:T117	
+T119	Tel 8936 8948	0381-4930260
+T120	Email 8949 8966	hro@sh-partner.de
+T121	Strasse 8967 8982	Goethestraße 27
+T122	Ort 8983 9000	18209 Bad Doberan
+R15	zuOrt Arg1:T122 Arg2:T121	
+T123	Tel 9006 9017	038203-7769
+T124	Email 9018 9035	dbr@sh-partner.de
+T125	Strasse 9036 9066	Plauener Straße 163-165 Haus G
+T126	Ort 9067 9079	13053 Berlin
+R16	zuOrt Arg1:T126 Arg2:T125	
+T127	Tel 9085 9097	030-24625386
+T128	Email 9098 9118	berlin@sh-partner.de
+T129	Kanzlei 9323 9333	SH-Partner
+R17	zuOrt Arg1:T112 Arg2:T111	

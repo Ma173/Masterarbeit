@@ -1,0 +1,17 @@
+T1	Kanzlei 202 221	Hemmerich & Ehleben
+T2	Rechtsgebiete 248 260	Medizinrecht
+T3	Strasse 262 280	Tilsiter Straße 10
+T4	Ort 281 304	60487 Frankfurt am Main
+R1	zuOrt Arg1:T4 Arg2:T3	
+T5	Anwaeltin 315 330	Sonja Hemmerich
+T6	Tel 385 400	069 – 7103 3978
+T7	Fax 410 427	03 212 – 1217 079
+T8	Tel 435 449	0173 – 6743876
+T9	Email 459 493	hemmerich@rae-hemmerich-ehleben.de
+T10	Anwalt 495 521	Christopher Moritz Ehleben
+T11	Tel 545 559	069 – 70795439
+T12	Fax 569 586	03 212 – 1217 079
+T13	Email 596 628	ehleben@rae-hemmerich-ehleben.de
+T14	Bio 332 335	MBA
+T15	Bio 336 359	Gesundheitsökonom (ebs)
+T16	Kanzlei 632 651	HEMMERICH & EHLEBEN

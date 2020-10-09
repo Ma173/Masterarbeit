@@ -1,0 +1,33 @@
+T1	Kanzlei 148 170	Dr. Duvigneau & Scholz
+T2	Kanzlei 420 442	Dr. Duvigneau & Scholz
+T4	Tel 514 529	040 / 410 40 32
+T5	Fax 564 580	040 / 413 44 492
+T6	Tel 488 503	040 / 410 40 31
+T7	Tel 538 553	040 / 413 44 47
+T8	Anwalt 761 789	Dr. Joh. Christoph Duvigneau
+T9	Anwalt 1024 1042	Matthias R. Scholz
+T10	Fachanwalt 992 1019	Fachanwalt für Arbeitsrecht
+T11	Anwalt 1266 1278	Jan H. Behne
+T12	Anwalt 1408 1432	Dr. J. Philipp Duvigneau
+T13	Fachanwalt 1653 1680	Fachanwalt für Arbeitsrecht
+T14	Anwaeltin 1681 1694	Lena Borowski
+T15	Kanzlei 2026 2048	Dr. Duvigneau & Scholz
+T17	Tel 2120 2134	040 / 410 40 3
+T18	Tel 2094 2109	040 / 410 40 31
+T19	Tel 2144 2159	040 / 413 44 47
+T20	Fax 2170 2186	040 / 413 44 492
+T3	Strasse 443 463	Rothenbaumchaussee 5
+T21	Ort 466 479	20148 Hamburg
+R1	zuOrt Arg1:T21 Arg2:T3	
+T16	Strasse 2049 2069	Rothenbaumchaussee 5
+T22	Ort 2072 2085	20148 Hamburg
+R2	zuOrt Arg1:T22 Arg2:T16	
+T23	Bio 1043 1114	Studium von 1977 bis 1982 in Hamburg, Referendariat bis 1985 in Hamburg
+T24	Bio 1208 1260	In der Kanzlei tätig seit 1986 und Partner seit 1988
+T25	Bio 1279 1348	Studium von 1983 bis 1989 in Passau, Referendariat bis 1992 in Passau
+T26	Bio 1353 1405	In der Kanzlei tätig seit 1992 und Partner seit 1997
+T27	Bio 1433 1477	Studium von 1989 bis 1994 in Passau und Kiel
+T28	Bio 1479 1511	Referendariat bis 1997 in Berlin
+T29	Bio 1514 1565	Master of Laws University of New South Wales (UNSW)
+T30	Bio 1566 1596	Februar 1998 bis November 1998
+T31	Bio 1599 1651	In der Kanzlei tätig seit 1999 und Partner seit 2003
