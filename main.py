@@ -259,10 +259,11 @@ def learningAlgorithmAnnotatedTexts():
   os.listdir('/home/runner')
   print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
   websiteFiles = []
-  for (dirpath, dirnames, filenames) in walk("websitesAnnotated_2"):
+  folder="websitesAnnotated_2"
+  for (dirpath, dirnames, filenames) in walk(folder):
       websiteFiles.extend(filenames)
       break
-  print(websiteFiles)
+  print("{} website files recognized.".format(len(websiteFiles)))
   for i in range(len(websiteFiles)):
     filename=websiteFiles[i]
     if i<len(websiteFiles)-1:
@@ -271,9 +272,26 @@ def learningAlgorithmAnnotatedTexts():
       previousWebsite=websiteFiles[i-1]
     if filename.endswith(".ann"):
       websiteStyle="annotation"
+      if filename.startswith("www."):
+        link=filename[:-4]
+      else:
+        link="www."+filename[:-4]
+      print(link)
+      websiteData=getSingleWebsiteData(link)
+      filePath = "{}/{}".format(folder,filename)
+      with open (filePath) as f:
+        fileContents=f.read()
+        f.close()
+      dataLines = fileContents.splitlines()
+      for dataLine in dataLines:
+        if len(dataLine)>1:
+          dataEntries = dataLine.split("\t")
+          typeOfData = dataEntries[1].split(" ")[0]
+          actualData = dataEntries[2]
+          print("Type of data: {} -   Actual data: {}".format(typeOfData,actualData))
+          #TODO: Herausfinden, mit welchem Tool Frederic empfahl, in HTML-Code nach Inhalten zu suchen, um den Tag/ das Feature dazu zu finden (um eben diese "actualData" auf der geholten "websiteData" zu finden und auf Tag/ Feature zu schließen. War das BeautifulSoup wie in tryout.py?)
     elif filename.endswith(".txt"):
       websiteStyle="websitetext"
-    if
 learningAlgorithmAnnotatedTexts()
 
 # SET TRUE IF NGRAM-APPROACH IS INTENDED
@@ -287,7 +305,7 @@ if nGramApproach is True:
   print(similarityOfStrings([ngrams[1],ngrams[2]],str))
   print(similarityOfStrings(['title=','itle="'],str))
 
-learningAlgorithmGivenInfo()
+#learningAlgorithmGivenInfo()
 
 #print(websitesTexts)
 #print(getMultipleWebsiteData(websitesListDefault))
