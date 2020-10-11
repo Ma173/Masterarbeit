@@ -289,8 +289,11 @@ def learningAlgorithmAnnotatedTexts():
           dataEntries = dataLine.split("\t")
           typeOfData = dataEntries[1].split(" ")[0]
           actualData = dataEntries[2]
+          if "+" in actualData:
+            actualData=actualData.replace("+","\+")
           print("Type of data: {} -   Actual data: {}".format(typeOfData,actualData))
           searchPattern = '\b(\S+)({})(\S+)\b'.format(actualData)
+          print("Search pattern is: {}".format(searchPattern))
           searchResult = re.findall(searchPattern,websiteData)
           print(searchResult)
           #TODO: Herausfinden, mit welchem Tool Frederic empfahl, in HTML-Code nach Inhalten zu suchen, um den Tag/ das Feature dazu zu finden (um eben diese "actualData" auf der geholten "websiteData" zu finden und auf Tag/ Feature zu schließen. War das BeautifulSoup wie in tryout.py?)
