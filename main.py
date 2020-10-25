@@ -277,7 +277,10 @@ def learningAlgorithmAnnotatedTexts():
       else:
         link="www."+filename[:-4]
       print(link)
-      websiteData=getSingleWebsiteData(link)
+      try: websiteData=getSingleWebsiteData(link)
+      except:
+        print("\tWebsite not found. Moving on to the next...")
+        break
       filePath = "{}/{}".format(folder,filename)
       with open (filePath) as f:
         fileContents=f.read()
@@ -297,10 +300,16 @@ def learningAlgorithmAnnotatedTexts():
           searchPattern = '\b(\S+)({})(\S+)\b'.format(actualData)
           print("Search pattern is: {}".format(searchPattern))
           searchResult = re.findall(searchPattern,websiteData)
+          if len(actualData)>0:
+            print("Sucht man das im WebsiteText direkt, findet man folgendes: {}".format(re.findall(actualData,websiteData)))
           print(searchResult)
-          #TODO: Herausfinden, mit welchem Tool Frederic empfahl, in HTML-Code nach Inhalten zu suchen, um den Tag/ das Feature dazu zu finden (um eben diese "actualData" auf der geholten "websiteData" zu finden und auf Tag/ Feature zu schließen. War das BeautifulSoup wie in tryout.py?)
+          #if "www.baumann-partner.tax" in link:
+          #  print(websiteData)
+          #  break
+          #!!! TODO: Herausfinden, mit welchem Tool Frederic empfahl, in HTML-Code nach Inhalten zu suchen, um den Tag/ das Feature dazu zu finden (um eben diese "actualData" auf der geholten "websiteData" zu finden und auf Tag/ Feature zu schließen. War das BeautifulSoup wie in tryout.py?)
     elif filename.endswith(".txt"):
       websiteStyle="websitetext"
+  print("End of learning algorithm")
 learningAlgorithmAnnotatedTexts()
 
 # SET TRUE IF NGRAM-APPROACH IS INTENDED
