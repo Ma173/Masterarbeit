@@ -301,6 +301,7 @@ def learningAlgorithmAnnotatedTexts():
     for (dirpath, dirnames, filenames) in walk(folder):
         websiteFiles.extend(filenames)
         break
+    
     print("{} website files recognized.".format(len(websiteFiles)))
     for i in range(len(websiteFiles)):
         filename = websiteFiles[i]
@@ -314,7 +315,7 @@ def learningAlgorithmAnnotatedTexts():
                 link = filename[:-4]
             else:
                 link = "www." + filename[:-4]
-            print("{} of {}: {}".format(i, len(websiteFiles),link))
+            print("{} of {}: {}".format(round(i/2), round(len(websiteFiles)/2),link))
             try:
                 websiteData = getSingleWebsiteData(link)
                 soup = BeautifulSoup(websiteData, 'html.parser')
