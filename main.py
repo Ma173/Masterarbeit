@@ -133,13 +133,7 @@ def textComparisonGetFeatures(texts):
 
 
 chancelleryUrls = loadFromFile("chancelleryURLs_2.txt").read().splitlines()
-#chancelleryUrls=[]
-#with open("chancelleryURLs_2.txt") as file:
-#    for line in file:
-#        line = line.strip() #preprocess line
-#        chancelleryUrls.append(line)
-#print("Type of imported file: {}".format(type(chancelleryUrls)))
-#print(chancelleryUrls[:10])
+
 print("ChancelleryUrls length is: {}".format(len(chancelleryUrls)))
 
 # Getting matching features of multiple websites texts by first gathering the websites' texts and then extracting common features
@@ -203,91 +197,7 @@ def countSimilarity(listToCheck):
     print("Too high similarity count:", tooHighSimilarityCount)
     return tooHighSimilarityCount
 
-#OUTDATED:
-def learningAlgorithmGivenInfo():
-    from learningTextsGivenInfo import websiteTexts as learningTexts
-    import re
-
-    # Structure of learningTextsGivenInfo:
-    # List 'websitesTexts' =
-    # List of [websiteName, websiteText, websiteData]
-    # website Data = List of [(dataName, [list of actual data])]
-
-    featureList = []
-
-    # For each learning text
-    for i in range(len(learningTexts)):
-        currentTextGroup = learningTexts[i]
-        currentTextName = currentTextGroup[0]
-        currentActualText = currentTextGroup[1]
-        currentTextData = currentTextGroup[2]
-
-        print("\n1) Cycling through each learning text.\nCurrent text: {}".
-              format(currentTextName))
-        # For each data entry of the current learning text, e.g.: # phone
-        for k in range(len(currentTextData)):
-            dataEntry = currentTextData[k]
-            dataName = dataEntry[0]
-            actualData = dataEntry[1]
-
-            print(
-                "···2) Cycling through each data entry.\nCurrent data entry: {}"
-                .format(dataName))
-
-            # For each entity of actual data, e.g.:
-            # +4923456789
-            # ! The regex search parameter cuts off the search result at whitespace (left and right of the find)
-            for l in range(len(actualData)):
-                dataEntity = actualData[l]
-                searchParameter = '\s(\S*{}\S*)\s'.format(dataEntity)
-                searchResults = re.findall(searchParameter, currentActualText)
-                print("   Current findings of {}: {}".format(
-                    dataEntity, searchResults))
-
-                print(
-                    "······3) Cycling through each actual data.\nCurrent data: {}"
-                    .format(dataEntity))
-
-                # For each search result, e.g.:
-                # itemprop="telephone">+49 2131 9235-0</span><br
-                for m in range(len(searchResults)):
-                    currentSearchResult = searchResults[m]
-                    dataPositionInResult = currentSearchResult.find(dataEntity)
-                    leftOfDataFind = currentSearchResult[:dataPositionInResult]
-                    rightOfDataFind = currentSearchResult[
-                        dataPositionInResult + len(dataEntity):]
-
-                    print(
-                        "·········4) Cycling through each search result.\n         Current search result: {}"
-                        .format(currentSearchResult))
-
-                    if '"' in leftOfDataFind:
-                        partsOfFind = currentSearchResult.find('"')
-                        if partsOfFind == 1:
-                            possibleFeature = leftOfDataFind.split('"')[0]
-                            print("         FINDE {}".format(partsOfFind))
-                        elif partsOfFind > 1:
-                            possibleFeature = leftOfDataFind.split('"')[1]
-                            print("         FINDE {}".format(partsOfFind))
-                        print("         The feature could be {}".format(
-                            possibleFeature))
-                        featureList.append(possibleFeature)
-    print("\nFull feature list:{}".format(featureList))
-    loadedFeatures = loadFromFile("features.txt").readlines()
-    listToSave = []
-    listToSave.extend(loadedFeatures)
-    listToSave.extend(featureList)
-    for i in range(len(listToSave)):
-        feature = listToSave[i]
-        if "\n" in feature:
-            listToSave[i] = feature.replace("\n", "")
-    listToSave = list(set(listToSave))
-    print("List to save:{}".format(listToSave))
-    saveListToFile(listToSave, "features.txt")
-
-
 import websitesAnnotated_2
-
 
 def learningAlgorithmAnnotatedTexts():
     import os
