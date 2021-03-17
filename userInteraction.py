@@ -1,4 +1,5 @@
 import re
+from toolbox import loadFromFile
 def userSuggestedFeatures (websitesTexts,websitesListOfFeaturesWithoutWebsitename):
   userinputFeatures=""
   while userinputFeatures!="exit":
@@ -16,3 +17,17 @@ def userSuggestedFeatures (websitesTexts,websitesListOfFeaturesWithoutWebsitenam
             for feature in websitesListOfFeaturesWithoutWebsitename[i]:
               if re.search(userinputDetail,feature):
                 print("{}: This is the full feature occurence you're looking for:{}.\n".format(currentWebsiteText[0],re.findall(userinputDetail,feature)))
+
+def userinput(websitesTexts,websitesListOfFeaturesWithoutWebsitename):
+  userinput = ""
+  loadedFeatures = []
+
+  while userinput != "exit":
+      userinput = input(
+          "feature: Scan features from the websites' source codes\nload: Load all previously saved features\nexit: Exit the program\n"
+      )
+      if userinput == "feature":
+          userSuggestedFeatures(websitesTexts,
+                                websitesListOfFeaturesWithoutWebsitename)
+      elif userinput == "load":
+          loadedFeatures = loadFromFile("features.txt").readlines()

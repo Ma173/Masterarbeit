@@ -1,3 +1,6 @@
+from itertools import chain
+from collections import defaultdict
+
 def sortDict(inputdict):
   listofTuples = sorted(inputdict.items() , reverse=True,  key=lambda x: x[1])
   return listofTuples
@@ -68,3 +71,24 @@ def similarityOfStrings(listOfItemsToCompare,OutputType):
 def getShortestItem(listToCheck):
   resultString="shortest item: {}".format(min(listToCheck, key=len))
   return resultString
+
+# Getting the frequency of all elements of multiple lists. Returns tuples of list item and count, sorted by most frequent list item
+def frequency(lists):  # Notice: If the input is lists (rather than currently a list of lists), insert an asterisk before "lists" -> def frequency(*lists):
+    counter = defaultdict(int)
+    for x in chain(*lists):
+        counter[x] += 1
+    return [(key, value) for (key, value) in sorted(
+        counter.items(), key=lambda kv: (kv[1], kv[0]), reverse=True)]
+
+def countSimilarity(listToCheck):
+    tooHighSimilarityCount = 0
+    for i in range(len(listToCheck)):
+        ngramName = listToCheck[i][0]
+        for k in range(len(listToCheck)):
+            comparedName = listToCheck[k][0]
+            similarity = similarityOfStrings([ngramName, comparedName], int)
+            if similarity > 0.5:
+                #print("Similarity between '{}' and '{}' too high ({})!".format(ngramName,comparedName,similarity))
+                tooHighSimilarityCount += 1
+    print("Too high similarity count:", tooHighSimilarityCount)
+    return tooHighSimilarityCount

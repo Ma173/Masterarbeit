@@ -1,10 +1,9 @@
 import requests, re
 from tryout import nGram
-from toolbox import sortDict, first_with_x_count, loadFromFile, similarityOfStrings, saveListToFile, loadListOfTuplesFromFile, getShortestItem
+from toolbox import sortDict, first_with_x_count, loadFromFile, similarityOfStrings, saveListToFile, loadListOfTuplesFromFile, getShortestItem, frequency
 from chancelleryURLs import websitesDictWithChancelleryName
-from userInteraction import userSuggestedFeatures
-from itertools import chain
-from collections import defaultdict
+from userInteraction import userSuggestedFeatures, userinput
+
 
 
 # The function to get the text of a single website
@@ -87,21 +86,9 @@ def getChancelleryName(textfile):
     print("Done getting chancellery name.")
     return chancelleryName
 
-
 overlappingFeaturesDict = {}
 
-
-# Getting the frequency of all elements of multiple lists. Returns tuples of list item and count, sorted by most frequent list item
-def frequency(lists):  # Notice: If the input is lists (rather than currently a list of lists), insert an asterisk before "lists" -> def frequency(*lists):
-    counter = defaultdict(int)
-    for x in chain(*lists):
-        counter[x] += 1
-    return [(key, value) for (key, value) in sorted(
-        counter.items(), key=lambda kv: (kv[1], kv[0]), reverse=True)]
-
-
 websitesFeaturesList = []
-
 
 # Comparing a list of website texts
 def textComparisonGetFeatures(texts):
@@ -153,7 +140,6 @@ matchingFeatures = textComparisonGetFeatures(websitesTexts)
 print("Features that match all websites: ", list(matchingFeatures)[:10])
 websitesListOfFeaturesWithoutWebsitename = []
 for i in range(len(websitesFeaturesList)):
-    #if i==0: print("Erste Liste fängt so an:",websitesFeaturesList[i][:2])
     websitesListOfFeaturesWithoutWebsitename.append(
         list(websitesFeaturesList[i][1]))
 
@@ -170,32 +156,7 @@ for featureFreqPair in featureFrequencyTop:
 # SET TRUE TO OFFER USER EVALUATION IN RUNNING CODE
 usereval = False
 if usereval == True:
-    userinput = ""
-    loadedFeatures = []
-
-    while userinput != "exit":
-        userinput = input(
-            "feature: Scan features from the websites' source codes\nload: Load all previously saved features\nexit: Exit the program\n"
-        )
-        if userinput == "feature":
-            userSuggestedFeatures(websitesTexts,
-                                  websitesListOfFeaturesWithoutWebsitename)
-        elif userinput == "load":
-            loadedFeatures = loadFromFile("features.txt").readlines()
-
-
-def countSimilarity(listToCheck):
-    tooHighSimilarityCount = 0
-    for i in range(len(listToCheck)):
-        ngramName = listToCheck[i][0]
-        for k in range(len(listToCheck)):
-            comparedName = listToCheck[k][0]
-            similarity = similarityOfStrings([ngramName, comparedName], int)
-            if similarity > 0.5:
-                #print("Similarity between '{}' and '{}' too high ({})!".format(ngramName,comparedName,similarity))
-                tooHighSimilarityCount += 1
-    print("Too high similarity count:", tooHighSimilarityCount)
-    return tooHighSimilarityCount
+  userinput(websitesTexts,websitesListOfFeaturesWithoutWebsitename)
 
 import websitesAnnotated_2
 
