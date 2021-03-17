@@ -92,9 +92,7 @@ overlappingFeaturesDict = {}
 
 
 # Getting the frequency of all elements of multiple lists. Returns tuples of list item and count, sorted by most frequent list item
-def frequency(
-        lists
-):  # Notice: If the input is lists (rather than currently a list of lists), insert an asterisk before "lists" -> def frequency(*lists):
+def frequency(lists):  # Notice: If the input is lists (rather than currently a list of lists), insert an asterisk before "lists" -> def frequency(*lists):
     counter = defaultdict(int)
     for x in chain(*lists):
         counter[x] += 1
@@ -149,9 +147,11 @@ print("ChancelleryUrls length is: {}".format(len(chancelleryUrls)))
 # SWITCH MODE TO UPDATE THE WEBSITES' TEXT FILES:
 textImportMode = "LoadFromFile"  #RetrieveFromWeb"
 if textImportMode == "LoadFromFile":
-    websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
+  print("Loading website texts from file")
+  websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
 elif textImportMode == "RetrieveFromWeb":
-    websitesTexts = getMultipleWebsiteData(
+  print("Retrieving texts from web")
+  websitesTexts = getMultipleWebsiteData(
         chancelleryUrls)  #websitesDictWithChancelleryName)
     #saveListToFile(websitesTexts,"websitesTexts.txt")
 
@@ -168,6 +168,7 @@ featureFrequencyTop = []
 for featurePairs in featureFrequency:
     if featurePairs[1] >= 10:
         featureFrequencyTop.append(featurePairs)
+# Printing out the three groups of the result of re.findall(searchParameter3, text[1]) followed by the calculated frequency
 print("\nAll features that occur on at least 10 websites:")
 for featureFreqPair in featureFrequencyTop:
     print(featureFreqPair)
@@ -202,7 +203,7 @@ def countSimilarity(listToCheck):
     print("Too high similarity count:", tooHighSimilarityCount)
     return tooHighSimilarityCount
 
-
+#OUTDATED:
 def learningAlgorithmGivenInfo():
     from learningTextsGivenInfo import websiteTexts as learningTexts
     import re
@@ -350,7 +351,8 @@ def learningAlgorithmAnnotatedTexts():
                         
                         searchPattern = '\b(\S+)({})(\S+)\b'.format(actualData)
                         #title_tag=soup.head.contents[0]
-                        soup.find_all(re.compile(searchPattern))
+                       #2021 auskommentiert
+                       #print(soup.find_all(string=re.compile(searchPattern)))
                         #if "www.baumann-partner.tax" in link:
                         #  print(websiteData)
                         #  break
@@ -364,8 +366,8 @@ def learningAlgorithmAnnotatedTexts():
             websiteStyle = "websitetext"
     print("End of learning algorithm")
 
-
-learningAlgorithmAnnotatedTexts()
+#2021-02-21 auskommentiert
+#learningAlgorithmAnnotatedTexts()
 
 # SET TRUE IF NGRAM-APPROACH IS INTENDED
 nGramApproach = False
