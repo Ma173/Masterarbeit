@@ -251,6 +251,14 @@ if nGramApproach is True:
     print(similarityOfStrings([ngrams[1], ngrams[2]], str))
     print(similarityOfStrings(['title=', 'itle="'], str))
 
+def dataScraping (websiteText):
+  # List of information to contain at least phone number and email adress
+  listOfInformation=[]
+
+  # TODO: WebScraping-Funktion bauen!
+
+  return listOfInformation
+
 #learningAlgorithmGivenInfo()
 
 #print(websitesTexts)
