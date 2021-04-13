@@ -50,7 +50,7 @@ def getMultipleWebsiteData(urlCollection):
         website = urllist[i]
         #print("website=urllist[i] is: {}".format(urllist[i]))
         if i % 1 == 0:
-            print("\n\t{} of {}: {}".format(i, len(urllist), website))
+            print("\n\t{} of {}: {}".format(i+1, len(urllist), website))
         if (typeOfUrlCollection is list and len(website) >= 1):
             try:
                 websiteText = getSingleWebsiteData(website)
@@ -161,84 +161,85 @@ if usereval == True:
 import websitesAnnotated_2
 
 def learningAlgorithmAnnotatedTexts():
-    import os
-    from os import walk
-    from bs4 import BeautifulSoup
-    #get working directory
-    os.getcwd()
-    os.listdir('/home/runner')
-    print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
-    websiteFiles = []
-    folder = "websitesAnnotated_2"
-    for (dirpath, dirnames, filenames) in walk(folder):
-        websiteFiles.extend(filenames)
-        break
-    
-    print("{} website files recognized.".format(len(websiteFiles)))
-    for i in range(len(websiteFiles)):
-        filename = websiteFiles[i]
-        if i < len(websiteFiles) - 1:
-            nextWebsite = websiteFiles[i + 1]
-        if i > 0:
-            previousWebsite = websiteFiles[i - 1]
-        if filename.endswith(".ann"):
-            websiteStyle = "annotation"
-            if filename.startswith("www."):
-                link = filename[:-4]
-            else:
-                link = "www." + filename[:-4]
-            print("{} of {}: {}".format(round(i/2), round(len(websiteFiles)/2),link))
-            try:
-                websiteData = getSingleWebsiteData(link)
-                soup = BeautifulSoup(websiteData, 'html.parser')
-                filePath = "{}/{}".format(folder, filename)
-                with open(filePath) as f:
-                    fileContents = f.read()
-                    f.close()
-                dataLines = fileContents.splitlines()
-                featureList = []
-                for dataLine in dataLines:
-                    if len(dataLine) > 1:
-                        dataEntries = dataLine.split("\t")
-                        typeOfData = dataEntries[1].split(" ")[0]
-                        actualData = dataEntries[2]
-                        charsToReplace = ["+", "(", ")"]
-                        for character in actualData:
-                            if character in charsToReplace:
-                                actualData = actualData.replace(
-                                    character, "\\" + character)
-                        def ReFindall():
-                          
-                          print("Type of data: {} -   Actual data: {}".format(
-                              typeOfData, actualData))
-                          searchPattern = '\b(\S+)({})(\S+)\b'.format(actualData)
-                          print("Search pattern is: {}".format(searchPattern))
-                          searchResult = re.findall(searchPattern, websiteData)
-                          if len(actualData) > 0:
-                              print(
-                                  "Sucht man das im WebsiteText direkt, findet man folgendes: {}"
-                                  .format(re.findall(actualData, websiteData)))
-                          print(searchResult)
+  import os
+  from os import walk
+  from bs4 import BeautifulSoup
+  #get working directory
+  os.getcwd()
+  os.listdir('/home/runner')
+  print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
+  websiteFiles = []
+  featureList = []
+  folder = "websitesAnnotated_2"
+  for (dirpath, dirnames, filenames) in walk(folder):
+      websiteFiles.extend(filenames)
+      break
+  
+  print("{} website files recognized.".format(len(websiteFiles)))
+  for i in range(len(websiteFiles)):
+      filename = websiteFiles[i]
+      if i < len(websiteFiles) - 1:
+          nextWebsite = websiteFiles[i + 1]
+      if i > 0:
+          previousWebsite = websiteFiles[i - 1]
+      if filename.endswith(".ann"):
+          websiteStyle = "annotation"
+          if filename.startswith("www."):
+              link = filename[:-4]
+          else:
+              link = "www." + filename[:-4]
+          print("{} of {}: {}".format(round(i/2)+1, round(len(websiteFiles)/2),link))
+          try:
+              websiteData = getSingleWebsiteData(link)
+              soup = BeautifulSoup(websiteData, 'html.parser')
+              filePath = "{}/{}".format(folder, filename)
+              with open(filePath) as f:
+                  fileContents = f.read()
+                  f.close()
+              dataLines = fileContents.splitlines()
+              for dataLine in dataLines:
+                  if len(dataLine) > 1:
+                      dataEntries = dataLine.split("\t")
+                      typeOfData = dataEntries[1].split(" ")[0]
+                      actualData = dataEntries[2]
+                      charsToReplace = ["+", "(", ")"]
+                      for character in actualData:
+                          if character in charsToReplace:
+                              actualData = actualData.replace(
+                                  character, "\\" + character)
+                      def ReFindall():
                         
+                        print("Type of data: {} -   Actual data: {}".format(
+                            typeOfData, actualData))
                         searchPattern = '\b(\S+)({})(\S+)\b'.format(actualData)
-                        #title_tag=soup.head.contents[0]
-                       #2021 auskommentiert
-                       #print(soup.find_all(string=re.compile(searchPattern)))
-                        #if "www.baumann-partner.tax" in link:
-                        #  print(websiteData)
-                        #  break
-                        #!!! TODO: Herausfinden, mit welchem Tool Frederic empfahl, in HTML-Code nach Inhalten zu suchen, um den Tag/ das Feature dazu zu finden (um eben diese "actualData" auf der geholten "websiteData" zu finden und auf Tag/ Feature zu schließen. War das BeautifulSoup wie in tryout.py?)
-            except:
-                print("\tWebsite not found. Moving on to the next...")
-                
-                # TODO: Hier mal checken, ob eine Website immer übersprungen wird (Output ist 10 von 30, 12 von 30, 14 von 30 usw.. Bei break würde aber der ganze Loop beendet)
-            
-        elif filename.endswith(".txt"):
-            websiteStyle = "websitetext"
-    print("End of learning algorithm")
+                        print("Search pattern is: {}".format(searchPattern))
+                        searchResult = re.findall(searchPattern, websiteData)
+                        if len(actualData) > 0:
+                            print(
+                                "Sucht man das im WebsiteText direkt, findet man folgendes: {}"
+                                .format(re.findall(actualData, websiteData)))
+                        print(searchResult)
+                      
+                      searchPattern = '\b(\S+)({})(\S+)\b'.format(actualData)
+                      #title_tag=soup.head.contents[0]
+                      #2021 auskommentiert
+                      #print(soup.find_all(string=re.compile(searchPattern)))
+                      #if "www.baumann-partner.tax" in link:
+                      #  print(websiteData)
+                      #  break
+                      #!!! TODO: Herausfinden, mit welchem Tool Frederic empfahl, in HTML-Code nach Inhalten zu suchen, um den Tag/ das Feature dazu zu finden (um eben diese "actualData" auf der geholten "websiteData" zu finden und auf Tag/ Feature zu schließen. War das BeautifulSoup wie in tryout.py?)
+          except:
+              print("\tWebsite not found. Moving on to the next...")
+                                 
+      elif filename.endswith(".txt"):
+          websiteStyle = "websitetext"
+  print("End of learning algorithm")
+  return featureList
 
 #2021-02-21 auskommentiert
-#learningAlgorithmAnnotatedTexts()
+#2021-04-13 wieder einkommentiert zum Test
+print(learningAlgorithmAnnotatedTexts())
+
 
 # SET TRUE IF NGRAM-APPROACH IS INTENDED
 nGramApproach = False
@@ -253,11 +254,19 @@ if nGramApproach is True:
 
 def dataScraping (websiteText):
   # List of information to contain at least phone number and email adress
-  listOfInformation=[]
+  listOfInformation=[(),()]
+  
+  # 1st round
+  
+
+  # 2nd round
+
 
   # TODO: WebScraping-Funktion bauen!
 
   return listOfInformation
+
+dataScraping(websitesTexts[0])
 
 #learningAlgorithmGivenInfo()
 
