@@ -153,6 +153,8 @@ print("\nAll features that occur on at least 10 websites:")
 for featureFreqPair in featureFrequencyTop:
     print(featureFreqPair)
 
+print("End of list 'featureFreqPair', all features that occur on at least 10 websites")
+
 # SET TRUE TO OFFER USER EVALUATION IN RUNNING CODE
 usereval = False
 if usereval == True:
@@ -167,7 +169,7 @@ def learningAlgorithmAnnotatedTexts():
   #get working directory
   os.getcwd()
   os.listdir('/home/runner')
-  print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§")
+  print("§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§\nBeginning of learning algorithm")
   websiteFiles = []
   featureList = []
   folder = "websitesAnnotated_2"
@@ -239,7 +241,8 @@ def learningAlgorithmAnnotatedTexts():
 #2021-02-21 auskommentiert
 #2021-04-13 wieder einkommentiert zum Test
 print(learningAlgorithmAnnotatedTexts())
-
+#2021-05-23 featureList ist bisher noch leer!
+#2021-05-23 TODO:Die Informationen aus den .ann-Dateien nutzen: Nicht die genauen Positionen bringen mir was, sondern die Klassifizierung der Informationen, z.B. "Tester & partner" als 'Kanzleiname'. Daher diese Informationen dann im HTML-Code finden, den ich oben ja schon pro website selten noch verfügbar abrufe. so bekomme ich die html-features zu diesen Informationen
 
 # SET TRUE IF NGRAM-APPROACH IS INTENDED
 nGramApproach = False
