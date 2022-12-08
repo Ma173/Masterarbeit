@@ -42,7 +42,7 @@ def loadListOfTuplesFromFile(filename):
 
 # Write a list to a file and overwrite any existing data in file
 def saveListToFile(listToSave,filename):
-  f= open(filename,"w+")
+  f= open(filename, "w+",encoding="UTF-8")
   for i in range(len(listToSave)):
     listElement=listToSave[i]
     if listElement=="" or listElement==" " or listElement=="\n":
