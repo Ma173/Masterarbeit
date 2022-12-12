@@ -202,12 +202,23 @@ def document_vector(word2vec_model, doc):
 # documentVectors = document_vector(model, [chancelleryHTML for chancelleryHTML in chancelleriesWordsList])
 print("Calculating document vectors...")
 documentVectors = []
-for chancelleryHTML in chancelleryHTMLtexts:
-    documentVectors.append(document_vector(model, chancelleryHTML))
-print("Printing a slice of 5 of all", len(documentVectors), " document vectors:\n", documentVectors[:4])
+print("ChancelleryGroup 1, chancelleryHTMLtext 1", chancelleryHTMLtexts[1][1][:200])
+for chancelleryHTMLgroup in chancelleryHTMLtexts:
+    chancelleryHTML = chancelleryHTMLgroup[1]
+    documentVectors.append([chancelleryHTMLgroup[0], document_vector(model, chancelleryHTML)])
+print("Printing a slice of 2 of all", len(documentVectors), " document vectors:\n", documentVectors[:2])
+documentVectorsSums = []
+# TODO: Hier wie in drawio beschrieben erst mal korrekt den gesamt-Dokumentvektor je HTML-Text berechnen, siehe auch CGPT: "centroid-vektor vs
+#  dokument vektor". Dann damit den Centroid-Vektor berechnen & klären: wähle ich spezielle HTMLs aus, deren Centroid mich interessiert für das
+#  Clustering? Vergleichen mit GooogleDoc-Mitschrift vom Termin
+print("Calculating centroid vector by", sum([documentVector for documentVector in documentVectors[1]]), "/", len(documentVectors))
+centroidVectors = []
+for chancelleryHTMLgroup in documentVectors:
+    documentVectorsOfCurrentHTML = chancelleryHTMLgroup[1]
+    centroidVector = sum(documentVectorsOfCurrentHTML) / len(documentVectorsOfCurrentHTML)
+    centroidVectors.append([chancelleryHTMLgroup[0], centroidVector])
 
-centroidVector = sum(documentVectors) / len(documentVectors)
-print("Centroid vector:", centroidVector)
+print("Centroid vector list has a total of", len(centroidVector), "entries. Here come the first 10:", centroidVectors[10])
 
 
 # Our earlier preprocessing was done when we were dealing only with word vectors
