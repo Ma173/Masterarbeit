@@ -11,6 +11,7 @@ from nltk import word_tokenize
 from sklearn.manifold import TSNE
 from joblib import Parallel, delayed
 from bs4 import BeautifulSoup
+from scipy.spatial import distance
 
 import pandas as pd
 
@@ -124,7 +125,7 @@ model.fill_norms()
 
 timeSinceLoadingModel = round((time.time() - startLoadingModel) / 60, 3)
 print("Finished loading model. Time elapsed:", timeSinceLoadingModel, "minutes.")
-winsound.PlaySound('SystemAsterisk.wav', winsound.SND_FILENAME)
+# winsound.PlaySound('SystemAsterisk.wav', winsound.SND_FILENAME)
 startComputingModelInfo = time.time()
 print("Starting to compute some model info...")
 model.fill_norms()
@@ -207,18 +208,64 @@ for chancelleryHTMLgroup in chancelleryHTMLtexts:
     chancelleryHTML = chancelleryHTMLgroup[1]
     documentVectors.append([chancelleryHTMLgroup[0], document_vector(model, chancelleryHTML)])
 print("Printing a slice of 2 of all", len(documentVectors), " document vectors:\n", documentVectors[:2])
-documentVectorsSums = []
-# TODO: Hier wie in drawio beschrieben erst mal korrekt den gesamt-Dokumentvektor je HTML-Text berechnen, siehe auch CGPT: "centroid-vektor vs
-#  dokument vektor". Dann damit den Centroid-Vektor berechnen & klären: wähle ich spezielle HTMLs aus, deren Centroid mich interessiert für das
+# TODO: klären: wähle ich spezielle HTMLs aus, deren Centroid mich interessiert für das
 #  Clustering? Vergleichen mit GooogleDoc-Mitschrift vom Termin
-print("Calculating centroid vector by", sum([documentVector for documentVector in documentVectors[1]]), "/", len(documentVectors))
-centroidVectors = []
-for chancelleryHTMLgroup in documentVectors:
-    documentVectorsOfCurrentHTML = chancelleryHTMLgroup[1]
-    centroidVector = sum(documentVectorsOfCurrentHTML) / len(documentVectorsOfCurrentHTML)
-    centroidVectors.append([chancelleryHTMLgroup[0], centroidVector])
+# TODO: Empty slice/ division durch 0 vor printing der slices der Dokumentvektoren beheben
+# print("Example of calculating centroid vector: documentVector")
+print(
+    "\nCalculating centroid vectors/ summing up all vectors of each document")  # by", sum([documentVector for documentVector in documentVectors[1]]), "/", len(documentVectors))
 
-print("Centroid vector list has a total of", len(centroidVector), "entries. Here come the first 10:", centroidVectors[10])
+# documentVectorSums = []
+# for documentVectorGroup in documentVectors:
+#     currentChancelleryName = documentVectorGroup[0]
+#     currentChancelleryVectors = documentVectorGroup[1]  # type: array
+#     currentChancelleryVectorsSum = np.sum(currentChancelleryVectors)
+#     documentVectorSums.append([currentChancelleryName, currentChancelleryVectorsSum])
+# print(len(documentVectorSums), "document vector sums created. These are the first 5", documentVectorSums[:4])
+
+centroidVectors = []
+
+for i in range(len(documentVectors)):
+    chancelleryHTMLgroup = documentVectors[i]
+    documentVectorsOfCurrentHTML = chancelleryHTMLgroup[1]
+    if documentVectorsOfCurrentHTML.shape:
+        centroidVector = np.sum(documentVectorsOfCurrentHTML) / documentVectorsOfCurrentHTML.size  # .shape[0]
+        centroidVectors.append([chancelleryHTMLgroup[0], centroidVector])
+        # TODO: Herausfinden, warum hier nur noch 29 Centroid-Vektoren rauskommen, obwohl 30 Dokumentvektoren reingegeben werden. Warum entfernt
+        #  .shape einen oder warum ist einer leer?
+        # TODO: Warum ist Kanzlei Nr. 11, position 10 in der Liste leer? Wo geht der Kanzleiname "Heim
+
+print("Centroid vectors list has a total of", len(centroidVectors), "entries. Here come the first 3", centroidVectors[:3])
+
+centroidVectorKnoff = [specificCentroidVector for specificCentroidVector in centroidVectors if specificCentroidVector[0] == "knoff"][0]
+centroidVectorChristianKoch = [specificCentroidVector for specificCentroidVector in centroidVectors if specificCentroidVector[0] == "christianKoch"][
+    0]
+
+print("Kanzlei Knoff ist prototypisch für einen kämpferischen Stil. Knoff hat folgenden centroid-Vektor", centroidVectorKnoff[1], "vom Typ",
+      type(centroidVectorKnoff[1]))
+distanceCentroidVectorsToKnoff = []
+for vectorGroup in centroidVectors:
+    currentChancelleryName = vectorGroup[0]
+    currentCentroidVector = vectorGroup[1]
+    print("Schaue mir Kanzlei", currentChancelleryName, "an. Die Kanzlei-Seite hat den Centroid-Vektor", currentCentroidVector, "vom Typ",
+          type(currentCentroidVector))
+    if currentCentroidVector.size != centroidVectorKnoff[1].size:
+        print("Resizing vectors to be the same length")
+        currentCentroidVector = np.resize(currentCentroidVector, len(centroidVectorKnoff[1]))
+    # currentSizeDifference = len(centroidVectorKnoff[1]) - len(currentCentroidVector)
+    # currentCentroidVector.extend()
+
+    currentCentroidVectorDistanceToKnoff = np.linalg.norm(
+        currentCentroidVector - centroidVectorKnoff[1])  # distance.cosine(currentCentroidVector, centroidVectorKnoff[1])
+    distanceCentroidVectorsToKnoff.append([currentChancelleryName, currentCentroidVectorDistanceToKnoff])
+    # print("Vector currentCentroidVector:", currentCentroidVector, "and centroidVectorKnoff[1]:", centroidVectorKnoff[1])
+
+print("Distanzen der Kanzleien zu Knoff im Vektorraum:", distanceCentroidVectorsToKnoff)
+
+distanceCentroidVectorsToKnoff_sorted = sorted(distanceCentroidVectorsToKnoff, key=lambda x: x[1])
+print("Sortierte Distanzen der Kanzleien zu Knoff:", distanceCentroidVectorsToKnoff_sorted)
+
+winsound.PlaySound('SystemAsterisk.wav', winsound.SND_FILENAME)
 
 
 # Our earlier preprocessing was done when we were dealing only with word vectors
