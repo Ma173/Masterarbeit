@@ -160,8 +160,7 @@ if textImportMode == "LoadFromFile":
     websitesTexts = loadListOfTuplesFromFile("websitesTexts.txt")
 elif textImportMode == "RetrieveFromWeb":
     print("Retrieving texts from web")
-    websitesTexts = getMultipleWebsiteData(
-        websitesDictWithChancelleryName)  # websitesDictWithChancelleryName)
+    websitesTexts = getMultipleWebsiteData(websitesDictWithChancelleryName)  # websitesDictWithChancelleryName)
     saveListToFile(websitesTexts, "websitesTexts.txt")
 
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
@@ -197,7 +196,7 @@ def learningAlgorithmAnnotatedTexts():
     # from bs4 import BeautifulSoup
     # get working directory
     os.getcwd()
-    #os.listdir('/home/runner')
+    # os.listdir('/home/runner')
     print("\n§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§\nBeginning of learning algorithm\n")
     websiteFiles = []
     featureList = []

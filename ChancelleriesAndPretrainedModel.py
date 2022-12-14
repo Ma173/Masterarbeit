@@ -12,6 +12,7 @@ from sklearn.manifold import TSNE
 from joblib import Parallel, delayed
 from bs4 import BeautifulSoup
 from scipy.spatial import distance
+from sklearn.cluster import KMeans
 
 import pandas as pd
 
@@ -48,6 +49,7 @@ def preprocessing(corpus_path):
         currentChancelleryBlock = chancelleryBlocksRaw[i].splitlines()
         newChancelleryBlock = []
         currentChancelleryWordsList = []
+        currentHTMLwordsList = []
 
         # Pro Zeile in Kanzlei-Block
         for k in range(len(currentChancelleryBlock)):
@@ -74,16 +76,17 @@ def preprocessing(corpus_path):
             elif currentLine.startswith("<"):
                 currentChancelleryHTML = currentLine
                 currentChancelleryHTMLclean = BeautifulSoup(currentChancelleryHTML, "html.parser").get_text()
-
+                HTMLtokens = utils.simple_preprocess(currentChancelleryHTMLclean)
+                currentHTMLwordsList = [word.lower() for word in HTMLtokens if word.isalpha()]
 
             elif len(currentLine.split(" ")) < 2:
                 currentChancelleryName = currentLine
                 if currentChancelleryName:
                     newChancelleryBlock.append(currentChancelleryName)
 
-        chancelleryBlocks.append([newChancelleryBlock, currentChancelleryHTMLclean])  # ,currentChancelleryHTML])
+        chancelleryBlocks.append([newChancelleryBlock, currentHTMLwordsList])  # currentChancelleryHTMLclean])  # ,currentChancelleryHTML])
         chancelleriesWordsList.append([currentChancelleryName, currentChancelleryWordsList])
-        chancelleryHTMLtexts.append([currentChancelleryName, currentChancelleryHTMLclean])
+        chancelleryHTMLtexts.append([currentChancelleryName, currentHTMLwordsList])  # currentChancelleryHTMLclean])
     return chancelleryBlocks
 
 
@@ -233,10 +236,13 @@ for i in range(len(documentVectors)):
         centroidVectors.append([chancelleryHTMLgroup[0], centroidVector])
         # TODO: Herausfinden, warum hier nur noch 29 Centroid-Vektoren rauskommen, obwohl 30 Dokumentvektoren reingegeben werden. Warum entfernt
         #  .shape einen oder warum ist einer leer?
-        # TODO: Warum ist Kanzlei Nr. 11, position 10 in der Liste leer? Wo geht der Kanzleiname "Heim
+        # TODO: Warum ist Kanzlei Nr. 11, position 10 in der Liste leer? Wo geht der Kanzleiname "Heimbürger" verloren? Und wo kommt folgender weirder Vektor her: ["232';}.w4m-ext-link:before{content:'", 0.00021007180213928234]
 
 print("Centroid vectors list has a total of", len(centroidVectors), "entries. Here come the first 3", centroidVectors[:3])
 
+# Extrahieren der klassen-prototypischen Centroid-Vektoren:
+# knoff: Durchsetzungswillen
+# christianKoch: Unerfahrene Mandanten abholend
 centroidVectorKnoff = [specificCentroidVector for specificCentroidVector in centroidVectors if specificCentroidVector[0] == "knoff"][0]
 centroidVectorChristianKoch = [specificCentroidVector for specificCentroidVector in centroidVectors if specificCentroidVector[0] == "christianKoch"][
     0]
@@ -244,6 +250,7 @@ centroidVectorChristianKoch = [specificCentroidVector for specificCentroidVector
 print("Kanzlei Knoff ist prototypisch für einen kämpferischen Stil. Knoff hat folgenden centroid-Vektor", centroidVectorKnoff[1], "vom Typ",
       type(centroidVectorKnoff[1]))
 distanceCentroidVectorsToKnoff = []
+distanceCentroidVectorsToChristianKoch = []
 for vectorGroup in centroidVectors:
     currentChancelleryName = vectorGroup[0]
     currentCentroidVector = vectorGroup[1]
@@ -257,15 +264,48 @@ for vectorGroup in centroidVectors:
 
     currentCentroidVectorDistanceToKnoff = np.linalg.norm(
         currentCentroidVector - centroidVectorKnoff[1])  # distance.cosine(currentCentroidVector, centroidVectorKnoff[1])
+    currentCentroidVectorDistanceToChristianKoch = np.linalg.norm(currentCentroidVector - centroidVectorChristianKoch[1])
     distanceCentroidVectorsToKnoff.append([currentChancelleryName, currentCentroidVectorDistanceToKnoff])
+    distanceCentroidVectorsToChristianKoch.append([currentChancelleryName, currentCentroidVectorDistanceToChristianKoch])
     # print("Vector currentCentroidVector:", currentCentroidVector, "and centroidVectorKnoff[1]:", centroidVectorKnoff[1])
 
 print("Distanzen der Kanzleien zu Knoff im Vektorraum:", distanceCentroidVectorsToKnoff)
 
 distanceCentroidVectorsToKnoff_sorted = sorted(distanceCentroidVectorsToKnoff, key=lambda x: x[1])
+distanceCentroidVectorsToChristianKoch_sorted = sorted(distanceCentroidVectorsToChristianKoch, key=lambda x: x[1])
 print("Sortierte Distanzen der Kanzleien zu Knoff:", distanceCentroidVectorsToKnoff_sorted)
+print("Sortierte Distanzen der Kanzleien zu ChristianKoch:", distanceCentroidVectorsToChristianKoch_sorted)
 
 winsound.PlaySound('SystemAsterisk.wav', winsound.SND_FILENAME)
+
+
+def cluster_and_plot(vector_blocks, vector_distance_blocks):
+    vectors = []
+    vector_distances = []
+    for k in range(len(vector_blocks)):
+        vectorBlock = vector_blocks[k]
+        print("Vector block", k, "consists of:", vectorBlock, "vom Typ", type(vectorBlock[1]))
+        if vectorBlock[1].ndim == 0 or vectorBlock[1] == []:
+            continue
+        if vectorBlock[1].ndim == 1:
+            vectors.append(vectorBlock[1].reshape(1, -1))
+        elif vectorBlock[1].ndim > 1:
+            vectors.append(vectorBlock[1])
+    for vectorDistanceBlock in vector_distance_blocks:
+        vector_distances.append(vectorDistanceBlock[1])
+
+    kmeans = KMeans(n_clusters=3)
+    kmeans.fit(vectors)
+
+    plt.scatter(vectors, vector_distances, c=kmeans.labels_, cmap="rainbow")
+
+    for v, name in enumerate(vector_blocks):
+        plt.annotate(name, (vector_blocks[v][0], vector_blocks[v][1]))
+
+    plt.show()
+
+
+cluster_and_plot(centroidVectors, distanceCentroidVectorsToKnoff)
 
 
 # Our earlier preprocessing was done when we were dealing only with word vectors
@@ -300,11 +340,10 @@ def filter_docs(corpus, texts, condition_on_doc):
 
     print("{} docs removed".format(number_of_docs - len(corpus)))
 
-    return (corpus, texts)
+    return corpus, texts
 
 # titles_list = [title[0] for title in mainData]
 # # Preprocess the corpus
-# # TODO: Klären warum da die Titel im Tutorial preprocessed wurden. Ich will doch die HTML-Texte preprocessen?!
 # # TODO: Rausfinden wie ich jetzt die Umgebungsvariablen von venv richtig anwende, damit ich dieses package zum schnelleren model laden installieren kann
 # corpus = [preprocess(chancelleryBlock[1][-1]) for chancelleryBlock in mainData]
 #
