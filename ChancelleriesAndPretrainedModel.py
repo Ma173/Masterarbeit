@@ -36,16 +36,28 @@ chancelleryHTMLtexts = []
 def preprocessing(corpus_path):
     valuableFeatureIds = ["F8", "F22", "F23", "F24"]
 
-    with open(datapath(corpus_path), 'r', encoding='unicode_escape') as f:
+    with open(datapath(corpus_path), 'r', encoding='utf-8') as f:  # former: encoding='unicode_escape'
         mainDataRaw = f.read()
 
-    # mainDataRawNew = fr"{mainDataRaw}"
-    # if re.findall(r"\S\\n\S", mainDataRawNew):
-    #     print("Replaced a \\n")
-    # mainDataRawNew = re.sub(r"\S\\n\S", "", mainDataRawNew)
-    # mainDataRawNew = repr.repr(mainDataRaw)
+    mainDataRaw = mainDataRaw.rstrip('\n')  # mainDataRaw = mainDataRaw.replace("\n", "")
+    # TODO: Wie entferne ich alle Newline-Characters ("\n"), aber NICHT die regulären Zeilenumbrüche?
 
     chancelleryBlocksRaw = mainDataRaw.split("__________")  # vorher: encoding="utf-8"
+    print("After splitting at the underscore marking the main data contains", len(chancelleryBlocksRaw), "chancellery blocks")
+
+    def print_chancellery_blocks():
+        for block in chancelleryBlocksRaw:
+            print("\n\n")
+            for line in block:
+                print(line)
+
+    def print_specific_chancellery_block(chancelleryName):
+        for i, block in enumerate(chancelleryBlocksRaw):
+            print(i)
+            if block[0].strip() == chancelleryName:
+                print("\n\n")
+                for blockline in block:
+                    print(blockline)
 
     # chancelleryBlocksRaw = open(datapath(corpus_path), encoding='unicode_escape').read().split("__________")  # vorher: encoding="utf-8"
 
@@ -57,14 +69,16 @@ def preprocessing(corpus_path):
     global currentChancelleryHTML, currentLineSplitted, newChancelleryBlock, currentLineInfo
 
     # For every chancellery block
-    for i in range(len(chancelleryBlocksRaw)):
-        chancelleryBlockRaw = chancelleryBlocksRaw[i]
-        currentChancelleryBlock = chancelleryBlockRaw.splitlines(keepends=False)
+    for i, chancelleryBlock in enumerate(chancelleryBlocksRaw):
+        currentChancelleryBlock = chancelleryBlock.splitlines()
         newChancelleryBlock = []
         currentChancelleryWordsList = []
         currentHTMLwordsList = []
         currentFeatureExpressions = []
         currentChancelleryName = ""
+        # if i == 23:
+        #     print("ChancelleryBlock", i, "consists of", len(currentChancelleryBlock), "lines.")
+        #     print("currentChancelleryBlock 23:\n", currentChancelleryBlock)
         # For every line in the current chancellery block that is a list of lines (strings)
         for k in range(len(currentChancelleryBlock)):
             currentLine = currentChancelleryBlock[k]
@@ -112,8 +126,6 @@ def preprocessing(corpus_path):
     return chancelleryBlocks
 
 
-# TODO: Dran denken, dass die Elemente 5 & 6 in den Kanzleizeilen optional sind, weil 3 & 4 = 5 & 6 sein können (Textquelle = Fundstelle)
-
 startPreprocessing = time.time()
 print("Starting to preprocess the annotated data...")
 mainData = preprocessing(
@@ -139,7 +151,7 @@ possibleModelsToLoad = ["dewiki_20180420_100d.pkl.bz2", "dewiki_20180420_100d.tx
 modelToLoad = 3
 global model
 if modelToLoad > 2:
-    model = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/' + possibleModelsToLoad[modelToLoad], mmap='r')
+    model = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/' + possibleModelsToLoad[modelToLoad], mmap='r')
 
 else:
     with Parallel(n_jobs=-1) as parallel:
@@ -161,7 +173,23 @@ print("The result of model.most_similar(positive=['koenig', 'frau'], negative=['
 timeSinceComputingModelInfo = round((time.time() - startComputingModelInfo) / 60, 3)
 print("Model info computed. Time Elapsed:", timeSinceComputingModelInfo)
 
+
 # ModelWordVectors = model.wv
+
+# Function to calculate the cumulated average word density for each chancellery website
+
+def calculate_average_word_density():
+    for i, chancelleryBlock in enumerate(mainData):
+        currentWordDensity = []
+        currentChancelleryName = chancelleryBlock[0]
+        currentHTMLTextRaw = chancelleryBlock[1]
+        currentSentences = currentHTMLTextRaw.split(". ")
+        for k, sentence in enumerate(chancelleryBlock):
+            words = sentence.split(" ")
+            currentWordDensity.append(len(words))
+        averageWordDensity = sum(currentWordDensity) / len(currentSentences)
+        print("Chancellery >", currentChancelleryName, "< has an average word density of", averageWordDensity)
+
 
 # Filter the list of vectors to include only those that Word2Vec has a vector for
 vector_list = [model[word] for word in mainDataWordsList if word in model.key_to_index]
@@ -450,8 +478,6 @@ def unannotiertes_vorgehen():
         chancelleryHTML = chancelleryHTMLgroup[1]
         documentVectors.append([chancelleryHTMLgroup[0], document_vector(model, chancelleryHTML)])
     print("Printing a slice of 2 of all", len(documentVectors), " document vectors:\n", documentVectors[:2])
-    # TODO: klären: wähle ich spezielle HTMLs aus, deren Centroid mich interessiert für das
-    #  Clustering? Vergleichen mit GooogleDoc-Mitschrift vom Termin
     # TODO: Empty slice/ division durch 0 vor printing der slices der Dokumentvektoren beheben
     # print("Example of calculating centroid vector: documentVector")
     print(
@@ -474,10 +500,6 @@ def unannotiertes_vorgehen():
             if documentVectorsOfCurrentHTML.shape:
                 centroidVector = np.sum(documentVectorsOfCurrentHTML) / documentVectorsOfCurrentHTML.size  # .shape[0]
                 centroidVectors.append([chancelleryHTMLgroup[0], centroidVector])
-                # TODO: Herausfinden, warum hier nur noch 29 Centroid-Vektoren rauskommen, obwohl 30 Dokumentvektoren reingegeben werden. Warum entfernt
-                #  .shape einen oder warum ist einer leer?
-                # TODO: Warum ist Kanzlei Nr. 11, position 10 in der Liste leer? Wo geht der Kanzleiname "Heimbürger" verloren? Und wo kommt folgender weirder Vektor her: ["232';}.w4m-ext-link:before{content:'", 0.00021007180213928234]
-
     print("Centroid vectors list has a total of", len(centroidVectors), "entries. Here come the first 3", centroidVectors[:3])
 
     # Extrahieren der klassen-prototypischen Centroid-Vektoren:
