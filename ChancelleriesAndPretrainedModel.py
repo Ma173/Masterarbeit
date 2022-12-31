@@ -31,6 +31,8 @@ stopWords = set(stopwords.words('german'))
 mainDataWordsList = []
 chancelleriesFeatureExpressionsWordsList = []
 chancelleryHTMLtexts = []
+chancelleriesWordDensites = []
+chancelleriesSentences = {}
 
 
 def preprocessing(corpus_path):
@@ -76,14 +78,15 @@ def preprocessing(corpus_path):
         currentHTMLwordsList = []
         currentFeatureExpressions = []
         currentChancelleryName = ""
+        averageSentenceLength = 0
+        averageWordDensity = 0
+        numberOfSentences = 0
         # if i == 23:
         #     print("ChancelleryBlock", i, "consists of", len(currentChancelleryBlock), "lines.")
         #     print("currentChancelleryBlock 23:\n", currentChancelleryBlock)
         # For every line in the current chancellery block that is a list of lines (strings)
         for k in range(len(currentChancelleryBlock)):
             currentLine = currentChancelleryBlock[k]
-            if i == 23:
-                print(currentLine)
             if currentLine.startswith("F", 0, 1):
                 currentLineInfo = "Feature_line"
                 currentLineSplitted = []
@@ -114,24 +117,128 @@ def preprocessing(corpus_path):
                         currentHTMLwordsList.append(word)  # [word.lower() for word in HTMLtokens if word.isalpha()]
                         mainDataWordsList.append(word)
 
+                currentWordDensities = []  # The list of all sentences' word density in the current document
+                currentChancelleryHTMLclean = currentChancelleryHTMLclean.replace("\t", " ")
+                currentChancelleryHTMLclean = currentChancelleryHTMLclean.replace("  ", "")
+                currentSentences = []
+                currentSentences = currentChancelleryHTMLclean.split(".")  # TODO: Prüfen, dass hier die Entfernung des Leerzeichens nicht mehr Probleme gemacht hat.
+                currentSentencesAfterThreshold = []
+                minimumSentenceLength = 6
+                for sentence in currentSentences:
+                    if len(sentence) >= minimumSentenceLength:
+                        currentSentencesAfterThreshold.append(sentence)
+                if currentChancelleryName == "dressler":
+                    for sentence in currentSentencesAfterThreshold:
+                        print(sentence)
+
+                chancellerySentencesCleaned = []
+                for sentence in currentSentencesAfterThreshold:
+                    words = sentence.split(" ")
+                    wordsCleaned = []
+                    for word in words:
+                        # If the current word doesn't consist of more than 4 Uppercases & is longer than 1, continue with the word
+                        if not sum(1 for c in word if c.isupper()) > 4 and len(word) > 1:
+                            htmlDebris = ["\t", "\t\t", "\xa0", "[", "]", "'"]
+                            wordToAppend = word
+                            for debris in htmlDebris:
+                                if debris in wordToAppend:
+                                    wordToAppend = wordToAppend.replace(debris, "")
+                            if "." in wordToAppend and wordToAppend.find(".") != len(wordToAppend) and wordToAppend.find(".") != 0:
+                                wordSplitted = wordToAppend.split(".")
+                                if len(wordSplitted) == 2:
+                                    wordsCleaned.append(wordSplitted[0])
+                                    wordsCleaned.append(wordSplitted[1])
+                            else:
+                                wordsCleaned.append(wordToAppend)
+                    # Checking that the list is not empty and if the last sentence of the list is shorter than 4 words
+                    if chancellerySentencesCleaned and len(chancellerySentencesCleaned[-1]) < 4:
+                        chancellerySentencesCleaned[-1] += wordsCleaned
+                    else:
+                        chancellerySentencesCleaned.append(wordsCleaned)
+                        currentWordDensities.append(len(wordsCleaned))
+                    # if i == 0:
+                    #     print(len(wordsCleaned), ":", sentence)
+                # averageSentenceLength = sum(currentWordDensities) / len(currentWordDensities)
+                chancelleriesSentences[currentChancelleryName] = chancellerySentencesCleaned
+                numberOfSentences = len(chancellerySentencesCleaned)
+                averageWordDensity = sum(currentWordDensities) / numberOfSentences
+
             elif currentLine.isalpha():
                 currentLineInfo = "ChancelleryName_line"
                 newChancelleryBlock.append(currentLine)
                 currentChancelleryName = currentLine
 
+        if i == 0: print("Chancellery >", currentChancelleryName, "< has an average word density (sentence length) of", averageWordDensity, "at a total of", numberOfSentences,
+                         "sentences.")
+        chancelleriesWordDensites.append(averageWordDensity)
+        chancelleryLinguisticAssertions = {"averageWordDensity": averageWordDensity}
+
+        currentAverageWordDensityCompared = sum(chancelleriesWordDensites) / len(chancelleriesWordDensites)
         chancelleryBlocks.append([newChancelleryBlock, currentHTMLwordsList])  # currentChancelleryHTMLclean])  # ,currentChancelleryHTML])
         chancelleriesFeatureExpressionsWordsList.append([currentChancelleryName, currentChancelleryWordsList])
-        chancelleryHTMLtexts.append([currentChancelleryName, currentHTMLwordsList, currentFeatureExpressions])  # currentChancelleryHTMLclean])
+        chancelleryHTMLtexts.append([currentChancelleryName, currentHTMLwordsList, currentFeatureExpressions, chancelleryLinguisticAssertions])  # currentChancelleryHTMLclean])
 
     return chancelleryBlocks
 
 
+# TODO: preprocessing() gibt aktuell chancelleryBlocks zurück. Ist das noch up to date oder sollte chancelleryHTMLtexts zurückgegeben und im Verlaufe des Programms dann mit
+#  mainData statt chancelleryHTMLtexts weitergearbeitet werden?
+
 startPreprocessing = time.time()
+
 print("Starting to preprocess the annotated data...")
 mainData = preprocessing(
     r'B:/Python-Projekte/Masterarbeit/websitesTextsReformatted.txt')  # (r'C:/Users/Malte/Dropbox/Studium/Linguistik Master HHU/Masterarbeit/websitesTextsReformatted.txt')
 
-print("Finished preprocessed data. Time elapsed:", round(((time.time() - startPreprocessing) / 60), 2))
+print("Finished preprocessing data. Time elapsed:", round(((time.time() - startPreprocessing) / 60), 2))
+
+
+def print_linguistic_assertions():
+    print("\n\nLINGUISTIC ASSERTIONS:")
+    chancelleriesWordDensitesAverage = round(sum(chancelleriesWordDensites) / len(chancelleriesWordDensites), 2)
+    chancelleriesWordDensities = {}
+
+    print("Average of word density over all chancelleries: {overallAverage}".format(overallAverage=chancelleriesWordDensitesAverage))
+    for i, chancelleryBlock in enumerate(chancelleryHTMLtexts):
+        currentChancelleryName = chancelleryBlock[0]
+
+        # Word density #
+        warning = ""
+        warningParameter = 50
+        chancelleryWordDensity = round(chancelleryBlock[3]["averageWordDensity"], 2)
+        chancelleryPercentageToAverage = round(((chancelleryWordDensity / chancelleriesWordDensitesAverage) * 100), 0)
+        if abs(chancelleryPercentageToAverage - 100) > warningParameter:
+            warning = " !!!"
+            print("Warning for chancellery {chancellery}!".format(chancellery=currentChancelleryName))
+            chancellerySentences = chancelleriesSentences[currentChancelleryName]
+            sentencesSplittedSorted = sorted(chancellerySentences, key=len)
+            # print("length of splitted sorted sentences:", len(sentencesSplittedSorted))
+            for k, sentence in enumerate(sentencesSplittedSorted):
+                if k == len(sentencesSplittedSorted):
+                    print("Here come the 3 longest sentences:")
+                if k > len(sentencesSplittedSorted) - 3:  # k < 3 or
+                    print(sentence)
+                if k == 0:
+                    print("Here come the 3 shortest sentences:")
+                if k < 3:  # k < 3 or
+                    print(sentence)
+        chancelleriesWordDensities[currentChancelleryName] = [chancelleryWordDensity, chancelleryPercentageToAverage, warning]
+
+        # TODO: Prüfen, ob die Abweichungen in den ausgegeben Fällen berechtigt sind oder ob es einfache Gründe wie Probleme mit dem HTML-Code gibt. Dafür z.B. Wortdichte je Satz einer Kanzlei ausgeben lassen, die stark abweicht.
+        # TODO: Tendenz ist, dass Illner mit 10 Wörter pro Satz eher Durchschnitt ist und so Dressler mit 92 einfach zu krass abweichen. Daher eher die nach oben abweichenden jetzt prüfen!
+        # TODO: Weiter prüfen, es sind nur noch 3 Kanzleien, die stark abweichen
+        # TODO: Prüfen, warum z.B. bei Teigelack, wo der kürzeste Satz 5 Wörter lang ist der Threshold nicht greift, den ich oben festgelegt habe. Da sollen es nicht weniger als 7 Wörter pro Satz sein eigentlich.
+    dataframe = pd.DataFrame(chancelleriesWordDensities).transpose()
+    # dataframe.rename({'0': "Chancellery's word density", '1': "Chancellery compared to average"}, axis=0)
+    dataframe.columns = ["|C.'s word density", "|C. comp. to average in %", "|Warning"]
+    pd.options.display.max_columns = 5
+    pd.options.display.max_colwidth = 45
+    pd.options.display.expand_frame_repr = False
+    print(dataframe)
+
+
+print_linguistic_assertions()
+exit()
 
 
 def printMainData(lineToPrint):
