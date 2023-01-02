@@ -33,6 +33,7 @@ chancelleriesFeatureExpressionsWordsList = []
 chancelleryHTMLtexts = []
 chancelleriesWordDensites = []
 chancelleriesSentences = {}
+wordCounts = {}
 
 
 def preprocessing(corpus_path):
@@ -129,14 +130,9 @@ def preprocessing(corpus_path):
                 for sentence in currentSentences:
                     if len(sentence) >= minimumSentenceLength:
                         currentSentencesAfterThreshold.append(sentence)
-                if currentChancelleryName == "puhr":
-                    print("\npuhr sentences:\n", currentSentences)
                 chancellerySentencesCleaned = []
                 for sentence in currentSentencesAfterThreshold:
-
                     words = sentence.split(" ")
-                    if currentChancelleryName == "puhr":
-                        print("\npuhr words:\n", words)
                     wordsCleaned = []
                     for word in words:
 
@@ -157,18 +153,15 @@ def preprocessing(corpus_path):
                                         wordsCleaned.append(wordSplitted[1])
                             else:
                                 wordsCleaned.append(wordToAppend)
-                    if currentChancelleryName == "puhr":
-                        print("puhr words cleaned:\n", wordsCleaned)
+                    # Removing any empty strings from the list of remaining words. These empty strings could have come up from previous cleaning processes
                     while "" in wordsCleaned:
-                        # print("Removing words from chancellery", currentChancelleryName, "| Sentence was:", wordsCleaned)
                         wordsCleaned.remove("")
-                        # print("Sentence after removing empty words:", wordsCleaned)
-                    if currentChancelleryName == "puhr":
-                        print("puhr words without empty words:\n", wordsCleaned)
+
                     # Checking that the list is not empty and if the last sentence of the list is shorter than 4 words
                     if chancellerySentencesCleaned and len(chancellerySentencesCleaned[-1]) < 4:
                         chancellerySentencesCleaned[-1] += wordsCleaned
                     else:
+                        # If sentence length is greater or equal to the threshold of minimumSentenceLength
                         if len(wordsCleaned) >= minimumSentenceLength:
                             # If sentence isn't already in the list
                             if wordsCleaned not in chancellerySentencesCleaned:
@@ -186,15 +179,7 @@ def preprocessing(corpus_path):
                                 if maxcount <= maxConsecutiveUpperWords:  # if not len([word for word in words if word[0].isupper()]) > maxcount:
                                     chancellerySentencesCleaned.append(wordsCleaned)
                                     currentWordDensities.append(len(wordsCleaned))
-                    if currentChancelleryName == "puhr":
-                        print("puhr words without upper words :\n", chancellerySentencesCleaned)
-                    # if i == 0:
-                    #     print(len(wordsCleaned), ":", sentence)
-                # averageSentenceLength = sum(currentWordDensities) / len(currentWordDensities)
-                if i == 13:
-                    for sentence in chancellerySentencesCleaned:
-                        print(len(sentence), "|", sentence)
-
+                # Filtering out any sentences that came in doubled
                 chancellerySentencesToAppend = []
                 for j, sentence in enumerate(chancellerySentencesCleaned):
                     if j == 0 or (j > 0 and sentence != chancellerySentencesCleaned[j - 1]):
@@ -203,18 +188,15 @@ def preprocessing(corpus_path):
                 numberOfSentences = len(chancellerySentencesToAppend)
                 try:
                     averageWordDensity = sum(currentWordDensities) / numberOfSentences
-                except:
-                    print("\nDivision by zero. Number of sentences:", numberOfSentences, "\nChancellery is", currentChancelleryName)
-                    print("Sentences are", chancellerySentencesToAppend)
+                except ZeroDivisionError:
+                    print("\nDivision by zero. Number of sentences:", numberOfSentences, "| Chancellery is", currentChancelleryName, "| Sentences are",
+                          chancellerySentencesToAppend)
 
             elif currentLine.isalpha():
                 currentLineInfo = "ChancelleryName_line"
                 newChancelleryBlock.append(currentLine)
                 currentChancelleryName = currentLine
 
-        if i == 0:
-            print("Chancellery >", currentChancelleryName, "< has an average word density (sentence length) of", averageWordDensity, "at a total of", numberOfSentences,
-                  "sentences.")
         if averageWordDensity != 0:
             chancelleriesWordDensites.append(averageWordDensity)
         chancelleryLinguisticAssertions = {"averageWordDensity": averageWordDensity}
@@ -292,7 +274,9 @@ def print_linguistic_assertions():
     else:
         print("There is no problematic word density for any chancellery left. There is", chancelleriesWithZeroWordDensity,
               "of all chancelleries with an average word density of 0 which means every sentence had to be removed in the preprocessing.")
-    # print(dataframe)
+
+    print("The following dataframe contains information about the average word density of each chancellery:")
+    print(dataframe)
 
 
 print_linguistic_assertions()
@@ -338,23 +322,7 @@ print("The result of model.most_similar(positive=['koenig', 'frau'], negative=['
 timeSinceComputingModelInfo = round((time.time() - startComputingModelInfo) / 60, 3)
 print("Model info computed. Time Elapsed:", timeSinceComputingModelInfo)
 
-
 # ModelWordVectors = model.wv
-
-# Function to calculate the cumulated average word density for each chancellery website
-
-def calculate_average_word_density():
-    for i, chancelleryBlock in enumerate(mainData):
-        currentWordDensity = []
-        currentChancelleryName = chancelleryBlock[0]
-        currentHTMLTextRaw = chancelleryBlock[1]
-        currentSentences = currentHTMLTextRaw.split(". ")
-        for k, sentence in enumerate(chancelleryBlock):
-            words = sentence.split(" ")
-            currentWordDensity.append(len(words))
-        averageWordDensity = sum(currentWordDensity) / len(currentSentences)
-        print("Chancellery >", currentChancelleryName, "< has an average word density of", averageWordDensity)
-
 
 # Filter the list of vectors to include only those that Word2Vec has a vector for
 vector_list = [model[word] for word in mainDataWordsList if word in model.key_to_index]
