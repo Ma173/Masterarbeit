@@ -115,10 +115,7 @@ def preprocessing(corpus_path):
                 currentChancelleryHTML = currentLine
                 currentChancelleryHTMLclean = BeautifulSoup(currentChancelleryHTML, "html.parser").get_text()
                 HTMLtokens = utils.simple_preprocess(currentChancelleryHTMLclean)
-                for word in HTMLtokens:
-                    if word.lower().isalpha():
-                        currentHTMLwordsList.append(word)  # [word.lower() for word in HTMLtokens if word.isalpha()]
-                        mainDataWordsList.append(word)
+
                 currentWordDensities = []  # The list of all sentences' word density in the current document
                 currentChancelleryHTMLclean = currentChancelleryHTMLclean.replace("\t", " ")
                 currentChancelleryHTMLclean = currentChancelleryHTMLclean.replace("  ", "")
@@ -141,18 +138,28 @@ def preprocessing(corpus_path):
                         if not sum(1 for c in word if c.isupper()) > 3 and len(word) > 1:
                             htmlDebris = ["\t", "\t\t", "\xa0", "[", "]", "'", ">>", "<<", "|"]
                             wordToAppend = word
+                            wordSplitted = ""
                             for debris in htmlDebris:
                                 if debris in wordToAppend:
                                     wordToAppend = wordToAppend.replace(debris, "")
-                            if ("." in wordToAppend or "/" in wordToAppend) and (wordToAppend.find(".") != len(wordToAppend) and wordToAppend.find(".") != 0):
+                            # If the current word contains "." or "/" and these special chars are not at first or last position in the word
+                            # then split the current word at this character. If that makes a list a list of two strings and both are not empty
+                            # then append it to the current words list
+                            if "." in wordToAppend and wordToAppend.find(".") != len(wordToAppend) and wordToAppend.find(".") != 0:
                                 wordSplitted = wordToAppend.split(".")
-                                if len(wordSplitted) == 2:
-                                    if wordSplitted[0] != "":
-                                        wordsCleaned.append(wordSplitted[0])
-                                    if wordSplitted[1] != "":
-                                        wordsCleaned.append(wordSplitted[1])
+                            elif "/" in wordToAppend and wordToAppend.find("/") != len(wordToAppend) and wordToAppend.find("/") != 0:
+                                wordSplitted = wordToAppend.split("/")
+                            if len(wordSplitted) == 2:
+                                if wordSplitted[0] != "":
+                                    wordsCleaned.append(wordSplitted[0])
+                                if wordSplitted[1] != "":
+                                    wordsCleaned.append(wordSplitted[1])
                             else:
                                 wordsCleaned.append(wordToAppend)
+                            for wordCleaned in wordsCleaned:
+                                if wordCleaned.lower().isalpha():
+                                    currentHTMLwordsList.append(wordCleaned)  # [word.lower() for word in HTMLtokens if word.isalpha()]
+                                    mainDataWordsList.append(wordCleaned)
                     # Removing any empty strings from the list of remaining words. These empty strings could have come up from previous cleaning processes
                     while "" in wordsCleaned:
                         wordsCleaned.remove("")
