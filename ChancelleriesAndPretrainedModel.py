@@ -84,6 +84,7 @@ def preprocessing(corpus_path):
         # if i == 23:
         #     print("ChancelleryBlock", i, "consists of", len(currentChancelleryBlock), "lines.")
         #     print("currentChancelleryBlock 23:\n", currentChancelleryBlock)
+
         # For every line in the current chancellery block that is a list of lines (strings)
         for k in range(len(currentChancelleryBlock)):
             currentLine = currentChancelleryBlock[k]
@@ -93,6 +94,7 @@ def preprocessing(corpus_path):
                 currentFeatureId = currentLine.split(" ")[0]
                 featureInfo = currentLine[:currentLine.find(" |")].split(" ")
                 featureInfoActualData = currentLine[currentLine.find(" |"):]
+
                 # Checking for the current feature id if it's a valuable one, then preprocessing the actual feature data
                 if currentFeatureId in valuableFeatureIds:  # currentLine.startswith("F"):
                     tokens = utils.simple_preprocess(featureInfoActualData)
@@ -106,7 +108,7 @@ def preprocessing(corpus_path):
                     currentLineSplitted.append(words)  # (featureInfoActualData)
                     newChancelleryBlock.append(currentLineSplitted)
                     currentFeatureExpressions.append([currentLine.split(" ")[0], currentLine.split(" ")[1]])
-
+            # If the current line is a line that consists of HTML text (starting with "<")
             elif currentLine.startswith("<", 0, 1):
                 currentLineInfo = "HTML_line"
                 currentChancelleryHTML = currentLine
@@ -116,61 +118,105 @@ def preprocessing(corpus_path):
                     if word.lower().isalpha():
                         currentHTMLwordsList.append(word)  # [word.lower() for word in HTMLtokens if word.isalpha()]
                         mainDataWordsList.append(word)
-
                 currentWordDensities = []  # The list of all sentences' word density in the current document
                 currentChancelleryHTMLclean = currentChancelleryHTMLclean.replace("\t", " ")
                 currentChancelleryHTMLclean = currentChancelleryHTMLclean.replace("  ", "")
-                currentSentences = []
                 currentSentences = currentChancelleryHTMLclean.split(".")  # TODO: Prüfen, dass hier die Entfernung des Leerzeichens nicht mehr Probleme gemacht hat.
                 currentSentencesAfterThreshold = []
-                minimumSentenceLength = 6
+                minimumSentenceLength = 7
+
+                # Keeping only those sentences that pass the threshold of minimum sentence length
                 for sentence in currentSentences:
                     if len(sentence) >= minimumSentenceLength:
                         currentSentencesAfterThreshold.append(sentence)
-                if currentChancelleryName == "dressler":
-                    for sentence in currentSentencesAfterThreshold:
-                        print(sentence)
-
+                if currentChancelleryName == "puhr":
+                    print("\npuhr sentences:\n", currentSentences)
                 chancellerySentencesCleaned = []
                 for sentence in currentSentencesAfterThreshold:
+
                     words = sentence.split(" ")
+                    if currentChancelleryName == "puhr":
+                        print("\npuhr words:\n", words)
                     wordsCleaned = []
                     for word in words:
-                        # If the current word doesn't consist of more than 4 Uppercases & is longer than 1, continue with the word
-                        if not sum(1 for c in word if c.isupper()) > 4 and len(word) > 1:
-                            htmlDebris = ["\t", "\t\t", "\xa0", "[", "]", "'"]
+
+                        # If the current word doesn't consist of more than x Uppercases & is longer than 1, continue with the word
+                        # and remove any leftovers of the HTML codes or any special characters
+                        if not sum(1 for c in word if c.isupper()) > 3 and len(word) > 1:
+                            htmlDebris = ["\t", "\t\t", "\xa0", "[", "]", "'", ">>", "<<", "|"]
                             wordToAppend = word
                             for debris in htmlDebris:
                                 if debris in wordToAppend:
                                     wordToAppend = wordToAppend.replace(debris, "")
-                            if "." in wordToAppend and wordToAppend.find(".") != len(wordToAppend) and wordToAppend.find(".") != 0:
+                            if ("." in wordToAppend or "/" in wordToAppend) and (wordToAppend.find(".") != len(wordToAppend) and wordToAppend.find(".") != 0):
                                 wordSplitted = wordToAppend.split(".")
                                 if len(wordSplitted) == 2:
-                                    wordsCleaned.append(wordSplitted[0])
-                                    wordsCleaned.append(wordSplitted[1])
+                                    if wordSplitted[0] != "":
+                                        wordsCleaned.append(wordSplitted[0])
+                                    if wordSplitted[1] != "":
+                                        wordsCleaned.append(wordSplitted[1])
                             else:
                                 wordsCleaned.append(wordToAppend)
+                    if currentChancelleryName == "puhr":
+                        print("puhr words cleaned:\n", wordsCleaned)
+                    while "" in wordsCleaned:
+                        # print("Removing words from chancellery", currentChancelleryName, "| Sentence was:", wordsCleaned)
+                        wordsCleaned.remove("")
+                        # print("Sentence after removing empty words:", wordsCleaned)
+                    if currentChancelleryName == "puhr":
+                        print("puhr words without empty words:\n", wordsCleaned)
                     # Checking that the list is not empty and if the last sentence of the list is shorter than 4 words
                     if chancellerySentencesCleaned and len(chancellerySentencesCleaned[-1]) < 4:
                         chancellerySentencesCleaned[-1] += wordsCleaned
                     else:
-                        chancellerySentencesCleaned.append(wordsCleaned)
-                        currentWordDensities.append(len(wordsCleaned))
+                        if len(wordsCleaned) >= minimumSentenceLength:
+                            # If sentence isn't already in the list
+                            if wordsCleaned not in chancellerySentencesCleaned:
+                                # filter out all sentences that are above the maxConsecutiveUpperWords count
+                                maxConsecutiveUpperWords = 3
+                                maxcount = 0
+                                consecutiveCount = 0
+                                for m, word in enumerate(wordsCleaned):
+                                    if word[0].isupper():
+                                        consecutiveCount += 1
+                                    if i == len(wordsCleaned) - 1 or not word[0].isupper():
+                                        if maxcount < consecutiveCount:
+                                            maxcount = consecutiveCount
+                                        consecutiveCount = 0
+                                if maxcount <= maxConsecutiveUpperWords:  # if not len([word for word in words if word[0].isupper()]) > maxcount:
+                                    chancellerySentencesCleaned.append(wordsCleaned)
+                                    currentWordDensities.append(len(wordsCleaned))
+                    if currentChancelleryName == "puhr":
+                        print("puhr words without upper words :\n", chancellerySentencesCleaned)
                     # if i == 0:
                     #     print(len(wordsCleaned), ":", sentence)
                 # averageSentenceLength = sum(currentWordDensities) / len(currentWordDensities)
-                chancelleriesSentences[currentChancelleryName] = chancellerySentencesCleaned
-                numberOfSentences = len(chancellerySentencesCleaned)
-                averageWordDensity = sum(currentWordDensities) / numberOfSentences
+                if i == 13:
+                    for sentence in chancellerySentencesCleaned:
+                        print(len(sentence), "|", sentence)
+
+                chancellerySentencesToAppend = []
+                for j, sentence in enumerate(chancellerySentencesCleaned):
+                    if j == 0 or (j > 0 and sentence != chancellerySentencesCleaned[j - 1]):
+                        chancellerySentencesToAppend.append(sentence)
+                chancelleriesSentences[currentChancelleryName] = chancellerySentencesToAppend
+                numberOfSentences = len(chancellerySentencesToAppend)
+                try:
+                    averageWordDensity = sum(currentWordDensities) / numberOfSentences
+                except:
+                    print("\nDivision by zero. Number of sentences:", numberOfSentences, "\nChancellery is", currentChancelleryName)
+                    print("Sentences are", chancellerySentencesToAppend)
 
             elif currentLine.isalpha():
                 currentLineInfo = "ChancelleryName_line"
                 newChancelleryBlock.append(currentLine)
                 currentChancelleryName = currentLine
 
-        if i == 0: print("Chancellery >", currentChancelleryName, "< has an average word density (sentence length) of", averageWordDensity, "at a total of", numberOfSentences,
-                         "sentences.")
-        chancelleriesWordDensites.append(averageWordDensity)
+        if i == 0:
+            print("Chancellery >", currentChancelleryName, "< has an average word density (sentence length) of", averageWordDensity, "at a total of", numberOfSentences,
+                  "sentences.")
+        if averageWordDensity != 0:
+            chancelleriesWordDensites.append(averageWordDensity)
         chancelleryLinguisticAssertions = {"averageWordDensity": averageWordDensity}
 
         currentAverageWordDensityCompared = sum(chancelleriesWordDensites) / len(chancelleriesWordDensites)
@@ -197,7 +243,7 @@ def print_linguistic_assertions():
     print("\n\nLINGUISTIC ASSERTIONS:")
     chancelleriesWordDensitesAverage = round(sum(chancelleriesWordDensites) / len(chancelleriesWordDensites), 2)
     chancelleriesWordDensities = {}
-
+    chancelleriesWithZeroWordDensity = 0
     print("Average of word density over all chancelleries: {overallAverage}".format(overallAverage=chancelleriesWordDensitesAverage))
     for i, chancelleryBlock in enumerate(chancelleryHTMLtexts):
         currentChancelleryName = chancelleryBlock[0]
@@ -207,21 +253,26 @@ def print_linguistic_assertions():
         warningParameter = 50
         chancelleryWordDensity = round(chancelleryBlock[3]["averageWordDensity"], 2)
         chancelleryPercentageToAverage = round(((chancelleryWordDensity / chancelleriesWordDensitesAverage) * 100), 0)
-        if abs(chancelleryPercentageToAverage - 100) > warningParameter:
+        # for all chancelleries that have an average word density lower or higher than the warning parameter in percent compared to all other chancelleries
+        # and if chancellery has a word density above 0 (0 would mean previously eliminated sentences due to various problems like multiple consecutive uppercase words
+        # that result in no sentences left to be counted for a word density average
+        if abs(chancelleryPercentageToAverage - 100) > warningParameter and chancelleryWordDensity > 0:
             warning = " !!!"
-            print("Warning for chancellery {chancellery}!".format(chancellery=currentChancelleryName))
+            print("\n\nWarning for chancellery __{chancellery}__!".format(chancellery=currentChancelleryName))
             chancellerySentences = chancelleriesSentences[currentChancelleryName]
             sentencesSplittedSorted = sorted(chancellerySentences, key=len)
             # print("length of splitted sorted sentences:", len(sentencesSplittedSorted))
             for k, sentence in enumerate(sentencesSplittedSorted):
-                if k == len(sentencesSplittedSorted):
+                if k == (len(sentencesSplittedSorted) - 3):
                     print("Here come the 3 longest sentences:")
-                if k > len(sentencesSplittedSorted) - 3:  # k < 3 or
-                    print(sentence)
+                if k > (len(sentencesSplittedSorted) - 3):  # k < 3 or
+                    print("Sentence length:", len(sentence), "| sentence:", sentence)
                 if k == 0:
                     print("Here come the 3 shortest sentences:")
                 if k < 3:  # k < 3 or
-                    print(sentence)
+                    print("Number,", k, "| Sentence length:", len(sentence), "| sentence:", sentence)
+        elif chancelleryWordDensity == 0:
+            chancelleriesWithZeroWordDensity += 1
         chancelleriesWordDensities[currentChancelleryName] = [chancelleryWordDensity, chancelleryPercentageToAverage, warning]
 
         # TODO: Prüfen, ob die Abweichungen in den ausgegeben Fällen berechtigt sind oder ob es einfache Gründe wie Probleme mit dem HTML-Code gibt. Dafür z.B. Wortdichte je Satz einer Kanzlei ausgeben lassen, die stark abweicht.
@@ -234,7 +285,14 @@ def print_linguistic_assertions():
     pd.options.display.max_columns = 5
     pd.options.display.max_colwidth = 45
     pd.options.display.expand_frame_repr = False
-    print(dataframe)
+    query = "!!!"
+    warningOutput = dataframe[dataframe['|Warning'].str.contains(query)]
+    if not warningOutput.empty:
+        print(warningOutput)
+    else:
+        print("There is no problematic word density for any chancellery left. There is", chancelleriesWithZeroWordDensity,
+              "of all chancelleries with an average word density of 0 which means every sentence had to be removed in the preprocessing.")
+    # print(dataframe)
 
 
 print_linguistic_assertions()
