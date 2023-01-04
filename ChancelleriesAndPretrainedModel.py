@@ -2,6 +2,8 @@ import gensim
 from gensim import utils
 from gensim.test.utils import datapath
 from gensim.models import KeyedVectors, word2vec
+import nltk
+from gensim.parsing.preprocessing import remove_stopwords
 # from gensim.models.wrappers import FastText
 import time
 from datetime import datetime
@@ -14,6 +16,8 @@ from bs4 import BeautifulSoup
 from scipy.spatial import distance
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import euclidean_distances
+from nltk import word_tokenize
+from nltk.corpus import stopwords
 
 import pandas as pd
 import re
@@ -33,7 +37,8 @@ chancelleriesFeatureExpressionsWordsList = []
 chancelleryHTMLtexts = []
 chancelleriesWordDensites = []
 chancelleriesSentences = {}
-wordCounts = {}
+wordCountsCumulated = {}
+wordCountsPerChancellery = {}
 
 
 def preprocessing(corpus_path):
@@ -82,6 +87,7 @@ def preprocessing(corpus_path):
         averageSentenceLength = 0
         averageWordDensity = 0
         numberOfSentences = 0
+        currenChancelleryWordCount = {}
         # if i == 23:
         #     print("ChancelleryBlock", i, "consists of", len(currentChancelleryBlock), "lines.")
         #     print("currentChancelleryBlock 23:\n", currentChancelleryBlock)
@@ -114,7 +120,6 @@ def preprocessing(corpus_path):
                 currentLineInfo = "HTML_line"
                 currentChancelleryHTML = currentLine
                 currentChancelleryHTMLclean = BeautifulSoup(currentChancelleryHTML, "html.parser").get_text()
-                HTMLtokens = utils.simple_preprocess(currentChancelleryHTMLclean)
 
                 currentWordDensities = []  # The list of all sentences' word density in the current document
                 currentChancelleryHTMLclean = currentChancelleryHTMLclean.replace("\t", " ")
@@ -129,9 +134,13 @@ def preprocessing(corpus_path):
                         currentSentencesAfterThreshold.append(sentence)
                 chancellerySentencesCleaned = []
                 for sentence in currentSentencesAfterThreshold:
-                    words = sentence.split(" ")
+                    # sentenceWithoutSpecialChars = utils.simple_preprocess(sentence)
+                    germanStopWords = stopwords.words('german')
+                    sentenceTokenizedWithoutStopwords = [word for word in word_tokenize(sentence) if word.lower() not in germanStopWords]
+                    # sentenceTokenized = remove_stopwords(sentenceWithoutSpecialChars)
+                    # words = sentenceTokenized.split(" ")
                     wordsCleaned = []
-                    for word in words:
+                    for word in sentenceTokenizedWithoutStopwords:
 
                         # If the current word doesn't consist of more than x Uppercases & is longer than 1, continue with the word
                         # and remove any leftovers of the HTML codes or any special characters
@@ -143,7 +152,7 @@ def preprocessing(corpus_path):
                                 if debris in wordToAppend:
                                     wordToAppend = wordToAppend.replace(debris, "")
                             # If the current word contains "." or "/" and these special chars are not at first or last position in the word
-                            # then split the current word at this character. If that makes a list a list of two strings and both are not empty
+                            # then split the current word at this character. If that makes a list of two strings and both are not empty
                             # then append it to the current words list
                             if "." in wordToAppend and wordToAppend.find(".") != len(wordToAppend) and wordToAppend.find(".") != 0:
                                 wordSplitted = wordToAppend.split(".")
@@ -156,10 +165,22 @@ def preprocessing(corpus_path):
                                     wordsCleaned.append(wordSplitted[1])
                             else:
                                 wordsCleaned.append(wordToAppend)
+
+                            # Appending all cleaned words to the HTMLwordsList, the mainDataWordsList and the dictionary that counts the word count
                             for wordCleaned in wordsCleaned:
                                 if wordCleaned.lower().isalpha():
                                     currentHTMLwordsList.append(wordCleaned)  # [word.lower() for word in HTMLtokens if word.isalpha()]
                                     mainDataWordsList.append(wordCleaned)
+                                    if wordCleaned in wordCountsCumulated:
+                                        wordCountsCumulated[wordCleaned] += 1
+                                    else:
+                                        wordCountsCumulated[wordCleaned] = 1
+
+                                    if wordCleaned in currenChancelleryWordCount:
+                                        currenChancelleryWordCount[wordCleaned] += 1
+                                    else:
+                                        currenChancelleryWordCount[wordCleaned] = 1
+
                     # Removing any empty strings from the list of remaining words. These empty strings could have come up from previous cleaning processes
                     while "" in wordsCleaned:
                         wordsCleaned.remove("")
@@ -208,6 +229,7 @@ def preprocessing(corpus_path):
             chancelleriesWordDensites.append(averageWordDensity)
         chancelleryLinguisticAssertions = {"averageWordDensity": averageWordDensity}
 
+        wordCountsPerChancellery[currentChancelleryName] = currenChancelleryWordCount
         currentAverageWordDensityCompared = sum(chancelleriesWordDensites) / len(chancelleriesWordDensites)
         chancelleryBlocks.append([newChancelleryBlock, currentHTMLwordsList])  # currentChancelleryHTMLclean])  # ,currentChancelleryHTML])
         chancelleriesFeatureExpressionsWordsList.append([currentChancelleryName, currentChancelleryWordsList])
@@ -230,14 +252,17 @@ print("Finished preprocessing data. Time elapsed:", round(((time.time() - startP
 
 def print_linguistic_assertions():
     print("\n\nLINGUISTIC ASSERTIONS:")
+
+    #################
+    # Word density  #
+    #################
+
     chancelleriesWordDensitesAverage = round(sum(chancelleriesWordDensites) / len(chancelleriesWordDensites), 2)
     chancelleriesWordDensities = {}
     chancelleriesWithZeroWordDensity = 0
     print("Average of word density over all chancelleries: {overallAverage}".format(overallAverage=chancelleriesWordDensitesAverage))
     for i, chancelleryBlock in enumerate(chancelleryHTMLtexts):
         currentChancelleryName = chancelleryBlock[0]
-
-        # Word density #
         warning = ""
         warningParameter = 50
         chancelleryWordDensity = round(chancelleryBlock[3]["averageWordDensity"], 2)
@@ -264,10 +289,6 @@ def print_linguistic_assertions():
             chancelleriesWithZeroWordDensity += 1
         chancelleriesWordDensities[currentChancelleryName] = [chancelleryWordDensity, chancelleryPercentageToAverage, warning]
 
-        # TODO: Prüfen, ob die Abweichungen in den ausgegeben Fällen berechtigt sind oder ob es einfache Gründe wie Probleme mit dem HTML-Code gibt. Dafür z.B. Wortdichte je Satz einer Kanzlei ausgeben lassen, die stark abweicht.
-        # TODO: Tendenz ist, dass Illner mit 10 Wörter pro Satz eher Durchschnitt ist und so Dressler mit 92 einfach zu krass abweichen. Daher eher die nach oben abweichenden jetzt prüfen!
-        # TODO: Weiter prüfen, es sind nur noch 3 Kanzleien, die stark abweichen
-        # TODO: Prüfen, warum z.B. bei Teigelack, wo der kürzeste Satz 5 Wörter lang ist der Threshold nicht greift, den ich oben festgelegt habe. Da sollen es nicht weniger als 7 Wörter pro Satz sein eigentlich.
     dataframe = pd.DataFrame(chancelleriesWordDensities).transpose()
     # dataframe.rename({'0': "Chancellery's word density", '1': "Chancellery compared to average"}, axis=0)
     dataframe.columns = ["|C.'s word density", "|C. comp. to average in %", "|Warning"]
@@ -284,6 +305,48 @@ def print_linguistic_assertions():
 
     print("The following dataframe contains information about the average word density of each chancellery:")
     print(dataframe)
+
+    ##############
+    # Word count #
+    ##############
+
+    # Sort the dictionary of a cumulated word count of all chancelleries
+    sortedWordCountsCumulated = sorted(wordCountsCumulated.items(), key=lambda item: item[1], reverse=True)
+
+    print("These are the 10 most common words among ALL chancelleries:")
+    for i, word in enumerate(sortedWordCountsCumulated):
+        if i < 10:
+            print(i, ":", word)
+
+    # Sort the dictionary of each chancellery's word count
+    sortedWordCountsPerChancellery = []
+    sortedLemmaCountsPerChancellery = []
+    lemmatizer = nltk.stem.WordNetLemmatizer()
+
+    # Read all chancellery specific WordCounts and sort them for each chancellery
+    for currentChancelleryName, chancelleryWordCounts in wordCountsPerChancellery.items():
+        # print("key:", key, "| value:", value)
+        currentChancelleryLemmas = {}
+        for word, wordCount in chancelleryWordCounts.items():
+            lemma = lemmatizer.lemmatize(word)
+            if lemma in currentChancelleryLemmas:
+                currentChancelleryLemmas[lemma] += wordCount
+            else:
+                currentChancelleryLemmas[lemma] = wordCount
+        sortedLemmaCountsPerChancellery.append([currentChancelleryName, sorted(currentChancelleryLemmas.items(), key=lambda item: item[1], reverse=True)])
+        sortedWordCountsPerChancellery.append([currentChancelleryName, sorted(chancelleryWordCounts.items(), key=lambda item: item[1], reverse=True)])
+
+    def print_dict(dict_name, amount_of_lines):
+        print("These are the,", amount_of_lines, "most common words for each chancellery:")
+        for m, chancelleryGroup in enumerate(dict_name):
+            currentChancelleryName = chancelleryGroup[0]
+            currentChancelleryWordCountList = chancelleryGroup[1]
+            print("\n|", currentChancelleryName, "|")
+            for n, currentWord in enumerate(currentChancelleryWordCountList):
+                if n < amount_of_lines:
+                    print(n, currentWord)
+
+    print_dict(sortedLemmaCountsPerChancellery, 10)
 
 
 print_linguistic_assertions()
