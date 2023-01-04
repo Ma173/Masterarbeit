@@ -1,31 +1,23 @@
-import gensim
-from gensim import utils
-from gensim.test.utils import datapath
-from gensim.models import KeyedVectors, word2vec
-import nltk
-from gensim.parsing.preprocessing import remove_stopwords
-# from gensim.models.wrappers import FastText
 import time
 from datetime import datetime
+import gensim
+import nltk
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import spacy
 import winsound
+from bs4 import BeautifulSoup
+from gensim import utils
+from gensim.models import KeyedVectors
+from gensim.test.utils import datapath
+from joblib import Parallel
 from matplotlib import pyplot as plt
 from nltk import word_tokenize
-from sklearn.manifold import TSNE
-from joblib import Parallel, delayed
-from bs4 import BeautifulSoup
-from scipy.spatial import distance
+from nltk.corpus import stopwords
 from sklearn.cluster import KMeans
+from sklearn.manifold import TSNE
 from sklearn.metrics.pairwise import euclidean_distances
-from nltk import word_tokenize
-from nltk.corpus import stopwords
-
-import pandas as pd
-import re
-import seaborn as sns
-# import matplotlib.pyplot as plt
-import numpy as np
-
-from nltk.corpus import stopwords
 
 stopWords = set(stopwords.words('german'))
 # import nltk
@@ -39,6 +31,7 @@ chancelleriesWordDensites = []
 chancelleriesSentences = {}
 wordCountsCumulated = {}
 wordCountsPerChancellery = {}
+nlp = spacy.load('de_core_news_sm')
 
 
 def preprocessing(corpus_path):
@@ -136,6 +129,20 @@ def preprocessing(corpus_path):
                 for sentence in currentSentencesAfterThreshold:
                     # sentenceWithoutSpecialChars = utils.simple_preprocess(sentence)
                     germanStopWords = stopwords.words('german')
+
+                    # Processing the sentence with the German language model of spacy
+                    doc = nlp(sentence)
+
+                    # Iterating over all tokens in the sentence and saving the part of speech
+                    for token in doc:
+                        word = token.text
+                        partOfSpeech = token.pos_
+                    # TODO: Hier entstehen mit Spacy die Wortarten des aktuellen Satzes der Kanzlei. Ich würde die gerne so vorbereiten, dass man später in der Liste der häufigsten
+                    #  Wörter nach Wörtern filtern kann, die von der Wortart Verb sind (z.B.), damit ich die Verben dann leichter vergleichen kann mit Wortlisten von Empathie z.B.
+                    #  Dafür muss entweder das Wort direkt hiernach lemmatisiert und gespeichert werden, damit Lemma und Wort schon zusammen bestehen und danach die Worthäufigkeit
+                    #  gelistet werden kann (das verlagert sich dann jetzt einfach von unten auf der linguistic assertions Funktion hoch hierhin, spart vlt auch Ressourcen,
+                    #  wenn man nicht mehrfach durch die Listen iteriert.
+
                     sentenceTokenizedWithoutStopwords = [word for word in word_tokenize(sentence) if word.lower() not in germanStopWords]
                     # sentenceTokenized = remove_stopwords(sentenceWithoutSpecialChars)
                     # words = sentenceTokenized.split(" ")
@@ -328,9 +335,9 @@ def print_linguistic_assertions():
         # print("key:", key, "| value:", value)
         currentChancelleryLemmas = {}
         for word, wordCount in chancelleryWordCounts.items():
-            lemma = lemmatizer.lemmatize(word)
+            lemma = lemmatizer.lemmatize(nlp(word)[0].lemma_)
             if lemma in currentChancelleryLemmas:
-                currentChancelleryLemmas[lemma] += wordCount
+                currentChancelleryLemmas[lemma] += [wordCount, lemma.pos_]
             else:
                 currentChancelleryLemmas[lemma] = wordCount
         sortedLemmaCountsPerChancellery.append([currentChancelleryName, sorted(currentChancelleryLemmas.items(), key=lambda item: item[1], reverse=True)])
