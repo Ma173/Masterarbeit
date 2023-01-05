@@ -32,6 +32,7 @@ chancelleriesSentences = {}
 wordCountsCumulated = {}
 wordCountsPerChancellery = {}
 nlp = spacy.load('de_core_news_sm')
+lemmatizer = nltk.stem.WordNetLemmatizer()
 
 
 def preprocessing(corpus_path):
@@ -80,7 +81,7 @@ def preprocessing(corpus_path):
         averageSentenceLength = 0
         averageWordDensity = 0
         numberOfSentences = 0
-        currenChancelleryWordCount = {}
+        currentChancelleryWordCount = {}
         # if i == 23:
         #     print("ChancelleryBlock", i, "consists of", len(currentChancelleryBlock), "lines.")
         #     print("currentChancelleryBlock 23:\n", currentChancelleryBlock)
@@ -130,26 +131,17 @@ def preprocessing(corpus_path):
                     # sentenceWithoutSpecialChars = utils.simple_preprocess(sentence)
                     germanStopWords = stopwords.words('german')
 
-                    # Processing the sentence with the German language model of spacy
-                    doc = nlp(sentence)
-                    posWordsOfSentence = []
-
-                    # Iterating over all tokens in the sentence and saving the part of speech
-                    for token in doc:
-                        word = token.text
-                        partOfSpeech = token.pos_
-                        posWordsOfSentence.append([word,partOfSpeech])
                     # TODO: Hier entstehen mit Spacy die Wortarten des aktuellen Satzes der Kanzlei. Ich würde die gerne so vorbereiten, dass man später in der Liste der häufigsten
                     #  Wörter nach Wörtern filtern kann, die von der Wortart Verb sind (z.B.), damit ich die Verben dann leichter vergleichen kann mit Wortlisten von Empathie z.B.
                     #  Dafür muss entweder das Wort direkt hiernach lemmatisiert und gespeichert werden, damit Lemma und Wort schon zusammen bestehen und danach die Worthäufigkeit
                     #  gelistet werden kann (das verlagert sich dann jetzt einfach von unten auf der linguistic assertions Funktion hoch hierhin, spart vlt auch Ressourcen,
                     #  wenn man nicht mehrfach durch die Listen iteriert.
 
-                    sentenceTokenizedWithoutStopwords = [word for word in word_tokenize(sentence) if word.lower() not in germanStopWords]
+                    # sentenceTokenizedWithoutStopwords = [word for word in word_tokenize(sentence) if word.lower() not in germanStopWords]
                     # sentenceTokenized = remove_stopwords(sentenceWithoutSpecialChars)
                     # words = sentenceTokenized.split(" ")
                     wordsCleaned = []
-                    for word in sentenceTokenizedWithoutStopwords:
+                    for word in sentence:
 
                         # If the current word doesn't consist of more than x Uppercases & is longer than 1, continue with the word
                         # and remove any leftovers of the HTML codes or any special characters
@@ -175,8 +167,30 @@ def preprocessing(corpus_path):
                             else:
                                 wordsCleaned.append(wordToAppend)
 
+                            # re-align the cleaned words as a sentence, so it can be pos-tagged
+                            sentenceCleaned = ""
+                            for m, wordCleaned in enumerate(wordsCleaned):
+                                if len(sentenceCleaned) > 0:
+                                    sentenceCleaned += " " + wordCleaned
+                                else:
+                                    sentenceCleaned += wordCleaned
+
+                            # Processing the sentence with the German language model of spacy
+                            doc = nlp(sentenceCleaned)
+                            WordsWithPartsOfSpeech = []
+
+                            # Iterating over all tokens in the cleaned sentence and saving the part of speech
+                            for token in doc:
+                                word = token.text
+                                lemma = token.lemma_
+                                partOfSpeech = token.pos_
+                                WordsWithPartsOfSpeech.append([lemma, partOfSpeech])
+
                             # Appending all cleaned words to the HTMLwordsList, the mainDataWordsList and the dictionary that counts the word count
-                            for wordCleaned in wordsCleaned:
+                            for wordCleanedWithPos in WordsWithPartsOfSpeech:
+                                wordCleaned = wordCleanedWithPos[0]
+                                partOfSpeech = wordCleanedWithPos[1]
+
                                 if wordCleaned.lower().isalpha():
                                     currentHTMLwordsList.append(wordCleaned)  # [word.lower() for word in HTMLtokens if word.isalpha()]
                                     mainDataWordsList.append(wordCleaned)
@@ -185,16 +199,23 @@ def preprocessing(corpus_path):
                                     else:
                                         wordCountsCumulated[wordCleaned] = 1
 
-                                    if wordCleaned in currenChancelleryWordCount:
-                                        currenChancelleryWordCount[wordCleaned] += 1
+                                    # Adding the cleaned word accompanied by its part of speech to the chancellery's word count dictionary
+                                    # The style here is: word : [[wordCountOfFirstOccurence, partOfSpeechOfFirstOccurence], [wordCountOfFirstOccurence, partOfSpeechOfSecondOcc...]
+                                    # This way any ambiguity is saved if the part of speech of the current cleaned word is not the same as saved in the dict for this word
+                                    if wordCleaned in currentChancelleryWordCount:
+                                        if partOfSpeech == currentChancelleryWordCount[wordCleaned][1]:
+                                            currentChancelleryWordCount[wordCleaned] = [currentChancelleryWordCount[wordCleaned][0] + 1, partOfSpeech]
+                                        else:
+                                            currentChancelleryWordCount[wordCleaned] = [[currentChancelleryWordCount[wordCleaned][0] + 1, partOfSpeech]]
                                     else:
-                                        currenChancelleryWordCount[wordCleaned] = 1
+                                        currentChancelleryWordCount[wordCleaned] = [[1, partOfSpeech]]
 
                     # Removing any empty strings from the list of remaining words. These empty strings could have come up from previous cleaning processes
                     while "" in wordsCleaned:
                         wordsCleaned.remove("")
 
                     # Checking that the list is not empty and if the last sentence of the list is shorter than 4 words
+                    # If that's the case, these words are appended to the previous list element (= the last sentence).
                     if chancellerySentencesCleaned and len(chancellerySentencesCleaned[-1]) < 4:
                         chancellerySentencesCleaned[-1] += wordsCleaned
                     else:
@@ -238,7 +259,7 @@ def preprocessing(corpus_path):
             chancelleriesWordDensites.append(averageWordDensity)
         chancelleryLinguisticAssertions = {"averageWordDensity": averageWordDensity}
 
-        wordCountsPerChancellery[currentChancelleryName] = currenChancelleryWordCount
+        wordCountsPerChancellery[currentChancelleryName] = currentChancelleryWordCount
         currentAverageWordDensityCompared = sum(chancelleriesWordDensites) / len(chancelleriesWordDensites)
         chancelleryBlocks.append([newChancelleryBlock, currentHTMLwordsList])  # currentChancelleryHTMLclean])  # ,currentChancelleryHTML])
         chancelleriesFeatureExpressionsWordsList.append([currentChancelleryName, currentChancelleryWordsList])
@@ -336,7 +357,9 @@ def print_linguistic_assertions():
     for currentChancelleryName, chancelleryWordCounts in wordCountsPerChancellery.items():
         # print("key:", key, "| value:", value)
         currentChancelleryLemmas = {}
-        for word, wordCount in chancelleryWordCounts.items():
+        for word, wordCountGroup in chancelleryWordCounts.items():
+            wordCount = wordCountGroup[0]
+            partOfSpeech = wordCountGroup[1]
             lemma = lemmatizer.lemmatize(nlp(word)[0].lemma_)
             if lemma in currentChancelleryLemmas:
                 currentChancelleryLemmas[lemma] += [wordCount, lemma.pos_]
