@@ -18,6 +18,7 @@ from nltk.corpus import stopwords
 from sklearn.cluster import KMeans
 from sklearn.manifold import TSNE
 from sklearn.metrics.pairwise import euclidean_distances
+import json
 
 stopWords = set(stopwords.words('german'))
 # import nltk
@@ -26,13 +27,15 @@ stopWords = set(stopwords.words('german'))
 
 mainDataWordsList = []
 chancelleriesFeatureExpressionsWordsList = []
+global chancelleryHTMLtexts
 chancelleryHTMLtexts = []
 chancelleriesWordDensites = []
 chancelleriesSentences = {}
 wordCountsCumulated = {}
-wordCountsPerChancellery = {}
+lemmaCountsPerChancellery = {}
 nlp = spacy.load('de_core_news_sm')
 lemmatizer = nltk.stem.WordNetLemmatizer()
+germanStopWords = stopwords.words('german')
 
 
 def preprocessing(corpus_path):
@@ -81,16 +84,25 @@ def preprocessing(corpus_path):
         averageSentenceLength = 0
         averageWordDensity = 0
         numberOfSentences = 0
-        currentChancelleryWordCount = {}
+        currentChancelleryLemmaCount = {}
         # if i == 23:
         #     print("ChancelleryBlock", i, "consists of", len(currentChancelleryBlock), "lines.")
         #     print("currentChancelleryBlock 23:\n", currentChancelleryBlock)
+
+        startTimerProcessingChancelleryBlock = time.time()
+        timeForProcessingFeatureLines = 0
+        timeForProcessingHtmlLine = 0
+        timeForParsingHtml = 0
+        timeForCleaningWordsOfDebris = 0
+        timeForNlpAndPosTagging = 0
+        timeForCountingLemmas = 0
 
         # For every line in the current chancellery block that is a list of lines (strings)
         for k in range(len(currentChancelleryBlock)):
             currentLine = currentChancelleryBlock[k]
             if currentLine.startswith("F", 0, 1):
                 currentLineInfo = "Feature_line"
+                startTimerProcessingFeatureLines = time.time()
                 currentLineSplitted = []
                 currentFeatureId = currentLine.split(" ")[0]
                 featureInfo = currentLine[:currentLine.find(" |")].split(" ")
@@ -109,11 +121,16 @@ def preprocessing(corpus_path):
                     currentLineSplitted.append(words)  # (featureInfoActualData)
                     newChancelleryBlock.append(currentLineSplitted)
                     currentFeatureExpressions.append([currentLine.split(" ")[0], currentLine.split(" ")[1]])
+                timeForProcessingFeatureLines += round((time.time() - startTimerProcessingFeatureLines), 2)
+
+
             # If the current line is a line that consists of HTML text (starting with "<")
             elif currentLine.startswith("<", 0, 1):
                 currentLineInfo = "HTML_line"
+                startTimerProcessingHtmlLine = time.time()
                 currentChancelleryHTML = currentLine
                 currentChancelleryHTMLclean = BeautifulSoup(currentChancelleryHTML, "html.parser").get_text()
+                timeForParsingHtml += round((time.time() - startTimerProcessingHtmlLine), 2)
 
                 currentWordDensities = []  # The list of all sentences' word density in the current document
                 currentChancelleryHTMLclean = currentChancelleryHTMLclean.replace("\t", " ")
@@ -126,22 +143,17 @@ def preprocessing(corpus_path):
                 for sentence in currentSentences:
                     if len(sentence) >= minimumSentenceLength:
                         currentSentencesAfterThreshold.append(sentence)
+
                 chancellerySentencesCleaned = []
                 for sentence in currentSentencesAfterThreshold:
                     # sentenceWithoutSpecialChars = utils.simple_preprocess(sentence)
-                    germanStopWords = stopwords.words('german')
-
-                    # TODO: Hier entstehen mit Spacy die Wortarten des aktuellen Satzes der Kanzlei. Ich würde die gerne so vorbereiten, dass man später in der Liste der häufigsten
-                    #  Wörter nach Wörtern filtern kann, die von der Wortart Verb sind (z.B.), damit ich die Verben dann leichter vergleichen kann mit Wortlisten von Empathie z.B.
-                    #  Dafür muss entweder das Wort direkt hiernach lemmatisiert und gespeichert werden, damit Lemma und Wort schon zusammen bestehen und danach die Worthäufigkeit
-                    #  gelistet werden kann (das verlagert sich dann jetzt einfach von unten auf der linguistic assertions Funktion hoch hierhin, spart vlt auch Ressourcen,
-                    #  wenn man nicht mehrfach durch die Listen iteriert.
 
                     # sentenceTokenizedWithoutStopwords = [word for word in word_tokenize(sentence) if word.lower() not in germanStopWords]
                     # sentenceTokenized = remove_stopwords(sentenceWithoutSpecialChars)
                     # words = sentenceTokenized.split(" ")
                     wordsCleaned = []
-                    for word in sentence:
+                    for word in sentence.split(" "):
+                        startTimerCleaningWordsOfDebris = time.time()
 
                         # If the current word doesn't consist of more than x Uppercases & is longer than 1, continue with the word
                         # and remove any leftovers of the HTML codes or any special characters
@@ -152,6 +164,10 @@ def preprocessing(corpus_path):
                             for debris in htmlDebris:
                                 if debris in wordToAppend:
                                     wordToAppend = wordToAppend.replace(debris, "")
+                            if "\\u00e4" in word:
+                                wordToAppend = wordToAppend.replace("\\u00e4", "ä")
+                            elif "\u00e4" in word:
+                                wordToAppend = wordToAppend.replace("\u00e4", "ä")
                             # If the current word contains "." or "/" and these special chars are not at first or last position in the word
                             # then split the current word at this character. If that makes a list of two strings and both are not empty
                             # then append it to the current words list
@@ -167,6 +183,11 @@ def preprocessing(corpus_path):
                             else:
                                 wordsCleaned.append(wordToAppend)
 
+                            #####
+                            # pos-tagging & lemmatizing the sentence so its words can more easily be counted and compared to word lists
+                            #####
+                            # print("Starting pos tagging & lemmatizing process of chancellery", currentChancelleryName)
+
                             # re-align the cleaned words as a sentence, so it can be pos-tagged
                             sentenceCleaned = ""
                             for m, wordCleaned in enumerate(wordsCleaned):
@@ -175,41 +196,73 @@ def preprocessing(corpus_path):
                                 else:
                                     sentenceCleaned += wordCleaned
 
+                            timeForCleaningWordsOfDebris += round((time.time() - startTimerCleaningWordsOfDebris), 2)
+
+                            startTimerNlpAndPosTagging = time.time()
                             # Processing the sentence with the German language model of spacy
                             doc = nlp(sentenceCleaned)
-                            WordsWithPartsOfSpeech = []
+                            lemmasWithPartsOfSpeech = []
 
                             # Iterating over all tokens in the cleaned sentence and saving the part of speech
                             for token in doc:
                                 word = token.text
                                 lemma = token.lemma_
-                                partOfSpeech = token.pos_
-                                WordsWithPartsOfSpeech.append([lemma, partOfSpeech])
+                                partOfSpeechTag = token.pos_
+                                # TODO: Hier alternativ mal nur dann das lemma weitergeben, wenn partOfSpeechTag "VERB" ist, ansonsten word weitergeben
+                                #  (dann würden aber z.B. Nomen im Plural nicht weitergegeben)
+                                lemmasWithPartsOfSpeech.append([lemma, partOfSpeechTag])
 
+                            timeForNlpAndPosTagging += round((time.time() - startTimerNlpAndPosTagging), 2)
+
+                            startTimerCountLemmas = time.time()
                             # Appending all cleaned words to the HTMLwordsList, the mainDataWordsList and the dictionary that counts the word count
-                            for wordCleanedWithPos in WordsWithPartsOfSpeech:
-                                wordCleaned = wordCleanedWithPos[0]
-                                partOfSpeech = wordCleanedWithPos[1]
-
-                                if wordCleaned.lower().isalpha():
-                                    currentHTMLwordsList.append(wordCleaned)  # [word.lower() for word in HTMLtokens if word.isalpha()]
-                                    mainDataWordsList.append(wordCleaned)
-                                    if wordCleaned in wordCountsCumulated:
-                                        wordCountsCumulated[wordCleaned] += 1
+                            # print("Appending all cleaned words to the HTMLwordsList, the mainDataWordsList and the dictionary that counts the word count")
+                            for lemmaWithPos in lemmasWithPartsOfSpeech:
+                                lemma = lemmaWithPos[0]
+                                partOfSpeechTag = lemmaWithPos[1]
+                                test = True
+                                if lemma.lower().isalpha() and lemma.lower() not in germanStopWords:
+                                    currentHTMLwordsList.append(lemma)  # [word.lower() for word in HTMLtokens if word.isalpha()]
+                                    mainDataWordsList.append(lemma)
+                                    if lemma in wordCountsCumulated:
+                                        wordCountsCumulated[lemma] += 1
                                     else:
-                                        wordCountsCumulated[wordCleaned] = 1
+                                        wordCountsCumulated[lemma] = 1
 
                                     # Adding the cleaned word accompanied by its part of speech to the chancellery's word count dictionary
-                                    # The style here is: word : [[wordCountOfFirstOccurence, partOfSpeechOfFirstOccurence], [wordCountOfFirstOccurence, partOfSpeechOfSecondOcc...]
+                                    # The style is: word : [[wordCountOfFirstOccurence, partOfSpeechOfFirstOccurence], [wordCountOfFirstOccurence, partOfSpeechOfSecondOcc...]
                                     # This way any ambiguity is saved if the part of speech of the current cleaned word is not the same as saved in the dict for this word
-                                    if wordCleaned in currentChancelleryWordCount:
-                                        if partOfSpeech == currentChancelleryWordCount[wordCleaned][1]:
-                                            currentChancelleryWordCount[wordCleaned] = [currentChancelleryWordCount[wordCleaned][0] + 1, partOfSpeech]
-                                        else:
-                                            currentChancelleryWordCount[wordCleaned] = [[currentChancelleryWordCount[wordCleaned][0] + 1, partOfSpeech]]
-                                    else:
-                                        currentChancelleryWordCount[wordCleaned] = [[1, partOfSpeech]]
 
+                                    # So if the lemma is already present in the dictionary,
+                                    # check wether the pos-tag that is present for the lemma is the same as the current one
+                                    if lemma in currentChancelleryLemmaCount:
+                                        # If the currnet pos-tag is identical to the one in the dict for the lemma, just add one to the lemma count in the current list element
+                                        currentPosTagCountList = currentChancelleryLemmaCount[lemma]
+                                        # If there is more than one pos-tag group inside the list (that is the value for the lemma in the dict)
+                                        if len(currentPosTagCountList) > 1:
+                                            # For every list element of this list of pos-tags with lemma count
+                                            for n, posTagLemmaGroup in enumerate(currentPosTagCountList):
+                                                currentCount = posTagLemmaGroup[0]
+                                                currentPosTag = posTagLemmaGroup[1]
+                                                # If the current pos-tag of the upper lemmaWithPos list is identical
+                                                # to the currently viewed pos tag of the pos tags list of the current lemma in the dict
+                                                if currentPosTag == partOfSpeechTag:
+                                                    listPartBeforeCurrentPosTag = currentChancelleryLemmaCount[lemma][:n]
+                                                    listPartAfterCurrentPosTag = currentChancelleryLemmaCount[lemma][n + 1:]
+                                                    currentChancelleryLemmaCount[lemma] = [listPartBeforeCurrentPosTag, [currentCount, currentPosTag],
+                                                                                           listPartAfterCurrentPosTag]  # [currentChancelleryLemmaCount[lemma][0] + 1, partOfSpeechTag]
+                                        else:
+                                            currentLemmaCount = currentChancelleryLemmaCount[lemma][0][0]
+                                            currentPosTag = currentChancelleryLemmaCount[lemma][0][1]
+                                            currentChancelleryLemmaCount[lemma] = [[currentLemmaCount + 1, currentPosTag]]
+                                    # Else add the combination lemmaCount, partOfSpeechTag als a new list element of a new list in the dict for the lemma
+                                    else:
+                                        currentChancelleryLemmaCount[lemma] = [[1, partOfSpeechTag]]
+
+                            timeForCountingLemmas += round((time.time() - startTimerCountLemmas), 4)
+                            # print("Finished. Time elapsed:", timeSinceNlp, "seconds.")
+
+                    # Carrying on with working on the former used wordsCleaned which seems to be fine until now (no lemmas needed yet):
                     # Removing any empty strings from the list of remaining words. These empty strings could have come up from previous cleaning processes
                     while "" in wordsCleaned:
                         wordsCleaned.remove("")
@@ -249,21 +302,32 @@ def preprocessing(corpus_path):
                 except ZeroDivisionError:
                     print("\nDivision by zero. Number of sentences:", numberOfSentences, "| Chancellery is", currentChancelleryName, "| Sentences are",
                           chancellerySentencesToAppend)
+                timeForProcessingHtmlLine += round((time.time() - startTimerProcessingHtmlLine), 2)
 
             elif currentLine.isalpha():
                 currentLineInfo = "ChancelleryName_line"
                 newChancelleryBlock.append(currentLine)
                 currentChancelleryName = currentLine
+                print("\nPreprocessing chancellery block", i, "of", len(chancelleryBlocksRaw), "|", currentChancelleryName)
 
         if averageWordDensity != 0:
             chancelleriesWordDensites.append(averageWordDensity)
         chancelleryLinguisticAssertions = {"averageWordDensity": averageWordDensity}
 
-        wordCountsPerChancellery[currentChancelleryName] = currentChancelleryWordCount
-        currentAverageWordDensityCompared = sum(chancelleriesWordDensites) / len(chancelleriesWordDensites)
+        lemmaCountsPerChancellery[currentChancelleryName] = currentChancelleryLemmaCount
+        # currentAverageWordDensityCompared = sum(chancelleriesWordDensites) / len(chancelleriesWordDensites)
         chancelleryBlocks.append([newChancelleryBlock, currentHTMLwordsList])  # currentChancelleryHTMLclean])  # ,currentChancelleryHTML])
         chancelleriesFeatureExpressionsWordsList.append([currentChancelleryName, currentChancelleryWordsList])
         chancelleryHTMLtexts.append([currentChancelleryName, currentHTMLwordsList, currentFeatureExpressions, chancelleryLinguisticAssertions])  # currentChancelleryHTMLclean])
+
+        timeSinceProcessingChancelleryBlock = round((time.time() - startTimerProcessingChancelleryBlock), 2)
+        print("Finished processing chancellery", currentChancelleryName, "| Time elapsed:", timeSinceProcessingChancelleryBlock, "seconds.")
+        # print("\tProcessing feature lines:", timeForProcessingFeatureLines, "seconds.")
+        print("\tProcessing HTML line:", timeForProcessingHtmlLine, "seconds.")
+        print("\t\tParsing the HTML line:", timeForParsingHtml, "seconds.")
+        print("\t\tCleaning the words of debris:", timeForCleaningWordsOfDebris, "seconds.")
+        print("\t\tNLP and pos-tagging:", timeForNlpAndPosTagging, "seconds.")
+        print("\t\tCounting the lemmas:", timeForCountingLemmas, "seconds.")
 
     return chancelleryBlocks
 
@@ -273,14 +337,8 @@ def preprocessing(corpus_path):
 
 startPreprocessing = time.time()
 
-print("Starting to preprocess the annotated data...")
-mainData = preprocessing(
-    r'B:/Python-Projekte/Masterarbeit/websitesTextsReformatted.txt')  # (r'C:/Users/Malte/Dropbox/Studium/Linguistik Master HHU/Masterarbeit/websitesTextsReformatted.txt')
 
-print("Finished preprocessing data. Time elapsed:", round(((time.time() - startPreprocessing) / 60), 2))
-
-
-def print_linguistic_assertions():
+def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensites, lemmaCountsPerChancellery):
     print("\n\nLINGUISTIC ASSERTIONS:")
 
     #################
@@ -351,37 +409,88 @@ def print_linguistic_assertions():
     # Sort the dictionary of each chancellery's word count
     sortedWordCountsPerChancellery = []
     sortedLemmaCountsPerChancellery = []
-    lemmatizer = nltk.stem.WordNetLemmatizer()
 
-    # Read all chancellery specific WordCounts and sort them for each chancellery
-    for currentChancelleryName, chancelleryWordCounts in wordCountsPerChancellery.items():
+    # Read all chancellery specific LemmaCounts, transfer them into a list and sort the list for each chancellery
+    for currentChancelleryName, chancelleryWordCounts in lemmaCountsPerChancellery.items():
         # print("key:", key, "| value:", value)
         currentChancelleryLemmas = {}
-        for word, wordCountGroup in chancelleryWordCounts.items():
-            wordCount = wordCountGroup[0]
-            partOfSpeech = wordCountGroup[1]
-            lemma = lemmatizer.lemmatize(nlp(word)[0].lemma_)
-            if lemma in currentChancelleryLemmas:
-                currentChancelleryLemmas[lemma] += [wordCount, lemma.pos_]
-            else:
-                currentChancelleryLemmas[lemma] = wordCount
-        sortedLemmaCountsPerChancellery.append([currentChancelleryName, sorted(currentChancelleryLemmas.items(), key=lambda item: item[1], reverse=True)])
-        sortedWordCountsPerChancellery.append([currentChancelleryName, sorted(chancelleryWordCounts.items(), key=lambda item: item[1], reverse=True)])
+        for lemma, lemmaCountGroups in chancelleryWordCounts.items():
 
-    def print_dict(dict_name, amount_of_lines):
+            # Intercepting the case that there is ambiguity with more than one POS-tag for the current lemma and its lemma count
+            # Until now, in this case this just gets printed but not processed furthermore
+            if len(lemmaCountGroups) > 1:
+                print("More than one POS-tag found for the current word:")
+                for lemmaCountGroup in lemmaCountGroups:
+                    print(lemmaCountGroup)
+            # In case there is no ambiguity regarding thew current lemma, the only group of lemmaCountGroups (therefore [0]) is split in its lemma count & pos-tag
+            elif len(lemmaCountGroups) == 1:
+                lemmaCount = lemmaCountGroups[0][0]
+                partOfSpeechTag = lemmaCountGroups[0][1]
+                if lemma in currentChancelleryLemmas:
+                    currentChancelleryLemmas[lemma] += [lemmaCount, partOfSpeechTag]
+                else:
+                    currentChancelleryLemmas[lemma] = lemmaCount
+        sortedLemmaCountsPerChancellery.append([currentChancelleryName, sorted(currentChancelleryLemmas.items(), key=lambda item: item[1], reverse=True)])
+        # sortedWordCountsPerChancellery.append([currentChancelleryName, sorted(chancelleryWordCounts.items(), key=lambda item: item[1], reverse=True)])
+
+    def print_sorted_list(dict_name, amount_of_lines):
         print("These are the,", amount_of_lines, "most common words for each chancellery:")
         for m, chancelleryGroup in enumerate(dict_name):
-            currentChancelleryName = chancelleryGroup[0]
+            chancelleryName = chancelleryGroup[0]
             currentChancelleryWordCountList = chancelleryGroup[1]
-            print("\n|", currentChancelleryName, "|")
+            print("\n|", chancelleryName, "|")
             for n, currentWord in enumerate(currentChancelleryWordCountList):
                 if n < amount_of_lines:
                     print(n, currentWord)
 
-    print_dict(sortedLemmaCountsPerChancellery, 10)
+    print_sorted_list(sortedLemmaCountsPerChancellery, 10)
 
 
-print_linguistic_assertions()
+readFilesFromDisk = True
+
+
+def read_file_from_disk(fileName):
+    with open(fileName, 'r', encoding='utf-8') as fileToLoad:
+        # Reading the JSON coded sequence from file
+        output = json.load(fileToLoad)
+    return output
+
+
+if readFilesFromDisk:
+    chancelleryHTMLtextsFromFile = read_file_from_disk('chancelleryHTMLtexts.txt')
+    lemmaCountsPerChancelleryFromFile = read_file_from_disk('lemmaCountsPerChancellery.txt')
+    chancelleriesWordDensites = read_file_from_disk('chancelleriesWordDensites.txt')
+    print_linguistic_assertions(chancelleryHTMLtextsFromFile, chancelleriesWordDensites, lemmaCountsPerChancelleryFromFile)
+#     "Loading websitesTextsReformatted & chancelleryHTMLtexts from file."
+#     with open('chancelleryHTMLtexts.txt', 'r', encoding='utf-8') as f:
+#         # Reading the JSON coded sequence from file
+#         chancelleryHTMLtextsFromDisk = json.load(f)
+#
+#     with open('currentChancelleryLemmaCount.txt', 'r', encoding='utf-8') as f:
+#         # Reading the JSON coded sequence from file
+#         lemmaCountsPerChancellery = json.load(f)
+else:
+
+    print("Starting to preprocess the annotated data...")
+    mainData = preprocessing(
+        r'B:/Python-Projekte/Masterarbeit/websitesTextsReformatted.txt')  # (r'C:/Users/Malte/Dropbox/Studium/Linguistik Master HHU/Masterarbeit/websitesTextsReformatted.txt')
+    print("Finished preprocessing data. Time elapsed:", round(((time.time() - startPreprocessing) / 60), 2))
+    print("Saving websitesTextsReformatted & chancelleryHTMLtexts & chancelleriesWordDensites to file.")
+
+    # Opening the text file to write the list to it
+    with open('chancelleryHTMLtexts.txt', 'w') as f:
+        # Transferring the dict in a JSON sequence and writing to file
+        json.dump(chancelleryHTMLtexts, f)
+        print("Saved a list of {} items to file '{}'.".format(len(chancelleryHTMLtexts), "chancelleryHTMLtexts.txt"))
+    with open(r'B:/Python-Projekte/Masterarbeit/lemmaCountsPerChancellery.txt', 'w') as f:
+        json.dump(lemmaCountsPerChancellery, f)
+        print("Saved a list of {} items to file '{}'.".format(len(lemmaCountsPerChancellery), "lemmaCountsPerChancellery.txt"))
+    with open(r'B:/Python-Projekte/Masterarbeit/chancelleriesWordDensites.txt', 'w') as f:
+        json.dump(chancelleriesWordDensites, f)
+        print("Saved a list of {} items to file '{}'.".format(len(chancelleriesWordDensites), "chancelleriesWordDensites.txt"))
+
+    print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensites, lemmaCountsPerChancellery)
+
 exit()
 
 

@@ -1,7 +1,7 @@
 import gensim
 import requests, re
 from tryout import nGram
-from toolbox import sortDict, first_with_x_count, loadFromFile, similarityOfStrings, saveListToFile, \
+from toolbox import sortDict, first_with_x_count, loadFromFile, similarityOfStrings, save_list_to_file, \
     loadListOfTuplesFromFile, getShortestItem, frequency
 from chancelleryURLs import websitesDictWithChancelleryName
 from userInteraction import userSuggestedFeatures, userinput
@@ -98,7 +98,7 @@ def getMultipleWebsiteData(urlCollection):
                                   getSingleWebsiteData(website[1])))
             # print("Appending the following: {}".format((website[0],getSingleWebsiteData(website[1])[:50])))
         if len(websitesTexts) % 5 == 0:
-            saveListToFile(websitesTexts, "websitesTexts.txt")
+            save_list_to_file(websitesTexts, "websitesTexts.txt")
     print("Done gathering text data of multiple websites.")
     return websitesTexts
 
@@ -161,7 +161,7 @@ if textImportMode == "LoadFromFile":
 elif textImportMode == "RetrieveFromWeb":
     print("Retrieving texts from web")
     websitesTexts = getMultipleWebsiteData(websitesDictWithChancelleryName)  # websitesDictWithChancelleryName)
-    saveListToFile(websitesTexts, "websitesTexts.txt")
+    save_list_to_file(websitesTexts, "websitesTexts.txt")
 
 matchingFeatures = textComparisonGetFeatures(websitesTexts)
 print("Features that match all websites: ", list(matchingFeatures)[:10])
