@@ -132,11 +132,13 @@ def preprocessing(corpus_path):
 
                     # Processing the sentence with the German language model of spacy
                     doc = nlp(sentence)
+                    posWordsOfSentence = []
 
                     # Iterating over all tokens in the sentence and saving the part of speech
                     for token in doc:
                         word = token.text
                         partOfSpeech = token.pos_
+                        posWordsOfSentence.append([word,partOfSpeech])
                     # TODO: Hier entstehen mit Spacy die Wortarten des aktuellen Satzes der Kanzlei. Ich würde die gerne so vorbereiten, dass man später in der Liste der häufigsten
                     #  Wörter nach Wörtern filtern kann, die von der Wortart Verb sind (z.B.), damit ich die Verben dann leichter vergleichen kann mit Wortlisten von Empathie z.B.
                     #  Dafür muss entweder das Wort direkt hiernach lemmatisiert und gespeichert werden, damit Lemma und Wort schon zusammen bestehen und danach die Worthäufigkeit
