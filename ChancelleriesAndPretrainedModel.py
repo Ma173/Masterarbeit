@@ -121,6 +121,8 @@ def preprocessing(corpus_path):
                     currentLineSplitted.append(words)  # (featureInfoActualData)
                     newChancelleryBlock.append(currentLineSplitted)
                     currentFeatureExpressions.append([currentLine.split(" ")[0], currentLine.split(" ")[1]])
+                    if i == 5:
+                        print(f'Advopartner feature expressions: {currentFeatureExpressions}')
                 timeForProcessingFeatureLines += round((time.time() - startTimerProcessingFeatureLines), 2)
 
 
@@ -158,7 +160,7 @@ def preprocessing(corpus_path):
                         # If the current word doesn't consist of more than x Uppercases & is longer than 1, continue with the word
                         # and remove any leftovers of the HTML codes or any special characters
                         if not sum(1 for c in word if c.isupper()) > 3 and len(word) > 1:
-                            htmlDebris = ["\t", "\t\t", "\xa0", "[", "]", "'", ">>", "<<", "|"]
+                            htmlDebris = ["\t", "\t\t", "\\xa0", "[", "]", "'", ">>", "<<", "|", "\\u00fcber"]
                             wordToAppend = word
                             wordSplitted = ""
                             for debris in htmlDebris:
@@ -341,9 +343,9 @@ startPreprocessing = time.time()
 def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensites, lemmaCountsPerChancellery):
     print("\n\nLINGUISTIC ASSERTIONS:")
 
-    #################
-    # Word density  #
-    #################
+    #####################################
+    #           Word density            #
+    #####################################
 
     chancelleriesWordDensitesAverage = round(sum(chancelleriesWordDensites) / len(chancelleriesWordDensites), 2)
     chancelleriesWordDensities = {}
@@ -394,9 +396,16 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensites,
     print("The following dataframe contains information about the average word density of each chancellery:")
     print(dataframe)
 
-    ##############
-    # Word count #
-    ##############
+    #############################################
+    #               Word count                  #
+    #############################################
+
+    wordsListEmpathyVerbs = ["achten", "anerkennen", "begleiten", "begreifen", "beistehen", "beschützen", "erkennen", "fühlen", "helfen", "lieben", "nachfühlen", "respektieren",
+                             "unterstützen", "verstehen", "verstehen", "verzeihen", "würdigen"]
+    wordsListEmpathyAdjectives = ["achtsam", "barmherzig", "begütigend", "einfühlsam", "ermutigend", "fürsorglich", "hilfsbereit", "liebevoll", "nachsichtig", "rücksichtsvoll",
+                                  "sensibel", "verständnisvoll", "verzeihend"]
+    wordListEmpathy = wordsListEmpathyVerbs + wordsListEmpathyAdjectives
+    empathyWordCounts = {}
 
     # Sort the dictionary of a cumulated word count of all chancelleries
     sortedWordCountsCumulated = sorted(wordCountsCumulated.items(), key=lambda item: item[1], reverse=True)
@@ -414,7 +423,13 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensites,
     for currentChancelleryName, chancelleryWordCounts in lemmaCountsPerChancellery.items():
         # print("key:", key, "| value:", value)
         currentChancelleryLemmas = {}
+        empathyWordCounts[currentChancelleryName] = 0
+        # Iterating over the lemma & word count dictionary
         for lemma, lemmaCountGroups in chancelleryWordCounts.items():
+            # Counting the occurences of empathic words
+            if lemma in wordListEmpathy:
+                for countGroup in lemmaCountGroups:
+                    empathyWordCounts[currentChancelleryName] += countGroup[0]
 
             # Intercepting the case that there is ambiguity with more than one POS-tag for the current lemma and its lemma count
             # Until now, in this case this just gets printed but not processed furthermore
@@ -433,9 +448,9 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensites,
         sortedLemmaCountsPerChancellery.append([currentChancelleryName, sorted(currentChancelleryLemmas.items(), key=lambda item: item[1], reverse=True)])
         # sortedWordCountsPerChancellery.append([currentChancelleryName, sorted(chancelleryWordCounts.items(), key=lambda item: item[1], reverse=True)])
 
-    def print_sorted_list(dict_name, amount_of_lines):
+    def print_sorted_list(list_name, amount_of_lines):
         print("These are the,", amount_of_lines, "most common words for each chancellery:")
-        for m, chancelleryGroup in enumerate(dict_name):
+        for m, chancelleryGroup in enumerate(list_name):
             chancelleryName = chancelleryGroup[0]
             currentChancelleryWordCountList = chancelleryGroup[1]
             print("\n|", chancelleryName, "|")
@@ -444,6 +459,46 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensites,
                     print(n, currentWord)
 
     print_sorted_list(sortedLemmaCountsPerChancellery, 10)
+
+    #############################################
+    #           Similarities to word lists      #
+    #############################################
+
+    # Dictionary for storing the ratio of empathy words to all words for chancellery
+    empathyRatios = {}
+
+    # Calculating the ratio of empathy words to all words for chancellery
+    for chancelleryName, empathyCount in empathyWordCounts.items():
+        lemmaCountTotal = 0
+        for currentChancelleryName, lemmaGroup in lemmaCountsPerChancellery[chancelleryName].items():
+            for countGroup in lemmaGroup:
+                lemmaCountTotal += countGroup[0]
+        empathyRatios[chancelleryName] = empathyCount / lemmaCountTotal
+    empathyRatiosSorted = sorted(empathyRatios.items(), key=lambda x: x[1])
+    empathyRatiosSortedWithAnnotation = []
+    empathyAnnotationRatio = 0
+    print("These are the empathy ratios of each chancellery with the annotated value:")
+    for chancellery, ratio in empathyRatiosSorted:
+
+        empathyAnnotation = 0
+        for chancelleryBlock in chancelleryHTMLtexts:
+            featureExpression = chancelleryBlock[2]
+            if featureExpression and chancellery == chancelleryBlock[0]:
+                # print("Feature expression:", featureExpression)
+                # print("First feature:", featureExpression[0])
+                for feature in featureExpression:
+                    if feature[0] == "F8":
+                        empathyAnnotation = feature[1][-1]
+                        if int(empathyAnnotation) < 3 and ratio > 0:
+                            empathyAnnotationRatio += 1
+            empathyRatiosSortedWithAnnotation.append([chancellery, ratio, empathyAnnotation])
+
+        print(f'{chancellery} | {ratio:.3f} | {empathyAnnotation}')  # chancellery, "|", ratio)
+    print("Empathy annotation performance of", empathyAnnotationRatio / len(empathyWordCounts.items()))
+    print(fr"EmpathyAnnotationRatio: {empathyAnnotationRatio}, len(empathyRatiosSortedWithAnnotation: {len(empathyWordCounts.items())}")
+
+    # TODO: Klären warum die FeatureExpression von Kanzlei #5, advopartner, leer ist. Müsste eigentlich laut websitesTextsReformatted einige Features haben
+    # TODO: Weitere Wortlisten besorgen, mit denen ich meine Annotationen noch vergleichen könnte wie Professionalitäts-Wortlisten
 
 
 readFilesFromDisk = True
@@ -478,15 +533,15 @@ else:
     print("Saving websitesTextsReformatted & chancelleryHTMLtexts & chancelleriesWordDensites to file.")
 
     # Opening the text file to write the list to it
-    with open('chancelleryHTMLtexts.txt', 'w') as f:
+    with open('chancelleryHTMLtexts.txt', 'w', encoding='utf-8') as f:
         # Transferring the dict in a JSON sequence and writing to file
-        json.dump(chancelleryHTMLtexts, f)
+        json.dump(chancelleryHTMLtexts, f, ensure_ascii=False)
         print("Saved a list of {} items to file '{}'.".format(len(chancelleryHTMLtexts), "chancelleryHTMLtexts.txt"))
-    with open(r'B:/Python-Projekte/Masterarbeit/lemmaCountsPerChancellery.txt', 'w') as f:
-        json.dump(lemmaCountsPerChancellery, f)
+    with open(r'B:/Python-Projekte/Masterarbeit/lemmaCountsPerChancellery.txt', 'w', encoding='utf-8') as f:
+        json.dump(lemmaCountsPerChancellery, f, ensure_ascii=False)
         print("Saved a list of {} items to file '{}'.".format(len(lemmaCountsPerChancellery), "lemmaCountsPerChancellery.txt"))
-    with open(r'B:/Python-Projekte/Masterarbeit/chancelleriesWordDensites.txt', 'w') as f:
-        json.dump(chancelleriesWordDensites, f)
+    with open(r'B:/Python-Projekte/Masterarbeit/chancelleriesWordDensites.txt', 'w', encoding='utf-8') as f:
+        json.dump(chancelleriesWordDensites, f, ensure_ascii=False)
         print("Saved a list of {} items to file '{}'.".format(len(chancelleriesWordDensites), "chancelleriesWordDensites.txt"))
 
     print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensites, lemmaCountsPerChancellery)
