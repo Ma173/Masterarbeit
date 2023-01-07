@@ -433,9 +433,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
         chancelleriesWordDensitiesSortedDict[chancelleryName] = [chancelleryWordDensity, chancelleryDensityPercentage, featureExpressionNumber]
 
         if wordDensityCategoryLow[0] < chancelleryWordDensity < wordDensityCategoryLow[1]:
-            # print(f"Wert unter 15: {chancelleryName} ____ expressionNumber: {featureExpressionNumber}")
             if featureExpressionNumber == 1:
-                # print(f"Übereinstimmung: {chancelleryName}")
                 wordDensityAccurateAnnotationsStrict += 1
                 wordDensityAccurateAnnotationsLowerAndMediumValues += 1
                 wordDensityAccurateAnnotationsMediumAndHighValues += 1
@@ -444,9 +442,12 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
         elif wordDensityCategoryMedium[0] < chancelleryWordDensity < wordDensityCategoryMedium[1]:
             if featureExpressionNumber == 2:
                 wordDensityAccurateAnnotationsStrict += 1
+                wordDensityAccurateAnnotationsLowerAndMediumValues += 1
                 wordDensityAccurateAnnotationsMediumAndHighValues += 1
             elif featureExpressionNumber == 1:
                 wordDensityAccurateAnnotationsLowerAndMediumValues += 1
+            elif featureExpressionNumber == 3:
+                wordDensityAccurateAnnotationsMediumAndHighValues += 1
         elif wordDensityCategoryHigh[0] < chancelleryWordDensity < wordDensityCategoryHigh[1]:
             if featureExpressionNumber == 3:
                 wordDensityAccurateAnnotationsStrict += 1
@@ -608,9 +609,23 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     pd.options.display.max_columns = 20
     print(dataframePosTagCount)
 
-    adjectiveAnnotationAccuracy = 0
-    
+    adjectiveRatioAccurateAnnotationsStrict = 0
+    adjectiveRatioAnnotationsLowerAndMediumValues = 0
+    adjectiveRatioAccurateAnnotationsMediumAndHighValues = 0
+
     sortedAdjectiveCountsPerChancellery = sorted(chancelleriesAdjectivesCount.items(), key=lambda item: item[1][1], reverse=True)
+
+    chancelleriesAdjectiveCountRatioCumulated = []
+    for i, chancelleryBlock in enumerate(sortedAdjectiveCountsPerChancellery):
+        countGroup = chancelleryBlock[1]
+        ratio = countGroup[1]
+        chancelleriesAdjectiveCountRatioCumulated.append(ratio)
+
+    # Calculating the three quantiles for the three adjective ratio groups
+    q1 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.25)
+    q2 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.5)
+    q3 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.75)
+
     print("\nSorted adjective counts by ratio:")
     for i, chancelleryBlock in enumerate(sortedAdjectiveCountsPerChancellery):
         chancellery = chancelleryBlock[0]
@@ -618,10 +633,41 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
         count = countGroup[0]
         ratio = countGroup[1]
         empathyAnnotation = 0
-        for i, chancelleryBlockEmpathy in enumerate(empathyRatiosSortedWithAnnotation):
+        for p, chancelleryBlockEmpathy in enumerate(empathyRatiosSortedWithAnnotation):
             if chancelleryBlockEmpathy[0] == chancellery:
-                empathyAnnotation = chancelleryBlockEmpathy[2]
+                empathyAnnotation = int(chancelleryBlockEmpathy[2])
+        if ratio <= q1:
+            if empathyAnnotation == 1:
+                adjectiveRatioAccurateAnnotationsStrict += 1
+                adjectiveRatioAnnotationsLowerAndMediumValues += 1
+                adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
+            elif empathyAnnotation == 2:
+                adjectiveRatioAnnotationsLowerAndMediumValues += 1
+        if q1 < ratio <= q2:
+            if empathyAnnotation == 2:
+                adjectiveRatioAccurateAnnotationsStrict += 1
+                adjectiveRatioAnnotationsLowerAndMediumValues += 1
+                adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
+            elif empathyAnnotation == 1:
+                adjectiveRatioAnnotationsLowerAndMediumValues += 1
+            elif empathyAnnotation == 3:
+                adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
+        if q3 < ratio:
+            if empathyAnnotation == 3:
+                adjectiveRatioAccurateAnnotationsStrict += 1
+                adjectiveRatioAnnotationsLowerAndMediumValues += 1
+                adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
+            if empathyAnnotation == 2:
+                adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
+
         print(f"{chancellery}: {count} | {ratio} | {empathyAnnotation}")
+
+    adjectiveRatioPerformanceStrict = adjectiveRatioAccurateAnnotationsStrict / len(chancelleriesAdjectiveCountRatioCumulated)
+    adjectiveRatioPerformanceLowerAndMediumValues = adjectiveRatioAnnotationsLowerAndMediumValues / len(chancelleriesAdjectiveCountRatioCumulated)
+    adjectiveRatioPerformanceMediumAndHighValues = adjectiveRatioAccurateAnnotationsMediumAndHighValues / len(chancelleriesAdjectiveCountRatioCumulated)
+    print(f"\nReached a strict performance ratio of {round(adjectiveRatioPerformanceStrict * 100, 2)}")
+    print(f"Reached a moderate performance ratio for both low and medium values of {round(adjectiveRatioPerformanceLowerAndMediumValues * 100, 2)}")
+    print(f"Reached a moderate performance ratio for both medium and high values of {round(adjectiveRatioPerformanceMediumAndHighValues * 100, 2)}")
 
 
 readFilesFromDisk = True
