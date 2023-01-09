@@ -17,7 +17,9 @@ from nltk import word_tokenize
 from nltk.corpus import stopwords
 from sklearn.cluster import KMeans
 from sklearn.manifold import TSNE
-from sklearn.metrics.pairwise import euclidean_distances
+from gensim.corpora import Dictionary
+from gensim.models import TfidfModel
+from sklearn.feature_extraction.text import TfidfVectorizer
 import json
 
 stopWords = set(stopwords.words('german'))
@@ -37,6 +39,7 @@ nlp = spacy.load('de_core_news_sm')
 lemmatizer = nltk.stem.WordNetLemmatizer()
 germanStopWords = stopwords.words('german')
 chancelleriesPosTagCounts = {}
+chancelleriesSyntacticDependencies = {}
 
 
 def preprocessing(corpus_path):
@@ -87,6 +90,7 @@ def preprocessing(corpus_path):
         numberOfSentences = 0
         currentChancelleryLemmaCount = {}
         currentChancelleryPosTagCount = {}
+        chancellerySyntacticDependencies = []
         # if i == 23:
         #     print("ChancelleryBlock", i, "consists of", len(currentChancelleryBlock), "lines.")
         #     print("currentChancelleryBlock 23:\n", currentChancelleryBlock)
@@ -213,7 +217,15 @@ def preprocessing(corpus_path):
                                 partOfSpeechTag = token.pos_
                                 currentChancelleryPosTagCount[partOfSpeechTag] = currentChancelleryPosTagCount.get(partOfSpeechTag, 0) + 1
                                 lemmasWithPartsOfSpeech.append([lemma, partOfSpeechTag])
-
+                                tokenWithSyntacticDependencies = {
+                                    "text": token.text,
+                                    "pos": token.pos_,
+                                    "dep": token.dep_,
+                                    "head": token.head.text
+                                }
+                                # if i == 0 and k < 2:
+                                #    print(token.text, token.dep_, token.head.text, token.head.pos_, [child for child in token.children])
+                                chancellerySyntacticDependencies.append(tokenWithSyntacticDependencies)
                             timeForNlpAndPosTagging += round((time.time() - startTimerNlpAndPosTagging), 2)
 
                             startTimerCountLemmas = time.time()
@@ -316,6 +328,7 @@ def preprocessing(corpus_path):
             chancelleriesWordDensites.append(averageWordDensity)
         chancelleryLinguisticAssertions = {"averageWordDensity": averageWordDensity}
 
+        chancelleriesSyntacticDependencies[currentChancelleryName] = chancellerySyntacticDependencies
         chancelleriesPosTagCounts[currentChancelleryName] = currentChancelleryPosTagCount
         lemmaCountsPerChancellery[currentChancelleryName] = currentChancelleryLemmaCount
         # currentAverageWordDensityCompared = sum(chancelleriesWordDensites) / len(chancelleriesWordDensites)
@@ -341,7 +354,8 @@ def preprocessing(corpus_path):
 startPreprocessing = time.time()
 
 
-def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities, lemmaCountsPerChancellery, chancelleriesPosTagCounts):
+def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities, lemmaCountsPerChancellery, chancelleriesPosTagCounts, chancelleriesSyntacticDependencies,
+                                chancelleriesSentences):
     print("\n\nLINGUISTIC ASSERTIONS:")
     #####################################
     #####################################
@@ -556,6 +570,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     empathyRatiosSorted = sorted(empathyRatios.items(), key=lambda x: x[1])
     empathyRatiosSortedWithAnnotation = []
     empathyAnnotationRatio = 0
+    empathyAnnotationRatioStrict = 0
     print("\nThese are the empathy ratios of each chancellery with the annotated value:")
 
     # Assessing & summing up the correct annotations and printing out the empathy ratio of each chancellery
@@ -569,13 +584,20 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                 for feature in featureExpression:
                     if feature[0] == "F8":
                         empathyAnnotation = feature[1][-1]
+                        # Differentiating only between two groups:
+                        # Chancelleries that have an empathy ratio above 0 and ones that don't
+                        # If the chancellery has a ratio > 0 and the annotation of empathy is not 3 ("the opposite of empathy"), count it for the ratio
                         if int(empathyAnnotation) < 3 and ratio > 0:
                             empathyAnnotationRatio += 1
+                        if int(empathyAnnotation) == 1 and ratio > 0:
+                            empathyAnnotationRatioStrict += 1
             empathyRatiosSortedWithAnnotation.append([chancellery, ratio, empathyAnnotation])
 
         print(f'{chancellery} | {ratio:.3f} | {empathyAnnotation}')  # chancellery, "|", ratio)
-    empathyAnnotationRatio = empathyAnnotationRatio / len(empathyWordCounts.items())
-    print(f"\nEmpathy annotation performance of {round(empathyAnnotationRatio, 2)}")
+    empathyDetectionAccuracy = empathyAnnotationRatio / len(empathyWordCounts.items())
+    empathyDetectionAccuracyStrict = empathyAnnotationRatioStrict / len(empathyWordCounts.items())
+    print(f"\nEmpathy detection accuracy of {round(empathyDetectionAccuracy, 2)}")
+    print(f"\nStrict empathy detection accuracy of {round(empathyDetectionAccuracyStrict, 2)}")
 
     # TODO: Weitere Wortlisten besorgen, mit denen ich meine Annotationen noch vergleichen könnte wie Professionalitäts-Wortlisten
 
@@ -585,8 +607,8 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     #####################################
     #####################################
 
-    print("Length of chancelleries pos tag count dict:", len(chancelleriesPosTagCounts.items()))
-    print("\n Chancelleries' PoS-tag count:")
+    print("\nLength of chancelleries pos tag count dict:", len(chancelleriesPosTagCounts.items()))
+    print("Chancelleries' PoS-tag count:")
 
     chancelleriesAdjectivesCount = {}
 
@@ -669,6 +691,102 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     print(f"Reached a moderate performance ratio for both low and medium values of {round(adjectiveRatioPerformanceLowerAndMediumValues * 100, 2)}")
     print(f"Reached a moderate performance ratio for both medium and high values of {round(adjectiveRatioPerformanceMediumAndHighValues * 100, 2)}")
 
+    ################################################
+    ##           Calculation TF-IDF               ##
+    ################################################
+    ################################################
+
+    # # Creating a list of tuples with the chancelleries' names and their website texts
+    # chancelleryTexts = []
+    # for k, chancelleryBlock in enumerate(chancelleryHTMLtexts):
+    #     chancelleryTexts.append((chancelleryBlock[0], chancelleryBlock[1]))
+    #
+    # # Creating a dictionary of all words in all texts
+    # chancelleriesWordsDict = Dictionary([text[1] for text in chancelleryTexts])
+    #
+    # # Creating a list of bag of words representations for each document
+    # bagOfWordsCorpus = [chancelleriesWordsDict.doc2bow(text[1]) for text in chancelleryTexts]
+    #
+    # # Creating a TfidfModel (term frequency inverse document frequency)
+    # tfidf = TfidfModel(bagOfWordsCorpus)
+    #
+    # # Calculating the tfidf value for each text
+    # tfidfVectors = [tfidf[bagOfWords] for bagOfWords in bagOfWordsCorpus]
+    #
+    # # printing the tfidf values for each text
+    # for document, vector in zip(chancelleryTexts, tfidfVectors):
+    #     print(f'{document[0]}: {vector}')
+    #
+    # # Creating an empty data frame for the tfidf values
+    # tfidf_df = pd.DataFrame()
+    #
+    # # Initializing the tfidf vectorizer & setting the parameter "tokenPattern" for the regular pattern filtering for adjectives
+    # vectorizer = TfidfVectorizer(token_pattern=r'\b\w*(adj)\b')
+    #
+    # # Creating a list of the chancellery names
+    # names = [doc[0] for doc in chancelleryTexts]
+    #
+    # # Creating a list of the chancellery texts
+    # texts = [doc[1] for doc in chancelleryTexts]
+    #
+    # # Tf-idf-Matrix
+    # tfidf_matrix = vectorizer.fit_transform(texts)
+    #
+    # # Displaying the tfids values for each adjective and document
+    # for word, index in vectorizer.vocabulary_.items():
+    #     print(f"Wort: {word}, Tf-idf-Werte: {tfidf_matrix[:, index].todense()}")
+
+    ##########################################
+    ##              Classificator           ##
+    ##########################################
+
+    from sklearn.svm import SVC
+    chancelleriesTexts = []
+    chancelleryNames = []
+    chancelleryEmpathyLabels = []
+    # Saving the chancellery texts and empathy labels
+    for k, chancelleryBlock in enumerate(chancelleryHTMLtexts):
+        chancelleryNames.append(chancelleryBlock[0])
+        # chancelleryTexts.append(chancelleryBlock[1])
+        for featureGroup in chancelleryBlock[2]:
+            if featureGroup[0] == "F8":
+                chancelleryEmpathyLabels.append((featureGroup[1][-1]))
+
+    for chancelleryName, chancellerySentencesGroup in chancelleriesSentences.items():
+        print("ChancelleryName:", chancelleryName)
+        print("ChancellerySentenceGroup:", chancellerySentencesGroup)
+        chancelleryText = ""
+        if len(chancellerySentencesGroup) > 0:
+            for n, sentence in enumerate(chancellerySentencesGroup[0]):
+                print("Sentence:", n, sentence)
+                chancellerySentence = ""
+                for p, word in enumerate(sentence):
+                    if p > 0:
+                        chancellerySentence = chancellerySentence + " " + word
+                    else:
+                        chancellerySentence = word
+                if n > 0:
+                    chancelleryText = chancelleryText + ". " + chancellerySentence
+                else:
+                    chancelleryText = chancellerySentence
+        chancelleriesTexts.append(chancelleryText)
+    print("Length of chancelleryTexts:", len(chancelleriesTexts))
+    print("First 100 chars of first text:\n", chancelleriesTexts[0][:100])
+    print(chancelleriesTexts)
+    print(type(chancelleriesSentences))
+
+    # Initialisierung des TfidfVectorizers und festlegen von N-Gramm-Bereichen (hier: 2-Grams)
+    vectorizer = TfidfVectorizer(ngram_range=(2, 2), stop_words=None)
+
+    # Transformation der Textinhalte in Vektoren mit Tf-idf-Werten
+    vectors = vectorizer.fit_transform(chancelleriesTexts)
+
+    # Initialisierung eines Support Vector Machines (SVM) als Klassifikator
+    classifier = SVC(kernel='linear', C=1, probability=True, random_state=42)
+
+    # Training des Klassifikators mit den Tf-idf-Vektoren und den Klassenlabels
+    classifier.fit(vectors, chancelleryEmpathyLabels)
+
 
 readFilesFromDisk = True
 
@@ -684,8 +802,11 @@ if readFilesFromDisk:
     chancelleryHTMLtextsFromFile = read_file_from_disk('chancelleryHTMLtexts.txt')
     lemmaCountsPerChancelleryFromFile = read_file_from_disk('lemmaCountsPerChancellery.txt')
     chancelleriesWordDensities = read_file_from_disk('chancelleriesWordDensities.txt')
-    chancelleriesPosTagCounts = read_file_from_disk('chancelleriesPosTagCounts.txt')
-    print_linguistic_assertions(chancelleryHTMLtextsFromFile, chancelleriesWordDensities, lemmaCountsPerChancelleryFromFile, chancelleriesPosTagCounts)
+    chancelleriesPosTagCountsFromFile = read_file_from_disk('chancelleriesPosTagCounts.txt')
+    chancelleriesSyntacticDependenciesFromFile = read_file_from_disk('chancelleriesSyntacticDependencies.txt')
+    chancelleriesSentencesFromFile = read_file_from_disk('chancelleriesSentences.txt')
+    print_linguistic_assertions(chancelleryHTMLtextsFromFile, chancelleriesWordDensities, lemmaCountsPerChancelleryFromFile, chancelleriesPosTagCountsFromFile,
+                                chancelleriesSyntacticDependenciesFromFile, chancelleriesSentencesFromFile)
 
 #     "Loading websitesTextsReformatted & chancelleryHTMLtexts from file."
 #     with open('chancelleryHTMLtexts.txt', 'r', encoding='utf-8') as f:
@@ -717,8 +838,15 @@ else:
     with open(r'B:/Python-Projekte/Masterarbeit/chancelleriesPosTagCounts.txt', 'w', encoding='utf-8') as f:
         json.dump(chancelleriesPosTagCounts, f, ensure_ascii=False)
         print("Saved a list of {} items to file '{}'.".format(len(chancelleriesPosTagCounts), "chancelleriesPosTagCounts.txt"))
+    with open(r'B:/Python-Projekte/Masterarbeit/chancelleriesSyntacticDependencies.txt', 'w', encoding='utf-8') as f:
+        json.dump(chancelleriesSyntacticDependencies, f, ensure_ascii=False)
+        print("Saved a list of {} items to file '{}'.".format(len(chancelleriesSyntacticDependencies), "chancelleriesSyntacticDependencies.txt"))
+    with open(r'B:/Python-Projekte/Masterarbeit/chancelleriesSentences.txt', 'w', encoding='utf-8') as f:
+        json.dump(chancelleriesSentences, f, ensure_ascii=False)
+        print("Saved a list of {} items to file '{}'.".format(len(chancelleriesSentences), "chancelleriesSentences.txt"))
 
-    print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensites, lemmaCountsPerChancellery, chancelleriesPosTagCounts)
+    print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensites, lemmaCountsPerChancellery, chancelleriesPosTagCounts, chancelleriesSyntacticDependencies,
+                                chancelleriesSentences)
 
 exit()
 
