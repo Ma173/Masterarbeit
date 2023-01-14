@@ -504,10 +504,11 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
 
     empathyWordCounts = {}
     wordsListEmpathyVerbs = ["achten", "anerkennen", "begleiten", "begreifen", "beistehen", "beschützen", "erkennen", "fühlen", "helfen", "lieben", "nachfühlen", "respektieren",
-                             "unterstützen", "verstehen", "verstehen", "verzeihen", "würdigen", "mitleiden", "solidarisieren", "menschlich sein", "Anteil nehmen", "teilen",
-                             "unterstützen"]
+                             "unterstützen", "verstehen", "verzeihen", "würdigen", "mitleiden", "solidarisieren", "menschlich sein", "Anteil nehmen", "teilen",
+                             "begreifen", "durchschauen", "einsehen", "erkennen", "kapieren", "verstehen", "nachvollziehen",
+                             "verstehen können", "zustimmen", "wissen", "mitfühlen", "einfühlen", "nachempfinden"]
     wordsListEmpathyAdjectives = ["achtsam", "barmherzig", "begütigend", "einfühlsam", "ermutigend", "fürsorglich", "hilfsbereit", "liebevoll", "nachsichtig", "rücksichtsvoll",
-                                  "sensibel", "verständnisvoll", "verzeihend", "mitleidig", "solidarisch", "menschlich", "anteilnehmend", "teilend", "unterstützend"]
+                                  "sensibel", "verständnisvoll", "verzeihend", "mitleidig", "solidarisch", "menschlich", "anteilnehmend", "teilend", "unterstützend", "betroffen"]
     wordListEmpathy = wordsListEmpathyVerbs + wordsListEmpathyAdjectives
 
     # Read all chancellery specific LemmaCounts, transfer them into a list and sort the list for each chancellery
@@ -549,7 +550,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                 if n < amount_of_lines:
                     print(n, currentWord)
 
-    print_sorted_list(sortedLemmaCountsPerChancellery, 10)
+    print_sorted_list(sortedLemmaCountsPerChancellery, 5)
 
     ################################################
     ################################################
@@ -569,12 +570,18 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
         empathyRatios[chancelleryName] = empathyCount / lemmaCountTotal
     empathyRatiosSorted = sorted(empathyRatios.items(), key=lambda x: x[1])
     empathyRatiosSortedWithAnnotation = []
-    empathyAnnotationRatio = 0
-    empathyAnnotationRatioStrict = 0
-    print("\nThese are the empathy ratios of each chancellery with the annotated value:")
+    empathyCorrectlyRecognizedCount = 0
+    empathyCorrectlyRecognizedStrict = 0
+    empathyDetectionNegatives = 0
+    empathyTrueAnnotations = 0
+    empathyRecognizedCount = 0  # The count of all cases where empathy was recognized for a chancellery (where the value is > 0)
+    chancelleriesWithRecognizedEmpathy = {}
+    chancelleriesWithEmpathyAnnotation = 0
+    previousChancelleryName = ""
 
+    print("\nThese are the empathy ratios of each chancellery with the annotated value:")
     # Assessing & summing up the correct annotations and printing out the empathy ratio of each chancellery
-    for chancellery, ratio in empathyRatiosSorted:
+    for chancellery, chancelleryEmpathyRatio in empathyRatiosSorted:
         empathyAnnotation = 0
         for chancelleryBlock in chancelleryHTMLtexts:
             featureExpression = chancelleryBlock[2]
@@ -583,23 +590,36 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                 # print("First feature:", featureExpression[0])
                 for feature in featureExpression:
                     if feature[0] == "F8":
-                        empathyAnnotation = feature[1][-1]
-                        # Differentiating only between two groups:
-                        # Chancelleries that have an empathy ratio above 0 and ones that don't
-                        # If the chancellery has a ratio > 0 and the annotation of empathy is not 3 ("the opposite of empathy"), count it for the ratio
-                        if int(empathyAnnotation) < 3 and ratio > 0:
-                            empathyAnnotationRatio += 1
-                        if int(empathyAnnotation) == 1 and ratio > 0:
-                            empathyAnnotationRatioStrict += 1
-            empathyRatiosSortedWithAnnotation.append([chancellery, ratio, empathyAnnotation])
+                        if chancellery != previousChancelleryName:
+                            chancelleriesWithEmpathyAnnotation += 1
+                            empathyAnnotation = feature[1][-1]
+                            # Differentiating only between two groups:
+                            # Chancelleries that have an empathy ratio above 0 and ones that don't
+                            # If the chancellery has a ratio > 0 and the annotation of empathy is not 3 ("the opposite of empathy"), count it for the ratio
+                            if int(empathyAnnotation) < 3:
+                                empathyTrueAnnotations += 1
+                                if chancelleryEmpathyRatio > 0:
+                                    empathyCorrectlyRecognizedCount += 1
+                            if chancelleryEmpathyRatio > 0:
+                                chancelleriesWithRecognizedEmpathy[chancellery] = chancelleryEmpathyRatio
+                                empathyRecognizedCount += 1
+                            if int(empathyAnnotation) == 1 and chancelleryEmpathyRatio > 0:
+                                empathyCorrectlyRecognizedStrict += 1
+                            else:
+                                empathyDetectionNegatives += 1
+                            empathyRatiosSortedWithAnnotation.append([chancellery, chancelleryEmpathyRatio, empathyAnnotation])
 
-        print(f'{chancellery} | {ratio:.3f} | {empathyAnnotation}')  # chancellery, "|", ratio)
-    empathyDetectionAccuracy = empathyAnnotationRatio / len(empathyWordCounts.items())
-    empathyDetectionAccuracyStrict = empathyAnnotationRatioStrict / len(empathyWordCounts.items())
+                            print(f'{chancellery} | {chancelleryEmpathyRatio:.4f} | {empathyAnnotation}')  # chancellery, "|", ratio)
+                            previousChancelleryName = chancellery
+
+    empathyDetectionAccuracy = empathyCorrectlyRecognizedCount / chancelleriesWithEmpathyAnnotation
+    empathyDetectionAccuracyStrict = empathyCorrectlyRecognizedStrict / chancelleriesWithEmpathyAnnotation
+    empathyDetectionSensitivity = empathyCorrectlyRecognizedCount / empathyTrueAnnotations  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
+    empathyDetectionPrecision = empathyCorrectlyRecognizedCount / empathyRecognizedCount
     print(f"\nEmpathy detection accuracy of {round(empathyDetectionAccuracy, 2)}")
-    print(f"\nStrict empathy detection accuracy of {round(empathyDetectionAccuracyStrict, 2)}")
-
-    # TODO: Weitere Wortlisten besorgen, mit denen ich meine Annotationen noch vergleichen könnte wie Professionalitäts-Wortlisten
+    print(f"Strict empathy detection accuracy of {round(empathyDetectionAccuracyStrict, 2)}")
+    print(f"Empathy detection sensitivity of {round(empathyDetectionSensitivity, 2)}")
+    print(f"Empathy detection precision of {round(empathyDetectionPrecision, 2)}")
 
     #####################################
     #####################################
@@ -638,34 +658,50 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     sortedAdjectiveCountsPerChancellery = sorted(chancelleriesAdjectivesCount.items(), key=lambda item: item[1][1], reverse=True)
 
     chancelleriesAdjectiveCountRatioCumulated = []
+
+    print("Adjective ratio to empathy comparison")
     for i, chancelleryBlock in enumerate(sortedAdjectiveCountsPerChancellery):
         countGroup = chancelleryBlock[1]
-        ratio = countGroup[1]
-        chancelleriesAdjectiveCountRatioCumulated.append(ratio)
+        chancelleryAdjectiveRatio = countGroup[1]
+        chancelleriesAdjectiveCountRatioCumulated.append(chancelleryAdjectiveRatio)
+        for chancellery, chancelleryAdjectiveRatio in empathyRatiosSorted:
+            if chancellery == chancelleryBlock[0]:
+                print(f" {chancellery} | adjectiveRatio: {chancelleryAdjectiveRatio} | chancelleryEmpathyData: {chancelleryAdjectiveRatio:.4f} ")
 
     # Calculating the three quantiles for the three adjective ratio groups
     q1 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.25)
     q2 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.5)
     q3 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.75)
 
+    percentiles = np.percentile(chancelleriesAdjectiveCountRatioCumulated, [33.33, 66.66])
+
+    print(f"\nCalculated the following three quantiles for adjective groups: {q1}, {q2} and {q3}")
+
+    chancelleriesEmpathyAndHighAdjectiveRatio = 0
+    chancelleriesWithHighAdjectiveRatio = {}
+    # Summing up how many chancelleries are inside the list of
+    chancelleriesAccordanceEmpathyAndHighAdjectiveRatio = 0
+    # TODO: Hier noch berechnen, ob eine Ähnlichkeit zw. Empathie & Adjektivratio vorliegt (bei 10 Treffern aber eher unwahrscheinlich),
+    # danach dann den Klassifikator unten wieder einkommentieren und funktionsfähig machen
+
     print("\nSorted adjective counts by ratio:")
     for i, chancelleryBlock in enumerate(sortedAdjectiveCountsPerChancellery):
         chancellery = chancelleryBlock[0]
         countGroup = chancelleryBlock[1]
         count = countGroup[0]
-        ratio = countGroup[1]
+        chancelleryAdjectiveRatio = countGroup[1]
         empathyAnnotation = 0
         for p, chancelleryBlockEmpathy in enumerate(empathyRatiosSortedWithAnnotation):
             if chancelleryBlockEmpathy[0] == chancellery:
                 empathyAnnotation = int(chancelleryBlockEmpathy[2])
-        if ratio <= q1:
+        if chancelleryAdjectiveRatio <= q1:
             if empathyAnnotation == 1:
                 adjectiveRatioAccurateAnnotationsStrict += 1
                 adjectiveRatioAnnotationsLowerAndMediumValues += 1
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
             elif empathyAnnotation == 2:
                 adjectiveRatioAnnotationsLowerAndMediumValues += 1
-        if q1 < ratio <= q2:
+        if q1 < chancelleryAdjectiveRatio <= q2:
             if empathyAnnotation == 2:
                 adjectiveRatioAccurateAnnotationsStrict += 1
                 adjectiveRatioAnnotationsLowerAndMediumValues += 1
@@ -674,7 +710,8 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                 adjectiveRatioAnnotationsLowerAndMediumValues += 1
             elif empathyAnnotation == 3:
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
-        if q3 < ratio:
+        if q3 < chancelleryAdjectiveRatio:
+            chancelleriesWithHighAdjectiveRatio[chancellery] = chancelleryAdjectiveRatio
             if empathyAnnotation == 3:
                 adjectiveRatioAccurateAnnotationsStrict += 1
                 adjectiveRatioAnnotationsLowerAndMediumValues += 1
@@ -682,15 +719,26 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
             if empathyAnnotation == 2:
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
 
-        print(f"{chancellery}: {count} | {ratio} | {empathyAnnotation}")
+        # if q2 <
 
+        print(f"{chancellery}: {count} | {chancelleryAdjectiveRatio} | {empathyAnnotation}")
+
+    for chancellery, chancelleryAdjectiveRatio in chancelleriesWithHighAdjectiveRatio.items():
+        for chancelleryName, chancelleryEmpathyRatio in chancelleriesWithRecognizedEmpathy.items():
+            if chancellery == chancelleryName:
+                chancelleriesEmpathyAndHighAdjectiveRatio += 1
+
+    chancelleriesEmpathyAndHighAdjectiveRatioShare = chancelleriesEmpathyAndHighAdjectiveRatio / len(chancelleriesWithRecognizedEmpathy)
     adjectiveRatioPerformanceStrict = adjectiveRatioAccurateAnnotationsStrict / len(chancelleriesAdjectiveCountRatioCumulated)
     adjectiveRatioPerformanceLowerAndMediumValues = adjectiveRatioAnnotationsLowerAndMediumValues / len(chancelleriesAdjectiveCountRatioCumulated)
     adjectiveRatioPerformanceMediumAndHighValues = adjectiveRatioAccurateAnnotationsMediumAndHighValues / len(chancelleriesAdjectiveCountRatioCumulated)
     print(f"\nReached a strict performance ratio of {round(adjectiveRatioPerformanceStrict * 100, 2)}")
     print(f"Reached a moderate performance ratio for both low and medium values of {round(adjectiveRatioPerformanceLowerAndMediumValues * 100, 2)}")
     print(f"Reached a moderate performance ratio for both medium and high values of {round(adjectiveRatioPerformanceMediumAndHighValues * 100, 2)}")
+    print(f"\nThere are {chancelleriesEmpathyAndHighAdjectiveRatio} of all chancelleries that have an empathy ratio above zero and an adjective ratio in the upper quantile. "
+          f"That's {chancelleriesEmpathyAndHighAdjectiveRatioShare * 100:.2f}%!")
 
+    exit()
     ################################################
     ##           Calculation TF-IDF               ##
     ################################################
