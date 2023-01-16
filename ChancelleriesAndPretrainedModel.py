@@ -652,7 +652,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     print(dataframePosTagCount)
 
     adjectiveRatioAccurateAnnotationsStrict = 0
-    adjectiveRatioAnnotationsLowerAndMediumValues = 0
+    adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues = 0
     adjectiveRatioAccurateAnnotationsMediumAndHighValues = 0
 
     sortedAdjectiveCountsPerChancellery = sorted(chancelleriesAdjectivesCount.items(), key=lambda item: item[1][1], reverse=True)
@@ -666,7 +666,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
         chancelleriesAdjectiveCountRatioCumulated.append(chancelleryAdjectiveRatio)
         for chancellery, chancelleryAdjectiveRatio in empathyRatiosSorted:
             if chancellery == chancelleryBlock[0]:
-                print(f" {chancellery} | adjectiveRatio: {chancelleryAdjectiveRatio} | chancelleryEmpathyData: {chancelleryAdjectiveRatio:.4f} ")
+                print(f" {chancellery} | adjectiveRatio: {chancelleryAdjectiveRatio:.2f} | chancelleryEmpathyData: {chancelleryAdjectiveRatio:.4f} ")
 
     # Calculating the three quantiles for the three adjective ratio groups
     q1 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.25)
@@ -681,8 +681,9 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     chancelleriesWithHighAdjectiveRatio = {}
     # Summing up how many chancelleries are inside the list of
     chancelleriesAccordanceEmpathyAndHighAdjectiveRatio = 0
-    # TODO: Hier noch berechnen, ob eine Ähnlichkeit zw. Empathie & Adjektivratio vorliegt (bei 10 Treffern aber eher unwahrscheinlich),
-    # danach dann den Klassifikator unten wieder einkommentieren und funktionsfähig machen
+    chancelleriesWithHigherAdjectiveRatioAndCorrectlyRecognizedEmpathy = 0
+    chancelleriesWithHigherAdjectiveRatioAndRecognizedEmpathy = 0
+    chancelleriesWithHigherAdjectiveRatioAndActualAnnotatedEmpathy = 0
 
     print("\nSorted adjective counts by ratio:")
     for i, chancelleryBlock in enumerate(sortedAdjectiveCountsPerChancellery):
@@ -691,35 +692,47 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
         count = countGroup[0]
         chancelleryAdjectiveRatio = countGroup[1]
         empathyAnnotation = 0
+        empathyRatio = 0
         for p, chancelleryBlockEmpathy in enumerate(empathyRatiosSortedWithAnnotation):
             if chancelleryBlockEmpathy[0] == chancellery:
                 empathyAnnotation = int(chancelleryBlockEmpathy[2])
-        if chancelleryAdjectiveRatio <= q1:
+                empathyRatio = int(chancelleryBlockEmpathy[2])
+
+        if chancelleryAdjectiveRatio <= percentiles[0]:
             if empathyAnnotation == 1:
                 adjectiveRatioAccurateAnnotationsStrict += 1
-                adjectiveRatioAnnotationsLowerAndMediumValues += 1
+                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
             elif empathyAnnotation == 2:
-                adjectiveRatioAnnotationsLowerAndMediumValues += 1
-        if q1 < chancelleryAdjectiveRatio <= q2:
+                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
+
+        if percentiles[0] < chancelleryAdjectiveRatio <= percentiles[1]:
             if empathyAnnotation == 2:
                 adjectiveRatioAccurateAnnotationsStrict += 1
-                adjectiveRatioAnnotationsLowerAndMediumValues += 1
+                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
             elif empathyAnnotation == 1:
-                adjectiveRatioAnnotationsLowerAndMediumValues += 1
+                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
             elif empathyAnnotation == 3:
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
-        if q3 < chancelleryAdjectiveRatio:
+        if percentiles[1] < chancelleryAdjectiveRatio:
             chancelleriesWithHighAdjectiveRatio[chancellery] = chancelleryAdjectiveRatio
             if empathyAnnotation == 3:
                 adjectiveRatioAccurateAnnotationsStrict += 1
-                adjectiveRatioAnnotationsLowerAndMediumValues += 1
+                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
             if empathyAnnotation == 2:
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
 
-        # if q2 <
+        # If there's a higher adjective ratio, a recognized empathy ratio above 0
+        if percentiles[1] < chancelleryAdjectiveRatio:
+            if empathyRatio > 0:
+                chancelleriesWithHigherAdjectiveRatioAndRecognizedEmpathy += 1
+                # If there's also an empathy annotation lower 3 (no anti-empathy)
+                if empathyAnnotation < 3:
+                    chancelleriesWithHigherAdjectiveRatioAndCorrectlyRecognizedEmpathy += 1
+            if empathyAnnotation < 3:
+                chancelleriesWithHigherAdjectiveRatioAndActualAnnotatedEmpathy += 1
 
         print(f"{chancellery}: {count} | {chancelleryAdjectiveRatio} | {empathyAnnotation}")
 
@@ -728,17 +741,29 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
             if chancellery == chancelleryName:
                 chancelleriesEmpathyAndHighAdjectiveRatio += 1
 
+    # TODO: Prüfen welche Berechnung jetzt die korrekte ist, dann Klassifikator wieder einkommentieren und fortsetzen
     chancelleriesEmpathyAndHighAdjectiveRatioShare = chancelleriesEmpathyAndHighAdjectiveRatio / len(chancelleriesWithRecognizedEmpathy)
-    adjectiveRatioPerformanceStrict = adjectiveRatioAccurateAnnotationsStrict / len(chancelleriesAdjectiveCountRatioCumulated)
-    adjectiveRatioPerformanceLowerAndMediumValues = adjectiveRatioAnnotationsLowerAndMediumValues / len(chancelleriesAdjectiveCountRatioCumulated)
-    adjectiveRatioPerformanceMediumAndHighValues = adjectiveRatioAccurateAnnotationsMediumAndHighValues / len(chancelleriesAdjectiveCountRatioCumulated)
-    print(f"\nReached a strict performance ratio of {round(adjectiveRatioPerformanceStrict * 100, 2)}")
-    print(f"Reached a moderate performance ratio for both low and medium values of {round(adjectiveRatioPerformanceLowerAndMediumValues * 100, 2)}")
-    print(f"Reached a moderate performance ratio for both medium and high values of {round(adjectiveRatioPerformanceMediumAndHighValues * 100, 2)}")
+    chancelleriesEmpathyAndHighAdjectiveRatioShare2 = chancelleriesEmpathyAndHighAdjectiveRatio / len(chancelleriesWithHighAdjectiveRatio.items())
+    chancelleriesEmpathyAndHighAdjectiveRatioShare3 = chancelleriesEmpathyAndHighAdjectiveRatio / chancelleriesWithEmpathyAnnotation
+    adjectiveRatioAccuracyStrict = adjectiveRatioAccurateAnnotationsStrict / len(chancelleriesAdjectiveCountRatioCumulated)
+    adjectiveRatioAccuracyLowerAndMediumValues = adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues / len(chancelleriesAdjectiveCountRatioCumulated)
+    adjectiveRatioAccuracyMediumAndHighValues = adjectiveRatioAccurateAnnotationsMediumAndHighValues / len(chancelleriesAdjectiveCountRatioCumulated)
+    print(f"\nReached a strict adjective ratio accuracy of {round(adjectiveRatioAccuracyStrict * 100, 2)}")
+    print(f"Reached a moderate adjective ratio accuracy for both low and medium empathy values of {round(adjectiveRatioAccuracyLowerAndMediumValues * 100, 2)}")
+    print(f"Reached a moderate adjective ratio accuracy for both medium and high empathy values of {round(adjectiveRatioAccuracyMediumAndHighValues * 100, 2)}")
     print(f"\nThere are {chancelleriesEmpathyAndHighAdjectiveRatio} of all chancelleries that have an empathy ratio above zero and an adjective ratio in the upper quantile. "
-          f"That's {chancelleriesEmpathyAndHighAdjectiveRatioShare * 100:.2f}%!")
+          f"That's {chancelleriesEmpathyAndHighAdjectiveRatioShare3 * 100:.2f}%!")
 
-    exit()
+    adjectiveRatioSensitivity = chancelleriesWithHigherAdjectiveRatioAndCorrectlyRecognizedEmpathy / chancelleriesWithHigherAdjectiveRatioAndActualAnnotatedEmpathy  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
+    # adjectiveRatioSensitivity = adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues / empathyTrueAnnotations  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
+    # adjectiveRatioPrecision = adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues / len(chancelleriesWithHighAdjectiveRatio.items())
+    adjectiveRatioPrecision = chancelleriesWithHigherAdjectiveRatioAndCorrectlyRecognizedEmpathy / chancelleriesWithHigherAdjectiveRatioAndRecognizedEmpathy
+    print(f"Adjective detection sensitivity of {adjectiveRatioSensitivity:.2f}")
+    print(f"Adjective detection precision of {adjectiveRatioPrecision:.2f}")
+    print(
+        f"{len(chancelleriesWithHighAdjectiveRatio.items())} chancelleries with high adjective ratio. {adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues} with high values "
+        f"for empathy & adjectives\n")
+
     ################################################
     ##           Calculation TF-IDF               ##
     ################################################
@@ -785,55 +810,172 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     #     print(f"Wort: {word}, Tf-idf-Werte: {tfidf_matrix[:, index].todense()}")
 
     ##########################################
-    ##              Classificator           ##
+    ##              Classifier              ##
     ##########################################
 
     from sklearn.svm import SVC
     chancelleriesTexts = []
     chancelleryNames = []
     chancelleryEmpathyLabels = []
+    chancelleriesNamesWithEmpathyAnnotation = []
     # Saving the chancellery texts and empathy labels
+    chancelleriesWithF8Count = 0
     for k, chancelleryBlock in enumerate(chancelleryHTMLtexts):
-        chancelleryNames.append(chancelleryBlock[0])
+        # Representation of chancelleryHTMLtexts: [currentChancelleryName, currentHTMLwordsList, currentFeatureExpressions, chancelleryLinguisticAssertions]
+        # Representation of currentFeatureExpressions (chancelleriesFeatureExpressionsWordsList): [[featureId, featureExpression], [featureId, ... ]]
+        chancelleryName = chancelleryBlock[0]
+        chancelleryFeatures = chancelleryBlock[2]
         # chancelleryTexts.append(chancelleryBlock[1])
-        for featureGroup in chancelleryBlock[2]:
+        for featureGroup in chancelleryFeatures:
             if featureGroup[0] == "F8":
-                chancelleryEmpathyLabels.append((featureGroup[1][-1]))
+                # Checking that the current chancellery isn't doubled in the data
+                if chancelleryName not in chancelleryNames:
+                    chancelleryNames.append(chancelleryName)
+                    chancelleriesWithF8Count += 1
+                    chancelleryEmpathyLabels.append((featureGroup[1][-1]))
+                    chancelleriesNamesWithEmpathyAnnotation.append(chancelleryBlock[0])
+                    print(f"{chancelleryName} has F8 annotation. That's number {chancelleriesWithF8Count}")
+                    continue
+    print(f"Lenth of chancelleriesWithF8Count: {chancelleriesWithF8Count}")
 
     for chancelleryName, chancellerySentencesGroup in chancelleriesSentences.items():
         print("ChancelleryName:", chancelleryName)
-        print("ChancellerySentenceGroup:", chancellerySentencesGroup)
+        # print("ChancellerySentenceGroup:", chancellerySentencesGroup)
         chancelleryText = ""
-        if len(chancellerySentencesGroup) > 0:
-            for n, sentence in enumerate(chancellerySentencesGroup[0]):
-                print("Sentence:", n, sentence)
-                chancellerySentence = ""
-                for p, word in enumerate(sentence):
-                    if p > 0:
-                        chancellerySentence = chancellerySentence + " " + word
+        if len(chancellerySentencesGroup) > 0 and chancelleryName in chancelleriesNamesWithEmpathyAnnotation:
+            for n, sentence in enumerate(chancellerySentencesGroup):
+                if len(sentence) > 0:
+                    # print("Sentence:", n, sentence)
+                    chancellerySentence = ""
+                    for p, word in enumerate(sentence):
+                        if p > 0:
+                            chancellerySentence = chancellerySentence + " " + word
+                        else:
+                            chancellerySentence = word
+                    if n > 0:
+                        chancelleryText = chancelleryText + ". " + chancellerySentence
                     else:
-                        chancellerySentence = word
-                if n > 0:
-                    chancelleryText = chancelleryText + ". " + chancellerySentence
-                else:
-                    chancelleryText = chancellerySentence
-        chancelleriesTexts.append(chancelleryText)
-    print("Length of chancelleryTexts:", len(chancelleriesTexts))
-    print("First 100 chars of first text:\n", chancelleriesTexts[0][:100])
-    print(chancelleriesTexts)
-    print(type(chancelleriesSentences))
+                        chancelleryText = chancellerySentence
+        if chancelleryText != "":
+            chancelleriesTexts.append(chancelleryText)
 
-    # Initialisierung des TfidfVectorizers und festlegen von N-Gramm-Bereichen (hier: 2-Grams)
+    print("Length of chancelleryTexts:", len(chancelleriesTexts))
+    # print("First 100 chars of first text:\n", chancelleriesTexts[0][:100])
+    # print(chancelleriesTexts)
+
+    datasetSize = int(len(chancelleriesTexts))
+    trainingDataSplit = round(datasetSize * 0.5)
+    testDataSplit = round(datasetSize * 0.5)
+
+    trainingDataTexts = chancelleriesTexts[testDataSplit:]
+    trainingDataLabels = chancelleryEmpathyLabels[testDataSplit:]
+    testDataTexts = chancelleriesTexts[:testDataSplit]
+    testDataLabels = chancelleryEmpathyLabels[:testDataSplit]
+
+    for text in trainingDataTexts:
+        print(text.split(". ")[:3])
+        # print(text)
+    # Initializing the TfidfVectorizer and setting the  n-gram ranges (here: 2-Grams)
     vectorizer = TfidfVectorizer(ngram_range=(2, 2), stop_words=None)
 
-    # Transformation der Textinhalte in Vektoren mit Tf-idf-Werten
-    vectors = vectorizer.fit_transform(chancelleriesTexts)
+    # Transforming the text contents in vectors with tf-idf-values
+    trainingVectors = vectorizer.fit_transform(trainingDataTexts)
 
-    # Initialisierung eines Support Vector Machines (SVM) als Klassifikator
+    # Initializing a support vector machine as classificator
     classifier = SVC(kernel='linear', C=1, probability=True, random_state=42)
 
-    # Training des Klassifikators mit den Tf-idf-Vektoren und den Klassenlabels
-    classifier.fit(vectors, chancelleryEmpathyLabels)
+    # Training the classifier with the tf-idf-vectors and the class labels
+    classifier.fit(trainingVectors, trainingDataLabels)
+
+    ############################## Applying the classifier onto new data (test data) ##################################
+    # Transforming the test data in vectors with tf-idf values
+    testVectors = vectorizer.transform(testDataTexts)
+
+    # Using the classifier to classificate the new texts
+    predictions = classifier.predict(testVectors)
+
+    # Creating a dictionary with all texts of the test data set and the matching labels and predictions
+    # results = {"labels": testDataLabels, "predictions": predictions}  # "text": testDataTexts,
+    results = zip(testDataLabels, predictions)
+
+    # Printing the predictions
+    # for label, prediction in results:
+    #    print(f"{label} : {prediction}")
+
+    # from gensim.models import Word2Vec
+    # # Erstellen des Word2Vec-Modells
+    # classifierModel = Word2Vec(trainingDataTexts, vector_size=100, window=5, min_count=1, workers=4)
+    #
+    # # Umwandeln von Texten in Vektoren
+    # text_vectors = [classifierModel.wv[text] for text in trainingDataTexts]
+    #
+    # # Initialisierung einer leeren Liste, um die Vektoren der neuen Texte zu speichern
+    # new_vectors = []
+    #
+    # # Iteration über die neuen Texte
+    # for text in testDataTexts:
+    #     # Initialisierung einer leeren Liste, um die Vektoren der Wörter im Text zu speichern
+    #     text_vectors = []
+    #     # Iteration über die Wörter im Text
+    #     for word in text.split():
+    #         # Überprüfen, ob das Wort im Modell vorhanden ist
+    #         if word in classifierModel.wv:
+    #             # Hinzufügen des Wortvektors zur Liste
+    #             text_vectors.append(model.wv[word])
+    #     # Berechnung des Durchschnittsvektors des Textes
+    #     avg_vector = sum(text_vectors) / len(text_vectors)
+    #     # Hinzufügen des Textvektors zur Liste der neuen Vektoren
+    #     new_vectors.append(avg_vector)
+    #
+    # # Ausgabe der Vektoren
+    # print(new_vectors)
+
+    from gensim.models import Word2Vec
+    from sklearn.metrics import accuracy_score
+
+    # Training data - texts and labels
+    # trainingDataTexts = [["This", "is", "an", "example", "text"], ["Another", "text", "for", "classification"]]
+    # trainingDataLabels = [1, 2]
+
+    # Test data - texts and labels
+    # testDataTexts = [["This", "is", "a", "test", "text"], ["Another", "test", "text", "for", "evaluation"]]
+    # testDataLabels = [2, 1]
+
+    # Creating the Word2Vec model
+    classifierModel = Word2Vec(trainingDataTexts, vector_size=100, window=5, min_count=1, workers=4)
+
+    # Extracting the vectors for the training data texts
+    trainingDataVectors = []
+    for text in trainingDataTexts:
+        text_vectors = []
+        for word in text:
+            if word in classifierModel.wv:
+                text_vectors.append(classifierModel.wv[word])
+        avg_vector = sum(text_vectors) / len(text_vectors)
+        trainingDataVectors.append(avg_vector)
+
+    # Extracting the vectors for the test data texts
+    testDataVectors = []
+    for text in testDataTexts:
+        text_vectors = []
+        for word in text:
+            if word in classifierModel.wv:
+                text_vectors.append(classifierModel.wv[word])
+        avg_vector = sum(text_vectors) / len(text_vectors)
+        testDataVectors.append(avg_vector)
+
+    # Initializing a classifier
+    classifier = SVC(kernel='linear', C=1, probability=True, random_state=42)
+
+    # Training the classifier with the training data vectors and labels
+    classifier.fit(trainingDataVectors, trainingDataLabels)
+
+    # Making predictions on the test data vectors
+    predictions = classifier.predict(testDataVectors)
+
+    # Evaluating the model's performance
+    accuracy = accuracy_score(testDataLabels, predictions)
+    print("Accuracy:", accuracy)
 
 
 readFilesFromDisk = True
