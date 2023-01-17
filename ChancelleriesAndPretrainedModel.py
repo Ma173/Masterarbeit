@@ -9,7 +9,7 @@ import spacy
 import winsound
 from bs4 import BeautifulSoup
 from gensim import utils
-from gensim.models import KeyedVectors
+from gensim.models import KeyedVectors, Doc2Vec
 from gensim.test.utils import datapath
 from joblib import Parallel
 from matplotlib import pyplot as plt
@@ -144,12 +144,12 @@ def preprocessing(corpus_path):
                 currentChancelleryHTMLclean = currentChancelleryHTMLclean.replace("  ", "")
                 currentSentences = currentChancelleryHTMLclean.split(".")  # TODO: Prüfen, dass hier die Entfernung des Leerzeichens nicht mehr Probleme gemacht hat.
                 currentSentencesAfterThreshold = []
-                minimumSentenceLength = 7
+                minimumSentenceLength = 5
 
                 # Keeping only those sentences that pass the threshold of minimum sentence length
                 for sentence in currentSentences:
                     if len(sentence) >= minimumSentenceLength:
-                        currentSentencesAfterThreshold.append(sentence)
+                        currentSentencesAfterThreshold.append(" " + sentence)
 
                 chancellerySentencesCleaned = []
                 for sentence in currentSentencesAfterThreshold:
@@ -164,8 +164,8 @@ def preprocessing(corpus_path):
 
                         # If the current word doesn't consist of more than x Uppercases & is longer than 1, continue with the word
                         # and remove any leftovers of the HTML codes or any special characters
-                        if not sum(1 for c in word if c.isupper()) > 3 and len(word) > 1:
-                            htmlDebris = ["\t", "\t\t", "\\xa0", "[", "]", "'", ">>", "<<", "|", "\\u00fcber"]
+                        if not sum(1 for c in word if c.isupper()) > 3 and len(word) >= 2:
+                            htmlDebris = ["\t", "\t\t", "\\xa0", "\xa0", "[", "]", "'", ">>", "<<", "|", "\\u00fcber", '"', "..."]
                             wordToAppend = word
                             wordSplitted = ""
                             for debris in htmlDebris:
@@ -182,11 +182,26 @@ def preprocessing(corpus_path):
                                 wordSplitted = wordToAppend.split(".")
                             elif "/" in wordToAppend and wordToAppend.find("/") != len(wordToAppend) and wordToAppend.find("/") != 0:
                                 wordSplitted = wordToAppend.split("/")
+                            elif "?" in wordToAppend and wordToAppend.find("?") != len(wordToAppend) and wordToAppend.find("?") != 0:
+                                wordSplitted = wordToAppend.split("?")
                             if len(wordSplitted) == 2:
                                 if wordSplitted[0] != "":
                                     wordsCleaned.append(wordSplitted[0])
                                 if wordSplitted[1] != "":
                                     wordsCleaned.append(wordSplitted[1])
+                            if wordToAppend and wordToAppend[0].isdigit():
+                                wordConsistingOfNumbersAndLetters = False
+                                for char in wordToAppend[1:]:
+                                    if not char.isalpha():
+                                        wordConsistingOfNumbersAndLetters = True
+                                if wordConsistingOfNumbersAndLetters:
+                                    for m, char in enumerate(wordToAppend):
+                                        if char.isalpha():
+                                            number_part = word[:m]
+                                            letter_part = word[m:]
+                                            wordsCleaned.append(number_part)
+                                            wordsCleaned.append(letter_part)
+
                             else:
                                 wordsCleaned.append(wordToAppend)
 
@@ -297,7 +312,7 @@ def preprocessing(corpus_path):
                                 for m, word in enumerate(wordsCleaned):
                                     if word[0].isupper():
                                         consecutiveCount += 1
-                                    if i == len(wordsCleaned) - 1 or not word[0].isupper():
+                                    if m == len(wordsCleaned) - 1 or not word[0].isupper():
                                         if maxcount < consecutiveCount:
                                             maxcount = consecutiveCount
                                         consecutiveCount = 0
@@ -350,6 +365,31 @@ def preprocessing(corpus_path):
 
 # TODO: preprocessing() gibt aktuell chancelleryBlocks zurück. Ist das noch up to date oder sollte chancelleryHTMLtexts zurückgegeben und im Verlaufe des Programms dann mit
 #  mainData statt chancelleryHTMLtexts weitergearbeitet werden?
+
+def loadModel():
+    startLoadingModel = time.time()
+    now = datetime.now()
+    currentTime = now.strftime("%H:%M:%S")
+    print("Loading model...\nCurrent time:", currentTime)
+    possibleModelsToLoad = ["dewiki_20180420_100d.pkl.bz2", "dewiki_20180420_100d.txt.bz2", "dewiki_20180420_300d.txt.bz2",
+                            "dewiki_20180420_100d.txt.bz2_loaded"]
+    modelToLoad = 3
+    global model
+    if modelToLoad > 2:
+        model = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/' + possibleModelsToLoad[modelToLoad], mmap='r')
+
+    else:
+        with Parallel(n_jobs=-1) as parallel:
+            model = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/' + possibleModelsToLoad[modelToLoad], binary=False,
+                                                                    encoding='unicode escape', workers=4)  # ,  workers=parallel)
+
+    model.fill_norms()
+    # model.save(possibleModelsToLoad[modelToLoad] + "_loaded")
+
+    timeSinceLoadingModel = round((time.time() - startLoadingModel) / 60, 3)
+    print("Finished loading model. Time elapsed:", timeSinceLoadingModel, "minutes.")
+    # winsound.PlaySound('SystemAsterisk.wav', winsound.SND_FILENAME)
+
 
 startPreprocessing = time.time()
 
@@ -873,7 +913,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     testDataLabels = chancelleryEmpathyLabels[:testDataSplit]
 
     for text in trainingDataTexts:
-        print(text.split(". ")[:3])
+        print(text.split(". ")[:4])
         # print(text)
     # Initializing the TfidfVectorizer and setting the  n-gram ranges (here: 2-Grams)
     vectorizer = TfidfVectorizer(ngram_range=(2, 2), stop_words=None)
@@ -930,42 +970,94 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     # # Ausgabe der Vektoren
     # print(new_vectors)
 
+    loadModel()
+
     from gensim.models import Word2Vec
     from sklearn.metrics import accuracy_score
 
-    # Training data - texts and labels
-    # trainingDataTexts = [["This", "is", "an", "example", "text"], ["Another", "text", "for", "classification"]]
-    # trainingDataLabels = [1, 2]
+    # classifierModel = model
+    modelType = 0
 
-    # Test data - texts and labels
-    # testDataTexts = [["This", "is", "a", "test", "text"], ["Another", "test", "text", "for", "evaluation"]]
-    # testDataLabels = [2, 1]
+    if modelType == 1:
+        # Initializing the model
+        classifierModel = Doc2Vec(vector_size=100, window=5, min_count=1, workers=4)
 
-    # Creating the Word2Vec model
-    classifierModel = Word2Vec(trainingDataTexts, vector_size=100, window=5, min_count=1, workers=4)
+        # Building the vocabulary
+        from gensim.models.doc2vec import TaggedDocument
+        # documents = [TaggedDocument(trainingDataTexts.split(), [i]) for i, text in enumerate(trainingDataTexts)]
+        # documents = [TaggedDocument([word for sentence in text for word in sentence.split()], [i]) for i, text in enumerate(trainingDataTexts)]
+        # documents = [TaggedDocument(text, [i]) for i, text in enumerate(trainingDataTexts)]
+        print("before preparing the documents")
+        documents = [TaggedDocument([word for sentence in text for word in sentence.split()], [i]) for i, text in enumerate(trainingDataTexts)]
+        print("after preparing the documents, before building the vocabulary")
 
-    # Extracting the vectors for the training data texts
-    trainingDataVectors = []
-    for text in trainingDataTexts:
-        text_vectors = []
-        for word in text:
-            if word in classifierModel.wv:
-                text_vectors.append(classifierModel.wv[word])
-        avg_vector = sum(text_vectors) / len(text_vectors)
-        trainingDataVectors.append(avg_vector)
+        # TODO: Hier drüber nochmal den Code anpassen
+        classifierModel.build_vocab(documents)
 
-    # Extracting the vectors for the test data texts
-    testDataVectors = []
-    for text in testDataTexts:
-        text_vectors = []
-        for word in text:
-            if word in classifierModel.wv:
-                text_vectors.append(classifierModel.wv[word])
-        avg_vector = sum(text_vectors) / len(text_vectors)
-        testDataVectors.append(avg_vector)
+        print("After building the vocabulary, before training the model")
+
+        # Training the model
+        classifierModel.train(documents, total_examples=classifierModel.corpus_count, epochs=10)
+
+        print("After training the model, bevore 2nd preprocessing the data")
+        # 2nd Preprocessing of data to have it as words
+        words = []
+        for document in testDataTexts:
+            for sentence in document:
+                for word in sentence.split():
+                    words.append(word)
+        print("After 2nd preprocessing the data, before inferring the vectors")
+
+        # Inferring the vectors
+        vectors = []
+        vector = classifierModel.infer_vector(words)
+        vectors.append(vector)
+
+        print(len(vectors))
+        print(vectors)
+        print(len(testDataLabels))
+
+        # Using the vectors as input for the classifier
+        classifier.fit(vectors, testDataLabels)
+
+        # Making predictions
+        predictions = classifier.predict(vectors)
+
+        # Computing the accuracy
+        from sklearn.metrics import accuracy_score
+        accuracy = accuracy_score(testDataLabels, predictions)
+
+        # printing the accuracy
+        print("Accuracy in Doc2Vec approach:", accuracy)
+
+    if modelType == 0:
+
+        # Creating the Word2Vec model
+        classifierModel = Word2Vec(trainingDataTexts, vector_size=100, window=5, min_count=1, workers=4)
+        wordVectors = classifierModel.wv  # vs. classifierModel.wv
+
+        # Extracting the vectors for the training data texts
+        trainingDataVectors = []
+        for text in trainingDataTexts:
+            text_vectors = []
+            for word in text:
+                if word in wordVectors:
+                    text_vectors.append(wordVectors[word])
+            avg_vector = sum(text_vectors) / len(text_vectors)
+            trainingDataVectors.append(avg_vector)
+
+        # Extracting the vectors for the test data texts
+        testDataVectors = []
+        for text in testDataTexts:
+            text_vectors = []
+            for word in text:
+                if word in wordVectors:
+                    text_vectors.append(wordVectors[word])
+            avg_vector = sum(text_vectors) / len(text_vectors)
+            testDataVectors.append(avg_vector)
 
     # Initializing a classifier
-    classifier = SVC(kernel='linear', C=1, probability=True, random_state=42)
+    classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
 
     # Training the classifier with the training data vectors and labels
     classifier.fit(trainingDataVectors, trainingDataLabels)
@@ -978,7 +1070,12 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     print("Accuracy:", accuracy)
 
 
-readFilesFromDisk = True
+readFilesFromDisk = None
+readFilesFromDiskInput = input("Read files from disk? If not, enter 'n'. Else just press Enter")
+if "n" in readFilesFromDiskInput.lower():
+    readFilesFromDisk = False
+else:
+    readFilesFromDisk = True
 
 
 def read_file_from_disk(fileName):
@@ -995,6 +1092,7 @@ if readFilesFromDisk:
     chancelleriesPosTagCountsFromFile = read_file_from_disk('chancelleriesPosTagCounts.txt')
     chancelleriesSyntacticDependenciesFromFile = read_file_from_disk('chancelleriesSyntacticDependencies.txt')
     chancelleriesSentencesFromFile = read_file_from_disk('chancelleriesSentences.txt')
+
     print_linguistic_assertions(chancelleryHTMLtextsFromFile, chancelleriesWordDensities, lemmaCountsPerChancelleryFromFile, chancelleriesPosTagCountsFromFile,
                                 chancelleriesSyntacticDependenciesFromFile, chancelleriesSentencesFromFile)
 
@@ -1049,28 +1147,6 @@ def printMainData(lineToPrint):
 
 printMainData(1)
 
-startLoadingModel = time.time()
-now = datetime.now()
-currentTime = now.strftime("%H:%M:%S")
-print("Loading model...\nCurrent time:", currentTime)
-possibleModelsToLoad = ["dewiki_20180420_100d.pkl.bz2", "dewiki_20180420_100d.txt.bz2", "dewiki_20180420_300d.txt.bz2",
-                        "dewiki_20180420_100d.txt.bz2_loaded"]
-modelToLoad = 3
-global model
-if modelToLoad > 2:
-    model = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/' + possibleModelsToLoad[modelToLoad], mmap='r')
-
-else:
-    with Parallel(n_jobs=-1) as parallel:
-        model = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/' + possibleModelsToLoad[modelToLoad], binary=False,
-                                                                encoding='unicode escape', workers=4)  # ,  workers=parallel)
-
-model.fill_norms()
-# model.save(possibleModelsToLoad[modelToLoad] + "_loaded")
-
-timeSinceLoadingModel = round((time.time() - startLoadingModel) / 60, 3)
-print("Finished loading model. Time elapsed:", timeSinceLoadingModel, "minutes.")
-# winsound.PlaySound('SystemAsterisk.wav', winsound.SND_FILENAME)
 startComputingModelInfo = time.time()
 print("Starting to compute some model info...")
 # Check dimension of word vectors
