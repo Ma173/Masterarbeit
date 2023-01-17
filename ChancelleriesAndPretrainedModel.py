@@ -782,7 +782,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                 chancelleriesEmpathyAndHighAdjectiveRatio += 1
 
     # TODO: Prüfen welche Berechnung jetzt die korrekte ist, dann Klassifikator wieder einkommentieren und fortsetzen
-    chancelleriesEmpathyAndHighAdjectiveRatioShare = chancelleriesEmpathyAndHighAdjectiveRatio / len(chancelleriesWithRecognizedEmpathy)
+    chancelleriesEmpathyAndHighAdjectiveRatioShare1 = chancelleriesEmpathyAndHighAdjectiveRatio / len(chancelleriesWithRecognizedEmpathy)
     chancelleriesEmpathyAndHighAdjectiveRatioShare2 = chancelleriesEmpathyAndHighAdjectiveRatio / len(chancelleriesWithHighAdjectiveRatio.items())
     chancelleriesEmpathyAndHighAdjectiveRatioShare3 = chancelleriesEmpathyAndHighAdjectiveRatio / chancelleriesWithEmpathyAnnotation
     adjectiveRatioAccuracyStrict = adjectiveRatioAccurateAnnotationsStrict / len(chancelleriesAdjectiveCountRatioCumulated)
@@ -792,7 +792,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     print(f"Reached a moderate adjective ratio accuracy for both low and medium empathy values of {round(adjectiveRatioAccuracyLowerAndMediumValues * 100, 2)}")
     print(f"Reached a moderate adjective ratio accuracy for both medium and high empathy values of {round(adjectiveRatioAccuracyMediumAndHighValues * 100, 2)}")
     print(f"\nThere are {chancelleriesEmpathyAndHighAdjectiveRatio} of all chancelleries that have an empathy ratio above zero and an adjective ratio in the upper quantile. "
-          f"That's {chancelleriesEmpathyAndHighAdjectiveRatioShare3 * 100:.2f}%!")
+          f"That's {chancelleriesEmpathyAndHighAdjectiveRatioShare1 * 100:.2f}%!")
 
     adjectiveRatioSensitivity = chancelleriesWithHigherAdjectiveRatioAndCorrectlyRecognizedEmpathy / chancelleriesWithHigherAdjectiveRatioAndActualAnnotatedEmpathy  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
     # adjectiveRatioSensitivity = adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues / empathyTrueAnnotations  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
@@ -1056,18 +1056,18 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
             avg_vector = sum(text_vectors) / len(text_vectors)
             testDataVectors.append(avg_vector)
 
-    # Initializing a classifier
-    classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
+        # Initializing a classifier
+        classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
 
-    # Training the classifier with the training data vectors and labels
-    classifier.fit(trainingDataVectors, trainingDataLabels)
+        # Training the classifier with the training data vectors and labels
+        classifier.fit(trainingDataVectors, trainingDataLabels)
 
-    # Making predictions on the test data vectors
-    predictions = classifier.predict(testDataVectors)
+        # Making predictions on the test data vectors
+        predictions = classifier.predict(testDataVectors)
 
-    # Evaluating the model's performance
-    accuracy = accuracy_score(testDataLabels, predictions)
-    print("Accuracy:", accuracy)
+        # Evaluating the model's performance
+        accuracy = accuracy_score(testDataLabels, predictions)
+        print("Accuracy:", accuracy)
 
 
 readFilesFromDisk = None
