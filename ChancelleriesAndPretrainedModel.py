@@ -858,6 +858,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     chancelleryNames = []
     chancelleryEmpathyLabels = []
     chancelleriesNamesWithEmpathyAnnotation = []
+
     # Saving the chancellery texts and empathy labels
     chancelleriesWithF8Count = 0
     for k, chancelleryBlock in enumerate(chancelleryHTMLtexts):
@@ -878,6 +879,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                     continue
     print(f"Lenth of chancelleriesWithF8Count: {chancelleriesWithF8Count}")
 
+    # Uniting the words of each text again for the classifier to train on it
     for chancelleryName, chancellerySentencesGroup in chancelleriesSentences.items():
         print("ChancelleryName:", chancelleryName)
         # print("ChancellerySentenceGroup:", chancellerySentencesGroup)
