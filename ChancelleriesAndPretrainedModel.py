@@ -22,6 +22,8 @@ from gensim.models import TfidfModel
 from sklearn.feature_extraction.text import TfidfVectorizer
 import json
 
+from sklearn.metrics import recall_score, precision_score
+
 stopWords = set(stopwords.words('german'))
 # import nltk
 # import xgboost as xgb
@@ -379,12 +381,11 @@ def loadModel():
         model = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/' + possibleModelsToLoad[modelToLoad], mmap='r')
 
     else:
-        with Parallel(n_jobs=-1) as parallel:
+        with Parallel(n_jobs=-1):
             model = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/' + possibleModelsToLoad[modelToLoad], binary=False,
-                                                                    encoding='unicode escape', workers=4)  # ,  workers=parallel)
-
+                                                                    encoding='unicode escape')  # ,  workers=parallel)
+            model.save(possibleModelsToLoad[modelToLoad] + "_loaded")
     model.fill_norms()
-    # model.save(possibleModelsToLoad[modelToLoad] + "_loaded")
 
     timeSinceLoadingModel = round((time.time() - startLoadingModel) / 60, 3)
     print("Finished loading model. Time elapsed:", timeSinceLoadingModel, "minutes.")
@@ -875,13 +876,13 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                     chancelleriesWithF8Count += 1
                     chancelleryEmpathyLabels.append((featureGroup[1][-1]))
                     chancelleriesNamesWithEmpathyAnnotation.append(chancelleryBlock[0])
-                    print(f"{chancelleryName} has F8 annotation. That's number {chancelleriesWithF8Count}")
+                    # print(f"{chancelleryName} has F8 annotation. That's number {chancelleriesWithF8Count}")
                     continue
     print(f"Lenth of chancelleriesWithF8Count: {chancelleriesWithF8Count}")
 
     # Uniting the words of each text again for the classifier to train on it
     for chancelleryName, chancellerySentencesGroup in chancelleriesSentences.items():
-        print("ChancelleryName:", chancelleryName)
+        # print("ChancelleryName:", chancelleryName)
         # print("ChancellerySentenceGroup:", chancellerySentencesGroup)
         chancelleryText = ""
         if len(chancellerySentencesGroup) > 0 and chancelleryName in chancelleriesNamesWithEmpathyAnnotation:
@@ -909,10 +910,18 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     trainingDataSplit = round(datasetSize * 0.5)
     testDataSplit = round(datasetSize * 0.5)
 
-    trainingDataTexts = chancelleriesTexts[testDataSplit:]
-    trainingDataLabels = chancelleryEmpathyLabels[testDataSplit:]
-    testDataTexts = chancelleriesTexts[:testDataSplit]
-    testDataLabels = chancelleryEmpathyLabels[:testDataSplit]
+    datasetSplit = True
+
+    if datasetSplit:
+        trainingDataTexts = chancelleriesTexts[testDataSplit:]
+        trainingDataLabels = chancelleryEmpathyLabels[testDataSplit:]
+        testDataTexts = chancelleriesTexts[:testDataSplit]
+        testDataLabels = chancelleryEmpathyLabels[:testDataSplit]
+    else:
+        trainingDataTexts = chancelleriesTexts
+        trainingDataLabels = chancelleryEmpathyLabels
+        testDataTexts = chancelleriesTexts
+        testDataLabels = chancelleryEmpathyLabels
 
     for text in trainingDataTexts:
         print(text.split(". ")[:4])
@@ -978,7 +987,58 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     from sklearn.metrics import accuracy_score
 
     # classifierModel = model
-    modelType = 0
+    modelType = 2
+
+    if modelType == 2:
+        # Creating the Word2Vec model
+        # classifierModel = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2', binary=False,
+        #                                                                   encoding='unicode escape')
+        print("Loading predefined model with word2vec")
+        # classifierModel = Word2Vec.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2', encoding='unicode escape')
+        # classifierModel = KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2')
+        # try:
+        #     classifierModel = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded')
+        # except FileNotFoundError:
+        #     print("Pre-loaded model file not found. Please run preprocessing first.")
+        # lassifierModel = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded', encoding="unicode escape",
+        #                                                                  binary=False)
+        classifierModel = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded', mmap='r')
+        print("Done loading classifier model. Beginning to train the model on the chancelley texts")
+        # classifierModel.train(trainingDataTexts, total_examples=len(trainingDataTexts), epochs=10)
+        print("Training the model on the chancellery texts done. Beginning to extract the word vectors of the model.")
+
+        # wordVectors = classifierModel.wv  # vs. classifierModel.wv
+
+        print("Done extracting the word vectors. Beginning to filter the vectors for all words of the data set")
+
+        # Extracting the vectors for the training data texts
+        trainingDataVectors = []
+        testDataVectors = []
+        for text in trainingDataTexts:
+            # text_vectors = [classifierModel[word] for word in text.split() if word in classifierModel.key_to_index]
+            textVectors = [model.get_vector(word) for word in text.split() if word in model.key_to_index]
+            avg_vector = sum(textVectors) / len(textVectors)
+            trainingDataVectors.append(avg_vector)
+
+        for text in testDataTexts:
+            textVectors = [model[word] for word in text.split() if word in model.key_to_index]
+            avg_vector = sum(textVectors) / len(textVectors)
+            testDataVectors.append(avg_vector)
+
+        # Initializing a classifier
+        classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
+
+        # Training the classifier with the training data vectors and labels
+        classifier.fit(trainingDataVectors, trainingDataLabels)
+
+        # Making predictions on the test data vectors
+        predictions = classifier.predict(testDataVectors)
+
+        # Evaluating the classifier's performance
+        accuracy = accuracy_score(testDataLabels, predictions)
+        recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
+        precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
+        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy}| Sensitivity of {recall}| precision of {precision}")
 
     if modelType == 1:
         # Initializing the model
@@ -993,7 +1053,6 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
         documents = [TaggedDocument([word for sentence in text for word in sentence.split()], [i]) for i, text in enumerate(trainingDataTexts)]
         print("after preparing the documents, before building the vocabulary")
 
-        # TODO: Hier drüber nochmal den Code anpassen
         classifierModel.build_vocab(documents)
 
         print("After building the vocabulary, before training the model")
@@ -1067,9 +1126,11 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
         # Making predictions on the test data vectors
         predictions = classifier.predict(testDataVectors)
 
-        # Evaluating the model's performance
+        # Evaluating the classifier's performance
         accuracy = accuracy_score(testDataLabels, predictions)
-        print("Accuracy:", accuracy)
+        recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
+        precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
+        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy}| Sensitivity of {recall}| precision of {precision}")
 
 
 readFilesFromDisk = None
