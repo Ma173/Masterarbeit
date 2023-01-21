@@ -789,11 +789,12 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     adjectiveRatioAccuracyStrict = adjectiveRatioAccurateAnnotationsStrict / len(chancelleriesAdjectiveCountRatioCumulated)
     adjectiveRatioAccuracyLowerAndMediumValues = adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues / len(chancelleriesAdjectiveCountRatioCumulated)
     adjectiveRatioAccuracyMediumAndHighValues = adjectiveRatioAccurateAnnotationsMediumAndHighValues / len(chancelleriesAdjectiveCountRatioCumulated)
-    print(f"\nReached a strict adjective ratio accuracy of {round(adjectiveRatioAccuracyStrict * 100, 2)}")
-    print(f"Reached a moderate adjective ratio accuracy for both low and medium empathy values of {round(adjectiveRatioAccuracyLowerAndMediumValues * 100, 2)}")
-    print(f"Reached a moderate adjective ratio accuracy for both medium and high empathy values of {round(adjectiveRatioAccuracyMediumAndHighValues * 100, 2)}")
-    print(f"\nThere are {chancelleriesEmpathyAndHighAdjectiveRatio} of all chancelleries that have an empathy ratio above zero and an adjective ratio in the upper quantile. "
-          f"That's {chancelleriesEmpathyAndHighAdjectiveRatioShare1 * 100:.2f}%!")
+    # print(f"\nReached a strict adjective ratio accuracy of {round(adjectiveRatioAccuracyStrict * 100, 2)}")
+    # print(f"Reached a moderate adjective ratio accuracy for both low and medium empathy values of {round(adjectiveRatioAccuracyLowerAndMediumValues * 100, 2)}")
+    # print(f"Reached a moderate adjective ratio accuracy for both medium and high empathy values of {round(adjectiveRatioAccuracyMediumAndHighValues * 100, 2)}")
+    print(
+        f"\nThere are {chancelleriesEmpathyAndHighAdjectiveRatio} of all {len(chancelleriesWithRecognizedEmpathy)} chancelleries that have an empathy ratio above zero and an adjective ratio in the upper quantile. "
+        f"That's {chancelleriesEmpathyAndHighAdjectiveRatioShare1 * 100:.2f}%!")
 
     adjectiveRatioSensitivity = chancelleriesWithHigherAdjectiveRatioAndCorrectlyRecognizedEmpathy / chancelleriesWithHigherAdjectiveRatioAndActualAnnotatedEmpathy  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
     # adjectiveRatioSensitivity = adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues / empathyTrueAnnotations  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
