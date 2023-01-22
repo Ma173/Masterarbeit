@@ -368,6 +368,13 @@ def preprocessing(corpus_path):
 # TODO: preprocessing() gibt aktuell chancelleryBlocks zurück. Ist das noch up to date oder sollte chancelleryHTMLtexts zurückgegeben und im Verlaufe des Programms dann mit
 #  mainData statt chancelleryHTMLtexts weitergearbeitet werden?
 
+def read_file_from_disk(filename):
+    with open(filename, 'r', encoding='utf-8') as fileToLoad:
+        # Reading the JSON coded sequence from file
+        output = json.load(fileToLoad)
+    return output
+
+
 def loadModel():
     startLoadingModel = time.time()
     now = datetime.now()
@@ -552,7 +559,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                                   "sensibel", "verständnisvoll", "verzeihend", "mitleidig", "solidarisch", "menschlich", "anteilnehmend", "teilend", "unterstützend", "betroffen"]
     wordListEmpathy = wordsListEmpathyVerbs + wordsListEmpathyAdjectives
 
-    # Read all chancellery specific LemmaCounts, transfer them into a list and sort the list for each chancellery
+    # Read all chancellery specific lemmaCounts, transfer them into a list and sort the list for each chancellery
     for currentChancelleryName, chancelleryWordCounts in lemmaCountsPerChancellery.items():
         # print("key:", key, "| value:", value)
         currentChancelleryLemmas = {}
@@ -562,13 +569,21 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
             # Counting the occurences of empathic words
             if lemma in wordListEmpathy:
                 for countGroup in lemmaCountGroups:
-                    empathyWordCounts[currentChancelleryName] += countGroup[0]
+                    countGroupLemmaCount = countGroup[0]
+                    empathyWordCounts[currentChancelleryName] += countGroupLemmaCount
 
             # Intercepting the case that there is ambiguity with more than one POS-tag for the current lemma and its lemma count
             # Until now, in this case this just gets printed but not processed furthermore
             if len(lemmaCountGroups) > 1:
                 print("More than one POS-tag found for the current word:")
                 for lemmaCountGroup in lemmaCountGroups:
+                    lemmaCount = lemmaCountGroup[0]
+                    partOfSpeechTag = lemmaCountGroup[1]
+                    if lemma in currentChancelleryLemmas:
+                        currentChancelleryLemmas[lemma] += [lemmaCount, partOfSpeechTag]
+                    else:
+                        currentChancelleryLemmas[lemma] = lemmaCount
+
                     print(lemmaCountGroup)
             # In case there is no ambiguity regarding thew current lemma, the only group of lemmaCountGroups (therefore [0]) is split in its lemma count & pos-tag
             elif len(lemmaCountGroups) == 1:
@@ -592,6 +607,49 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                     print(n, currentWord)
 
     print_sorted_list(sortedLemmaCountsPerChancellery, 5)
+
+    ###################################
+    # Comparison with frequency lists #
+    ###################################
+
+    # Loading the frequency list as a dataframe from file
+    dataframeDerewo = pd.read_csv(r'B:\Python-Projekte\Masterarbeit\DeReKo-2014-II-MainArchive-STT.100000.freq', sep='\t', header=None, names=['word', 'lemma', 'pos', 'freq'])
+
+    # Reducing the frequency list (word is not needed)
+    dataframeDerewoReduced = dataframeDerewo[['lemma', 'pos', 'freq']]
+
+    # Converting the dataframe to a list
+    freqListDerewo = dataframeDerewoReduced.values.tolist()
+
+    # Creating a dictionary from the list
+    freqDictDerewo = {}
+    for lemma, pos, freq in freqDictDerewo:
+        freqDictDerewo[lemma] = [pos, freq]
+
+    # Iterating through the list of chancellery lemma counts
+    for i in range(len(sortedLemmaCountsPerChancellery)):
+        chancellery = sortedLemmaCountsPerChancellery[i][0]
+        currentChancelleryLemmas = sortedLemmaCountsPerChancellery[i][1]
+
+        # Creating a variable to store the total difference between the chancellery and the frequency list
+        totalDiff = 0
+
+        # Iterating over the lemmas of each chancellery
+        for lemma, posCountGroup in currentChancelleryLemmas:
+            # TODO: Hier Abgleich mit Frequenzliste fortsetzen. Bei allem, was auch in der Frequenzliste vorkommt die Differenz zwischen der Kanzleifrequenz minus GesamtLemmaFrequenz der Frequenzliste rechnen und die Differenz zu totalDiff addieren. Ansonsten "pass"
+            # If the chancellery's lemma is also in the dictionary of Derewo Frequencies
+            currentLemmaCount = posCountGroup[0]
+            currentPosTag=""
+            if len(posCountGroup)>1:
+                currentPosTag = posCountGroup[1]
+            if lemma in freqDictDerewo:
+                if currentPosTag!="":
+                    if currentPosTag == freqListDerewo[lemma]
+
+
+                diff = abs(lemmaCount - )
+            # Am Ende nur noch die Durchschnittliche Differenz berechnen: totalDiff geteilt durch Anzahl aller Wörter im Kanzleitext
+
 
     ################################################
     ################################################
@@ -742,18 +800,18 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
         if chancelleryAdjectiveRatio <= percentiles[0]:
             if empathyAnnotation == 1:
                 adjectiveRatioAccurateAnnotationsStrict += 1
-                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
+                # adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
-            elif empathyAnnotation == 2:
-                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
+            # elif empathyAnnotation == 2:
+            # adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
 
         if percentiles[0] < chancelleryAdjectiveRatio <= percentiles[1]:
             if empathyAnnotation == 2:
                 adjectiveRatioAccurateAnnotationsStrict += 1
-                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
+                # adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
-            elif empathyAnnotation == 1:
-                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
+            # elif empathyAnnotation == 1:
+            #     adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
             elif empathyAnnotation == 3:
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
         if percentiles[1] < chancelleryAdjectiveRatio:
@@ -764,6 +822,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
             if empathyAnnotation == 2:
                 adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
+                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
 
         # If there's a higher adjective ratio, a recognized empathy ratio above 0
         if percentiles[1] < chancelleryAdjectiveRatio:
@@ -795,6 +854,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     print(
         f"\nThere are {chancelleriesEmpathyAndHighAdjectiveRatio} of all {len(chancelleriesWithRecognizedEmpathy)} chancelleries that have an empathy ratio above zero and an adjective ratio in the upper quantile. "
         f"That's {chancelleriesEmpathyAndHighAdjectiveRatioShare1 * 100:.2f}%!")
+    print(f"There are {len(chancelleriesWithRecognizedEmpathy)} chancelleries with a recognized empathy.")
 
     adjectiveRatioSensitivity = chancelleriesWithHigherAdjectiveRatioAndCorrectlyRecognizedEmpathy / chancelleriesWithHigherAdjectiveRatioAndActualAnnotatedEmpathy  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
     # adjectiveRatioSensitivity = adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues / empathyTrueAnnotations  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
@@ -804,7 +864,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     print(f"Adjective detection precision of {adjectiveRatioPrecision:.2f}")
     print(
         f"{len(chancelleriesWithHighAdjectiveRatio.items())} chancelleries with high adjective ratio. {adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues} with high values "
-        f"for empathy & adjectives\n")
+        f"for empathy (annotation) & adjectives\n")
 
     ################################################
     ##           Calculation TF-IDF               ##
@@ -1140,14 +1200,6 @@ if "n" in readFilesFromDiskInput.lower():
     readFilesFromDisk = False
 else:
     readFilesFromDisk = True
-
-
-def read_file_from_disk(fileName):
-    with open(fileName, 'r', encoding='utf-8') as fileToLoad:
-        # Reading the JSON coded sequence from file
-        output = json.load(fileToLoad)
-    return output
-
 
 if readFilesFromDisk:
     chancelleryHTMLtextsFromFile = read_file_from_disk('chancelleryHTMLtexts.txt')
