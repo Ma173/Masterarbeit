@@ -261,7 +261,7 @@ def preprocessing(corpus_path):
                                         wordCountsCumulated[lemma] = 1
 
                                     # Adding the cleaned word accompanied by its part of speech to the chancellery's word count dictionary
-                                    # The style is: word : [[wordCountOfFirstOccurence, partOfSpeechOfFirstOccurence], [wordCountOfFirstOccurence, partOfSpeechOfSecondOcc...]
+                                    # The style is: word : [[wordCountOfFirstOccurence, partOfSpeechOfFirstOccurence], [wordCountOfSecondOccurence, partOfSpeechOfSecondOcc...]
                                     # This way any ambiguity is saved if the part of speech of the current cleaned word is not the same as saved in the dict for this word
 
                                     # So if the lemma is already present in the dictionary,
@@ -559,7 +559,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                                   "sensibel", "verständnisvoll", "verzeihend", "mitleidig", "solidarisch", "menschlich", "anteilnehmend", "teilend", "unterstützend", "betroffen"]
     wordListEmpathy = wordsListEmpathyVerbs + wordsListEmpathyAdjectives
 
-    # Read all chancellery specific lemmaCounts, transfer them into a list and sort the list for each chancellery
+    # Read all chancellery specific lemmaCounts, transfer them into a dict, then a list and sort the list for each chancellery
     for currentChancelleryName, chancelleryWordCounts in lemmaCountsPerChancellery.items():
         # print("key:", key, "| value:", value)
         currentChancelleryLemmas = {}
@@ -571,28 +571,13 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                 for countGroup in lemmaCountGroups:
                     countGroupLemmaCount = countGroup[0]
                     empathyWordCounts[currentChancelleryName] += countGroupLemmaCount
+            # Splitting each lemmaCountGroup in its lemma count & pos-tag and saving it to the dictionary
+            # TODO: Warum gibt es kein einziges Lemma mit zwei verschiedenen POS-Tags? Wird das im Preprocessing nicht betrachtet?
+            for lemmaCountGroup in lemmaCountGroups:
+                lemmaCount = lemmaCountGroup[0]
+                partOfSpeechTag = lemmaCountGroup[1]
+                currentChancelleryLemmas[(lemma, partOfSpeechTag)] = lemmaCount
 
-            # Intercepting the case that there is ambiguity with more than one POS-tag for the current lemma and its lemma count
-            # Until now, in this case this just gets printed but not processed furthermore
-            if len(lemmaCountGroups) > 1:
-                print("More than one POS-tag found for the current word:")
-                for lemmaCountGroup in lemmaCountGroups:
-                    lemmaCount = lemmaCountGroup[0]
-                    partOfSpeechTag = lemmaCountGroup[1]
-                    if lemma in currentChancelleryLemmas:
-                        currentChancelleryLemmas[lemma] += [lemmaCount, partOfSpeechTag]
-                    else:
-                        currentChancelleryLemmas[lemma] = lemmaCount
-
-                    print(lemmaCountGroup)
-            # In case there is no ambiguity regarding thew current lemma, the only group of lemmaCountGroups (therefore [0]) is split in its lemma count & pos-tag
-            elif len(lemmaCountGroups) == 1:
-                lemmaCount = lemmaCountGroups[0][0]
-                partOfSpeechTag = lemmaCountGroups[0][1]
-                if lemma in currentChancelleryLemmas:
-                    currentChancelleryLemmas[lemma] += [lemmaCount, partOfSpeechTag]
-                else:
-                    currentChancelleryLemmas[lemma] = lemmaCount
         sortedLemmaCountsPerChancellery.append([currentChancelleryName, sorted(currentChancelleryLemmas.items(), key=lambda item: item[1], reverse=True)])
         # sortedWordCountsPerChancellery.append([currentChancelleryName, sorted(chancelleryWordCounts.items(), key=lambda item: item[1], reverse=True)])
 
@@ -607,6 +592,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                     print(n, currentWord)
 
     print_sorted_list(sortedLemmaCountsPerChancellery, 5)
+    exit()
 
     ###################################
     # Comparison with frequency lists #
@@ -639,17 +625,16 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
             # TODO: Hier Abgleich mit Frequenzliste fortsetzen. Bei allem, was auch in der Frequenzliste vorkommt die Differenz zwischen der Kanzleifrequenz minus GesamtLemmaFrequenz der Frequenzliste rechnen und die Differenz zu totalDiff addieren. Ansonsten "pass"
             # If the chancellery's lemma is also in the dictionary of Derewo Frequencies
             currentLemmaCount = posCountGroup[0]
-            currentPosTag=""
-            if len(posCountGroup)>1:
+            currentPosTag = ""
+            if len(posCountGroup) > 1:
                 currentPosTag = posCountGroup[1]
             if lemma in freqDictDerewo:
-                if currentPosTag!="":
-                    if currentPosTag == freqListDerewo[lemma]
+                if currentPosTag != "":
+                    if currentPosTag == freqListDerewo[lemma]:
+                        None
 
-
-                diff = abs(lemmaCount - )
+                # diff = abs(lemmaCount - )
             # Am Ende nur noch die Durchschnittliche Differenz berechnen: totalDiff geteilt durch Anzahl aller Wörter im Kanzleitext
-
 
     ################################################
     ################################################
