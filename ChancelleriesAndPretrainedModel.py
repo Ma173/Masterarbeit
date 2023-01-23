@@ -325,7 +325,7 @@ def preprocessing(corpus_path):
 
         if averageWordDensity != 0:
             chancelleriesWordDensites.append(averageWordDensity)
-        chancelleryLinguisticAssertions = {"averageWordDensity": averageWordDensity}
+        chancelleryCalculations = {"averageWordDensity": averageWordDensity}
 
         chancelleriesSyntacticDependencies[currentChancelleryName] = chancellerySyntacticDependencies
         chancelleriesPosTagCounts[currentChancelleryName] = currentChancelleryPosTagCount
@@ -333,7 +333,7 @@ def preprocessing(corpus_path):
         # currentAverageWordDensityCompared = sum(chancelleriesWordDensites) / len(chancelleriesWordDensites)
         chancelleryBlocks.append([newChancelleryBlock, currentHTMLwordsList])  # currentChancelleryHTMLclean])  # ,currentChancelleryHTML])
         chancelleriesFeatureExpressionsWordsList.append([currentChancelleryName, currentChancelleryWordsList])
-        chancelleryHTMLtexts.append([currentChancelleryName, currentHTMLwordsList, currentFeatureExpressions, chancelleryLinguisticAssertions])  # currentChancelleryHTMLclean])
+        chancelleryHTMLtexts.append([currentChancelleryName, currentHTMLwordsList, currentFeatureExpressions, chancelleryCalculations])  # currentChancelleryHTMLclean])
 
         timeSinceProcessingChancelleryBlock = round((time.time() - startTimerProcessingChancelleryBlock), 2)
         print("Finished processing chancellery", currentChancelleryName, "| Time elapsed:", timeSinceProcessingChancelleryBlock, "seconds.")
@@ -388,9 +388,9 @@ def loadModel():
 startPreprocessing = time.time()
 
 
-def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities, lemmaCountsPerChancellery, chancelleriesPosTagCounts, chancelleriesSyntacticDependencies,
-                                chancelleriesSentences):
-    print("\n\nLINGUISTIC ASSERTIONS:")
+def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lemmaCountsPerChancellery, chancelleriesPosTagCounts, chancelleriesSyntacticDependencies,
+                           chancelleriesSentences):
+    print("\n\nLINGUISTIC EXPERIMENTS:")
     #####################################
     #####################################
     #           Word density            #
@@ -895,7 +895,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     # Saving the chancellery names and empathy labels, counting the occurences of the F8 feature annotation (empathy)
     chancelleriesWithF8Count = 0
     for k, chancelleryBlock in enumerate(chancelleryHTMLtexts):
-        # Representation of chancelleryHTMLtexts: [currentChancelleryName, currentHTMLwordsList, currentFeatureExpressions, chancelleryLinguisticAssertions]
+        # Representation of chancelleryHTMLtexts: [currentChancelleryName, currentHTMLwordsList, currentFeatureExpressions, chancelleryCalculations]
         # Representation of currentFeatureExpressions (chancelleriesFeatureExpressionsWordsList): [[featureId, featureExpression], [featureId, ... ]]
         chancelleryName = chancelleryBlock[0]
         chancelleryFeatures = chancelleryBlock[2]
@@ -1182,8 +1182,8 @@ if readFilesFromDisk:
     chancelleriesSyntacticDependenciesFromFile = read_file_from_disk('chancelleriesSyntacticDependencies.txt', "")
     chancelleriesSentencesFromFile = read_file_from_disk('chancelleriesSentences.txt', "")
 
-    print_linguistic_assertions(chancelleryHTMLtextsFromFile, chancelleriesWordDensities, lemmaCountsPerChancelleryFromFile, chancelleriesPosTagCountsFromFile,
-                                chancelleriesSyntacticDependenciesFromFile, chancelleriesSentencesFromFile)
+    linguistic_experiments(chancelleryHTMLtextsFromFile, chancelleriesWordDensities, lemmaCountsPerChancelleryFromFile, chancelleriesPosTagCountsFromFile,
+                           chancelleriesSyntacticDependenciesFromFile, chancelleriesSentencesFromFile)
 
 #     "Loading websitesTextsReformatted & chancelleryHTMLtexts from file."
 #     with open('chancelleryHTMLtexts.txt', 'r', encoding='utf-8') as f:
@@ -1223,8 +1223,8 @@ else:
         json.dump(chancelleriesSentences, f, ensure_ascii=False)
         print("Saved a list of {} items to file '{}'.".format(len(chancelleriesSentences), "chancelleriesSentences.txt"))
 
-    print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensites, lemmaCountsPerChancellery, chancelleriesPosTagCounts, chancelleriesSyntacticDependencies,
-                                chancelleriesSentences)
+    linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensites, lemmaCountsPerChancellery, chancelleriesPosTagCounts, chancelleriesSyntacticDependencies,
+                           chancelleriesSentences)
 
 exit()
 
