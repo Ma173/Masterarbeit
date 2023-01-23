@@ -351,12 +351,13 @@ def preprocessing(corpus_path):
 #  mainData statt chancelleryHTMLtexts weitergearbeitet werden?
 
 def read_file_from_disk(filename, var_type):
-    with open(filename, 'r', encoding='utf-8') as fileToLoad:
-        # Reading the JSON coded sequence from file
-        output = None
-        if var_type == "":
+    output = ""
+    if var_type == "":
+        with open(filename, 'r', encoding='utf-8') as fileToLoad:
+            # Reading the JSON coded sequence from file
             output = json.load(fileToLoad)
-        elif var_type == "DictWithTuple":
+    elif var_type == "DictWithTuple":
+        with open(filename, 'rb') as fileToLoad:
             output = pickle.load(fileToLoad)
     return output
 
@@ -634,9 +635,8 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     # Calculating the ratio of empathy words to all words for chancellery
     for chancelleryName, empathyCount in empathyWordCounts.items():
         lemmaCountTotal = 0
-        for currentChancelleryName, lemmaGroup in lemmaCountsPerChancellery[chancelleryName].items():
-            for countGroup in lemmaGroup:
-                lemmaCountTotal += countGroup[0]
+        for lemmaPosGroup, lemmaCount in lemmaCountsPerChancellery[chancelleryName].items():
+            lemmaCountTotal += lemmaCount
         empathyRatios[chancelleryName] = empathyCount / lemmaCountTotal
     empathyRatiosSorted = sorted(empathyRatios.items(), key=lambda x: x[1])
     empathyRatiosSortedWithAnnotation = []
