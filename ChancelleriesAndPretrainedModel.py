@@ -181,12 +181,11 @@ def preprocessing(corpus_path):
                             # If the current word contains "." or "/" and these special chars are not at first or last position in the word
                             # then split the current word at this character. If that makes a list of two strings and both are not empty
                             # then append it to the current words list
-                            if "." in wordToAppend and wordToAppend.find(".") != len(wordToAppend) and wordToAppend.find(".") != 0:
-                                wordSplitted = wordToAppend.split(".")
-                            elif "/" in wordToAppend and wordToAppend.find("/") != len(wordToAppend) and wordToAppend.find("/") != 0:
-                                wordSplitted = wordToAppend.split("/")
-                            elif "?" in wordToAppend and wordToAppend.find("?") != len(wordToAppend) and wordToAppend.find("?") != 0:
-                                wordSplitted = wordToAppend.split("?")
+                            specialChars = [".", "/", "?", ":"]
+                            for specialChar in specialChars:
+                                if specialChar in wordToAppend and wordToAppend.find(specialChar) != len(wordToAppend) and wordToAppend.find(specialChar) != 0:
+                                    wordSplitted = wordToAppend.split(specialChar)
+                            
                             if len(wordSplitted) == 2:
                                 if wordSplitted[0] != "":
                                     wordsCleaned.append(wordSplitted[0])
@@ -967,7 +966,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     from sklearn.metrics import accuracy_score
 
     # classifierModel = model
-    modelType = 2
+    modelType = -1
 
     if modelType == 2:
         # Creating the Word2Vec model
@@ -1018,7 +1017,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         accuracy = accuracy_score(testDataLabels, predictions)
         recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
         precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
-        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy}| Sensitivity of {recall}| precision of {precision}")
+        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy} | Sensitivity of {recall} | precision of {precision}")
 
     if modelType == 1:
         # Initializing the model
@@ -1138,6 +1137,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         # Printing the predictions
         for label, prediction in results:
             print(f"{label} : {prediction}")
+
+        # Evaluating the classifier's performance
+        accuracy = accuracy_score(testDataLabels, predictions)
+        recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
+        precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
+        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy}| Sensitivity of {recall}| precision of {precision}")
 
 
 readFilesFromDisk = None
