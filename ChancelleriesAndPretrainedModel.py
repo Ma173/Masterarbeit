@@ -1,3 +1,4 @@
+import pickle
 import time
 from datetime import datetime
 import gensim
@@ -251,6 +252,7 @@ def preprocessing(corpus_path):
                             for lemmaWithPos in lemmasWithPartsOfSpeech:
                                 lemma = lemmaWithPos[0]
                                 partOfSpeechTag = lemmaWithPos[1]
+                                lemmaGroup = (lemma, partOfSpeechTag)
                                 test = True
                                 if lemma.lower().isalpha() and lemma.lower() not in germanStopWords:
                                     currentHTMLwordsList.append(lemma)  # [word.lower() for word in HTMLtokens if word.isalpha()]
@@ -264,31 +266,11 @@ def preprocessing(corpus_path):
                                     # The style is: word : [[wordCountOfFirstOccurence, partOfSpeechOfFirstOccurence], [wordCountOfSecondOccurence, partOfSpeechOfSecondOcc...]
                                     # This way any ambiguity is saved if the part of speech of the current cleaned word is not the same as saved in the dict for this word
 
-                                    # So if the lemma is already present in the dictionary,
-                                    # check wether the pos-tag that is present for the lemma is the same as the current one
-                                    if lemma in currentChancelleryLemmaCount:
-                                        # If the currnet pos-tag is identical to the one in the dict for the lemma, just add one to the lemma count in the current list element
-                                        currentPosTagCountList = currentChancelleryLemmaCount[lemma]
-                                        # If there is more than one pos-tag group inside the list (that is the value for the lemma in the dict)
-                                        if len(currentPosTagCountList) > 1:
-                                            # For every list element of this list of pos-tags with lemma count
-                                            for n, posTagLemmaGroup in enumerate(currentPosTagCountList):
-                                                currentCount = posTagLemmaGroup[0]
-                                                currentPosTag = posTagLemmaGroup[1]
-                                                # If the current pos-tag of the upper lemmaWithPos list is identical
-                                                # to the currently viewed pos tag of the pos tags list of the current lemma in the dict
-                                                if currentPosTag == partOfSpeechTag:
-                                                    listPartBeforeCurrentPosTag = currentChancelleryLemmaCount[lemma][:n]
-                                                    listPartAfterCurrentPosTag = currentChancelleryLemmaCount[lemma][n + 1:]
-                                                    currentChancelleryLemmaCount[lemma] = [listPartBeforeCurrentPosTag, [currentCount, currentPosTag],
-                                                                                           listPartAfterCurrentPosTag]  # [currentChancelleryLemmaCount[lemma][0] + 1, partOfSpeechTag]
-                                        else:
-                                            currentLemmaCount = currentChancelleryLemmaCount[lemma][0][0]
-                                            currentPosTag = currentChancelleryLemmaCount[lemma][0][1]
-                                            currentChancelleryLemmaCount[lemma] = [[currentLemmaCount + 1, currentPosTag]]
-                                    # Else add the combination lemmaCount, partOfSpeechTag als a new list element of a new list in the dict for the lemma
+                                    # So if the lemmaGroup is already present in the dictionary
+                                    if lemmaGroup in currentChancelleryLemmaCount:
+                                        currentChancelleryLemmaCount[lemmaGroup] += 1
                                     else:
-                                        currentChancelleryLemmaCount[lemma] = [[1, partOfSpeechTag]]
+                                        currentChancelleryLemmaCount[lemmaGroup] = 1
 
                             timeForCountingLemmas += round((time.time() - startTimerCountLemmas), 4)
                             # print("Finished. Time elapsed:", timeSinceNlp, "seconds.")
@@ -368,10 +350,14 @@ def preprocessing(corpus_path):
 # TODO: preprocessing() gibt aktuell chancelleryBlocks zurück. Ist das noch up to date oder sollte chancelleryHTMLtexts zurückgegeben und im Verlaufe des Programms dann mit
 #  mainData statt chancelleryHTMLtexts weitergearbeitet werden?
 
-def read_file_from_disk(filename):
+def read_file_from_disk(filename, var_type):
     with open(filename, 'r', encoding='utf-8') as fileToLoad:
         # Reading the JSON coded sequence from file
-        output = json.load(fileToLoad)
+        output = None
+        if var_type == "":
+            output = json.load(fileToLoad)
+        elif var_type == "DictWithTuple":
+            output = pickle.load(fileToLoad)
     return output
 
 
@@ -560,23 +546,22 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     wordListEmpathy = wordsListEmpathyVerbs + wordsListEmpathyAdjectives
 
     # Read all chancellery specific lemmaCounts, transfer them into a dict, then a list and sort the list for each chancellery
+    # lemmaCountsPerChancellery is a dictionary with tuple(lemma, posTag) as keys and frequencies in text as values
     for currentChancelleryName, chancelleryWordCounts in lemmaCountsPerChancellery.items():
         # print("key:", key, "| value:", value)
         currentChancelleryLemmas = {}
         empathyWordCounts[currentChancelleryName] = 0
         # Iterating over the lemma & word count dictionary
-        for lemma, lemmaCountGroups in chancelleryWordCounts.items():
+        for lemmaPosGroup, lemmaCount in chancelleryWordCounts.items():
+            lemma = lemmaPosGroup[0]
+            posTag = lemmaPosGroup[1]
+            lemmaCount = chancelleryWordCounts[lemmaPosGroup]
             # Counting the occurences of empathic words
             if lemma in wordListEmpathy:
-                for countGroup in lemmaCountGroups:
-                    countGroupLemmaCount = countGroup[0]
-                    empathyWordCounts[currentChancelleryName] += countGroupLemmaCount
+                empathyWordCounts[currentChancelleryName] += lemmaCount
             # Splitting each lemmaCountGroup in its lemma count & pos-tag and saving it to the dictionary
             # TODO: Warum gibt es kein einziges Lemma mit zwei verschiedenen POS-Tags? Wird das im Preprocessing nicht betrachtet?
-            for lemmaCountGroup in lemmaCountGroups:
-                lemmaCount = lemmaCountGroup[0]
-                partOfSpeechTag = lemmaCountGroup[1]
-                currentChancelleryLemmas[(lemma, partOfSpeechTag)] = lemmaCount
+            currentChancelleryLemmas[(lemma, posTag)] = lemmaCount
 
         sortedLemmaCountsPerChancellery.append([currentChancelleryName, sorted(currentChancelleryLemmas.items(), key=lambda item: item[1], reverse=True)])
         # sortedWordCountsPerChancellery.append([currentChancelleryName, sorted(chancelleryWordCounts.items(), key=lambda item: item[1], reverse=True)])
@@ -585,14 +570,13 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
         print("These are the,", amount_of_lines, "most common words for each chancellery:")
         for m, chancelleryGroup in enumerate(list_name):
             chancelleryName = chancelleryGroup[0]
-            currentChancelleryWordCountList = chancelleryGroup[1]
+            currentChancelleryLemmaCountList = chancelleryGroup[1]
             print("\n|", chancelleryName, "|")
-            for n, currentWord in enumerate(currentChancelleryWordCountList):
-                if n < amount_of_lines:
-                    print(n, currentWord)
+            for p, currentLemma in enumerate(currentChancelleryLemmaCountList):
+                if p < amount_of_lines:
+                    print(p, currentLemma)
 
     print_sorted_list(sortedLemmaCountsPerChancellery, 5)
-    exit()
 
     ###################################
     # Comparison with frequency lists #
@@ -613,9 +597,11 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
         freqDictDerewo[lemma] = [pos, freq]
 
     # Iterating through the list of chancellery lemma counts
+    # sortedLemmaCountsPerChancellery represented as chancelleryName : sorted list of [(lemma, posTag) : lemmaCount], [...], ...
+    # TODO: Das hier drüber validieren und dann unten im Vergleich mit Frequenzliste einbauen
     for i in range(len(sortedLemmaCountsPerChancellery)):
         chancellery = sortedLemmaCountsPerChancellery[i][0]
-        currentChancelleryLemmas = sortedLemmaCountsPerChancellery[i][1]
+        lemmasGroup = sortedLemmaCountsPerChancellery[i][1]
 
         # Creating a variable to store the total difference between the chancellery and the frequency list
         totalDiff = 0
@@ -1187,12 +1173,14 @@ else:
     readFilesFromDisk = True
 
 if readFilesFromDisk:
-    chancelleryHTMLtextsFromFile = read_file_from_disk('chancelleryHTMLtexts.txt')
-    lemmaCountsPerChancelleryFromFile = read_file_from_disk('lemmaCountsPerChancellery.txt')
-    chancelleriesWordDensities = read_file_from_disk('chancelleriesWordDensities.txt')
-    chancelleriesPosTagCountsFromFile = read_file_from_disk('chancelleriesPosTagCounts.txt')
-    chancelleriesSyntacticDependenciesFromFile = read_file_from_disk('chancelleriesSyntacticDependencies.txt')
-    chancelleriesSentencesFromFile = read_file_from_disk('chancelleriesSentences.txt')
+    chancelleryHTMLtextsFromFile = read_file_from_disk('chancelleryHTMLtexts.txt', "")
+    lemmaCountsPerChancelleryFromFileRaw = read_file_from_disk('lemmaCountsPerChancellery.txt', "tuple")
+    # lemmaCountsPerChancelleryFromFile = {tuple(key.split(', ')): value for key, value in lemmaCountsPerChancelleryFromFileRaw.items()}
+    lemmaCountsPerChancelleryFromFile = read_file_from_disk("lemmaCountsPerChancellery.txt", "DictWithTuple")
+    chancelleriesWordDensities = read_file_from_disk('chancelleriesWordDensities.txt', "")
+    chancelleriesPosTagCountsFromFile = read_file_from_disk('chancelleriesPosTagCounts.txt', "")
+    chancelleriesSyntacticDependenciesFromFile = read_file_from_disk('chancelleriesSyntacticDependencies.txt', "")
+    chancelleriesSentencesFromFile = read_file_from_disk('chancelleriesSentences.txt', "")
 
     print_linguistic_assertions(chancelleryHTMLtextsFromFile, chancelleriesWordDensities, lemmaCountsPerChancelleryFromFile, chancelleriesPosTagCountsFromFile,
                                 chancelleriesSyntacticDependenciesFromFile, chancelleriesSentencesFromFile)
@@ -1218,8 +1206,9 @@ else:
         # Transferring the dict in a JSON sequence and writing to file
         json.dump(chancelleryHTMLtexts, f, ensure_ascii=False)
         print("Saved a list of {} items to file '{}'.".format(len(chancelleryHTMLtexts), "chancelleryHTMLtexts.txt"))
-    with open(r'B:/Python-Projekte/Masterarbeit/lemmaCountsPerChancellery.txt', 'w', encoding='utf-8') as f:
-        json.dump(lemmaCountsPerChancellery, f, ensure_ascii=False)
+    with open(r'B:/Python-Projekte/Masterarbeit/lemmaCountsPerChancellery.txt', 'wb') as f:
+        # lemmaCountsPerChancelleryTransformed = {str(key): value for key, value in lemmaCountsPerChancellery.items()}
+        pickle.dump(lemmaCountsPerChancellery, f)
         print("Saved a list of {} items to file '{}'.".format(len(lemmaCountsPerChancellery), "lemmaCountsPerChancellery.txt"))
     with open(r'B:/Python-Projekte/Masterarbeit/chancelleriesWordDensites.txt', 'w', encoding='utf-8') as f:
         json.dump(chancelleriesWordDensites, f, ensure_ascii=False)
