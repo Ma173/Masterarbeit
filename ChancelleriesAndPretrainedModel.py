@@ -955,63 +955,11 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         testDataTexts = chancelleriesTexts
         testDataLabels = chancelleryEmpathyLabels
 
+    nbOfSentencesToBePrinted = 3
+    print(f"Printing the first {nbOfSentencesToBePrinted} sentences of training Data")
     for text in trainingDataTexts:
-        print(text.split(". ")[:4])
+        print(text.split(". ")[:nbOfSentencesToBePrinted])
         # print(text)
-    # Initializing the TfidfVectorizer and setting the  n-gram ranges (here: 2-Grams)
-    vectorizer = TfidfVectorizer(ngram_range=(2, 2), stop_words=None)
-
-    # Transforming the text contents in vectors with tf-idf-values
-    trainingVectors = vectorizer.fit_transform(trainingDataTexts)
-
-    # Initializing a support vector machine as classificator
-    classifier = SVC(kernel='linear', C=1, probability=True, random_state=42)
-
-    # Training the classifier with the tf-idf-vectors and the class labels
-    classifier.fit(trainingVectors, trainingDataLabels)
-
-    ############################## Applying the classifier onto new data (test data) ##################################
-    # Transforming the test data in vectors with tf-idf values
-    testVectors = vectorizer.transform(testDataTexts)
-
-    # Using the classifier to classificate the new texts
-    predictions = classifier.predict(testVectors)
-
-    # Creating a dictionary with all texts of the test data set and the matching labels and predictions
-    # results = {"labels": testDataLabels, "predictions": predictions}  # "text": testDataTexts,
-    results = zip(testDataLabels, predictions)
-
-    # Printing the predictions
-    # for label, prediction in results:
-    #    print(f"{label} : {prediction}")
-
-    # from gensim.models import Word2Vec
-    # # Erstellen des Word2Vec-Modells
-    # classifierModel = Word2Vec(trainingDataTexts, vector_size=100, window=5, min_count=1, workers=4)
-    #
-    # # Umwandeln von Texten in Vektoren
-    # text_vectors = [classifierModel.wv[text] for text in trainingDataTexts]
-    #
-    # # Initialisierung einer leeren Liste, um die Vektoren der neuen Texte zu speichern
-    # new_vectors = []
-    #
-    # # Iteration über die neuen Texte
-    # for text in testDataTexts:
-    #     # Initialisierung einer leeren Liste, um die Vektoren der Wörter im Text zu speichern
-    #     text_vectors = []
-    #     # Iteration über die Wörter im Text
-    #     for word in text.split():
-    #         # Überprüfen, ob das Wort im Modell vorhanden ist
-    #         if word in classifierModel.wv:
-    #             # Hinzufügen des Wortvektors zur Liste
-    #             text_vectors.append(model.wv[word])
-    #     # Berechnung des Durchschnittsvektors des Textes
-    #     avg_vector = sum(text_vectors) / len(text_vectors)
-    #     # Hinzufügen des Textvektors zur Liste der neuen Vektoren
-    #     new_vectors.append(avg_vector)
-    #
-    # # Ausgabe der Vektoren
-    # print(new_vectors)
 
     loadModel()
 
@@ -1163,6 +1111,33 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
         precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
         print(f"Metrics of model approach {modelType}: Accuracy of {accuracy}| Sensitivity of {recall}| precision of {precision}")
+    if modelType == -1:
+        # Initializing the TfidfVectorizer and setting the  n-gram ranges (here: 2-Grams)
+        vectorizer = TfidfVectorizer(ngram_range=(2, 2), stop_words=None)
+
+        # Transforming the text contents in vectors with tf-idf-values
+        trainingVectors = vectorizer.fit_transform(trainingDataTexts)
+
+        # Initializing a support vector machine as classificator
+        classifier = SVC(kernel='linear', C=1, probability=True, random_state=42)
+
+        # Training the classifier with the tf-idf-vectors and the class labels
+        classifier.fit(trainingVectors, trainingDataLabels)
+
+        ############################## Applying the classifier onto new data (test data) ##################################
+        # Transforming the test data in vectors with tf-idf values
+        testVectors = vectorizer.transform(testDataTexts)
+
+        # Using the classifier to classificate the new texts
+        predictions = classifier.predict(testVectors)
+
+        # Creating a dictionary with all texts of the test data set and the matching labels and predictions
+        # results = {"labels": testDataLabels, "predictions": predictions}  # "text": testDataTexts,
+        results = zip(testDataLabels, predictions)
+
+        # Printing the predictions
+        for label, prediction in results:
+            print(f"{label} : {prediction}")
 
 
 readFilesFromDisk = None
