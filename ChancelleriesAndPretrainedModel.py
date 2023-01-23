@@ -892,7 +892,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
     chancelleryEmpathyLabels = []
     chancelleriesNamesWithEmpathyAnnotation = []
 
-    # Saving the chancellery texts and empathy labels
+    # Saving the chancellery names and empathy labels, counting the occurences of the F8 feature annotation (empathy)
     chancelleriesWithF8Count = 0
     for k, chancelleryBlock in enumerate(chancelleryHTMLtexts):
         # Representation of chancelleryHTMLtexts: [currentChancelleryName, currentHTMLwordsList, currentFeatureExpressions, chancelleryLinguisticAssertions]
@@ -907,7 +907,7 @@ def print_linguistic_assertions(chancelleryHTMLtexts, chancelleriesWordDensities
                     chancelleryNames.append(chancelleryName)
                     chancelleriesWithF8Count += 1
                     chancelleryEmpathyLabels.append((featureGroup[1][-1]))
-                    chancelleriesNamesWithEmpathyAnnotation.append(chancelleryBlock[0])
+                    chancelleriesNamesWithEmpathyAnnotation.append(chancelleryName)
                     # print(f"{chancelleryName} has F8 annotation. That's number {chancelleriesWithF8Count}")
                     continue
     print(f"Lenth of chancelleriesWithF8Count: {chancelleriesWithF8Count}")
