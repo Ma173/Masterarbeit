@@ -168,7 +168,7 @@ def preprocessing(corpus_path):
                         # If the current word doesn't consist of more than x Uppercases & is longer than 1, continue with the word
                         # and remove any leftovers of the HTML codes or any special characters
                         if not sum(1 for c in word if c.isupper()) > 3 and len(word) >= 2:
-                            htmlDebris = ["\t", "\t\t", "\\xa0", "\xa0", "[", "]", "'", ">>", "<<", "|", "\\u00fcber", '"', "..."]
+                            htmlDebris = ["\t", "\t\t", "\\xa0", "\xa0", "[", "]", "'", ">>", "<<", "|", "\\u00fcber", '"', "...", "\u200b", "\\u200b"]
                             wordToAppend = word
                             wordSplitted = ""
                             for debris in htmlDebris:
@@ -181,11 +181,11 @@ def preprocessing(corpus_path):
                             # If the current word contains "." or "/" and these special chars are not at first or last position in the word
                             # then split the current word at this character. If that makes a list of two strings and both are not empty
                             # then append it to the current words list
-                            specialChars = [".", "/", "?", ":"]
+                            specialChars = [".", "/", "?", ":", "!", "?"]
                             for specialChar in specialChars:
                                 if specialChar in wordToAppend and wordToAppend.find(specialChar) != len(wordToAppend) and wordToAppend.find(specialChar) != 0:
                                     wordSplitted = wordToAppend.split(specialChar)
-                            
+
                             if len(wordSplitted) == 2:
                                 if wordSplitted[0] != "":
                                     wordsCleaned.append(wordSplitted[0])
@@ -937,17 +937,50 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     # print("First 100 chars of first text:\n", chancelleriesTexts[0][:100])
     # print(chancelleriesTexts)
 
+    from gensim.models import Word2Vec
+    from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+    from sklearn.model_selection import train_test_split
+
+    # Splitting the dataset and initializing the variables with the respective dataset split
+    testsetSize = 0.5
+
     datasetSize = int(len(chancelleriesTexts))
-    trainingDataSplit = round(datasetSize * 0.5)
-    testDataSplit = round(datasetSize * 0.5)
+    trainingDataSplit = round(datasetSize * testsetSize)
+    testDataSplit = round(datasetSize * testsetSize)
+
+    datasetSentencesSize = int(len(chancelleriesSentences))
+    trainingDataSentencesSplit = round(datasetSentencesSize * testsetSize)
+    testDataSentencesSplit = round(datasetSentencesSize * testsetSize)
 
     datasetSplit = True
+
+    trainingDataTexts = {}
+    trainingDataLabels = {}
+    testDataTexts = {}
+    testDataLabels = {}
+    trainingDataSentences = {}
+    testDataSentences = {}
 
     if datasetSplit:
         trainingDataTexts = chancelleriesTexts[testDataSplit:]
         trainingDataLabels = chancelleryEmpathyLabels[testDataSplit:]
         testDataTexts = chancelleriesTexts[:testDataSplit]
         testDataLabels = chancelleryEmpathyLabels[:testDataSplit]
+
+        # # Splitting the data for each key
+        # print(f"Splitting the chancelleriesSentences.items() that consists of {len(chancelleriesSentences.items())}")
+        # for chancelleryName, sentenceList in chancelleriesSentences.items():
+        #     print(f"ChancelleryName: {chancelleryName} | SentenceList: {sentenceList}")
+        #     train, test = train_test_split(sentenceList, test_size=testsetSize)
+        #     # Adding the data to the train and test dictionary
+        #     trainingDataSentences[chancelleryName] = train
+        #     testDataSentences[chancelleryName] = test
+        trainingDataSentences = list(chancelleriesSentences.items())[:trainingDataSentencesSplit]
+        testDataSentences = list(chancelleriesSentences.items())[testDataSentencesSplit:]
+        trainingDataLabels = chancelleryEmpathyLabels[:trainingDataSentencesSplit]
+        testDataLabels = chancelleryEmpathyLabels[testDataSentencesSplit:]
+
+
     else:
         trainingDataTexts = chancelleriesTexts
         trainingDataLabels = chancelleryEmpathyLabels
@@ -962,11 +995,8 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     loadModel()
 
-    from gensim.models import Word2Vec
-    from sklearn.metrics import accuracy_score
-
     # classifierModel = model
-    modelType = -1
+    modelType = 0
 
     if modelType == 2:
         # Creating the Word2Vec model
@@ -1078,26 +1108,38 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
         # Extracting the vectors for the training data texts
         trainingDataVectors = []
-        for text in trainingDataTexts:
-            text_vectors = []
-            for word in text:
-                if word in wordVectors:
-                    text_vectors.append(wordVectors[word])
-            avg_vector = sum(text_vectors) / len(text_vectors)
-            trainingDataVectors.append(avg_vector)
+        for chancelleryName, chancellerySentenceGroup in trainingDataSentences:
+            textVectors = []
+            for sentence in chancellerySentenceGroup:
+                for word in sentence:
+                    if word in wordVectors:
+                        textVectors.append(wordVectors[word])
+            avgVector = np.nanmean(textVectors)  # np.mean(textVectors)  # sum(text_vectors) / len(text_vectors)
+            trainingDataVectors.append(avgVector)
 
         # Extracting the vectors for the test data texts
         testDataVectors = []
-        for text in testDataTexts:
-            text_vectors = []
-            for word in text:
-                if word in wordVectors:
-                    text_vectors.append(wordVectors[word])
-            avg_vector = sum(text_vectors) / len(text_vectors)
-            testDataVectors.append(avg_vector)
+        for chancelleryName, chancellerySentenceGroup in testDataSentences:
+            textVectors = []
+            for sentence in chancellerySentenceGroup:
+                for word in sentence:
+                    if word in wordVectors:
+                        textVectors.append(wordVectors[word])
+            avgVector = np.nanmean(textVectors)  # np.mean(textVectors)
+            testDataVectors.append(avgVector)
+
+        print(f"Number of trainingDataVectors: {len(trainingDataVectors)} | number of trainingDataLabels: {len(trainingDataLabels)}")
 
         # Initializing a classifier
         classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
+
+        trainingDataVectors = np.array(trainingDataVectors).reshape(-1, 1)
+        testDataVectors = np.array(testDataVectors).reshape(-1, 1)
+        trainingDataVectors = np.nan_to_num(trainingDataVectors)
+        testDataVectors = np.nan_to_num(testDataVectors)
+
+        trainingDataVectors, trainingDataLabels = zip(*((v, l) for v, l in zip(trainingDataVectors, trainingDataLabels) if v is not None))
+        testDataVectors, testDataLabels = zip(*((v, l) for v, l in zip(testDataVectors, testDataLabels) if v is not None))
 
         # Training the classifier with the training data vectors and labels
         classifier.fit(trainingDataVectors, trainingDataLabels)
@@ -1140,9 +1182,18 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
         # Evaluating the classifier's performance
         accuracy = accuracy_score(testDataLabels, predictions)
-        recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
-        precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
-        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy}| Sensitivity of {recall}| precision of {precision}")
+        recall = recall_score(testDataLabels, predictions, average='macro', zero_division=True)
+        precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=True)
+
+        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy} | Sensitivity of {recall} | precision of {precision}")
+
+        conf_matrix = confusion_matrix(testDataLabels, predictions)
+        accuracy = sum(conf_matrix.diagonal()) / sum(sum(conf_matrix))
+
+        print(f"Calculation with confuison_matrix:")
+        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy}")
+        print(f"Calculation with classification_report:")
+        print(classification_report(testDataLabels, predictions))
 
 
 readFilesFromDisk = None
