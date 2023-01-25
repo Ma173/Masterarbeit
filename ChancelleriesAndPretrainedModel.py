@@ -1,4 +1,5 @@
 import pickle
+import random
 import time
 from datetime import datetime
 import gensim
@@ -939,6 +940,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     from gensim.models import Word2Vec
     from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+    from sklearn.metrics.pairwise import cosine_similarity, cosine_distances
     from sklearn.model_selection import train_test_split
 
     # Splitting the dataset and initializing the variables with the respective dataset split
@@ -980,23 +982,37 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         trainingDataLabels = chancelleryEmpathyLabels[:trainingDataSentencesSplit]
         testDataLabels = chancelleryEmpathyLabels[testDataSentencesSplit:]
 
-
     else:
         trainingDataTexts = chancelleriesTexts
         trainingDataLabels = chancelleryEmpathyLabels
         testDataTexts = chancelleriesTexts
         testDataLabels = chancelleryEmpathyLabels
 
+    trainingDataKeys = random.sample(list(lemmaCountsPerChancellery.keys()), int(len(lemmaCountsPerChancellery) * 0.8))
+    trainingDataSentences = {k: lemmaCountsPerChancellery[k] for k in trainingDataKeys}
+    testDataSentences = {k: lemmaCountsPerChancellery[k] for k in lemmaCountsPerChancellery.keys() - trainingDataKeys}
+
+    # for key, value in chancelleriesSentences.items():
+    #     # Wähle zufällig eine Anzahl an Elementen aus der Liste aus, die dem Prozentsatz der Testdaten entspricht
+    #     test_count = int(len(value) * testsetSize)
+    #     test_indices = random.sample(range(len(value)), test_count)
+    #     # Trenne die Liste in diejenigen Elemente, die als Testdaten verwendet werden, und diejenigen, die als Trainingsdaten verwendet werden
+    #     test_elements = [value[i] for i in test_indices]
+    #     train_elements = [elem for i, elem in enumerate(value) if i not in test_indices]
+    #     # Füge die getrennten Elemente den entsprechenden Dictionaries hinzu
+    #
+    #     trainingDataSentences[key] = train_elements
+    #     testDataSentences[key] = test_elements
     nbOfSentencesToBePrinted = 3
     print(f"Printing the first {nbOfSentencesToBePrinted} sentences of training Data")
     for text in trainingDataTexts:
         print(text.split(". ")[:nbOfSentencesToBePrinted])
         # print(text)
 
-    loadModel()
+    # loadModel()
 
     # classifierModel = model
-    modelType = 0
+    modelType = 2
 
     if modelType == 2:
         # Creating the Word2Vec model
@@ -1011,37 +1027,112 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         #     print("Pre-loaded model file not found. Please run preprocessing first.")
         # lassifierModel = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded', encoding="unicode escape",
         #                                                                  binary=False)
-        classifierModel = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded', mmap='r')
+        # classifierModel = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded', mmap='r')
+        wikiModelWordVectors = KeyedVectors.load_word2vec_format(datapath(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2'), binary=False,
+                                                                 encoding='UTF-8')
         print("Done loading classifier model. Beginning to train the model on the chancelley texts")
         # classifierModel.train(trainingDataTexts, total_examples=len(trainingDataTexts), epochs=10)
         print("Training the model on the chancellery texts done. Beginning to extract the word vectors of the model.")
 
-        # wordVectors = classifierModel.wv  # vs. classifierModel.wv
+        # wordVectors = classifierModel.wv.vocab  # vs. classifierModel.wv
 
         print("Done extracting the word vectors. Beginning to filter the vectors for all words of the data set")
 
-        # Extracting the vectors for the training data texts
+        # Extracting the empathy vectors from the model
+        empathyVectorDict = {}
+        empathyVectorList = []
+        for empathyWord in wordListEmpathy:
+            if empathyWord in wikiModelWordVectors:
+                empathyVectorDict[empathyWord] = wikiModelWordVectors[empathyWord]
+                empathyVectorList.append(wikiModelWordVectors[empathyWord])
+
+        """
+         eine andere, vermutlich bessere Option ist, eine explizite Liste von Wörtern zu erstellen, die indikativ für Empathie sind. 
+         
+         Für diese ermitteln Sie die Vektoren aus ihrem vortrainierten Modell und packen sie in eine Liste, die Empathievektorliste.
+         
+         Für eine zu klassifizierende Seite berechnen Sie dann für jedes Wort die durchschnittliche Cosinus-Distanz zu den Wortvektoren in der Empathievektorliste.
+          
+         Das gibt eine Liste von Empathiedistanzen. Anschließend können Sie entweder das Minimum über alle 
+         ermittelten Distanzen oder den Durchschnitt oder beides als Features für den Klassifizierer verwenden.
+        """
+
         trainingDataVectors = []
         testDataVectors = []
-        for text in trainingDataTexts:
-            # text_vectors = [classifierModel[word] for word in text.split() if word in classifierModel.key_to_index]
-            textVectors = [model.get_vector(word) for word in text.split() if word in model.key_to_index]
-            avg_vector = sum(textVectors) / len(textVectors)
-            trainingDataVectors.append(avg_vector)
+        empathyDistancesTrainingData = {}
+        empathyDistancesTestData = {}
+        minimumEmpathyDistancesTrainingData = []
+        minimumEmpathyDistancesTestData = []
+        averageEmpathyDistancesTrainingData = []
+        averageEmpathyDistancesTestData = []
 
-        for text in testDataTexts:
-            textVectors = [model[word] for word in text.split() if word in model.key_to_index]
-            avg_vector = sum(textVectors) / len(textVectors)
-            testDataVectors.append(avg_vector)
+        # for chancellery, text in trainingDataSentences.items():
+        #     textVectors = []
+        #     for sentences in text:
+        #         for word in sentences:
+        #             wordVector = wikiModelWordVectors[word]
+        #             if word in wikiModelWordVectors:
+        #                 trainingDataVectors.append(wordVector)
+        #                 textVectors.append(wordVector)
+        #     cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
+        #     averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
+        #     empathyDistancesTrainingData[chancellery] = averageCosineDistance
+        #     minimumEmpathyDistancesTrainingData[chancellery] = np.min(averageCosineDistance)
+        #     averageEmpathyDistancesTrainingData[chancellery] = np.mean(averageCosineDistance)
+
+        # Extracting the vectors for the training data texts
+        for chancellery, lemmaCountGroups in lemmaCountsPerChancellery.items():
+            textVectors = []
+            for lemmaGroup, lemmaCount in lemmaCountGroups.items():
+                lemma, posTag = lemmaGroup
+                if lemma in wikiModelWordVectors:
+                    wordVector = wikiModelWordVectors[lemma]
+                    trainingDataVectors.append(wordVector)
+                    textVectors.append(wordVector)
+            cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
+            averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
+            empathyDistancesTrainingData[chancellery] = averageCosineDistance
+            minimumEmpathyDistancesTrainingData.append(np.min(averageCosineDistance))
+            averageEmpathyDistancesTrainingData.append(np.mean(averageCosineDistance))
+
+        # Extracting the vectors for the test data texts
+        for chancellery, lemmaCountGroups in lemmaCountsPerChancellery.items():
+            textVectors = []
+            for lemmaGroup, lemmaCount in lemmaCountGroups.items():
+                lemma, posTag = lemmaGroup
+                if lemma in wikiModelWordVectors:
+                    wordVector = wikiModelWordVectors[lemma]
+                    testDataVectors.append(wordVector)
+                    textVectors.append(wordVector)
+            cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
+            averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
+            empathyDistancesTestData[chancellery] = averageCosineDistance
+            minimumEmpathyDistancesTestData.append(np.min(averageCosineDistance))  # TODO: PRüfen ob die Übergabe der averageCosineDistance hier so korrekt ist
+            averageEmpathyDistancesTestData.append(np.mean(averageCosineDistance))
+            # TODO: Fehler mit inkonsistenten Inputvariablen beim Fitten des Klassifikators beheben &
+            # TODO: Wieder einbauen, dass die Modell-Vektoren geladen werden und nicht jedes Mal das komplette Modell
+
+        trainingFeatures = np.column_stack(([minimumEmpathyDistancesTrainingData, averageEmpathyDistancesTrainingData]))
+        testFeatures = np.column_stack(([minimumEmpathyDistancesTestData, averageEmpathyDistancesTestData]))
+
+        # # text_vectors = [classifierModel[word] for word in text.split() if word in classifierModel.key_to_index]
+        # textVectors = [wikiModelWordVectors[word] for word in text.split() if wikiModelWordVectors[word]]  # if word in classifierModel.key_to_index]
+        # avg_vector = sum(textVectors) / len(textVectors)
+        # trainingDataVectors.append(avg_vector)
+
+        # for text in testDataTexts:
+        #     textVectors = [wikiModelWordVectors[word] for word in text.split() if wikiModelWordVectors[word]]
+        #     avg_vector = sum(textVectors) / len(textVectors)
+        #     testDataVectors.append(avg_vector)
 
         # Initializing a classifier
         classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
 
         # Training the classifier with the training data vectors and labels
-        classifier.fit(trainingDataVectors, trainingDataLabels)
+        classifier.fit(trainingFeatures, trainingDataLabels)
 
         # Making predictions on the test data vectors
-        predictions = classifier.predict(testDataVectors)
+        predictions = classifier.predict(testFeatures)
 
         # Evaluating the classifier's performance
         accuracy = accuracy_score(testDataLabels, predictions)
@@ -1049,7 +1140,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
         print(f"Metrics of model approach {modelType}: Accuracy of {accuracy} | Sensitivity of {recall} | precision of {precision}")
 
-    if modelType == 1:
+    elif modelType == 1:
         # Initializing the model
         classifierModel = Doc2Vec(vector_size=100, window=5, min_count=1, workers=4)
 
@@ -1100,7 +1191,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         # printing the accuracy
         print("Accuracy in Doc2Vec approach:", accuracy)
 
-    if modelType == 0:
+    elif modelType == 0:
 
         # Creating the Word2Vec model
         classifierModel = Word2Vec(trainingDataTexts, vector_size=100, window=5, min_count=1, workers=4)
@@ -1152,7 +1243,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
         precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
         print(f"Metrics of model approach {modelType}: Accuracy of {accuracy}| Sensitivity of {recall}| precision of {precision}")
-    if modelType == -1:
+    elif modelType == -1:
         # Initializing the TfidfVectorizer and setting the  n-gram ranges (here: 2-Grams)
         vectorizer = TfidfVectorizer(ngram_range=(2, 2), stop_words=None)
 
