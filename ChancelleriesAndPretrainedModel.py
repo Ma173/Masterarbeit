@@ -671,9 +671,35 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                     elif chancelleryAverageDiff < complexityPercentiles[0]:
                         complexityTrueNegatives += 1
 
+    wordDensitiesCumulated = []
+    for i, densityGroup in enumerate(chancelleriesWordDensities.items()):
+        density = densityGroup[1][0]
+        wordDensitiesCumulated.append(density)
+
+    complexityAndWordDensityAccordance = 0
+    complexityAndWordDensityValuesCount = 0
+    wordDensityPercentiles = np.percentile(wordDensitiesCumulated, [50])
+    print(f"wordDensityPercentiles: {wordDensityPercentiles}")
+
+    for i, densityGroup in enumerate(chancelleriesWordDensities.items()):
+        chancellery = densityGroup[0]
+        density = densityGroup[1][0]
+        for k, chancelleryBlock in enumerate(chancelleryAverageDifferenceToFreqList.items()):
+            chancelleryName = chancelleryBlock[0]
+            chancelleryDiffToFreqList = chancelleryBlock[1]
+            if chancellery == chancelleryName:
+                complexityAndWordDensityValuesCount += 1
+                if density <= wordDensityPercentiles[0] and chancelleryDiffToFreqList <= complexityPercentiles[0]:
+                    complexityAndWordDensityAccordance += 1
+                elif density > wordDensityPercentiles[0] and chancelleryDiffToFreqList > complexityPercentiles[0]:
+                    complexityAndWordDensityAccordance += 1
+    print(f"complexityAndWordDensityAccordance: {complexityAndWordDensityAccordance} at {complexityAndWordDensityValuesCount} compared values.")
+
+    print(f"chancellery| averageDifference | chancelleryComplexityAnnoations[chancellery] | chancelleriesWordDensities[chancellery]")
     for chancellery, averageDifference in chancelleryAverageDifferenceToFreqList.items():
         if chancellery in chancelleryComplexityAnnoations:
-            print(f"{chancellery} | {round(averageDifference)} | {chancelleryComplexityAnnoations[chancellery]} | {chancelleryOverallLemmaCount[chancellery]}")
+            print(
+                f"{chancellery} | {round(averageDifference)} | {chancelleryComplexityAnnoations[chancellery]} | {chancelleriesWordDensities[chancellery][0]}")  # {chancelleryOverallLemmaCount[chancellery]}")
 
     complexityAccuracy = (complexityTruePositives + complexityTrueNegatives) / (
             complexityTruePositives + complexityTrueNegatives + complexityFalsePositives + complexityFalseNegatives)
@@ -898,51 +924,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     print(
         f"{len(chancelleriesWithHighAdjectiveRatio.items())} chancelleries with high adjective ratio. {adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues} with high values "
         f"for empathy (annotation) & adjectives\n")
-
-    ################################################
-    ##           Calculation TF-IDF               ##
-    ################################################
-    ################################################
-
-    # # Creating a list of tuples with the chancelleries' names and their website texts
-    # chancelleryTexts = []
-    # for k, chancelleryBlock in enumerate(chancelleryHTMLtexts):
-    #     chancelleryTexts.append((chancelleryBlock[0], chancelleryBlock[1]))
-    #
-    # # Creating a dictionary of all words in all texts
-    # chancelleriesWordsDict = Dictionary([text[1] for text in chancelleryTexts])
-    #
-    # # Creating a list of bag of words representations for each document
-    # bagOfWordsCorpus = [chancelleriesWordsDict.doc2bow(text[1]) for text in chancelleryTexts]
-    #
-    # # Creating a TfidfModel (term frequency inverse document frequency)
-    # tfidf = TfidfModel(bagOfWordsCorpus)
-    #
-    # # Calculating the tfidf value for each text
-    # tfidfVectors = [tfidf[bagOfWords] for bagOfWords in bagOfWordsCorpus]
-    #
-    # # printing the tfidf values for each text
-    # for document, vector in zip(chancelleryTexts, tfidfVectors):
-    #     print(f'{document[0]}: {vector}')
-    #
-    # # Creating an empty data frame for the tfidf values
-    # tfidf_df = pd.DataFrame()
-    #
-    # # Initializing the tfidf vectorizer & setting the parameter "tokenPattern" for the regular pattern filtering for adjectives
-    # vectorizer = TfidfVectorizer(token_pattern=r'\b\w*(adj)\b')
-    #
-    # # Creating a list of the chancellery names
-    # names = [doc[0] for doc in chancelleryTexts]
-    #
-    # # Creating a list of the chancellery texts
-    # texts = [doc[1] for doc in chancelleryTexts]
-    #
-    # # Tf-idf-Matrix
-    # tfidf_matrix = vectorizer.fit_transform(texts)
-    #
-    # # Displaying the tfids values for each adjective and document
-    # for word, index in vectorizer.vocabulary_.items():
-    #     print(f"Wort: {word}, Tf-idf-Werte: {tfidf_matrix[:, index].todense()}")
 
     ##########################################
     ##              Classifier              ##
