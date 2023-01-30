@@ -25,7 +25,7 @@ from gensim.models import TfidfModel
 from sklearn.feature_extraction.text import TfidfVectorizer
 import json
 
-from sklearn.metrics import recall_score, precision_score
+from sklearn.metrics import recall_score, precision_score, f1_score
 from sklearn.model_selection import cross_val_score
 
 stopWords = set(stopwords.words('german'))
@@ -471,6 +471,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     wordDensityCategoryMedium = [15.1, 20]
     wordDensityCategoryHigh = [20.1, 30]
 
+    wordDensitiesCumulated = []
+    for i, densityGroup in enumerate(chancelleriesWordDensities.items()):
+        density = densityGroup[1][0]
+        wordDensitiesCumulated.append(density)
+    wordDensityPercentiles = np.percentile(wordDensitiesCumulated, [33, 66])
+
     wordDensityAccurateAnnotationsStrict = 0
     wordDensityAccurateAnnotationsLowerAndMediumValues = 0
     wordDensityAccurateAnnotationsMediumAndHighValues = 0
@@ -485,14 +491,14 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         # print(f'{chancelleryName} | {chancelleryWordDensity} | {chancelleryDensityPercentage} | {featureExpressionNumber}')
         chancelleriesWordDensitiesSortedDict[chancelleryName] = [chancelleryWordDensity, chancelleryDensityPercentage, featureExpressionNumber]
 
-        if wordDensityCategoryLow[0] < chancelleryWordDensity < wordDensityCategoryLow[1]:
+        if chancelleryWordDensity < wordDensityPercentiles[0]:
             if featureExpressionNumber == 1:
                 wordDensityAccurateAnnotationsStrict += 1
                 wordDensityAccurateAnnotationsLowerAndMediumValues += 1
                 wordDensityAccurateAnnotationsMediumAndHighValues += 1
             elif featureExpressionNumber == 2:
                 wordDensityAccurateAnnotationsLowerAndMediumValues += 1
-        elif wordDensityCategoryMedium[0] < chancelleryWordDensity < wordDensityCategoryMedium[1]:
+        elif wordDensityPercentiles[0] < chancelleryWordDensity < wordDensityPercentiles[1]:
             if featureExpressionNumber == 2:
                 wordDensityAccurateAnnotationsStrict += 1
                 wordDensityAccurateAnnotationsLowerAndMediumValues += 1
@@ -501,7 +507,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                 wordDensityAccurateAnnotationsLowerAndMediumValues += 1
             elif featureExpressionNumber == 3:
                 wordDensityAccurateAnnotationsMediumAndHighValues += 1
-        elif wordDensityCategoryHigh[0] < chancelleryWordDensity < wordDensityCategoryHigh[1]:
+        elif wordDensityPercentiles[1] < chancelleryWordDensity:
             if featureExpressionNumber == 3:
                 wordDensityAccurateAnnotationsStrict += 1
                 wordDensityAccurateAnnotationsLowerAndMediumValues += 1
@@ -515,12 +521,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     pd.options.display.max_colwidth = 30
     print(dataframeWithAnnotations)
 
-    wordDensityPerformanceStrict = wordDensityAccurateAnnotationsStrict / len(chancelleriesWordDensitiesSorted)
-    wordDensityPerformanceLowerAndMediumValues = wordDensityAccurateAnnotationsLowerAndMediumValues / len(chancelleriesWordDensitiesSorted)
-    wordDensityPerformanceMediumAndHighValues = wordDensityAccurateAnnotationsMediumAndHighValues / len(chancelleriesWordDensitiesSorted)
-    print(f"\nReached a strict performance ratio of {round(wordDensityPerformanceStrict, 2)}")
-    print(f"Reached a moderate performance ratio for both low and medium values of {round(wordDensityPerformanceLowerAndMediumValues, 2)}")
-    print(f"Reached a moderate performance ratio for both medium and high values of {round(wordDensityPerformanceMediumAndHighValues, 2)}")
+    wordDensityAccuracyStrict = wordDensityAccurateAnnotationsStrict / len(chancelleriesWordDensitiesSorted)
+    wordDensityAccuracyLowerAndMediumValues = wordDensityAccurateAnnotationsLowerAndMediumValues / len(chancelleriesWordDensitiesSorted)
+    wordDensityAccuracyMediumAndHighValues = wordDensityAccurateAnnotationsMediumAndHighValues / len(chancelleriesWordDensitiesSorted)
+    print(f"\nReached a strict performance ratio of {round(wordDensityAccuracyStrict, 2)}")
+    print(f"Reached a moderate performance ratio for both low and medium values of {round(wordDensityAccuracyLowerAndMediumValues, 2)}")
+    print(f"Reached a moderate performance ratio for both medium and high values of {round(wordDensityAccuracyMediumAndHighValues, 2)}")
 
     #############################################
     #############################################
@@ -671,11 +677,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                         complexityFalsePositives += 1
                     elif chancelleryAverageDiff < complexityPercentiles[0]:
                         complexityTrueNegatives += 1
-
-    wordDensitiesCumulated = []
-    for i, densityGroup in enumerate(chancelleriesWordDensities.items()):
-        density = densityGroup[1][0]
-        wordDensitiesCumulated.append(density)
 
     complexityAndWordDensityAccordance = 0
     complexityAndWordDensityValuesCount = 0
@@ -1017,27 +1018,31 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     testDataLabels = {}
     trainingDataSentences = {}
     testDataSentences = {}
-
-    # Splitting the dataset dictionary in chancellery names for training and test data
-    chancelleryNames = list(chancelleriesSentences.keys())
-    # random.shuffle(chancelleryNames)
-    splitIndex = int(trainingSetSize * len(chancelleryNames))
-    trainChancelleries = chancelleryNames[:splitIndex]
-    testChancelleries = chancelleryNames[splitIndex:]
-
     trainingData = []
     testData = []
     trainingDataLabels = []
     testDataLabels = []
 
-    # Filling the training data and test data set using the chancellery names of each split
-    for chancellery, sentencesList in chancelleriesSentencesIfEmpathyLabels.items():
-        if chancellery in trainChancelleries:
+    chancelleryNames = list(chancelleriesSentences.keys())
+    # random.shuffle(chancelleryNames)
+
+    if datasetSplit:
+        # Splitting the dataset dictionary in chancellery names for training and test data
+        splitIndex = int(trainingSetSize * len(chancelleryNames))
+        trainChancelleries = chancelleryNames[:splitIndex]
+        testChancelleries = chancelleryNames[splitIndex:]
+        # Filling the training data and test data set using the chancellery names of each split
+        for chancellery, sentencesList in chancelleriesSentencesIfEmpathyLabels.items():
+            if chancellery in trainChancelleries:
+                trainingData.append(sentencesList)
+                # trainingDataLabels.append(chancelleryEmpathyLabels[chancellery])
+            elif chancellery in testChancelleries:
+                testData.append(sentencesList)
+                # testDataLabels.append(chancelleryEmpathyLabels[chancellery])
+    else:
+        trainChancelleries = chancelleryNames
+        for chancellery, sentencesList in chancelleriesSentencesIfEmpathyLabels.items():
             trainingData.append(sentencesList)
-            # trainingDataLabels.append(chancelleryEmpathyLabels[chancellery])
-        elif chancellery in testChancelleries:
-            testData.append(sentencesList)
-            # testDataLabels.append(chancelleryEmpathyLabels[chancellery])
 
     print(f"Overall dataset was split in a training data size of {len(trainingData)} with {len(trainingDataLabels)} training labels")
 
@@ -1093,17 +1098,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             if empathyWord in wikiModelWordVectors:
                 empathyVectorDict[empathyWord] = wikiModelWordVectors[empathyWord]
                 empathyVectorList.append(wikiModelWordVectors[empathyWord])
-
-        """
-         eine andere, vermutlich bessere Option ist, eine explizite Liste von Wörtern zu erstellen, die indikativ für Empathie sind. 
-         
-         Für diese ermitteln Sie die Vektoren aus ihrem vortrainierten Modell und packen sie in eine Liste, die Empathievektorliste.
-         
-         Für eine zu klassifizierende Seite berechnen Sie dann für jedes Wort die durchschnittliche Cosinus-Distanz zu den Wortvektoren in der Empathievektorliste.
-          
-         Das gibt eine Liste von Empathiedistanzen. Anschließend können Sie entweder das Minimum über alle 
-         ermittelten Distanzen oder den Durchschnitt oder beides als Features für den Klassifizierer verwenden.
-        """
 
         trainingDataVectors = []
         testDataVectors = []
@@ -1250,7 +1244,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         for i, label in enumerate(fullDatasetLabels):
             plt.annotate(label, (averageEmpathyDistancesFullDataset[i], minimumEmpathyDistancesFullDataset[i]), xytext=(0, 8), textcoords='offset points')
 
-        plt.show()
+        # plt.show()
 
         fullDataset = list(zip(averageEmpathyDistancesFullDataset, fullDatasetLabels, fullDatasetChancelleryNames))
         fullDatasetSorted = sorted(fullDataset, key=lambda x: x[0], reverse=True)
@@ -1266,49 +1260,11 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             label = fullDatasetLabelsSorted[i]
             name = fullDatasetChancelleryNamesSorted[i]
             print(distance, name, label)
-        # TODO: Wo ziehe ich die Grenze für gültige Empathie-Distanzen?
-
-        # Initializing the TfidfVectorizer and calculating the weights
-        tfidf = TfidfVectorizer(analyzer='word', stop_words=stopwords.words('german'))
-        tfidfVectors = tfidf.fit_transform(chancelleriesTextsIfInTrainingData)
-
-        tfidf = TfidfVectorizer()
-        tfidfVectors = tfidf.fit_transform(chancelleriesTextsIfInTrainingData)
-        tfidfWeights = {lemma: tfidfVectors[0, tfidf.vocabulary_[lemma]] for lemma in tfidf.vocabulary_}
-
-        # # berechne die gewichteten Wortvektoren
-        # weightedWordVectors = []
-        # for chancellery, sentencesList in chancelleriesSentencesIfEmpathyLabels.items():
-        #     if chancellery in trainChancelleries:
-        #         for i, lemmaGroup in enumerate(lemmaCountsPerChancellery[chancellery].items()):
-        #             lemma, posTag = lemmaGroup
-        #             if lemma in wikiModelWordVectors and lemma in tfidfWeights:
-        #                 wordVector = wikiModelWordVectors[lemma]
-        #                 tfidfWeight = tfidfWeights[lemma]
-        #                 weightedWordVector = wordVector * tfidfWeight
-        #                 weightedWordVectors.append(weightedWordVector)
-
-        # berechne die Distanzen zu Empathie-Vektoren
-        # cosineDistancesToEmpathyVectors = cosine_distances(weightedWordVectors, empathyVectorList)
-        # averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
-        # trainingFeatures = np.column_stack(([minimumEmpathyDistancesTrainingData, averageEmpathyDistancesTrainingData]))
-        # testFeatures = np.column_stack(([minimumEmpathyDistancesTestData, averageEmpathyDistancesTestData]))
+        # TODO:  Grenze für gültige Empathie-Distanzen aus Clustering ableiten!
 
         print(f"LENGTH OF chancelleriesSentencesAsStringsIfEmpathyAnnotation: {len(chancelleriesSentencesAsStringsIfEmpathyAnnotation)}")
         print(f"First 3 Sentences: {chancelleriesSentencesAsStringsIfEmpathyAnnotation[0][:3]}")
         print(f"Length of chancelleriesTextsIfInTrainingData: {len(chancelleriesTextsIfInTrainingData)}")
-
-        # indices = np.argsort(tfidfVectors.get_feature_names())
-        # tfidfDict = dict(zip(tfidf.get_feature_names(), tfidf.idf_))
-
-        print(f"length of tfidfVectors.toarray(): {len(tfidfVectors.toarray())}")
-        print(f"{len(trainingFeatures)} trainingFeatures & {len(testFeatures)} testFeatures")
-        # Combining the TfIdf vectors with the empathy vectors
-
-        print(trainingFeatures.shape)
-        print(tfidfVectors.toarray().shape)
-
-        # combinedFeatures = np.hstack((trainingFeatures, tfidfVectors.toarray()))
 
         # Initializing a classifier
         classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
@@ -1320,10 +1276,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         predictions = classifier.predict(testFeatures)
 
         # Evaluating the classifier's performance
+        # f1 = f1_score(trainingFeatures, predictions, average='weighted')
+        # print('F1 score:', f1)
         accuracy = accuracy_score(testDataLabels, predictions)
         recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
         precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
-        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy} | Sensitivity of {recall} | precision of {precision}")
+        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy:.3f} | Sensitivity of {recall:.3f} | precision of {precision:.3f}")
 
         scores = cross_val_score(classifier, trainingFeatures, trainingDataLabels, cv=5)
         print("Cross validation scores: {}".format(scores))
