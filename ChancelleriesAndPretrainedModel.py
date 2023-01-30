@@ -15,6 +15,7 @@ from gensim.models import KeyedVectors, Doc2Vec
 from gensim.test.utils import datapath
 from joblib import Parallel
 from matplotlib import pyplot as plt
+from matplotlib.lines import Line2D
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from sklearn.cluster import KMeans
@@ -125,7 +126,7 @@ def preprocessing(corpus_path):
                 if currentFeatureId in valuableFeatureIds:  # currentLine.startswith("F"):
                     tokens = utils.simple_preprocess(featureInfoActualData)
                     words = [word.lower() for word in tokens if word.isalpha()]
-                    words = [word for word in words if not word in stopWords]
+                    # words = [word for word in words if not word in stopWords]
                     for word in words:
                         # mainDataWordsList.append(word)
                         currentChancelleryWordsList.append(word)
@@ -149,7 +150,7 @@ def preprocessing(corpus_path):
                 currentWordDensities = []  # The list of all sentences' word density in the current document
                 currentChancelleryHTMLclean = currentChancelleryHTMLclean.replace("\t", " ")
                 currentChancelleryHTMLclean = currentChancelleryHTMLclean.replace("  ", "")
-                currentSentences = currentChancelleryHTMLclean.split(".")  # TODO: Prüfen, dass hier die Entfernung des Leerzeichens nicht mehr Probleme gemacht hat.
+                currentSentences = currentChancelleryHTMLclean.split(".")
                 currentSentencesAfterThreshold = []
                 minimumSentenceLength = 5
 
@@ -773,6 +774,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     empathyDetectionAccuracyStrict = empathyCorrectlyRecognizedStrict / chancelleriesWithEmpathyAnnotation
     empathyDetectionSensitivity = empathyCorrectlyRecognizedCount / empathyTrueAnnotations  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
     empathyDetectionPrecision = empathyCorrectlyRecognizedCount / empathyRecognizedCount
+    print(f"\nNumber of chancelleries with  an empathy annotation: {chancelleriesWithEmpathyAnnotation}")
     print(f"\nEmpathy detection accuracy of {round(empathyDetectionAccuracy, 2)}")
     print(f"Strict empathy detection accuracy of {round(empathyDetectionAccuracyStrict, 2)}")
     print(f"Empathy detection sensitivity of {round(empathyDetectionSensitivity, 2)}")
@@ -1155,16 +1157,17 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         #     empathyDistancesTestData[chancellery] = averageCosineDistance
         #     minimumEmpathyDistancesTestData.append(np.min(averageCosineDistance))
         #     averageEmpathyDistancesTestData.append(np.mean(averageCosineDistance))
-        # TODO: PRüfen ob die Übergabe der averageCosineDistance hier so korrekt ist
-        # TODO: Fehler mit inkonsistenten Inputvariablen beim Fitten des Klassifikators beheben &
 
         print(f"Length of trainChancelleries: {len(trainChancelleries)}")
         print(f"Length of chancelleriesSentencesIfEmpathyLabels: {len(chancelleriesSentencesIfEmpathyLabels)}")
         chancelleriesTextsIfInTrainingData = []
+        trainingDataChancelleryNames = []
+        testDataChancelleryNames = []
         for chancellery, sentencesList in chancelleriesSentencesIfEmpathyLabels.items():
             if chancellery in trainChancelleries:
+                trainingDataChancelleryNames.append(chancellery)
                 trainingData.append(sentencesList)
-                trainingDataLabels.append(chancelleryEmpathyLabels[chancellery])
+                trainingDataLabels.append(int(chancelleryEmpathyLabels[chancellery]))
                 chancelleriesTextsIfInTrainingData.append(chancelleriesTextsDict[chancellery])
                 textVectors = []
                 for lemmaGroup, lemmaCount in lemmaCountsPerChancellery[chancellery].items():
@@ -1178,10 +1181,11 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                 # print(f"For training data calculated an averageCosineDistance of {averageCosineDistance} ")
                 empathyDistancesTrainingData[chancellery] = averageCosineDistance
                 averageEmpathyDistancesTrainingData.append(averageCosineDistance)
-                minimumEmpathyDistancesTrainingData.append(np.min(averageCosineDistance))
+                minimumEmpathyDistancesTrainingData.append(np.min(cosineDistancesToEmpathyVectors))  # np.min(averageCosineDistance))
             elif chancellery in testChancelleries:
+                testDataChancelleryNames.append(chancellery)
                 testData.append(sentencesList)
-                testDataLabels.append(chancelleryEmpathyLabels[chancellery])
+                testDataLabels.append(int(chancelleryEmpathyLabels[chancellery]))
                 textVectors = []
                 for lemmaGroup, lemmaCount in lemmaCountsPerChancellery[chancellery].items():
                     lemma, posTag = lemmaGroup
@@ -1194,11 +1198,75 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                 # print(f"For test data calculated an averageCosineDistance of {averageCosineDistance} ")
                 empathyDistancesTrainingData[chancellery] = averageCosineDistance
                 averageEmpathyDistancesTestData.append(averageCosineDistance)
-                minimumEmpathyDistancesTestData.append(np.mean(averageCosineDistance))
+                minimumEmpathyDistancesTestData.append(np.mean(cosineDistancesToEmpathyVectors))  # np.mean(averageCosineDistance))
         print(
             f"Length of minimumEmpathyDistancesTrainingData: {len(minimumEmpathyDistancesTrainingData)} | Length of averageEmpathyDistancesTrainingData: {len(averageEmpathyDistancesTrainingData)}")
         trainingFeatures = np.column_stack(([minimumEmpathyDistancesTrainingData, averageEmpathyDistancesTrainingData]))
         testFeatures = np.column_stack(([minimumEmpathyDistancesTestData, averageEmpathyDistancesTestData]))
+
+        ##########################
+        # Unsupervised approach ##
+        ##########################
+        print("The following are all empathy distances for the training & test data")
+
+        averageEmpathyDistancesFullDataset = averageEmpathyDistancesTrainingData + averageEmpathyDistancesTestData
+        minimumEmpathyDistancesFullDataset = minimumEmpathyDistancesTrainingData + minimumEmpathyDistancesTestData
+        fullDatasetLabels = trainingDataLabels + testDataLabels
+        fullDatasetChancelleryNames = trainingDataChancelleryNames + testDataChancelleryNames
+
+        emptyArray = []
+        for i in range(len(averageEmpathyDistancesFullDataset)):
+            emptyArray.append(0)
+
+        # Creating a numpy array from both lists
+        featuresArray = np.column_stack(
+            (averageEmpathyDistancesFullDataset, emptyArray))  # np.column_stack((averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset))
+
+        # Setting the number of clusters
+        kmeans = KMeans(n_clusters=3)
+
+        # Training the model
+        kmeans.fit(featuresArray)
+
+        # Predicting the clusters
+        predictedClusters = kmeans.predict(featuresArray)
+
+        print(f"Predicted clusters: {predictedClusters}")
+
+        cluster_labels = ['Cluster 1', 'Cluster 2', 'Cluster 3']
+        cluster_colors = {0: 'red', 1: 'green', 2: 'blue'}
+        colors = [cluster_colors[c] for c in predictedClusters]
+
+        plt.scatter(averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset, c=colors)  # c=fullDatasetLabels, cmap='viridis')
+        legend_elements = [
+            Line2D([0], [0], marker="o", color="red", label="Cluster 0", markersize=10),
+            Line2D([0], [0], marker="o", color="blue", label="Cluster 1", markersize=10),
+            Line2D([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
+        ]
+        plt.xlabel('Durchschnittliche Entfernung je Dokument zum Empathie-Vokabular')
+        plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
+        plt.legend(handles=legend_elements)
+
+        for i, label in enumerate(fullDatasetLabels):
+            plt.annotate(label, (averageEmpathyDistancesFullDataset[i], minimumEmpathyDistancesFullDataset[i]), xytext=(0, 8), textcoords='offset points')
+
+        plt.show()
+
+        fullDataset = list(zip(averageEmpathyDistancesFullDataset, fullDatasetLabels, fullDatasetChancelleryNames))
+        fullDatasetSorted = sorted(fullDataset, key=lambda x: x[0], reverse=True)
+        averageEmpathyDistancesFullDatasetSorted, fullDatasetChancelleryNamesSorted, fullDatasetLabelsSorted = zip(*fullDatasetSorted)
+
+        # for i in range(len(averageEmpathyDistancesFullDataset)):
+        #     distance = averageEmpathyDistancesFullDataset[i]
+        #     label = fullDatasetLabels[i]
+        #     name = fullDatasetChancelleryNames[i]
+        #     print(name, label, distance)
+        for i in range(len(averageEmpathyDistancesFullDatasetSorted)):
+            distance = averageEmpathyDistancesFullDatasetSorted[i]
+            label = fullDatasetLabelsSorted[i]
+            name = fullDatasetChancelleryNamesSorted[i]
+            print(distance, name, label)
+        # TODO: Wo ziehe ich die Grenze für gültige Empathie-Distanzen?
 
         # Initializing the TfidfVectorizer and calculating the weights
         tfidf = TfidfVectorizer(analyzer='word', stop_words=stopwords.words('german'))
