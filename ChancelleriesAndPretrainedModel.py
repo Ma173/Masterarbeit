@@ -433,18 +433,17 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                     print("Number,", k, "| Sentence length:", len(sentence), "| sentence:", sentence)
         elif chancelleryWordDensity == 0:
             chancelleriesWithZeroWordDensity += 1
-        featureExpression = ""
-        featureExpressionNumber = 0
+        complexityAnnotation = 0
         for feature in chancelleryBlock[2]:
             if feature[0] == "F23":
                 featureExpression = feature[1]
                 if featureExpression[1]:
-                    featureExpressionNumber = featureExpression[-1]
+                    complexityAnnotation = int(featureExpression[-1])
                     # print(fr"Feature: {feature} | feature[1]: {feature[1]} |featureExpression[-1]: {featureExpression[-1]}")
                 else:
                     print("Couldn't find a feature expression of feature F23 for chancellery", currentChancelleryName)
         # featureExpression = [featureComplexity for n, featureComplexity in enumerate(chancelleryBlock[2]) if n == "F23"]
-        chancelleriesWordDensities[currentChancelleryName] = [chancelleryWordDensity, chancelleryPercentageToAverage, warning, featureExpressionNumber]
+        chancelleriesWordDensities[currentChancelleryName] = [chancelleryWordDensity, chancelleryPercentageToAverage, warning, complexityAnnotation]
 
     dataframe = pd.DataFrame(chancelleriesWordDensities).transpose()
     # dataframe.rename({'0': "Chancellery's word density", '1': "Chancellery compared to average"}, axis=0)
@@ -473,47 +472,72 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     wordDensitiesCumulated = []
     for i, densityGroup in enumerate(chancelleriesWordDensities.items()):
-        density = densityGroup[1][0]
+        density = densityGroup[1][3]
         wordDensitiesCumulated.append(density)
     wordDensityPercentiles = np.percentile(wordDensitiesCumulated, [33, 66])
 
     wordDensityAccurateAnnotationsStrict = 0
     wordDensityAccurateAnnotationsLowerAndMediumValues = 0
     wordDensityAccurateAnnotationsMediumAndHighValues = 0
+    complexityTruePositives = 0
+    complexityTrueNegatives = 0
+    complexityFalsePositives = 0
+    complexityFalseNegatives = 0
+    for i, densityGroup in enumerate(chancelleriesWordDensities.items()):
+        density = densityGroup[1][3]
+        wordDensitiesCumulated.append(density)
+        chancelleryName = densityGroup[0]
+        chancelleryWordDensity = densityGroup[1][0]
+        chancelleryDensityPercentage = densityGroup[1][1]
+        complexityAnnotation = densityGroup[1][3]
+        # print(f'{chancelleryName} | {chancelleryWordDensity} | {chancelleryDensityPercentage} | {complexityAnnotation}')
+        chancelleriesWordDensitiesSortedDict[chancelleryName] = [chancelleryWordDensity, chancelleryDensityPercentage, complexityAnnotation]
+        # print(f"chancelleryWordDensity: {chancelleryWordDensity}, chancelleryDensityPercentage: {chancelleryDensityPercentage}, complexityAnnotation: {complexityAnnotation}")
 
-    for i, chancelleryBlock in enumerate(chancelleriesWordDensitiesSorted):
-        # print(chancelleryBlock)
-        chancelleryName = chancelleryBlock[0]
-        chancelleryData = chancelleryBlock[1]
-        chancelleryWordDensity = chancelleryData[0]
-        chancelleryDensityPercentage = chancelleryData[1]
-        featureExpressionNumber = int(chancelleryData[3])
-        # print(f'{chancelleryName} | {chancelleryWordDensity} | {chancelleryDensityPercentage} | {featureExpressionNumber}')
-        chancelleriesWordDensitiesSortedDict[chancelleryName] = [chancelleryWordDensity, chancelleryDensityPercentage, featureExpressionNumber]
+        if complexityAnnotation > 1:
+            if chancelleryWordDensity >= wordDensityPercentiles[0]:
+                complexityTruePositives += 1
+            if chancelleryWordDensity < wordDensityPercentiles[0]:
+                complexityFalseNegatives += 1
+        if complexityAnnotation == 1:
+            if chancelleryWordDensity >= wordDensityPercentiles[0]:
+                complexityFalsePositives += 1
+            elif chancelleryWordDensity < wordDensityPercentiles[0]:
+                complexityTrueNegatives += 1
 
-        if chancelleryWordDensity < wordDensityPercentiles[0]:
-            if featureExpressionNumber == 1:
-                wordDensityAccurateAnnotationsStrict += 1
-                wordDensityAccurateAnnotationsLowerAndMediumValues += 1
-                wordDensityAccurateAnnotationsMediumAndHighValues += 1
-            elif featureExpressionNumber == 2:
-                wordDensityAccurateAnnotationsLowerAndMediumValues += 1
-        elif wordDensityPercentiles[0] < chancelleryWordDensity < wordDensityPercentiles[1]:
-            if featureExpressionNumber == 2:
-                wordDensityAccurateAnnotationsStrict += 1
-                wordDensityAccurateAnnotationsLowerAndMediumValues += 1
-                wordDensityAccurateAnnotationsMediumAndHighValues += 1
-            elif featureExpressionNumber == 1:
-                wordDensityAccurateAnnotationsLowerAndMediumValues += 1
-            elif featureExpressionNumber == 3:
-                wordDensityAccurateAnnotationsMediumAndHighValues += 1
-        elif wordDensityPercentiles[1] < chancelleryWordDensity:
-            if featureExpressionNumber == 3:
-                wordDensityAccurateAnnotationsStrict += 1
-                wordDensityAccurateAnnotationsLowerAndMediumValues += 1
-                wordDensityAccurateAnnotationsMediumAndHighValues += 1
-            elif featureExpressionNumber == 2:
-                wordDensityAccurateAnnotationsMediumAndHighValues += 1
+    complexityAccuracy = (complexityTruePositives + complexityTrueNegatives) / (
+            complexityTruePositives + complexityTrueNegatives + complexityFalsePositives + complexityFalseNegatives)
+
+    complexityRecall = complexityTruePositives / (complexityTruePositives + complexityFalseNegatives)
+
+    complexityPrecision = complexityTruePositives / (complexityTruePositives + complexityFalsePositives)
+
+    print(
+        f"Calculated the following complexity metrics based on word density:\nAccuracy: {complexityAccuracy:.3f} | Recall: {complexityRecall:.3f} | Precision: {complexityPrecision:.3f}")
+
+    # if chancelleryWordDensity < wordDensityPercentiles[0]:
+    #     if complexityAnnotation == 1:
+    #         wordDensityAccurateAnnotationsStrict += 1
+    #         wordDensityAccurateAnnotationsLowerAndMediumValues += 1
+    #         wordDensityAccurateAnnotationsMediumAndHighValues += 1
+    #     elif complexityAnnotation == 2:
+    #         wordDensityAccurateAnnotationsLowerAndMediumValues += 1
+    # elif wordDensityPercentiles[0] < chancelleryWordDensity < wordDensityPercentiles[1]:
+    #     if complexityAnnotation == 2:
+    #         wordDensityAccurateAnnotationsStrict += 1
+    #         wordDensityAccurateAnnotationsLowerAndMediumValues += 1
+    #         wordDensityAccurateAnnotationsMediumAndHighValues += 1
+    #     elif complexityAnnotation == 1:
+    #         wordDensityAccurateAnnotationsLowerAndMediumValues += 1
+    #     elif complexityAnnotation == 3:
+    #         wordDensityAccurateAnnotationsMediumAndHighValues += 1
+    # elif wordDensityPercentiles[1] < chancelleryWordDensity:
+    #     if complexityAnnotation == 3:
+    #         wordDensityAccurateAnnotationsStrict += 1
+    #         wordDensityAccurateAnnotationsLowerAndMediumValues += 1
+    #         wordDensityAccurateAnnotationsMediumAndHighValues += 1
+    #     elif complexityAnnotation == 2:
+    #         wordDensityAccurateAnnotationsMediumAndHighValues += 1
 
     dataframeWithAnnotations = pd.DataFrame(chancelleriesWordDensitiesSortedDict).transpose()
     # dataframe.rename({'0': "Chancellery's word density", '1': "Chancellery compared to average"}, axis=0)
@@ -534,9 +558,9 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     #############################################
     #############################################
 
+    # TODO: Entweder hier ein Speichern und Laden dieser Daten aus preprocessing einbauen oder diesen Block aus dem Code entfernen
     # Sort the dictionary of a cumulated word count of all chancelleries
     sortedWordCountsCumulated = sorted(wordCountsCumulated.items(), key=lambda item: item[1], reverse=True)
-
     if sortedWordCountsCumulated:
         print("These are the 10 most common words among ALL chancelleries:")
         for i, word in enumerate(sortedWordCountsCumulated):
@@ -620,6 +644,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         lemmasGroup = sortedLemmaCountsPerChancellery[i][1]
 
         overallLemmaCount = 0
+        lemmaFrequencySums = 0
 
         # Creating a variable to store the total difference between the chancellery and the frequency list
         totalDiff = 0
@@ -630,6 +655,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             lemma = lemmaGroup[0][0]
             posTag = lemmaGroup[0][1]
             lemmaCount = lemmaGroup[1]
+            lemmaFrequencySums += lemmaCount
             # If the chancellery's lemma is also in the dictionary of Derewo Frequencies
             if lemma in freqDictDerewo:
                 freqDictLemmaPos = freqDictDerewo[lemma][0]
@@ -640,9 +666,10 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             else:
                 # If the current lemma is not in the frequency list, it's considered as an exception word
                 pass
-        # Divide the total difference by the total number of words in the law firm's website
+        # Divide the total difference by the total number of words in the chancellery's website
         # to get a ratio of how different the word choice is from the general word frequency list
-        averageDiff = totalDiff / len(sortedLemmaCountsPerChancellery)
+        averageDiff = totalDiff / lemmaFrequencySums  # averageDiff = totalDiff / len(sortedLemmaCountsPerChancellery)
+        # print(f"averageDiff: {averageDiff}")
         chancelleryAverageDifferenceToFreqList[chancellery] = round(averageDiff, 1)
         chancelleryOverallLemmaCount[chancellery] = overallLemmaCount
     # print(f"chancelleryAverageDifferenceToFreqList:\n{chancelleryAverageDifferenceToFreqList}")
@@ -710,7 +737,8 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     complexityPrecision = complexityTruePositives / (complexityTruePositives + complexityFalsePositives)
 
-    print(f"Calculated the following complexity metrics: Accuracy: {complexityAccuracy} | Recall: {complexityRecall} | Precision: {complexityPrecision}")
+    print(
+        f"Calculated the following complexity metrics based on average difference to frequency list:\nAccuracy: {complexityAccuracy:.3f} | Recall: {complexityRecall:.3f} | Precision: {complexityPrecision:.3f}")
 
     ################################################
     ################################################
