@@ -662,7 +662,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     complexityTrueNegatives = 0
 
     chancelleryAverageDifferenceToFreqListCumulated = [differenceValue for differenceValue in chancelleryAverageDifferenceToFreqList.values()]
-    complexityPercentilesOld = np.percentile(chancelleryAverageDifferenceToFreqListCumulated, [33.33, 66.66])
+    complexityPercentiles = np.percentile(chancelleryAverageDifferenceToFreqListCumulated, [33.33, 66.66])
     complexityPercentiles = np.percentile(chancelleryAverageDifferenceToFreqListCumulated, [50])
     print(f"chancelleryAverageDifferenceToFreqListCumulated percentiles: {complexityPercentiles}")
 
@@ -842,7 +842,8 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     q2 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.5)
     q3 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.75)
 
-    AdjectivePercentiles = np.percentile(chancelleriesAdjectiveCountRatioCumulated, [33.33, 66.66])
+    adjectivePercentiles = np.percentile(chancelleriesAdjectiveCountRatioCumulated, [33.33, 66.66])
+    # adjectivePercentiles = np.percentile(chancelleriesAdjectiveCountRatioCumulated, [50])
 
     print(f"\nCalculated the following three quantiles for adjective groups: {q1}, {q2} and {q3}")
 
@@ -891,35 +892,19 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                 empathyAnnotation = int(chancelleryBlockEmpathy[2])
                 empathyRatio = int(chancelleryBlockEmpathy[2])
 
-        if chancelleryAdjectiveRatio <= AdjectivePercentiles[0]:
-            if empathyAnnotation == 1:
-                adjectiveRatioAccurateAnnotationsStrict += 1
-                # adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
-                adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
-            # elif empathyAnnotation == 2:
-            # adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
-
-        if AdjectivePercentiles[0] < chancelleryAdjectiveRatio <= AdjectivePercentiles[1]:
-            if empathyAnnotation == 2:
-                adjectiveRatioAccurateAnnotationsStrict += 1
-                # adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
-                adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
-            # elif empathyAnnotation == 1:
-            #     adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
-            elif empathyAnnotation == 3:
-                adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
-        if AdjectivePercentiles[1] < chancelleryAdjectiveRatio:
-            chancelleriesWithHighAdjectiveRatio[chancellery] = chancelleryAdjectiveRatio
-            if empathyAnnotation == 3:
-                adjectiveRatioAccurateAnnotationsStrict += 1
-                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
-                adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
-            if empathyAnnotation == 2:
-                adjectiveRatioAccurateAnnotationsMediumAndHighValues += 1
-                adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues += 1
+        if empathyAnnotation < 3:
+            if chancelleryAdjectiveRatio >= adjectivePercentiles[0]:
+                adjectiveRatioTruePositives += 1
+            elif chancelleryAdjectiveRatio < adjectivePercentiles[0]:
+                adjectiveRatioFalseNegatives += 1
+        elif empathyAnnotation == 3:
+            if chancelleryAdjectiveRatio >= adjectivePercentiles[0]:
+                adjectiveRatioFalsePositives += 1
+            elif chancelleryAdjectiveRatio < adjectivePercentiles[0]:
+                adjectiveRatioTrueNegatives += 1
 
         # If there's a higher adjective ratio, a recognized empathy ratio above 0
-        if AdjectivePercentiles[1] < chancelleryAdjectiveRatio:
+        if chancelleryAdjectiveRatio > adjectivePercentiles[0]:
             if empathyRatio > 0:
                 chancelleriesWithHigherAdjectiveRatioAndRecognizedEmpathy += 1
                 # If there's also an empathy annotation lower 3 (no anti-empathy)
@@ -935,34 +920,22 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             if chancellery == chancelleryName:
                 chancelleriesEmpathyAndHighAdjectiveRatio += 1
 
-    # TODO: Prüfen welche Berechnung jetzt die korrekte ist, dann Klassifikator wieder einkommentieren und fortsetzen
-    chancelleriesEmpathyAndHighAdjectiveRatioShare1 = chancelleriesEmpathyAndHighAdjectiveRatio / len(chancelleriesWithRecognizedEmpathy)
-    chancelleriesEmpathyAndHighAdjectiveRatioShare2 = chancelleriesEmpathyAndHighAdjectiveRatio / len(chancelleriesWithHighAdjectiveRatio.items())
-    chancelleriesEmpathyAndHighAdjectiveRatioShare3 = chancelleriesEmpathyAndHighAdjectiveRatio / chancelleriesWithEmpathyAnnotation
-    adjectiveRatioAccuracyStrict = adjectiveRatioAccurateAnnotationsStrict / len(chancelleriesAdjectiveCountRatioCumulated)
-    adjectiveRatioAccuracyLowerAndMediumValues = adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues / len(chancelleriesAdjectiveCountRatioCumulated)
-    adjectiveRatioAccuracyMediumAndHighValues = adjectiveRatioAccurateAnnotationsMediumAndHighValues / len(chancelleriesAdjectiveCountRatioCumulated)
-    # print(f"\nReached a strict adjective ratio accuracy of {round(adjectiveRatioAccuracyStrict * 100, 2)}")
-    # print(f"Reached a moderate adjective ratio accuracy for both low and medium empathy values of {round(adjectiveRatioAccuracyLowerAndMediumValues * 100, 2)}")
-    # print(f"Reached a moderate adjective ratio accuracy for both medium and high empathy values of {round(adjectiveRatioAccuracyMediumAndHighValues * 100, 2)}")
-    print(
-        f"\nThere are {chancelleriesEmpathyAndHighAdjectiveRatio} of all {len(chancelleriesWithRecognizedEmpathy)} chancelleries that have an empathy ratio above zero and an adjective ratio in the upper quantile. "
-        f"That's {chancelleriesEmpathyAndHighAdjectiveRatioShare1 * 100:.2f}%!")
     print(f"There are {len(chancelleriesWithRecognizedEmpathy)} chancelleries with a recognized empathy.")
 
-    adjectiveRatioSensitivity = chancelleriesWithHigherAdjectiveRatioAndCorrectlyRecognizedEmpathy / chancelleriesWithHigherAdjectiveRatioAndActualAnnotatedEmpathy  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
-    # adjectiveRatioSensitivity = adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues / empathyTrueAnnotations  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
-    # adjectiveRatioPrecision = adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues / len(chancelleriesWithHighAdjectiveRatio.items())
-    adjectiveRatioPrecision = chancelleriesWithHigherAdjectiveRatioAndCorrectlyRecognizedEmpathy / chancelleriesWithHigherAdjectiveRatioAndRecognizedEmpathy
-    print(f"Adjective detection sensitivity of {adjectiveRatioSensitivity:.2f}")
-    print(f"Adjective detection precision of {adjectiveRatioPrecision:.2f}")
+    adjectiveRatioAccuracy = (adjectiveRatioTruePositives + adjectiveRatioTrueNegatives) / (
+            adjectiveRatioTruePositives + adjectiveRatioTrueNegatives + adjectiveRatioFalsePositives + adjectiveRatioFalseNegatives)
+    adjectiveRatioRecall = adjectiveRatioTruePositives / (adjectiveRatioTruePositives + adjectiveRatioFalseNegatives)
+    adjectiveRatioPrecision = adjectiveRatioTruePositives / (adjectiveRatioTruePositives + adjectiveRatioFalsePositives)
+
+    print(
+        f"Calculated the following metrics for adjective ratio:\nAccuracy: {adjectiveRatioAccuracy:.3f} | Recall: {adjectiveRatioRecall:.3f} | Precision: {adjectiveRatioPrecision:.3f}")
     print(
         f"{len(chancelleriesWithHighAdjectiveRatio.items())} chancelleries with high adjective ratio. {adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues} with high values "
         f"for empathy (annotation) & adjectives\n")
 
-    ##########################################
-    ##              Classifier              ##
-    ##########################################
+    #############################################
+    ## Embeddings, clustering and a classifier ##
+    #############################################
 
     from sklearn.svm import SVC
     chancelleriesTexts = []
@@ -996,7 +969,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     chancelleriesSentencesAsStringsIfEmpathyAnnotation = []
 
-    # Uniting the words of each text again for the classifier to train on it
+    # Uniting the words of each text again for a classifier to train on it
     for chancelleryName, chancellerySentencesGroup in chancelleriesSentences.items():
         # print("ChancelleryName:", chancelleryName)
         # print("ChancellerySentenceGroup:", chancellerySentencesGroup)
@@ -1058,11 +1031,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     chancelleryNames = list(chancelleriesSentences.keys())
     # random.shuffle(chancelleryNames)
 
+    # Splitting the dataset dictionary in chancellery names for training and test data
+    splitIndex = int(trainingSetSize * len(chancelleryNames))
+    trainChancelleries = chancelleryNames[:splitIndex]
+    testChancelleries = chancelleryNames[splitIndex:]
+
     if datasetSplit:
-        # Splitting the dataset dictionary in chancellery names for training and test data
-        splitIndex = int(trainingSetSize * len(chancelleryNames))
-        trainChancelleries = chancelleryNames[:splitIndex]
-        testChancelleries = chancelleryNames[splitIndex:]
         # Filling the training data and test data set using the chancellery names of each split
         for chancellery, sentencesList in chancelleriesSentencesIfEmpathyLabels.items():
             if chancellery in trainChancelleries:
@@ -1246,7 +1220,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
         # Creating a numpy array from both lists
         featuresArray = np.column_stack(
-            (averageEmpathyDistancesFullDataset, emptyArray))  # np.column_stack((averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset))
+            (averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset))  # np.column_stack((averageEmpathyDistancesFullDataset, emptyArray))  #
 
         # Setting the number of clusters
         kmeans = KMeans(n_clusters=3)
@@ -1276,7 +1250,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         for i, label in enumerate(fullDatasetLabels):
             plt.annotate(label, (averageEmpathyDistancesFullDataset[i], minimumEmpathyDistancesFullDataset[i]), xytext=(0, 8), textcoords='offset points')
 
-        # plt.show()
+        plt.show()
 
         fullDataset = list(zip(averageEmpathyDistancesFullDataset, fullDatasetLabels, fullDatasetChancelleryNames))
         fullDatasetSorted = sorted(fullDataset, key=lambda x: x[0], reverse=True)
@@ -1297,6 +1271,10 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         print(f"LENGTH OF chancelleriesSentencesAsStringsIfEmpathyAnnotation: {len(chancelleriesSentencesAsStringsIfEmpathyAnnotation)}")
         print(f"First 3 Sentences: {chancelleriesSentencesAsStringsIfEmpathyAnnotation[0][:3]}")
         print(f"Length of chancelleriesTextsIfInTrainingData: {len(chancelleriesTextsIfInTrainingData)}")
+
+        ######################
+        ## Final classifier ##
+        ######################
 
         # Initializing a classifier
         classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
