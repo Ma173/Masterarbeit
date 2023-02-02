@@ -472,9 +472,11 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     wordDensitiesCumulated = []
     for i, densityGroup in enumerate(chancelleriesWordDensities.items()):
-        density = densityGroup[1][3]
+        density = densityGroup[1][0]
         wordDensitiesCumulated.append(density)
     wordDensityPercentiles = np.percentile(wordDensitiesCumulated, [33, 66])
+    print(f"wordDensitiesCumulated: {wordDensitiesCumulated}")
+    print(f"Calculated the following word density percentiles: {wordDensityPercentiles}")
 
     wordDensityAccurateAnnotationsStrict = 0
     wordDensityAccurateAnnotationsLowerAndMediumValues = 0
@@ -515,30 +517,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     print(
         f"Calculated the following complexity metrics based on word density:\nAccuracy: {complexityAccuracy:.3f} | Recall: {complexityRecall:.3f} | Precision: {complexityPrecision:.3f}")
 
-    # if chancelleryWordDensity < wordDensityPercentiles[0]:
-    #     if complexityAnnotation == 1:
-    #         wordDensityAccurateAnnotationsStrict += 1
-    #         wordDensityAccurateAnnotationsLowerAndMediumValues += 1
-    #         wordDensityAccurateAnnotationsMediumAndHighValues += 1
-    #     elif complexityAnnotation == 2:
-    #         wordDensityAccurateAnnotationsLowerAndMediumValues += 1
-    # elif wordDensityPercentiles[0] < chancelleryWordDensity < wordDensityPercentiles[1]:
-    #     if complexityAnnotation == 2:
-    #         wordDensityAccurateAnnotationsStrict += 1
-    #         wordDensityAccurateAnnotationsLowerAndMediumValues += 1
-    #         wordDensityAccurateAnnotationsMediumAndHighValues += 1
-    #     elif complexityAnnotation == 1:
-    #         wordDensityAccurateAnnotationsLowerAndMediumValues += 1
-    #     elif complexityAnnotation == 3:
-    #         wordDensityAccurateAnnotationsMediumAndHighValues += 1
-    # elif wordDensityPercentiles[1] < chancelleryWordDensity:
-    #     if complexityAnnotation == 3:
-    #         wordDensityAccurateAnnotationsStrict += 1
-    #         wordDensityAccurateAnnotationsLowerAndMediumValues += 1
-    #         wordDensityAccurateAnnotationsMediumAndHighValues += 1
-    #     elif complexityAnnotation == 2:
-    #         wordDensityAccurateAnnotationsMediumAndHighValues += 1
-
     dataframeWithAnnotations = pd.DataFrame(chancelleriesWordDensitiesSortedDict).transpose()
     # dataframe.rename({'0': "Chancellery's word density", '1': "Chancellery compared to average"}, axis=0)
     dataframeWithAnnotations.columns = ["|C.'s word density", "| comp. to average in %", "Annotation"]
@@ -576,10 +554,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     wordsListEmpathyVerbs = ["achten", "anerkennen", "begleiten", "begreifen", "beistehen", "beschützen", "erkennen", "fühlen", "helfen", "lieben", "nachfühlen", "respektieren",
                              "unterstützen", "verstehen", "verzeihen", "würdigen", "mitleiden", "solidarisieren", "menschlich sein", "Anteil nehmen", "teilen",
                              "begreifen", "durchschauen", "einsehen", "erkennen", "kapieren", "verstehen", "nachvollziehen",
-                             "verstehen können", "zustimmen", "wissen", "mitfühlen", "einfühlen", "nachempfinden"]
+                             "zustimmen", "wissen", "mitfühlen", "einfühlen", "nachempfinden"]
     wordsListEmpathyAdjectives = ["achtsam", "barmherzig", "begütigend", "einfühlsam", "ermutigend", "fürsorglich", "hilfsbereit", "liebevoll", "nachsichtig", "rücksichtsvoll",
                                   "sensibel", "verständnisvoll", "verzeihend", "mitleidig", "solidarisch", "menschlich", "anteilnehmend", "teilend", "unterstützend", "betroffen"]
-    wordListEmpathy = wordsListEmpathyVerbs + wordsListEmpathyAdjectives
+    wordsListEmpathyNouns = ["Mitgefühl", "Fürsorge", "Verständnis", "Wärme", "Zuneigung", "Freundlichkeit", "Nachsicht", "Respekt", "Zärtlichkeit", "Barmherzigkeit", "Verzeihen",
+                             "Sympathie", "Anteilnahme", "Liebe", "Großzügigkeit", "Bemühen", "Teilen", "Güte", "Förderung", "Resilienz"]
+    wordListEmpathy = wordsListEmpathyVerbs + wordsListEmpathyAdjectives + wordsListEmpathyNouns
 
     # Read all chancellery specific lemmaCounts, transfer them into a dict, then a list and sort the list for each chancellery
     # lemmaCountsPerChancellery is a dictionary with tuple(lemma, posTag) as keys and frequencies in text as values
@@ -873,6 +853,30 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     chancelleriesWithHigherAdjectiveRatioAndCorrectlyRecognizedEmpathy = 0
     chancelleriesWithHigherAdjectiveRatioAndRecognizedEmpathy = 0
     chancelleriesWithHigherAdjectiveRatioAndActualAnnotatedEmpathy = 0
+
+    adjectiveRatioFalsePositives = 0
+    adjectiveRatioFalseNegatives = 0
+    adjectiveRatioTruePositives = 0
+    adjectiveRatioTrueNegatives = 0
+
+    for chancelleryBlock in chancelleryHTMLtexts:
+        featureExpression = chancelleryBlock[2]
+        chancelleryName = chancelleryBlock[0]
+        for feature in featureExpression:
+            if feature[0] == "F23":
+                complexityAnnotation = int(feature[1][-1])
+                chancelleryComplexityAnnoations[chancelleryName] = complexityAnnotation
+                chancelleryAverageDiff = chancelleryAverageDifferenceToFreqList[chancelleryName]
+                if complexityAnnotation > 1:
+                    if chancelleryAverageDiff >= complexityPercentiles[0]:
+                        complexityTruePositives += 1
+                    if chancelleryAverageDiff < complexityPercentiles[0]:
+                        complexityFalseNegatives += 1
+                if complexityAnnotation == 1:
+                    if chancelleryAverageDiff >= complexityPercentiles[0]:
+                        complexityFalsePositives += 1
+                    elif chancelleryAverageDiff < complexityPercentiles[0]:
+                        complexityTrueNegatives += 1
 
     print("\nSorted adjective counts by ratio:")
     for i, chancelleryBlock in enumerate(sortedAdjectiveCountsPerChancellery):
