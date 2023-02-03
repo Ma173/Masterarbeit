@@ -1049,6 +1049,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         trainChancelleries = chancelleryNames
         for chancellery, sentencesList in chancelleriesSentencesIfEmpathyLabels.items():
             trainingData.append(sentencesList)
+            testData.append(sentencesList)
 
     print(f"Overall dataset was split in a training data size of {len(trainingData)} with {len(trainingDataLabels)} training labels")
 
@@ -1220,12 +1221,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
         # Creating a numpy array from both lists
         featuresArray = np.column_stack(
-            (averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset))  # np.column_stack((averageEmpathyDistancesFullDataset, emptyArray))  #
+            (averageEmpathyDistancesFullDataset, emptyArray))  # np.column_stack((averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset))
 
         # Setting the number of clusters
-        kmeans = KMeans(n_clusters=3)
+        kmeans = KMeans(n_clusters=2)
 
-        # Training the model
+        # Fitting the algorithm
         kmeans.fit(featuresArray)
 
         # Predicting the clusters
@@ -1240,8 +1241,8 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         plt.scatter(averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset, c=colors)  # c=fullDatasetLabels, cmap='viridis')
         legend_elements = [
             Line2D([0], [0], marker="o", color="red", label="Cluster 0", markersize=10),
-            Line2D([0], [0], marker="o", color="blue", label="Cluster 1", markersize=10),
-            Line2D([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
+            Line2D([0], [0], marker="o", color="blue", label="Cluster 1", markersize=10)
+            # ([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
         ]
         plt.xlabel('Durchschnittliche Entfernung je Dokument zum Empathie-Vokabular')
         plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
@@ -1272,9 +1273,9 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         print(f"First 3 Sentences: {chancelleriesSentencesAsStringsIfEmpathyAnnotation[0][:3]}")
         print(f"Length of chancelleriesTextsIfInTrainingData: {len(chancelleriesTextsIfInTrainingData)}")
 
-        ######################
-        ## Final classifier ##
-        ######################
+        ####################################
+        ## Supervised Approch: classifier ##
+        ####################################
 
         # Initializing a classifier
         classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
@@ -1296,152 +1297,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         scores = cross_val_score(classifier, trainingFeatures, trainingDataLabels, cv=5)
         print("Cross validation scores: {}".format(scores))
         print("Average score: {:.2f}".format(scores.mean()))
-
-    elif modelType == 1:
-        # Initializing the model
-        classifierModel = Doc2Vec(vector_size=100, window=5, min_count=1, workers=4)
-
-        # Building the vocabulary
-        from gensim.models.doc2vec import TaggedDocument
-        # documents = [TaggedDocument(trainingDataTexts.split(), [i]) for i, text in enumerate(trainingDataTexts)]
-        # documents = [TaggedDocument([word for sentence in text for word in sentence.split()], [i]) for i, text in enumerate(trainingDataTexts)]
-        # documents = [TaggedDocument(text, [i]) for i, text in enumerate(trainingDataTexts)]
-        print("before preparing the documents")
-        documents = [TaggedDocument([word for sentence in text for word in sentence.split()], [i]) for i, text in enumerate(trainingDataTexts)]
-        print("after preparing the documents, before building the vocabulary")
-
-        classifierModel.build_vocab(documents)
-
-        print("After building the vocabulary, before training the model")
-
-        # Training the model
-        classifierModel.train(documents, total_examples=classifierModel.corpus_count, epochs=10)
-
-        print("After training the model, bevore 2nd preprocessing the data")
-        # 2nd Preprocessing of data to have it as words
-        words = []
-        for document in testDataTexts:
-            for sentence in document:
-                for word in sentence.split():
-                    words.append(word)
-        print("After 2nd preprocessing the data, before inferring the vectors")
-
-        # Inferring the vectors
-        vectors = []
-        vector = classifierModel.infer_vector(words)
-        vectors.append(vector)
-
-        print(len(vectors))
-        print(vectors)
-        print(len(testDataLabels))
-
-        # Using the vectors as input for the classifier
-        classifierModel.fit(vectors, testDataLabels)
-
-        # Making predictions
-        predictions = classifierModel.predict(vectors)
-
-        # Computing the accuracy
-        from sklearn.metrics import accuracy_score
-        accuracy = accuracy_score(testDataLabels, predictions)
-
-        # printing the accuracy
-        print("Accuracy in Doc2Vec approach:", accuracy)
-
-    elif modelType == 0:
-
-        # Creating the Word2Vec model
-        classifierModel = Word2Vec(trainingDataTexts, vector_size=100, window=5, min_count=1, workers=4)
-        wordVectors = classifierModel.wv  # vs. classifierModel.wv
-
-        # Extracting the vectors for the training data texts
-        trainingDataVectors = []
-        for chancelleryName, chancellerySentenceGroup in trainingDataSentences:
-            textVectors = []
-            for sentence in chancellerySentenceGroup:
-                for word in sentence:
-                    if word in wordVectors:
-                        textVectors.append(wordVectors[word])
-            avgVector = np.nanmean(textVectors)  # np.mean(textVectors)  # sum(text_vectors) / len(text_vectors)
-            trainingDataVectors.append(avgVector)
-
-        # Extracting the vectors for the test data texts
-        testDataVectors = []
-        for chancelleryName, chancellerySentenceGroup in testDataSentences:
-            textVectors = []
-            for sentence in chancellerySentenceGroup:
-                for word in sentence:
-                    if word in wordVectors:
-                        textVectors.append(wordVectors[word])
-            avgVector = np.nanmean(textVectors)  # np.mean(textVectors)
-            testDataVectors.append(avgVector)
-
-        print(f"Number of trainingDataVectors: {len(trainingDataVectors)} | number of trainingDataLabels: {len(trainingDataLabels)}")
-
-        # Initializing a classifier
-        classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
-
-        trainingDataVectors = np.array(trainingDataVectors).reshape(-1, 1)
-        testDataVectors = np.array(testDataVectors).reshape(-1, 1)
-        trainingDataVectors = np.nan_to_num(trainingDataVectors)
-        testDataVectors = np.nan_to_num(testDataVectors)
-
-        trainingDataVectors, trainingDataLabels = zip(*((v, l) for v, l in zip(trainingDataVectors, trainingDataLabels) if v is not None))
-        testDataVectors, testDataLabels = zip(*((v, l) for v, l in zip(testDataVectors, testDataLabels) if v is not None))
-
-        # Training the classifier with the training data vectors and labels
-        classifier.fit(trainingDataVectors, trainingDataLabels)
-
-        # Making predictions on the test data vectors
-        predictions = classifier.predict(testDataVectors)
-
-        # Evaluating the classifier's performance
-        accuracy = accuracy_score(testDataLabels, predictions)
-        recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
-        precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
-        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy}| Sensitivity of {recall}| precision of {precision}")
-    elif modelType == -1:
-        # Initializing the TfidfVectorizer and setting the  n-gram ranges (here: 2-Grams)
-        vectorizer = TfidfVectorizer(ngram_range=(2, 2), stop_words=None)
-
-        # Transforming the text contents in vectors with tf-idf-values
-        trainingVectors = vectorizer.fit_transform(trainingDataTexts)
-
-        # Initializing a support vector machine as classificator
-        classifier = SVC(kernel='linear', C=1, probability=True, random_state=42)
-
-        # Training the classifier with the tf-idf-vectors and the class labels
-        classifier.fit(trainingVectors, trainingDataLabels)
-
-        ############################## Applying the classifier onto new data (test data) ##################################
-        # Transforming the test data in vectors with tf-idf values
-        testVectors = vectorizer.transform(testDataTexts)
-
-        # Using the classifier to classificate the new texts
-        predictions = classifier.predict(testVectors)
-
-        # Creating a dictionary with all texts of the test data set and the matching labels and predictions
-        # results = {"labels": testDataLabels, "predictions": predictions}  # "text": testDataTexts,
-        results = zip(testDataLabels, predictions)
-
-        # Printing the predictions
-        for label, prediction in results:
-            print(f"{label} : {prediction}")
-
-        # Evaluating the classifier's performance
-        accuracy = accuracy_score(testDataLabels, predictions)
-        recall = recall_score(testDataLabels, predictions, average='macro', zero_division=True)
-        precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=True)
-
-        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy} | Sensitivity of {recall} | precision of {precision}")
-
-        conf_matrix = confusion_matrix(testDataLabels, predictions)
-        accuracy = sum(conf_matrix.diagonal()) / sum(sum(conf_matrix))
-
-        print(f"Calculation with confuison_matrix:")
-        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy}")
-        print(f"Calculation with classification_report:")
-        print(classification_report(testDataLabels, predictions))
 
 
 readFilesFromDisk = None
