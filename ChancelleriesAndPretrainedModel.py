@@ -41,7 +41,99 @@ chancelleriesWordDensites = []
 chancelleriesSentences = {}
 wordCountsCumulated = {}
 lemmaCountsPerChancellery = {}
+
+# nlp = spacy.load('de_core_news_sm')
+
+# Defining a custom tokenizer function that uses the STTS tag set
+# Define the tag map to use the STTS tag set
+tag_map = {
+    'ADJA': 'ADJ',
+    'ADJD': 'ADJ',
+    'ADV': 'ADV',
+    'APPR': 'ADP',
+    'APPRART': 'ADP',
+    'APPO': 'ADP',
+    'APZR': 'ADP',
+    'ART': 'DET',
+    'CARD': 'NUM',
+    'FM': 'X',
+    'ITJ': 'INTJ',
+    'KOUI': 'SCONJ',
+    'KOUS': 'SCONJ',
+    'KON': 'CCONJ',
+    'KOKOM': 'CCONJ',
+    'NN': 'NOUN',
+    'NE': 'PROPN',
+    'PDS': 'PRON',
+    'PDAT': 'PRON',
+    'PIS': 'PRON',
+    'PIAT': 'PRON',
+    'PIDAT': 'PRON',
+    'PPER': 'PRON',
+    'PPOSS': 'PRON',
+    'PPOSAT': 'PRON',
+    'PRELS': 'PRON',
+    'PRELAT': 'PRON',
+    'PRF': 'PRON',
+    'PWS': 'PRON',
+    'PWAT': 'PRON',
+    'PWAV': 'ADV',
+    'PAV': 'ADV',
+    'PTKZU': 'PART',
+    'PTKNEG': 'PART',
+    'PTKVZ': 'PART',
+    'PTKANT': 'PART',
+    'PTKA': 'PART',
+    'TRUNC': 'X',
+    'VVFIN': 'VERB',
+    'VVIMP': 'VERB',
+    'VVINF': 'VERB',
+    'VVIZU': 'VERB',
+    'VVPP': 'VERB',
+    'VAFIN': 'VERB',
+    'VAIMP': 'VERB',
+    'VAINF': 'VERB',
+    'VAPP': 'VERB',
+    'VMFIN': 'VERB',
+    'VMINF': 'VERB',
+    'VMPP': 'VERB',
+    'XY': 'X',
+    '$,': 'PUNCT',
+    '$.': 'PUNCT',
+    '$(': 'PUNCT',
+    '$)': 'PUNCT',
+    '$<': 'PUNCT',
+    '$>': 'PUNCT',
+    '$[': 'PUNCT',
+    '$]': 'PUNCT',
+    '$*': 'PUNCT',
+    '$+': 'X',
+    '$:': 'PUNCT',
+    '$;': 'PUNCT'
+}
+
+
+# Define the custom tokenizer class that uses the STTS tag set
+class CustomTokenizer(object):
+    def __init__(self, nlp):
+        self.nlp = nlp
+        self.tokenizer = nlp.tokenizer
+        self.tag_map = tag_map
+
+    def __call__(self, text):
+        # Use the spaCy tokenizer to tokenize the text
+        doc = self.tokenizer(text)
+        for token in doc:
+            # Map the token's tag to the STTS tag set
+            tag = self.tag_map.get(token.tag_, token.tag_)
+            # Set the token's tag to the mapped value
+            token.tag_ = tag
+        return doc
+
+
 nlp = spacy.load('de_core_news_sm')
+nlp.tokenizer = CustomTokenizer(nlp)
+
 lemmatizer = nltk.stem.WordNetLemmatizer()
 germanStopWords = stopwords.words('german')
 chancelleriesPosTagCounts = {}
@@ -229,7 +321,7 @@ def preprocessing(corpus_path):
 
                             startTimerNlpAndPosTagging = time.time()
                             # Processing the sentence with the German language model of spacy
-                            doc = nlp(sentenceCleaned)
+                            doc = nlp.tokenizer(sentenceCleaned)
                             lemmasWithPartsOfSpeech = []
 
                             # Iterating over all tokens in the cleaned sentence and saving the part of speech
@@ -641,9 +733,9 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                     print(p, currentLemma)
 
     print_sorted_list(sortedLemmaCountsPerChancellery, 5)
-    exit()
+
     ###################################
-    # Comparison with frequency lists #
+    # Comparison with a frequency list #
     ###################################
 
     # Loading the frequency list as a dataframe from file
@@ -660,7 +752,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     for lemma, pos, freq in freqListDerewo:
         freqDictDerewo[lemma] = [pos, freq]
 
-    print(f"Length of freqDictDerewo: {len(freqDictDerewo)}")
+    print(f"\nLength of freqDictDerewo: {len(freqDictDerewo)}")
 
     print(f"Random 5 words of freqDictDerewo Gansel:{random.sample(list(freqDictDerewo.keys()), 5)}")
 
@@ -769,7 +861,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     print(
         f"Calculated the following complexity metrics based on average difference to frequency list:\nAccuracy: {complexityAccuracy:.3f} | Recall: {complexityRecall:.3f} | Precision: {complexityPrecision:.3f}")
-
+    exit()
     ################################################
     ################################################
     ##          Similarities to word lists        ##
