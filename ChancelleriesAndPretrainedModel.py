@@ -186,7 +186,7 @@ def preprocessing(corpus_path):
                             # If the current word contains "." or "/" and these special chars are not at first or last position in the word
                             # then split the current word at this character. If that makes a list of two strings and both are not empty
                             # then append it to the current words list
-                            specialChars = [".", "/", "?", ":", "!", "?"]
+                            specialChars = [".", "/", "?", ":", "!", "?", ",", "."]
                             for specialChar in specialChars:
                                 if specialChar in wordToAppend and wordToAppend.find(specialChar) != len(wordToAppend) and wordToAppend.find(specialChar) != 0:
                                     wordSplitted = wordToAppend.split(specialChar)
@@ -291,8 +291,16 @@ def preprocessing(corpus_path):
                     else:
                         # If sentence length is greater or equal to the threshold of minimumSentenceLength
                         if len(wordsCleaned) >= minimumSentenceLength:
+                            wordsLengths = []
+                            maxLowlengthWordsReached = False
+                            # iF there's too many consecutive low length words, set maxLowlengthWordsReached to True so the sentence isn't appended to the final sentences list
+                            for word in wordsCleaned:
+                                wordsLengths.append(len(word))
+                            for q in range(len(wordsLengths)):
+                                if wordsLengths[q] >= 5 and (wordsLengths[q - 1] <= 3 and wordsLengths[q - 2] <= 3 and wordsLengths[q - 3] <= 3 and wordsLengths[q - 4] <= 3):
+                                    maxLowlengthWordsReached = True
                             # If sentence isn't already in the list
-                            if wordsCleaned not in chancellerySentencesCleaned:
+                            if wordsCleaned not in chancellerySentencesCleaned and not maxLowlengthWordsReached:
                                 # filter out all sentences that are above the maxConsecutiveUpperWords count
                                 maxConsecutiveUpperWords = 3
                                 maxcount = 0
@@ -350,9 +358,6 @@ def preprocessing(corpus_path):
 
     return chancelleryBlocks
 
-
-# TODO: preprocessing() gibt aktuell chancelleryBlocks zurück. Ist das noch up to date oder sollte chancelleryHTMLtexts zurückgegeben und im Verlaufe des Programms dann mit
-#  mainData statt chancelleryHTMLtexts weitergearbeitet werden?
 
 def read_file_from_disk(filename, var_type):
     output = ""
@@ -447,7 +452,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     dataframe = pd.DataFrame(chancelleriesWordDensities).transpose()
     # dataframe.rename({'0': "Chancellery's word density", '1': "Chancellery compared to average"}, axis=0)
-    dataframe.columns = ["|C.'s word density", "|C. comp. to average in %", "|Warning", "Annotation"]
+    dataframe.columns = ["|C.'s word density", "|C. comp. to average in %", "|Warning", "|Annotation"]
     pd.options.display.max_columns = 5
     pd.options.display.max_colwidth = 45
     pd.options.display.expand_frame_repr = False
@@ -460,9 +465,9 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
               "of all chancelleries with an average word density of 0 which means every sentence had to be removed in the preprocessing.")
 
     print("The following dataframe contains information about the average word density of each chancellery:")
+    pd.options.display.max_rows = None
     print(dataframe)
 
-    print("\nThe following list is the chancelleries' word densities compared to the annotation")
     chancelleriesWordDensitiesSorted = sorted(chancelleriesWordDensities.items(), key=lambda x: x[1][1])
     chancelleriesWordDensitiesSortedDict = {}
 
@@ -474,9 +479,67 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     for i, densityGroup in enumerate(chancelleriesWordDensities.items()):
         density = densityGroup[1][0]
         wordDensitiesCumulated.append(density)
-    wordDensityPercentiles = np.percentile(wordDensitiesCumulated, [33, 66])
+    # wordDensityPercentiles = np.percentile(wordDensitiesCumulated, [33, 66])
+    wordDensityThreshold = np.percentile(wordDensitiesCumulated, [50])
+    wordDensityThreshold = [np.median(wordDensitiesCumulated)]
+    wordDensityThreshold = [np.mean(wordDensitiesCumulated)]  # + np.std(wordDensitiesCumulated)
+    wordDensityThreshold = [np.std(wordDensitiesCumulated)]
+
+    emptyArray = []
+    for i in range(len(wordDensitiesCumulated)):
+        emptyArray.append(0)
+
+    featuresArray = np.column_stack(
+        (wordDensitiesCumulated, emptyArray))
+
+    # Setting the number of clusters
+    kmeans = KMeans(n_clusters=3)
+
+    # Fitting the algorithm
+    kmeans.fit(featuresArray)
+
+    # Predicting the clusters
+    predictedClusters = kmeans.predict(featuresArray)
+
+    cluster_colors = {0: 'red', 1: 'green', 2: 'blue'}
+    colors = [cluster_colors[c] for c in predictedClusters]
+    plt.figure(figsize=(12, 6))
+    plt.scatter(wordDensitiesCumulated, emptyArray, c=colors)  # c=fullDatasetLabels, cmap='viridis')
+
+    # for i, label in enumerate(fullDatasetLabels):
+    #     plt.annotate(label, (averageEmpathyDistancesFullDataset[i], minimumEmpathyDistancesFullDataset[i]), xytext=(0, 8), textcoords='offset points')
+
+    legend_elements = [
+        Line2D([0], [0], marker="o", color="blue", label="Cluster 0", markersize=10),
+        Line2D([0], [0], marker="o", color="red", label="Cluster 1", markersize=10),
+        Line2D([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
+    ]
+    plt.xlabel('Durchschnittliche Wortdichte')
+
+    # plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
+    plt.legend(handles=legend_elements)
+
+    # plt.show()
+
+    # get values for each cluster
+    # cluster0Values = np.array([wordDensitiesCumulated[i] for i in range(len(wordDensitiesCumulated)) if predictedClusters[i] == 0])
+    cluster0Values = [value for value, label in zip(wordDensitiesCumulated, predictedClusters) if label == 2]
+    cluster1Values = [value for value, label in zip(wordDensitiesCumulated, predictedClusters) if label == 1]
+    cluster2Values = [value for value, label in zip(wordDensitiesCumulated, predictedClusters) if label == 0]
+    print(f"Calculated the following clusters:\nCluster 0: {cluster0Values}\nCluster 1: {cluster1Values}\nCluster 2: {cluster2Values}")
+
+    # get the cluster with the lowest values
+    # clusterIndex = np.argmin([wordDensitiesCumulated[predictedClusters == i].mean() for i in range(3)])
+    # clusterData = wordDensitiesCumulated[predictedClusters == clusterIndex]
+
+    print(f"Cluster minimal values: \ncluster0: {min(cluster0Values)}\ncluster1: {min(cluster1Values)}\ncluster2: {min(cluster2Values)}")
+    wordDensityThreshold = [min(cluster0Values)]
+    print(f"word density threshold is: {wordDensityThreshold}")  # bei cluster1Values ist es 19.86, bei cluster
+
+    print(f"Predicted clusters: {predictedClusters}")
+
     print(f"wordDensitiesCumulated: {wordDensitiesCumulated}")
-    print(f"Calculated the following word density percentiles: {wordDensityPercentiles}")
+    print(f"Calculated the following word density percentiles: {wordDensityThreshold}")
 
     wordDensityAccurateAnnotationsStrict = 0
     wordDensityAccurateAnnotationsLowerAndMediumValues = 0
@@ -497,14 +560,14 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         # print(f"chancelleryWordDensity: {chancelleryWordDensity}, chancelleryDensityPercentage: {chancelleryDensityPercentage}, complexityAnnotation: {complexityAnnotation}")
 
         if complexityAnnotation > 1:
-            if chancelleryWordDensity >= wordDensityPercentiles[0]:
+            if chancelleryWordDensity >= wordDensityThreshold[0]:
                 complexityTruePositives += 1
-            if chancelleryWordDensity < wordDensityPercentiles[0]:
+            if chancelleryWordDensity < wordDensityThreshold[0]:
                 complexityFalseNegatives += 1
         if complexityAnnotation == 1:
-            if chancelleryWordDensity >= wordDensityPercentiles[0]:
+            if chancelleryWordDensity >= wordDensityThreshold[0]:
                 complexityFalsePositives += 1
-            elif chancelleryWordDensity < wordDensityPercentiles[0]:
+            elif chancelleryWordDensity < wordDensityThreshold[0]:
                 complexityTrueNegatives += 1
 
     complexityAccuracy = (complexityTruePositives + complexityTrueNegatives) / (
@@ -515,20 +578,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     complexityPrecision = complexityTruePositives / (complexityTruePositives + complexityFalsePositives)
 
     print(
-        f"Calculated the following complexity metrics based on word density:\nAccuracy: {complexityAccuracy:.3f} | Recall: {complexityRecall:.3f} | Precision: {complexityPrecision:.3f}")
-
-    dataframeWithAnnotations = pd.DataFrame(chancelleriesWordDensitiesSortedDict).transpose()
-    # dataframe.rename({'0': "Chancellery's word density", '1': "Chancellery compared to average"}, axis=0)
-    dataframeWithAnnotations.columns = ["|C.'s word density", "| comp. to average in %", "Annotation"]
-    pd.options.display.max_colwidth = 30
-    print(dataframeWithAnnotations)
-
-    wordDensityAccuracyStrict = wordDensityAccurateAnnotationsStrict / len(chancelleriesWordDensitiesSorted)
-    wordDensityAccuracyLowerAndMediumValues = wordDensityAccurateAnnotationsLowerAndMediumValues / len(chancelleriesWordDensitiesSorted)
-    wordDensityAccuracyMediumAndHighValues = wordDensityAccurateAnnotationsMediumAndHighValues / len(chancelleriesWordDensitiesSorted)
-    print(f"\nReached a strict performance ratio of {round(wordDensityAccuracyStrict, 2)}")
-    print(f"Reached a moderate performance ratio for both low and medium values of {round(wordDensityAccuracyLowerAndMediumValues, 2)}")
-    print(f"Reached a moderate performance ratio for both medium and high values of {round(wordDensityAccuracyMediumAndHighValues, 2)}")
+        f"Calculated the following complexity metrics based on word density:\nAccuracy: {complexityAccuracy:.3f} | Recall: {complexityRecall:.3f} | Precision: {complexityPrecision:.3f}\n")
 
     #############################################
     #############################################
@@ -591,7 +641,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                     print(p, currentLemma)
 
     print_sorted_list(sortedLemmaCountsPerChancellery, 5)
-
+    exit()
     ###################################
     # Comparison with frequency lists #
     ###################################
@@ -663,7 +713,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     chancelleryAverageDifferenceToFreqListCumulated = [differenceValue for differenceValue in chancelleryAverageDifferenceToFreqList.values()]
     complexityPercentiles = np.percentile(chancelleryAverageDifferenceToFreqListCumulated, [33.33, 66.66])
-    complexityPercentiles = np.percentile(chancelleryAverageDifferenceToFreqListCumulated, [50])
+    # complexityPercentiles = np.percentile(chancelleryAverageDifferenceToFreqListCumulated, [50])
     print(f"chancelleryAverageDifferenceToFreqListCumulated percentiles: {complexityPercentiles}")
 
     for chancelleryBlock in chancelleryHTMLtexts:
@@ -1237,11 +1287,11 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         cluster_labels = ['Cluster 1', 'Cluster 2', 'Cluster 3']
         cluster_colors = {0: 'red', 1: 'green', 2: 'blue'}
         colors = [cluster_colors[c] for c in predictedClusters]
-
+        plt.figure(figsize=(12, 6))
         plt.scatter(averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset, c=colors)  # c=fullDatasetLabels, cmap='viridis')
         legend_elements = [
             Line2D([0], [0], marker="o", color="red", label="Cluster 0", markersize=10),
-            Line2D([0], [0], marker="o", color="blue", label="Cluster 1", markersize=10)
+            Line2D([0], [0], marker="o", color="green", label="Cluster 1", markersize=10)
             # ([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
         ]
         plt.xlabel('Durchschnittliche Entfernung je Dokument zum Empathie-Vokabular')
@@ -1300,7 +1350,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
 
 readFilesFromDisk = None
-readFilesFromDiskInput = input("Read files from disk? If not, enter 'n'. Else just press Enter")
+readFilesFromDiskInput = ""  # input("Read files from disk? If not, enter 'n'. Else just press Enter") # TODO: Hier input wieder einkommentieren, sobald Ergebnisteil abgeschlossen
 if "n" in readFilesFromDiskInput.lower():
     readFilesFromDisk = False
 else:
@@ -1359,8 +1409,6 @@ else:
 
     linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensites, lemmaCountsPerChancellery, chancelleriesPosTagCounts, chancelleriesSyntacticDependencies,
                            chancelleriesSentences)
-
-exit()
 
 
 def printMainData(lineToPrint):
