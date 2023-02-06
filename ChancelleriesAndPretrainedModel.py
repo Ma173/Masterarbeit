@@ -27,11 +27,9 @@ import json
 
 from sklearn.metrics import recall_score, precision_score, f1_score
 from sklearn.model_selection import cross_val_score
+from spacy.pipeline import EntityRuler
 
 stopWords = set(stopwords.words('german'))
-# import nltk
-# import xgboost as xgb
-# import unicodedata
 
 mainDataWordsList = []
 chancelleriesFeatureExpressionsWordsList = []
@@ -113,6 +111,9 @@ tag_map = {
 }
 
 
+# tag_map = dict(zip(tag_map.values(), tag_map.keys()))
+
+
 # Define the custom tokenizer class that uses the STTS tag set
 class CustomTokenizer(object):
     def __init__(self, nlp):
@@ -131,7 +132,16 @@ class CustomTokenizer(object):
         return doc
 
 
+def custom_tagger(doc):
+    name = "custom_tagger"
+    for token in doc:
+        tag = tag_map.get(token.tag_, token.tag_)
+        token.tag_ = tag
+    return doc
+
+
 nlp = spacy.load('de_core_news_sm')
+
 nlp.tokenizer = CustomTokenizer(nlp)
 
 lemmatizer = nltk.stem.WordNetLemmatizer()
@@ -321,7 +331,8 @@ def preprocessing(corpus_path):
 
                             startTimerNlpAndPosTagging = time.time()
                             # Processing the sentence with the German language model of spacy
-                            doc = nlp.tokenizer(sentenceCleaned)
+                            doc = nlp(sentenceCleaned)
+                            # nlp.add_pipe(custom_tagger.name, after='ner')
                             lemmasWithPartsOfSpeech = []
 
                             # Iterating over all tokens in the cleaned sentence and saving the part of speech
@@ -734,27 +745,37 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     print_sorted_list(sortedLemmaCountsPerChancellery, 5)
 
-    ###################################
+    ####################################
     # Comparison with a frequency list #
-    ###################################
+    ####################################
 
     # Loading the frequency list as a dataframe from file
     dataframeDerewo = pd.read_csv(r'B:\Python-Projekte\Masterarbeit\DeReKo-2014-II-MainArchive-STT.100000.freq', sep='\t', header=None, names=['word', 'lemma', 'pos', 'freq'])
+    print(f"\nLength of unprocessed DeReWo: {len(dataframeDerewo.index)}")
 
     # Reducing the frequency list (word is not needed)
     dataframeDerewoReduced = dataframeDerewo[['lemma', 'pos', 'freq']]
 
+    print(f"\nLength of dataframeDerewoReduced: {len(dataframeDerewoReduced.index)}")
+
     # Converting the dataframe to a list
     freqListDerewo = dataframeDerewoReduced.values.tolist()
+
+    print(f"\nLength of freqListDerewo: {len(freqListDerewo)}")
 
     # Creating a dictionary from the list
     freqDictDerewo = {}
     for lemma, pos, freq in freqListDerewo:
-        freqDictDerewo[lemma] = [pos, freq]
+        # freqDictDerewo[(lemma, pos)] = freq
+        if lemma in freqDictDerewo:
+            if freqDictDerewo[lemma] < freq:
+                freqDictDerewo[lemma] = freq
+        else:
+            freqDictDerewo[lemma] = freq
 
-    print(f"\nLength of freqDictDerewo: {len(freqDictDerewo)}")
+    print(f"\nLength of freqDictDerewo: {len(freqDictDerewo.keys())}")
 
-    print(f"Random 5 words of freqDictDerewo Gansel:{random.sample(list(freqDictDerewo.keys()), 5)}")
+    print(f"Random 5 words of freqDictDerewo:{random.sample(list(freqDictDerewo.keys()), 5)}")
 
     chancelleryAverageDifferenceToFreqList = {}
     chancelleryOverallLemmaCount = {}
@@ -776,15 +797,16 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             overallLemmaCount += 1
             lemma = lemmaGroup[0][0]
             posTag = lemmaGroup[0][1]
+            lemmaPosGroup = lemmaGroup[0]
             lemmaCount = lemmaGroup[1]
             lemmaFrequencySums += lemmaCount
             # If the chancellery's lemma is also in the dictionary of Derewo Frequencies
             if lemma in freqDictDerewo:
-                freqDictLemmaPos = freqDictDerewo[lemma][0]
-                freqDictLemmaCount = freqDictDerewo[lemma][1]
-                if posTag != "" and posTag == freqDictLemmaPos:
-                    diff = abs(lemmaCount - freqDictLemmaCount)
-                    totalDiff += diff
+                # freqDictLemmaPos = freqDictDerewo[lemma][0]
+                # freqDictLemmaCount = freqDictDerewo[lemma][1]
+                # if posTag != "" and posTag == freqDictLemmaPos:
+                diff = abs(lemmaCount - freqDictDerewo[lemma])  # TODO: Hier wieder auf lemmaPosGroup ändern, falls doch noch Abgleich mit PoS-Tags der Frequenzwortliste
+                totalDiff += diff
             else:
                 # If the current lemma is not in the frequency list, it's considered as an exception word
                 pass
@@ -840,9 +862,9 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             chancelleryDiffToFreqList = chancelleryBlock[1]
             if chancellery == chancelleryName:
                 complexityAndWordDensityValuesCount += 1
-                if density <= wordDensityPercentiles[0] and chancelleryDiffToFreqList <= complexityPercentiles[0]:
+                if density <= wordDensityThreshold[0] and chancelleryDiffToFreqList <= complexityPercentiles[0]:
                     complexityAndWordDensityAccordance += 1
-                elif density > wordDensityPercentiles[0] and chancelleryDiffToFreqList > complexityPercentiles[0]:
+                elif density > wordDensityThreshold[0] and chancelleryDiffToFreqList > complexityPercentiles[0]:
                     complexityAndWordDensityAccordance += 1
     print(f"complexityAndWordDensityAccordance: {complexityAndWordDensityAccordance} at {complexityAndWordDensityValuesCount} compared values.")
 
@@ -861,10 +883,10 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     print(
         f"Calculated the following complexity metrics based on average difference to frequency list:\nAccuracy: {complexityAccuracy:.3f} | Recall: {complexityRecall:.3f} | Precision: {complexityPrecision:.3f}")
-    exit()
+
     ################################################
     ################################################
-    ##          Similarities to word lists        ##
+    ##        Similarities with an empathy list   ##
     ################################################
     ################################################
 
@@ -888,6 +910,11 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     chancelleriesWithEmpathyAnnotation = 0
     previousChancelleryName = ""
 
+    empathyFalsePositives = 0
+    empathyFalseNegatives = 0
+    empathyTruePositives = 0
+    empathyTrueNegatives = 0
+
     print("\nThese are the empathy ratios of each chancellery with the annotated value:")
     # Assessing & summing up the correct annotations and printing out the empathy ratio of each chancellery
     for chancellery, chancelleryEmpathyRatio in empathyRatiosSorted:
@@ -901,18 +928,26 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                     if feature[0] == "F8":
                         if chancellery != previousChancelleryName:
                             chancelleriesWithEmpathyAnnotation += 1
-                            empathyAnnotation = feature[1][-1]
+                            empathyAnnotation = int(feature[1][-1])
                             # Differentiating only between two groups:
                             # Chancelleries that have an empathy ratio above 0 and ones that don't
                             # If the chancellery has a ratio > 0 and the annotation of empathy is not 3 ("the opposite of empathy"), count it for the ratio
-                            if int(empathyAnnotation) < 3:
+                            if empathyAnnotation < 3:
                                 empathyTrueAnnotations += 1
                                 if chancelleryEmpathyRatio > 0:
                                     empathyCorrectlyRecognizedCount += 1
+                                    empathyTruePositives += 1
+                                elif chancelleryEmpathyRatio == 0:
+                                    empathyFalseNegatives += 1
+                            elif empathyAnnotation == 3:
+                                if chancelleryEmpathyRatio > 0:
+                                    empathyFalsePositives += 1
+                                elif chancelleryEmpathyRatio == 0:
+                                    empathyTrueNegatives += 1
                             if chancelleryEmpathyRatio > 0:
                                 chancelleriesWithRecognizedEmpathy[chancellery] = chancelleryEmpathyRatio
                                 empathyRecognizedCount += 1
-                            if int(empathyAnnotation) == 1 and chancelleryEmpathyRatio > 0:
+                            if empathyAnnotation == 1 and chancelleryEmpathyRatio > 0:
                                 empathyCorrectlyRecognizedStrict += 1
                             else:
                                 empathyDetectionNegatives += 1
@@ -921,15 +956,21 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                             print(f'{chancellery} | {chancelleryEmpathyRatio:.4f} | {empathyAnnotation}')  # chancellery, "|", ratio)
                             previousChancelleryName = chancellery
 
-    empathyDetectionAccuracy = empathyCorrectlyRecognizedCount / chancelleriesWithEmpathyAnnotation
-    empathyDetectionAccuracyStrict = empathyCorrectlyRecognizedStrict / chancelleriesWithEmpathyAnnotation
-    empathyDetectionSensitivity = empathyCorrectlyRecognizedCount / empathyTrueAnnotations  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
-    empathyDetectionPrecision = empathyCorrectlyRecognizedCount / empathyRecognizedCount
+    empathyDetectionAccuracy = (empathyTruePositives + empathyTrueNegatives) / (
+            empathyTruePositives + empathyTrueNegatives + empathyFalsePositives + empathyFalseNegatives)
+
+    empathyDetectionSensitivity = empathyTruePositives / (empathyTruePositives + empathyFalseNegatives)
+
+    empathyDetectionPrecision = empathyTruePositives / (empathyTruePositives + empathyFalsePositives)
+
+    # empathyDetectionAccuracy = empathyCorrectlyRecognizedCount / chancelleriesWithEmpathyAnnotation
+    # empathyDetectionAccuracyStrict = empathyCorrectlyRecognizedStrict / chancelleriesWithEmpathyAnnotation
+    # empathyDetectionSensitivity = empathyCorrectlyRecognizedCount / empathyTrueAnnotations  # / (empathyAnnotationRatioStrict + empathyDetectionNegatives)
+    # empathyDetectionPrecision = empathyCorrectlyRecognizedCount / empathyRecognizedCount
     print(f"\nNumber of chancelleries with  an empathy annotation: {chancelleriesWithEmpathyAnnotation}")
-    print(f"\nEmpathy detection accuracy of {round(empathyDetectionAccuracy, 2)}")
-    print(f"Strict empathy detection accuracy of {round(empathyDetectionAccuracyStrict, 2)}")
-    print(f"Empathy detection sensitivity of {round(empathyDetectionSensitivity, 2)}")
-    print(f"Empathy detection precision of {round(empathyDetectionPrecision, 2)}")
+    print(f"\nEmpathy detection accuracy of {empathyDetectionAccuracy:.3f}")
+    print(f"Empathy detection sensitivity of {empathyDetectionSensitivity:.3f}")
+    print(f"Empathy detection precision of {empathyDetectionPrecision:.3f}")
 
     #####################################
     #####################################
@@ -938,10 +979,9 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     #####################################
 
     print("\nLength of chancelleries pos tag count dict:", len(chancelleriesPosTagCounts.items()))
-    print("Chancelleries' PoS-tag count:")
 
     chancelleriesAdjectivesCount = {}
-
+    print("Chancellery gansel's PoS-tag count:")
     for chancellery, posCountBlock in chancelleriesPosTagCounts.items():
         posTagCountsTotal = 0
         for posTag, posTagCount in posCountBlock.items():
@@ -952,7 +992,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             if posTag == "ADJ":
                 chancelleriesAdjectivesCount[chancellery] = [posTagCount, posTagRatio]
             if chancellery == "gansel":
-                print(f"posTag: {posTag} | posTagCount: {posTagCount} | posTagCountsTotal: {posTagCountsTotal} | posTagRatio: {posTagRatio} in percent: {posTagRatio} ")
+                print(f"posTag: {posTag} | posTagCount: {posTagCount} | posTagCountsTotal: {posTagCountsTotal} | posTagRatio: {posTagRatio}")
 
     dataframePosTagCount = pd.DataFrame(chancelleriesPosTagCounts).transpose()
     # dataframe.rename({'0': "Chancellery's word density", '1': "Chancellery compared to average"}, axis=0)
@@ -975,9 +1015,9 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         countGroup = chancelleryBlock[1]
         chancelleryAdjectiveRatio = countGroup[1]
         chancelleriesAdjectiveCountRatioCumulated.append(chancelleryAdjectiveRatio)
-        for chancellery, chancelleryAdjectiveRatio in empathyRatiosSorted:
+        for chancellery, chancelleryEmpathyRatio in empathyRatiosSorted:
             if chancellery == chancelleryBlock[0]:
-                print(f" {chancellery} | adjectiveRatio: {chancelleryAdjectiveRatio:.2f} | chancelleryEmpathyData: {chancelleryAdjectiveRatio:.4f} ")
+                print(f" {chancellery} | adjectiveRatio: {chancelleryAdjectiveRatio:.3f} | chancelleryEmpathyData: {chancelleryEmpathyRatio:.4f} ")
 
     # Calculating the three quantiles for the three adjective ratio groups
     q1 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.25)
@@ -987,7 +1027,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     adjectivePercentiles = np.percentile(chancelleriesAdjectiveCountRatioCumulated, [33.33, 66.66])
     # adjectivePercentiles = np.percentile(chancelleriesAdjectiveCountRatioCumulated, [50])
 
-    print(f"\nCalculated the following three quantiles for adjective groups: {q1}, {q2} and {q3}")
+    print(f"\nCalculated the following two percentiles at 33.33 & 66.66%: {adjectivePercentiles[0]} and {adjectivePercentiles[1]}")
 
     chancelleriesEmpathyAndHighAdjectiveRatio = 0
     chancelleriesWithHighAdjectiveRatio = {}
@@ -1046,7 +1086,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                 adjectiveRatioTrueNegatives += 1
 
         # If there's a higher adjective ratio, a recognized empathy ratio above 0
-        if chancelleryAdjectiveRatio > adjectivePercentiles[0]:
+        if chancelleryAdjectiveRatio >= adjectivePercentiles[0]:
             if empathyRatio > 0:
                 chancelleriesWithHigherAdjectiveRatioAndRecognizedEmpathy += 1
                 # If there's also an empathy annotation lower 3 (no anti-empathy)
@@ -1057,11 +1097,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
         print(f"{chancellery}: {count} | {chancelleryAdjectiveRatio} | {empathyAnnotation}")
 
-    for chancellery, chancelleryAdjectiveRatio in chancelleriesWithHighAdjectiveRatio.items():
-        for chancelleryName, chancelleryEmpathyRatio in chancelleriesWithRecognizedEmpathy.items():
-            if chancellery == chancelleryName:
-                chancelleriesEmpathyAndHighAdjectiveRatio += 1
-
     print(f"There are {len(chancelleriesWithRecognizedEmpathy)} chancelleries with a recognized empathy.")
 
     adjectiveRatioAccuracy = (adjectiveRatioTruePositives + adjectiveRatioTrueNegatives) / (
@@ -1071,9 +1106,9 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     print(
         f"Calculated the following metrics for adjective ratio:\nAccuracy: {adjectiveRatioAccuracy:.3f} | Recall: {adjectiveRatioRecall:.3f} | Precision: {adjectiveRatioPrecision:.3f}")
-    print(
-        f"{len(chancelleriesWithHighAdjectiveRatio.items())} chancelleries with high adjective ratio. {adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues} with high values "
-        f"for empathy (annotation) & adjectives\n")
+    # print(
+    #    f"{len(chancelleriesWithHighAdjectiveRatio.items())} chancelleries with high adjective ratio. {adjectiveRatioAndEmpathyAnnotationsLowerAndMediumValues} with high values "
+    #    f"for empathy (annotation) & adjectives\n")
 
     #############################################
     ## Embeddings, clustering and a classifier ##
@@ -1212,233 +1247,185 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         print(text.split(". ")[:nbOfSentencesToBePrinted])
         # print(text)
 
-    # classifierModel = model
-    modelType = 2
+    # Creating the Word2Vec model
+    # classifierModel = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2', binary=False,
+    #                                                                   encoding='unicode escape')
+    print("Loading predefined model with word2vec")
+    # classifierModel = Word2Vec.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2', encoding='unicode escape')
+    # classifierModel = KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2')
+    # try:
+    #     classifierModel = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded')
+    # except FileNotFoundError:
+    #     print("Pre-loaded model file not found. Please run preprocessing first.")
+    # lassifierModel = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded', encoding="unicode escape",
+    #                                                                  binary=False)
+    # classifierModel = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded', mmap='r')
+    # wikiModelWordVectors = KeyedVectors.load_word2vec_format(datapath(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2'), binary=False, encoding='UTF-8')
+    # wikiModelWordVectors.save('B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded.vectors')  # , binary=False)
+    wikiModelWordVectors = KeyedVectors.load('B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded.vectors', mmap='r')
+    print("Done loading classifier model. Beginning to train the model on the chancelley texts")
+    # classifierModel.train(trainingDataTexts, total_examples=len(trainingDataTexts), epochs=10)
+    print("Training the model on the chancellery texts done. Beginning to extract the word vectors of the model.")
 
-    if modelType == 2:
-        # Creating the Word2Vec model
-        # classifierModel = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2', binary=False,
-        #                                                                   encoding='unicode escape')
-        print("Loading predefined model with word2vec")
-        # classifierModel = Word2Vec.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2', encoding='unicode escape')
-        # classifierModel = KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2')
-        # try:
-        #     classifierModel = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded')
-        # except FileNotFoundError:
-        #     print("Pre-loaded model file not found. Please run preprocessing first.")
-        # lassifierModel = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded', encoding="unicode escape",
-        #                                                                  binary=False)
-        # classifierModel = gensim.models.KeyedVectors.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded', mmap='r')
-        # wikiModelWordVectors = KeyedVectors.load_word2vec_format(datapath(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2'), binary=False, encoding='UTF-8')
-        # wikiModelWordVectors.save('B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded.vectors')  # , binary=False)
-        wikiModelWordVectors = KeyedVectors.load('B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2_loaded.vectors', mmap='r')
-        print("Done loading classifier model. Beginning to train the model on the chancelley texts")
-        # classifierModel.train(trainingDataTexts, total_examples=len(trainingDataTexts), epochs=10)
-        print("Training the model on the chancellery texts done. Beginning to extract the word vectors of the model.")
+    # wordVectors = classifierModel.wv.vocab  # vs. classifierModel.wv
 
-        # wordVectors = classifierModel.wv.vocab  # vs. classifierModel.wv
+    print("Done extracting the word vectors. Beginning to filter the vectors for all words of the data set")
 
-        print("Done extracting the word vectors. Beginning to filter the vectors for all words of the data set")
+    # Extracting the empathy vectors from the model
+    empathyVectorDict = {}
+    empathyVectorList = []
+    for empathyWord in wordListEmpathy:
+        if empathyWord in wikiModelWordVectors:
+            empathyVectorDict[empathyWord] = wikiModelWordVectors[empathyWord]
+            empathyVectorList.append(wikiModelWordVectors[empathyWord])
 
-        # Extracting the empathy vectors from the model
-        empathyVectorDict = {}
-        empathyVectorList = []
-        for empathyWord in wordListEmpathy:
-            if empathyWord in wikiModelWordVectors:
-                empathyVectorDict[empathyWord] = wikiModelWordVectors[empathyWord]
-                empathyVectorList.append(wikiModelWordVectors[empathyWord])
+    trainingDataVectors = []
+    testDataVectors = []
+    empathyDistancesTrainingData = {}
+    empathyDistancesTestData = {}
+    minimumEmpathyDistancesTrainingData = []
+    minimumEmpathyDistancesTestData = []
+    averageEmpathyDistancesTrainingData = []
+    averageEmpathyDistancesTestData = []
 
-        trainingDataVectors = []
-        testDataVectors = []
-        empathyDistancesTrainingData = {}
-        empathyDistancesTestData = {}
-        minimumEmpathyDistancesTrainingData = []
-        minimumEmpathyDistancesTestData = []
-        averageEmpathyDistancesTrainingData = []
-        averageEmpathyDistancesTestData = []
+    print(f"Length of trainChancelleries: {len(trainChancelleries)}")
+    print(f"Length of chancelleriesSentencesIfEmpathyLabels: {len(chancelleriesSentencesIfEmpathyLabels)}")
+    chancelleriesTextsIfInTrainingData = []
+    trainingDataChancelleryNames = []
+    testDataChancelleryNames = []
+    for chancellery, sentencesList in chancelleriesSentencesIfEmpathyLabels.items():
+        if chancellery in trainChancelleries:
+            trainingDataChancelleryNames.append(chancellery)
+            trainingData.append(sentencesList)
+            trainingDataLabels.append(int(chancelleryEmpathyLabels[chancellery]))
+            chancelleriesTextsIfInTrainingData.append(chancelleriesTextsDict[chancellery])
+            textVectors = []
+            for lemmaGroup, lemmaCount in lemmaCountsPerChancellery[chancellery].items():
+                lemma, posTag = lemmaGroup
+                if lemma in wikiModelWordVectors:
+                    wordVector = wikiModelWordVectors[lemma]
+                    trainingDataVectors.append(wordVector)
+                    textVectors.append(wordVector)
+            cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
+            averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
+            # print(f"For training data calculated an averageCosineDistance of {averageCosineDistance} ")
+            empathyDistancesTrainingData[chancellery] = averageCosineDistance
+            averageEmpathyDistancesTrainingData.append(averageCosineDistance)
+            minimumEmpathyDistancesTrainingData.append(np.min(cosineDistancesToEmpathyVectors))  # np.min(averageCosineDistance))
+        elif chancellery in testChancelleries:
+            testDataChancelleryNames.append(chancellery)
+            testData.append(sentencesList)
+            testDataLabels.append(int(chancelleryEmpathyLabels[chancellery]))
+            textVectors = []
+            for lemmaGroup, lemmaCount in lemmaCountsPerChancellery[chancellery].items():
+                lemma, posTag = lemmaGroup
+                if lemma in wikiModelWordVectors:
+                    wordVector = wikiModelWordVectors[lemma]
+                    trainingDataVectors.append(wordVector)
+                    textVectors.append(wordVector)
+            cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
+            averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
+            # print(f"For test data calculated an averageCosineDistance of {averageCosineDistance} ")
+            empathyDistancesTrainingData[chancellery] = averageCosineDistance
+            averageEmpathyDistancesTestData.append(averageCosineDistance)
+            minimumEmpathyDistancesTestData.append(np.mean(cosineDistancesToEmpathyVectors))  # np.mean(averageCosineDistance))
+    print(
+        f"Length of minimumEmpathyDistancesTrainingData: {len(minimumEmpathyDistancesTrainingData)} | Length of averageEmpathyDistancesTrainingData: {len(averageEmpathyDistancesTrainingData)}")
+    trainingFeatures = np.column_stack(([minimumEmpathyDistancesTrainingData, averageEmpathyDistancesTrainingData]))
+    testFeatures = np.column_stack(([minimumEmpathyDistancesTestData, averageEmpathyDistancesTestData]))
 
-        # for chancellery, text in trainingDataSentences.items():
-        #     textVectors = []
-        #     for sentences in text:
-        #         for word in sentences:
-        #             wordVector = wikiModelWordVectors[word]
-        #             if word in wikiModelWordVectors:
-        #                 trainingDataVectors.append(wordVector)
-        #                 textVectors.append(wordVector)
-        #     cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
-        #     averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
-        #     empathyDistancesTrainingData[chancellery] = averageCosineDistance
-        #     minimumEmpathyDistancesTrainingData[chancellery] = np.min(averageCosineDistance)
-        #     averageEmpathyDistancesTrainingData[chancellery] = np.mean(averageCosineDistance)
+    ##########################
+    # Unsupervised approach ##
+    ##########################
+    print("The following are all empathy distances for the training & test data")
 
-        # # Extracting the vectors for the training data texts
-        # for chancellery, lemmaCountGroups in lemmaCountsPerChancellery.items():
-        #     textVectors = []
-        #     for lemmaGroup, lemmaCount in lemmaCountGroups.items():
-        #         lemma, posTag = lemmaGroup
-        #         if lemma in wikiModelWordVectors:
-        #             wordVector = wikiModelWordVectors[lemma]
-        #             trainingDataVectors.append(wordVector)
-        #             textVectors.append(wordVector)
-        #     cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
-        #     averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
-        #     empathyDistancesTrainingData[chancellery] = averageCosineDistance
-        #     minimumEmpathyDistancesTrainingData.append(np.min(averageCosineDistance))
-        #     averageEmpathyDistancesTrainingData.append(np.mean(averageCosineDistance))
-        #
-        # # Extracting the vectors for the test data texts
-        # for chancellery, lemmaCountGroups in lemmaCountsPerChancellery.items():
-        #     textVectors = []
-        #     for lemmaGroup, lemmaCount in lemmaCountGroups.items():
-        #         lemma, posTag = lemmaGroup
-        #         if lemma in wikiModelWordVectors:
-        #             wordVector = wikiModelWordVectors[lemma]
-        #             testDataVectors.append(wordVector)
-        #             textVectors.append(wordVector)
-        #     cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
-        #     averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
-        #     empathyDistancesTestData[chancellery] = averageCosineDistance
-        #     minimumEmpathyDistancesTestData.append(np.min(averageCosineDistance))
-        #     averageEmpathyDistancesTestData.append(np.mean(averageCosineDistance))
+    averageEmpathyDistancesFullDataset = averageEmpathyDistancesTrainingData + averageEmpathyDistancesTestData
+    minimumEmpathyDistancesFullDataset = minimumEmpathyDistancesTrainingData + minimumEmpathyDistancesTestData
+    fullDatasetLabels = trainingDataLabels + testDataLabels
+    fullDatasetChancelleryNames = trainingDataChancelleryNames + testDataChancelleryNames
 
-        print(f"Length of trainChancelleries: {len(trainChancelleries)}")
-        print(f"Length of chancelleriesSentencesIfEmpathyLabels: {len(chancelleriesSentencesIfEmpathyLabels)}")
-        chancelleriesTextsIfInTrainingData = []
-        trainingDataChancelleryNames = []
-        testDataChancelleryNames = []
-        for chancellery, sentencesList in chancelleriesSentencesIfEmpathyLabels.items():
-            if chancellery in trainChancelleries:
-                trainingDataChancelleryNames.append(chancellery)
-                trainingData.append(sentencesList)
-                trainingDataLabels.append(int(chancelleryEmpathyLabels[chancellery]))
-                chancelleriesTextsIfInTrainingData.append(chancelleriesTextsDict[chancellery])
-                textVectors = []
-                for lemmaGroup, lemmaCount in lemmaCountsPerChancellery[chancellery].items():
-                    lemma, posTag = lemmaGroup
-                    if lemma in wikiModelWordVectors:
-                        wordVector = wikiModelWordVectors[lemma]
-                        trainingDataVectors.append(wordVector)
-                        textVectors.append(wordVector)
-                cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
-                averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
-                # print(f"For training data calculated an averageCosineDistance of {averageCosineDistance} ")
-                empathyDistancesTrainingData[chancellery] = averageCosineDistance
-                averageEmpathyDistancesTrainingData.append(averageCosineDistance)
-                minimumEmpathyDistancesTrainingData.append(np.min(cosineDistancesToEmpathyVectors))  # np.min(averageCosineDistance))
-            elif chancellery in testChancelleries:
-                testDataChancelleryNames.append(chancellery)
-                testData.append(sentencesList)
-                testDataLabels.append(int(chancelleryEmpathyLabels[chancellery]))
-                textVectors = []
-                for lemmaGroup, lemmaCount in lemmaCountsPerChancellery[chancellery].items():
-                    lemma, posTag = lemmaGroup
-                    if lemma in wikiModelWordVectors:
-                        wordVector = wikiModelWordVectors[lemma]
-                        trainingDataVectors.append(wordVector)
-                        textVectors.append(wordVector)
-                cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
-                averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
-                # print(f"For test data calculated an averageCosineDistance of {averageCosineDistance} ")
-                empathyDistancesTrainingData[chancellery] = averageCosineDistance
-                averageEmpathyDistancesTestData.append(averageCosineDistance)
-                minimumEmpathyDistancesTestData.append(np.mean(cosineDistancesToEmpathyVectors))  # np.mean(averageCosineDistance))
-        print(
-            f"Length of minimumEmpathyDistancesTrainingData: {len(minimumEmpathyDistancesTrainingData)} | Length of averageEmpathyDistancesTrainingData: {len(averageEmpathyDistancesTrainingData)}")
-        trainingFeatures = np.column_stack(([minimumEmpathyDistancesTrainingData, averageEmpathyDistancesTrainingData]))
-        testFeatures = np.column_stack(([minimumEmpathyDistancesTestData, averageEmpathyDistancesTestData]))
+    emptyArray = []
+    for i in range(len(averageEmpathyDistancesFullDataset)):
+        emptyArray.append(0)
 
-        ##########################
-        # Unsupervised approach ##
-        ##########################
-        print("The following are all empathy distances for the training & test data")
+    # Creating a numpy array from both lists
+    featuresArray = np.column_stack(
+        (averageEmpathyDistancesFullDataset, emptyArray))  # np.column_stack((averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset))
 
-        averageEmpathyDistancesFullDataset = averageEmpathyDistancesTrainingData + averageEmpathyDistancesTestData
-        minimumEmpathyDistancesFullDataset = minimumEmpathyDistancesTrainingData + minimumEmpathyDistancesTestData
-        fullDatasetLabels = trainingDataLabels + testDataLabels
-        fullDatasetChancelleryNames = trainingDataChancelleryNames + testDataChancelleryNames
+    # Setting the number of clusters
+    kmeans = KMeans(n_clusters=2)
 
-        emptyArray = []
-        for i in range(len(averageEmpathyDistancesFullDataset)):
-            emptyArray.append(0)
+    # Fitting the algorithm
+    kmeans.fit(featuresArray)
 
-        # Creating a numpy array from both lists
-        featuresArray = np.column_stack(
-            (averageEmpathyDistancesFullDataset, emptyArray))  # np.column_stack((averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset))
+    # Predicting the clusters
+    predictedClusters = kmeans.predict(featuresArray)
 
-        # Setting the number of clusters
-        kmeans = KMeans(n_clusters=2)
+    print(f"Predicted clusters: {predictedClusters}")
 
-        # Fitting the algorithm
-        kmeans.fit(featuresArray)
+    cluster_labels = ['Cluster 1', 'Cluster 2', 'Cluster 3']
+    cluster_colors = {0: 'red', 1: 'green', 2: 'blue'}
+    colors = [cluster_colors[c] for c in predictedClusters]
+    plt.figure(figsize=(12, 6))
+    plt.scatter(averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset, c=colors)  # c=fullDatasetLabels, cmap='viridis')
+    legend_elements = [
+        Line2D([0], [0], marker="o", color="red", label="Cluster 0", markersize=10),
+        Line2D([0], [0], marker="o", color="green", label="Cluster 1", markersize=10)
+        # ([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
+    ]
+    plt.xlabel('Durchschnittliche Entfernung je Dokument zum Empathie-Vokabular')
+    plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
+    plt.legend(handles=legend_elements)
 
-        # Predicting the clusters
-        predictedClusters = kmeans.predict(featuresArray)
+    for i, label in enumerate(fullDatasetLabels):
+        plt.annotate(label, (averageEmpathyDistancesFullDataset[i], minimumEmpathyDistancesFullDataset[i]), xytext=(0, 8), textcoords='offset points')
 
-        print(f"Predicted clusters: {predictedClusters}")
+    # plt.show()
 
-        cluster_labels = ['Cluster 1', 'Cluster 2', 'Cluster 3']
-        cluster_colors = {0: 'red', 1: 'green', 2: 'blue'}
-        colors = [cluster_colors[c] for c in predictedClusters]
-        plt.figure(figsize=(12, 6))
-        plt.scatter(averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset, c=colors)  # c=fullDatasetLabels, cmap='viridis')
-        legend_elements = [
-            Line2D([0], [0], marker="o", color="red", label="Cluster 0", markersize=10),
-            Line2D([0], [0], marker="o", color="green", label="Cluster 1", markersize=10)
-            # ([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
-        ]
-        plt.xlabel('Durchschnittliche Entfernung je Dokument zum Empathie-Vokabular')
-        plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
-        plt.legend(handles=legend_elements)
+    fullDataset = list(zip(averageEmpathyDistancesFullDataset, fullDatasetLabels, fullDatasetChancelleryNames))
+    fullDatasetSorted = sorted(fullDataset, key=lambda x: x[0], reverse=True)
+    averageEmpathyDistancesFullDatasetSorted, fullDatasetChancelleryNamesSorted, fullDatasetLabelsSorted = zip(*fullDatasetSorted)
 
-        for i, label in enumerate(fullDatasetLabels):
-            plt.annotate(label, (averageEmpathyDistancesFullDataset[i], minimumEmpathyDistancesFullDataset[i]), xytext=(0, 8), textcoords='offset points')
+    # for i in range(len(averageEmpathyDistancesFullDataset)):
+    #     distance = averageEmpathyDistancesFullDataset[i]
+    #     label = fullDatasetLabels[i]
+    #     name = fullDatasetChancelleryNames[i]
+    #     print(name, label, distance)
+    for i in range(len(averageEmpathyDistancesFullDatasetSorted)):
+        distance = averageEmpathyDistancesFullDatasetSorted[i]
+        label = fullDatasetLabelsSorted[i]
+        name = fullDatasetChancelleryNamesSorted[i]
+        print(distance, name, label)
+    # TODO:  Grenze für gültige Empathie-Distanzen aus Clustering ableiten!
 
-        plt.show()
+    print(f"LENGTH OF chancelleriesSentencesAsStringsIfEmpathyAnnotation: {len(chancelleriesSentencesAsStringsIfEmpathyAnnotation)}")
+    print(f"First 3 Sentences: {chancelleriesSentencesAsStringsIfEmpathyAnnotation[0][:3]}")
+    print(f"Length of chancelleriesTextsIfInTrainingData: {len(chancelleriesTextsIfInTrainingData)}")
 
-        fullDataset = list(zip(averageEmpathyDistancesFullDataset, fullDatasetLabels, fullDatasetChancelleryNames))
-        fullDatasetSorted = sorted(fullDataset, key=lambda x: x[0], reverse=True)
-        averageEmpathyDistancesFullDatasetSorted, fullDatasetChancelleryNamesSorted, fullDatasetLabelsSorted = zip(*fullDatasetSorted)
+    ####################################
+    ## Supervised Approch: classifier ##
+    ####################################
 
-        # for i in range(len(averageEmpathyDistancesFullDataset)):
-        #     distance = averageEmpathyDistancesFullDataset[i]
-        #     label = fullDatasetLabels[i]
-        #     name = fullDatasetChancelleryNames[i]
-        #     print(name, label, distance)
-        for i in range(len(averageEmpathyDistancesFullDatasetSorted)):
-            distance = averageEmpathyDistancesFullDatasetSorted[i]
-            label = fullDatasetLabelsSorted[i]
-            name = fullDatasetChancelleryNamesSorted[i]
-            print(distance, name, label)
-        # TODO:  Grenze für gültige Empathie-Distanzen aus Clustering ableiten!
+    # Initializing a classifier
+    classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
 
-        print(f"LENGTH OF chancelleriesSentencesAsStringsIfEmpathyAnnotation: {len(chancelleriesSentencesAsStringsIfEmpathyAnnotation)}")
-        print(f"First 3 Sentences: {chancelleriesSentencesAsStringsIfEmpathyAnnotation[0][:3]}")
-        print(f"Length of chancelleriesTextsIfInTrainingData: {len(chancelleriesTextsIfInTrainingData)}")
+    # Training the classifier with the training data vectors and labels
+    classifier.fit(trainingFeatures, trainingDataLabels)
 
-        ####################################
-        ## Supervised Approch: classifier ##
-        ####################################
+    # Making predictions on the test data vectors
+    predictions = classifier.predict(testFeatures)
 
-        # Initializing a classifier
-        classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
+    # Evaluating the classifier's performance
+    # f1 = f1_score(trainingFeatures, predictions, average='weighted')
+    # print('F1 score:', f1)
+    accuracy = accuracy_score(testDataLabels, predictions)
+    recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
+    precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
+    print(f"Metrics of model approach {modelType}: Accuracy of {accuracy:.3f} | Sensitivity of {recall:.3f} | precision of {precision:.3f}")
 
-        # Training the classifier with the training data vectors and labels
-        classifier.fit(trainingFeatures, trainingDataLabels)
-
-        # Making predictions on the test data vectors
-        predictions = classifier.predict(testFeatures)
-
-        # Evaluating the classifier's performance
-        # f1 = f1_score(trainingFeatures, predictions, average='weighted')
-        # print('F1 score:', f1)
-        accuracy = accuracy_score(testDataLabels, predictions)
-        recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
-        precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
-        print(f"Metrics of model approach {modelType}: Accuracy of {accuracy:.3f} | Sensitivity of {recall:.3f} | precision of {precision:.3f}")
-
-        scores = cross_val_score(classifier, trainingFeatures, trainingDataLabels, cv=5)
-        print("Cross validation scores: {}".format(scores))
-        print("Average score: {:.2f}".format(scores.mean()))
+    scores = cross_val_score(classifier, trainingFeatures, trainingDataLabels, cv=5)
+    print("Cross validation scores: {}".format(scores))
+    print("Average score: {:.2f}".format(scores.mean()))
 
 
 readFilesFromDisk = None
