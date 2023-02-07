@@ -151,6 +151,7 @@ chancelleriesSyntacticDependencies = {}
 
 
 def preprocessing(corpus_path):
+    print("\n######## Beginning of Preprocessing #########\n")
     valuableFeatureIds = ["F8", "F22", "F23", "F24"]
 
     with open(datapath(corpus_path), 'r', encoding='utf-8') as fileToLoad:  # former: encoding='unicode_escape'
@@ -339,7 +340,7 @@ def preprocessing(corpus_path):
                             for token in doc:
                                 word = token.text
                                 lemma = token.lemma_
-                                partOfSpeechTag = token.pos_
+                                partOfSpeechTag = token.tag_  # token.pos_
                                 currentChancelleryPosTagCount[partOfSpeechTag] = currentChancelleryPosTagCount.get(partOfSpeechTag, 0) + 1
                                 lemmasWithPartsOfSpeech.append([lemma, partOfSpeechTag])
                                 tokenWithSyntacticDependencies = {
@@ -459,6 +460,7 @@ def preprocessing(corpus_path):
         print("\t\tNLP and pos-tagging:", timeForNlpAndPosTagging, "seconds.")
         print("\t\tCounting the lemmas:", timeForCountingLemmas, "seconds.")
 
+    print("\n######## Finished Preprocessing #########\n")
     return chancelleryBlocks
 
 
@@ -503,7 +505,8 @@ startPreprocessing = time.time()
 
 def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lemmaCountsPerChancellery, chancelleriesPosTagCounts, chancelleriesSyntacticDependencies,
                            chancelleriesSentences):
-    print("\n\nLINGUISTIC EXPERIMENTS:")
+    print("\n######## Beginning of linguistic experiments #########\n")
+    print("\n######## Beginning of experiment 1: word density #########\n")
     #####################################
     #####################################
     #           Word density            #
@@ -604,23 +607,23 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     # Predicting the clusters
     predictedClusters = kmeans.predict(featuresArray)
 
-    cluster_colors = {0: 'red', 1: 'green', 2: 'blue'}
-    colors = [cluster_colors[c] for c in predictedClusters]
-    plt.figure(figsize=(12, 6))
-    plt.scatter(wordDensitiesCumulated, emptyArray, c=colors)  # c=fullDatasetLabels, cmap='viridis')
-
+    # TODO: Nach Finalisierung der Arbeit unteren Block wieder einkommentieren
+    # cluster_colors = {0: 'red', 1: 'green', 2: 'blue'}
+    # colors = [cluster_colors[c] for c in predictedClusters]
+    # plt.figure(figsize=(12, 6))
+    # plt.scatter(wordDensitiesCumulated, emptyArray, c=colors)  # c=fullDatasetLabels, cmap='viridis') # TODO: Nach Finalisierung der Arbeit hier wieder einkommentieren
     # for i, label in enumerate(fullDatasetLabels):
     #     plt.annotate(label, (averageEmpathyDistancesFullDataset[i], minimumEmpathyDistancesFullDataset[i]), xytext=(0, 8), textcoords='offset points')
 
-    legend_elements = [
-        Line2D([0], [0], marker="o", color="blue", label="Cluster 0", markersize=10),
-        Line2D([0], [0], marker="o", color="red", label="Cluster 1", markersize=10),
-        Line2D([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
-    ]
-    plt.xlabel('Durchschnittliche Wortdichte')
+    # legend_elements = [
+    #     Line2D([0], [0], marker="o", color="blue", label="Cluster 0", markersize=10),
+    #     Line2D([0], [0], marker="o", color="red", label="Cluster 1", markersize=10),
+    #     Line2D([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
+    # ]
+    # plt.xlabel('Durchschnittliche Wortdichte')
 
-    # plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
-    plt.legend(handles=legend_elements)
+    ## plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
+    # plt.legend(handles=legend_elements)
 
     # plt.show()
 
@@ -689,6 +692,8 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     #############################################
     #############################################
 
+    print("\n######## Beginning of preparation block: word count #########\n")
+
     # TODO: Entweder hier ein Speichern und Laden dieser Daten aus preprocessing einbauen oder diesen Block aus dem Code entfernen
     # Sort the dictionary of a cumulated word count of all chancelleries
     sortedWordCountsCumulated = sorted(wordCountsCumulated.items(), key=lambda item: item[1], reverse=True)
@@ -748,6 +753,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     ####################################
     # Comparison with a frequency list #
     ####################################
+    print("\n######## Beginning of experiment 2: comparison with a frequency list #########\n")
 
     # Loading the frequency list as a dataframe from file
     dataframeDerewo = pd.read_csv(r'B:\Python-Projekte\Masterarbeit\DeReKo-2014-II-MainArchive-STT.100000.freq', sep='\t', header=None, names=['word', 'lemma', 'pos', 'freq'])
@@ -766,12 +772,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     # Creating a dictionary from the list
     freqDictDerewo = {}
     for lemma, pos, freq in freqListDerewo:
-        # freqDictDerewo[(lemma, pos)] = freq
-        if lemma in freqDictDerewo:
-            if freqDictDerewo[lemma] < freq:
-                freqDictDerewo[lemma] = freq
-        else:
-            freqDictDerewo[lemma] = freq
+        freqDictDerewo[(lemma, pos)] = freq
+        # if lemma in freqDictDerewo:
+        #     if freqDictDerewo[lemma] < freq:
+        #         freqDictDerewo[lemma] = freq
+        # else:
+        #     freqDictDerewo[lemma] = freq
 
     print(f"\nLength of freqDictDerewo: {len(freqDictDerewo.keys())}")
 
@@ -801,11 +807,11 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             lemmaCount = lemmaGroup[1]
             lemmaFrequencySums += lemmaCount
             # If the chancellery's lemma is also in the dictionary of Derewo Frequencies
-            if lemma in freqDictDerewo:
+            if lemmaPosGroup in freqDictDerewo:
                 # freqDictLemmaPos = freqDictDerewo[lemma][0]
                 # freqDictLemmaCount = freqDictDerewo[lemma][1]
                 # if posTag != "" and posTag == freqDictLemmaPos:
-                diff = abs(lemmaCount - freqDictDerewo[lemma])  # TODO: Hier wieder auf lemmaPosGroup ändern, falls doch noch Abgleich mit PoS-Tags der Frequenzwortliste
+                diff = abs(lemmaCount - freqDictDerewo[lemmaPosGroup])  # TODO: Hier wieder auf lemmaPosGroup ändern, falls doch noch Abgleich mit PoS-Tags der Frequenzwortliste
                 totalDiff += diff
             else:
                 # If the current lemma is not in the frequency list, it's considered as an exception word
@@ -889,6 +895,8 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     ##        Similarities with an empathy list   ##
     ################################################
     ################################################
+
+    print("\n######## Beginning of experiment 3: calculating similarities with an empathy list #########\n")
 
     # Dictionary for storing the ratio of empathy words to all words for chancellery
     empathyRatios = {}
@@ -978,6 +986,8 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     #####################################
     #####################################
 
+    print("\n######## Beginning of experiment 4: word density #########\n")
+
     print("\nLength of chancelleries pos tag count dict:", len(chancelleriesPosTagCounts.items()))
 
     chancelleriesAdjectivesCount = {}
@@ -989,7 +999,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         for posTag, posTagCount in posCountBlock.items():
             posTagRatio = round((posTagCount / posTagCountsTotal) * 100, 3)
             chancelleriesPosTagCounts[chancellery][posTag] = [posTagCount, posTagRatio]
-            if posTag == "ADJ":
+            if posTag == "ADJA" or posTag == "ADJD":
                 chancelleriesAdjectivesCount[chancellery] = [posTagCount, posTagRatio]
             if chancellery == "gansel":
                 print(f"posTag: {posTag} | posTagCount: {posTagCount} | posTagCountsTotal: {posTagCountsTotal} | posTagRatio: {posTagRatio}")
@@ -1018,11 +1028,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         for chancellery, chancelleryEmpathyRatio in empathyRatiosSorted:
             if chancellery == chancelleryBlock[0]:
                 print(f" {chancellery} | adjectiveRatio: {chancelleryAdjectiveRatio:.3f} | chancelleryEmpathyData: {chancelleryEmpathyRatio:.4f} ")
-
-    # Calculating the three quantiles for the three adjective ratio groups
-    q1 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.25)
-    q2 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.5)
-    q3 = np.quantile(chancelleriesAdjectiveCountRatioCumulated, 0.75)
 
     adjectivePercentiles = np.percentile(chancelleriesAdjectiveCountRatioCumulated, [33.33, 66.66])
     # adjectivePercentiles = np.percentile(chancelleriesAdjectiveCountRatioCumulated, [50])
@@ -1097,7 +1102,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
         print(f"{chancellery}: {count} | {chancelleryAdjectiveRatio} | {empathyAnnotation}")
 
-    print(f"There are {len(chancelleriesWithRecognizedEmpathy)} chancelleries with a recognized empathy.")
+    # print(f"There are {len(chancelleriesWithRecognizedEmpathy)} chancelleries with a recognized empathy.")
 
     adjectiveRatioAccuracy = (adjectiveRatioTruePositives + adjectiveRatioTrueNegatives) / (
             adjectiveRatioTruePositives + adjectiveRatioTrueNegatives + adjectiveRatioFalsePositives + adjectiveRatioFalseNegatives)
@@ -1113,6 +1118,9 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     #############################################
     ## Embeddings, clustering and a classifier ##
     #############################################
+
+    print("\n######## Beginning of experiment 5: embeddings #########\n")
+    print("######## Part 1: unsupervised approach #########\n")
 
     from sklearn.svm import SVC
     chancelleriesTexts = []
@@ -1173,16 +1181,13 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             chancelleriesTextsDict[chancelleryName] = chancelleryText
 
     print("Length of chancelleryTexts:", len(chancelleriesTexts))
-    # print("First 100 chars of first text:\n", chancelleriesTexts[0][:100])
-    # print(chancelleriesTexts)
 
-    from gensim.models import Word2Vec
     from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
     from sklearn.metrics.pairwise import cosine_similarity, cosine_distances
-    from sklearn.model_selection import train_test_split
 
     # Splitting the dataset and initializing the variables with the respective dataset split
     trainingSetSize = 0.8
+    datasetSplit = False
 
     datasetSize = int(len(chancelleriesTexts))
     trainingDataSplit = round(datasetSize * trainingSetSize)
@@ -1191,8 +1196,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     datasetSentencesSize = int(len(chancelleriesSentences))
     trainingDataSentencesSplit = round(datasetSentencesSize * trainingSetSize)
     testDataSentencesSplit = round(datasetSentencesSize * trainingSetSize)
-
-    datasetSplit = True
 
     trainingDataTexts = {}
     trainingDataLabels = {}
@@ -1224,28 +1227,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
                 # testDataLabels.append(chancelleryEmpathyLabels[chancellery])
     else:
         trainChancelleries = chancelleryNames
+        testChancelleries = chancelleryNames
         for chancellery, sentencesList in chancelleriesSentencesIfEmpathyLabels.items():
             trainingData.append(sentencesList)
             testData.append(sentencesList)
 
     print(f"Overall dataset was split in a training data size of {len(trainingData)} with {len(trainingDataLabels)} training labels")
-
-    # for key, value in chancelleriesSentences.items():
-    #     # Wähle zufällig eine Anzahl an Elementen aus der Liste aus, die dem Prozentsatz der Testdaten entspricht
-    #     test_count = int(len(value) * testsetSize)
-    #     test_indices = random.sample(range(len(value)), test_count)
-    #     # Trenne die Liste in diejenigen Elemente, die als Testdaten verwendet werden, und diejenigen, die als Trainingsdaten verwendet werden
-    #     test_elements = [value[i] for i in test_indices]
-    #     train_elements = [elem for i, elem in enumerate(value) if i not in test_indices]
-    #     # Füge die getrennten Elemente den entsprechenden Dictionaries hinzu
-    #
-    #     trainingDataSentences[key] = train_elements
-    #     testDataSentences[key] = test_elements
-    nbOfSentencesToBePrinted = 3
-    print(f"Printing the first {nbOfSentencesToBePrinted} sentences of training Data")
-    for text in trainingDataTexts:
-        print(text.split(". ")[:nbOfSentencesToBePrinted])
-        # print(text)
 
     # Creating the Word2Vec model
     # classifierModel = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2', binary=False,
@@ -1285,8 +1272,10 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     empathyDistancesTestData = {}
     minimumEmpathyDistancesTrainingData = []
     minimumEmpathyDistancesTestData = []
+    minimumEmpathyDistancesFullData = []
     averageEmpathyDistancesTrainingData = []
     averageEmpathyDistancesTestData = []
+    averageEmpathyDistancesFullData = []
 
     print(f"Length of trainChancelleries: {len(trainChancelleries)}")
     print(f"Length of chancelleriesSentencesIfEmpathyLabels: {len(chancelleriesSentencesIfEmpathyLabels)}")
@@ -1329,10 +1318,32 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             empathyDistancesTrainingData[chancellery] = averageCosineDistance
             averageEmpathyDistancesTestData.append(averageCosineDistance)
             minimumEmpathyDistancesTestData.append(np.mean(cosineDistancesToEmpathyVectors))  # np.mean(averageCosineDistance))
+
+        textVectors = []
+        for lemmaGroup, lemmaCount in lemmaCountsPerChancellery[chancellery].items():
+            lemma, posTag = lemmaGroup
+            if lemma in wikiModelWordVectors:
+                wordVector = wikiModelWordVectors[lemma]
+                trainingDataVectors.append(wordVector)
+                textVectors.append(wordVector)
+        cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
+        averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
+        averageEmpathyDistancesFullData.append(averageCosineDistance)
+        minimumEmpathyDistancesFullData.append(np.mean(cosineDistancesToEmpathyVectors))
+
     print(
         f"Length of minimumEmpathyDistancesTrainingData: {len(minimumEmpathyDistancesTrainingData)} | Length of averageEmpathyDistancesTrainingData: {len(averageEmpathyDistancesTrainingData)}")
     trainingFeatures = np.column_stack(([minimumEmpathyDistancesTrainingData, averageEmpathyDistancesTrainingData]))
     testFeatures = np.column_stack(([minimumEmpathyDistancesTestData, averageEmpathyDistancesTestData]))
+    fullFeatures = np.column_stack(([minimumEmpathyDistancesFullData, averageEmpathyDistancesFullData]))
+    print(f"\nFull features:\n{fullFeatures}")
+
+    if datasetSplit:
+        fullDatasetLabels = trainingDataLabels + testDataLabels
+    if not datasetSplit:
+        testFeatures = trainingFeatures
+        testDataLabels = trainingDataLabels
+        fullDatasetLabels = trainingDataLabels
 
     ##########################
     # Unsupervised approach ##
@@ -1341,7 +1352,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     averageEmpathyDistancesFullDataset = averageEmpathyDistancesTrainingData + averageEmpathyDistancesTestData
     minimumEmpathyDistancesFullDataset = minimumEmpathyDistancesTrainingData + minimumEmpathyDistancesTestData
-    fullDatasetLabels = trainingDataLabels + testDataLabels
+
     fullDatasetChancelleryNames = trainingDataChancelleryNames + testDataChancelleryNames
 
     emptyArray = []
@@ -1349,8 +1360,10 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         emptyArray.append(0)
 
     # Creating a numpy array from both lists
-    featuresArray = np.column_stack(
-        (averageEmpathyDistancesFullDataset, emptyArray))  # np.column_stack((averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset))
+    # featuresArray = np.column_stack((averageEmpathyDistancesFullDataset, emptyArray))
+    featuresArray = np.column_stack((minimumEmpathyDistancesFullDataset, emptyArray))
+
+    # np.column_stack((averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset))
 
     # Setting the number of clusters
     kmeans = KMeans(n_clusters=2)
@@ -1361,17 +1374,32 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     # Predicting the clusters
     predictedClusters = kmeans.predict(featuresArray)
 
-    print(f"Predicted clusters: {predictedClusters}")
+    sizeEmpathyCluster0 = list(predictedClusters).count(0)  # sum(i for i in predictedClusters if i == 0)
+    sizeEmpathyCluster1 = list(predictedClusters).count(1)
+    sizeEmpathyCluster2 = list(predictedClusters).count(2)
 
-    cluster_labels = ['Cluster 1', 'Cluster 2', 'Cluster 3']
-    cluster_colors = {0: 'red', 1: 'green', 2: 'blue'}
+    # Ziel: blau rot grün
+    # cluster_colors = {0: 'blue', 1: 'green', 2: 'red'}  # grün blau rot
+    # cluster_colors = {0: 'blue', 1: 'red', 2: 'green'} # blau grün rot
+    # cluster_colors = {0: 'red', 1: 'green', 2: 'blue'} # grün rot blau
+    cluster_colors = {0: 'red', 1: 'blue', 2: 'green'}  # BLAU ROT GRÜN
+    # cluster_colors = {0: 'green', 1: 'red', 2: 'blue'}
+    # cluster_colors = {0: 'green', 1: 'blue', 2: 'red'}
+    print(f"Predicted clusters: {predictedClusters}")
+    print(f"These are the following empathy cluster sizes:\n")
+    print(f"1: {sizeEmpathyCluster0} ({cluster_colors[0]}) | 1: {sizeEmpathyCluster1} ({cluster_colors[1]}) | 0: {sizeEmpathyCluster2} ({cluster_colors[2]})")
+
     colors = [cluster_colors[c] for c in predictedClusters]
     plt.figure(figsize=(12, 6))
     plt.scatter(averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset, c=colors)  # c=fullDatasetLabels, cmap='viridis')
     legend_elements = [
-        Line2D([0], [0], marker="o", color="red", label="Cluster 0", markersize=10),
-        Line2D([0], [0], marker="o", color="green", label="Cluster 1", markersize=10)
-        # ([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
+        Line2D([0], [0], marker="o", color=cluster_colors[1], label="Cluster 0", markersize=10),
+        Line2D([0], [0], marker="o", color=cluster_colors[0], label="Cluster 1", markersize=10),
+        Line2D([0], [0], marker="o", color=cluster_colors[2], label="Cluster 2", markersize=10)
+    ]
+    legend_elements = [
+        Line2D([0], [0], marker="o", color="blue", label="Cluster 0", markersize=10),
+        Line2D([0], [0], marker="o", color="red", label="Cluster 1", markersize=10)
     ]
     plt.xlabel('Durchschnittliche Entfernung je Dokument zum Empathie-Vokabular')
     plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
@@ -1386,28 +1414,23 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     fullDatasetSorted = sorted(fullDataset, key=lambda x: x[0], reverse=True)
     averageEmpathyDistancesFullDatasetSorted, fullDatasetChancelleryNamesSorted, fullDatasetLabelsSorted = zip(*fullDatasetSorted)
 
-    # for i in range(len(averageEmpathyDistancesFullDataset)):
-    #     distance = averageEmpathyDistancesFullDataset[i]
-    #     label = fullDatasetLabels[i]
-    #     name = fullDatasetChancelleryNames[i]
-    #     print(name, label, distance)
-    for i in range(len(averageEmpathyDistancesFullDatasetSorted)):
-        distance = averageEmpathyDistancesFullDatasetSorted[i]
-        label = fullDatasetLabelsSorted[i]
-        name = fullDatasetChancelleryNamesSorted[i]
-        print(distance, name, label)
-    # TODO:  Grenze für gültige Empathie-Distanzen aus Clustering ableiten!
+    for i in range(len(averageEmpathyDistancesFullDataset)):
+        distance = averageEmpathyDistancesFullDataset[i]
+        label = fullDatasetLabels[i]
+        name = fullDatasetChancelleryNames[i]
+        # print(name, label, distance)
 
-    print(f"LENGTH OF chancelleriesSentencesAsStringsIfEmpathyAnnotation: {len(chancelleriesSentencesAsStringsIfEmpathyAnnotation)}")
-    print(f"First 3 Sentences: {chancelleriesSentencesAsStringsIfEmpathyAnnotation[0][:3]}")
     print(f"Length of chancelleriesTextsIfInTrainingData: {len(chancelleriesTextsIfInTrainingData)}")
 
     ####################################
     ## Supervised Approch: classifier ##
     ####################################
 
+    print("\n######## Part 2: supervised approach #########\n")
+
     # Initializing a classifier
-    classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
+    # classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
+    classifier = SVC(kernel='rbf', C=1, probability=True)
 
     # Training the classifier with the training data vectors and labels
     classifier.fit(trainingFeatures, trainingDataLabels)
@@ -1416,14 +1439,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     predictions = classifier.predict(testFeatures)
 
     # Evaluating the classifier's performance
-    # f1 = f1_score(trainingFeatures, predictions, average='weighted')
-    # print('F1 score:', f1)
     accuracy = accuracy_score(testDataLabels, predictions)
     recall = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
     precision = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
-    print(f"Metrics of model approach {modelType}: Accuracy of {accuracy:.3f} | Sensitivity of {recall:.3f} | precision of {precision:.3f}")
 
-    scores = cross_val_score(classifier, trainingFeatures, trainingDataLabels, cv=5)
+    print(f"Metrics of supervised learning approach: Accuracy of {accuracy:.3f} | Sensitivity of {recall:.3f} | precision of {precision:.3f}")
+    scores = cross_val_score(classifier, fullFeatures, fullDatasetLabels, cv=5)
     print("Cross validation scores: {}".format(scores))
     print("Average score: {:.2f}".format(scores.mean()))
 
