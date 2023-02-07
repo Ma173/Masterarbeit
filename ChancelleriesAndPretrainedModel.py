@@ -1,33 +1,25 @@
+import json
 import pickle
 import random
 import time
 from datetime import datetime
+
 import gensim
 import nltk
 import numpy as np
 import pandas as pd
-import seaborn as sns
 import spacy
-import winsound
 from bs4 import BeautifulSoup
 from gensim import utils
-from gensim.models import KeyedVectors, Doc2Vec
+from gensim.models import KeyedVectors
 from gensim.test.utils import datapath
 from joblib import Parallel
 from matplotlib import pyplot as plt
 from matplotlib.lines import Line2D
-from nltk import word_tokenize
 from nltk.corpus import stopwords
 from sklearn.cluster import KMeans
-from sklearn.manifold import TSNE
-from gensim.corpora import Dictionary
-from gensim.models import TfidfModel
-from sklearn.feature_extraction.text import TfidfVectorizer
-import json
-
-from sklearn.metrics import recall_score, precision_score, f1_score
+from sklearn.metrics import recall_score, precision_score
 from sklearn.model_selection import cross_val_score
-from spacy.pipeline import EntityRuler
 
 stopWords = set(stopwords.words('german'))
 
@@ -157,10 +149,9 @@ def preprocessing(corpus_path):
     with open(datapath(corpus_path), 'r', encoding='utf-8') as fileToLoad:  # former: encoding='unicode_escape'
         mainDataRaw = fileToLoad.read()
 
-    mainDataRaw = mainDataRaw.rstrip('\n')  # mainDataRaw = mainDataRaw.replace("\n", "")
-    # TODO: Wie entferne ich alle Newline-Characters ("\n"), aber NICHT die regulären Zeilenumbrüche?
+    mainDataRaw = mainDataRaw.rstrip('\n')
 
-    chancelleryBlocksRaw = mainDataRaw.split("__________")  # vorher: encoding="utf-8"
+    chancelleryBlocksRaw = mainDataRaw.split("__________")
     print("After splitting at the underscore marking the main data contains", len(chancelleryBlocksRaw), "chancellery blocks")
 
     def print_chancellery_blocks():
@@ -607,25 +598,22 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     # Predicting the clusters
     predictedClusters = kmeans.predict(featuresArray)
 
-    # TODO: Nach Finalisierung der Arbeit unteren Block wieder einkommentieren
-    # cluster_colors = {0: 'red', 1: 'green', 2: 'blue'}
-    # colors = [cluster_colors[c] for c in predictedClusters]
-    # plt.figure(figsize=(12, 6))
-    # plt.scatter(wordDensitiesCumulated, emptyArray, c=colors)  # c=fullDatasetLabels, cmap='viridis') # TODO: Nach Finalisierung der Arbeit hier wieder einkommentieren
-    # for i, label in enumerate(fullDatasetLabels):
-    #     plt.annotate(label, (averageEmpathyDistancesFullDataset[i], minimumEmpathyDistancesFullDataset[i]), xytext=(0, 8), textcoords='offset points')
+    cluster_colors = {0: 'red', 1: 'green', 2: 'blue'}
+    colors = [cluster_colors[c] for c in predictedClusters]
+    plt.figure(figsize=(12, 6))
+    plt.scatter(wordDensitiesCumulated, emptyArray, c=colors)  # c=fullDatasetLabels, cmap='viridis')
 
-    # legend_elements = [
-    #     Line2D([0], [0], marker="o", color="blue", label="Cluster 0", markersize=10),
-    #     Line2D([0], [0], marker="o", color="red", label="Cluster 1", markersize=10),
-    #     Line2D([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
-    # ]
-    # plt.xlabel('Durchschnittliche Wortdichte')
+    legend_elements = [
+        Line2D([0], [0], marker="o", color="blue", label="Cluster 0", markersize=10),
+        Line2D([0], [0], marker="o", color="red", label="Cluster 1", markersize=10),
+        Line2D([0], [0], marker="o", color="green", label="Cluster 2", markersize=10)
+    ]
+    plt.xlabel('Durchschnittliche Wortdichte')
 
-    ## plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
-    # plt.legend(handles=legend_elements)
+    # plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
+    plt.legend(handles=legend_elements)
 
-    # plt.show()
+    plt.show()
 
     # get values for each cluster
     # cluster0Values = np.array([wordDensitiesCumulated[i] for i in range(len(wordDensitiesCumulated)) if predictedClusters[i] == 0])
@@ -694,7 +682,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     print("\n######## Beginning of preparation block: word count #########\n")
 
-    # TODO: Entweder hier ein Speichern und Laden dieser Daten aus preprocessing einbauen oder diesen Block aus dem Code entfernen
     # Sort the dictionary of a cumulated word count of all chancelleries
     sortedWordCountsCumulated = sorted(wordCountsCumulated.items(), key=lambda item: item[1], reverse=True)
     if sortedWordCountsCumulated:
@@ -808,10 +795,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             lemmaFrequencySums += lemmaCount
             # If the chancellery's lemma is also in the dictionary of Derewo Frequencies
             if lemmaPosGroup in freqDictDerewo:
-                # freqDictLemmaPos = freqDictDerewo[lemma][0]
-                # freqDictLemmaCount = freqDictDerewo[lemma][1]
-                # if posTag != "" and posTag == freqDictLemmaPos:
-                diff = abs(lemmaCount - freqDictDerewo[lemmaPosGroup])  # TODO: Hier wieder auf lemmaPosGroup ändern, falls doch noch Abgleich mit PoS-Tags der Frequenzwortliste
+                diff = abs(lemmaCount - freqDictDerewo[lemmaPosGroup])
                 totalDiff += diff
             else:
                 # If the current lemma is not in the frequency list, it's considered as an exception word
@@ -1182,8 +1166,8 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     print("Length of chancelleryTexts:", len(chancelleriesTexts))
 
-    from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-    from sklearn.metrics.pairwise import cosine_similarity, cosine_distances
+    from sklearn.metrics import accuracy_score
+    from sklearn.metrics.pairwise import cosine_distances
 
     # Splitting the dataset and initializing the variables with the respective dataset split
     trainingSetSize = 0.8
@@ -1408,7 +1392,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     for i, label in enumerate(fullDatasetLabels):
         plt.annotate(label, (averageEmpathyDistancesFullDataset[i], minimumEmpathyDistancesFullDataset[i]), xytext=(0, 8), textcoords='offset points')
 
-    # plt.show()
+    plt.show()
 
     fullDataset = list(zip(averageEmpathyDistancesFullDataset, fullDatasetLabels, fullDatasetChancelleryNames))
     fullDatasetSorted = sorted(fullDataset, key=lambda x: x[0], reverse=True)
@@ -1450,7 +1434,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
 
 readFilesFromDisk = None
-readFilesFromDiskInput = ""  # input("Read files from disk? If not, enter 'n'. Else just press Enter") # TODO: Hier input wieder einkommentieren, sobald Ergebnisteil abgeschlossen
+readFilesFromDiskInput = input("Read files from disk? If not, enter 'n'. Else just press Enter")
 if "n" in readFilesFromDiskInput.lower():
     readFilesFromDisk = False
 else:
