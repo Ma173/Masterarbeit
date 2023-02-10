@@ -613,7 +613,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     # plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
     plt.legend(handles=legend_elements)
 
-    # plt.show()
+    plt.show()
 
     # get values for each cluster
     # cluster0Values = np.array([wordDensitiesCumulated[i] for i in range(len(wordDensitiesCumulated)) if predictedClusters[i] == 0])
@@ -1464,7 +1464,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
 
 readFilesFromDisk = None
-readFilesFromDiskInput = ""  # input("Read files from disk? If not, enter 'n'. Else just press Enter")
+readFilesFromDiskInput = input("Read files from disk? If not, enter 'n'. Else just press Enter")
 if "n" in readFilesFromDiskInput.lower():
     readFilesFromDisk = False
 else:
