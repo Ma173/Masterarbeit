@@ -18,7 +18,7 @@ from matplotlib import pyplot as plt
 from matplotlib.lines import Line2D
 from nltk.corpus import stopwords
 from sklearn.cluster import KMeans
-from sklearn.metrics import recall_score, precision_score
+from sklearn.metrics import recall_score, precision_score, f1_score
 from sklearn.model_selection import cross_val_score
 
 stopWords = set(stopwords.words('german'))
@@ -613,7 +613,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     # plt.ylabel('Minimum übber alle ermittelten Distanzen zum Empathie-Vokabular je Dokument')
     plt.legend(handles=legend_elements)
 
-    plt.show()
+    # plt.show()
 
     # get values for each cluster
     # cluster0Values = np.array([wordDensitiesCumulated[i] for i in range(len(wordDensitiesCumulated)) if predictedClusters[i] == 0])
@@ -1218,9 +1218,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     print(f"Overall dataset was split in a training data size of {len(trainingData)} with {len(trainingDataLabels)} training labels")
 
-    # Creating the Word2Vec model
-    # classifierModel = gensim.models.KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2', binary=False,
-    #                                                                   encoding='unicode escape')
     print("Loading predefined model with word2vec")
     # classifierModel = Word2Vec.load(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2', encoding='unicode escape')
     # classifierModel = KeyedVectors.load_word2vec_format(r'B:/Python-Projekte/Masterarbeit/Models/dewiki_20180420_100d.txt.bz2')
@@ -1301,7 +1298,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
             # print(f"For test data calculated an averageCosineDistance of {averageCosineDistance} ")
             empathyDistancesTrainingData[chancellery] = averageCosineDistance
             averageEmpathyDistancesTestData.append(averageCosineDistance)
-            minimumEmpathyDistancesTestData.append(np.mean(cosineDistancesToEmpathyVectors))  # np.mean(averageCosineDistance))
+            minimumEmpathyDistancesTestData.append(np.min(cosineDistancesToEmpathyVectors))  # np.mean(averageCosineDistance))
 
         textVectors = []
         for lemmaGroup, lemmaCount in lemmaCountsPerChancellery[chancellery].items():
@@ -1313,7 +1310,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         cosineDistancesToEmpathyVectors = cosine_distances(textVectors, empathyVectorList)
         averageCosineDistance = cosineDistancesToEmpathyVectors.mean()
         averageEmpathyDistancesFullData.append(averageCosineDistance)
-        minimumEmpathyDistancesFullData.append(np.mean(cosineDistancesToEmpathyVectors))
+        minimumEmpathyDistancesFullData.append(np.min(cosineDistancesToEmpathyVectors))
 
     print(
         f"Length of minimumEmpathyDistancesTrainingData: {len(minimumEmpathyDistancesTrainingData)} | Length of averageEmpathyDistancesTrainingData: {len(averageEmpathyDistancesTrainingData)}")
@@ -1344,8 +1341,8 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         emptyArray.append(0)
 
     # Creating a numpy array from both lists
-    # featuresArray = np.column_stack((averageEmpathyDistancesFullDataset, emptyArray))
-    featuresArray = np.column_stack((minimumEmpathyDistancesFullDataset, emptyArray))
+    featuresArray = np.column_stack((averageEmpathyDistancesFullDataset, emptyArray))
+    # featuresArray = np.column_stack((minimumEmpathyDistancesFullDataset, emptyArray))
 
     # np.column_stack((averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset))
 
@@ -1376,7 +1373,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     colors = [cluster_colors[c] for c in predictedClusters]
     plt.figure(figsize=(12, 6))
     plt.scatter(averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset, c=colors)  # c=fullDatasetLabels, cmap='viridis')
-    legend_elements = [
+    legend_elements_old = [
         Line2D([0], [0], marker="o", color=cluster_colors[1], label="Cluster 0", markersize=10),
         Line2D([0], [0], marker="o", color=cluster_colors[0], label="Cluster 1", markersize=10),
         Line2D([0], [0], marker="o", color=cluster_colors[2], label="Cluster 2", markersize=10)
@@ -1406,11 +1403,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     print(f"Length of chancelleriesTextsIfInTrainingData: {len(chancelleriesTextsIfInTrainingData)}")
 
-    ####################################
-    ## Supervised Approch: classifier ##
-    ####################################
+    ######################################
+    ## Supervised Approch: classifier 1 ##
+    ######################################
 
-    print("\n######## Part 2: supervised approach #########\n")
+    print("\n######## Part 2: supervised approach #########")
+    print("\n######## Part 2.1: SVM #########\n")
 
     # Initializing a classifier
     # classifier = SVC(kernel='linear', C=1, probability=True)  # , random_state=42)
@@ -1432,9 +1430,41 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     print("Cross validation scores: {}".format(scores))
     print("Average score: {:.2f}".format(scores.mean()))
 
+    print("Calculated the following F1 scores:")
+    f1score_macro = f1_score(testDataLabels, predictions, average='macro')
+    f1score_weighted = f1_score(testDataLabels, predictions, average='weighted')
+    f1score_micro = f1_score(testDataLabels, predictions, average='micro')
+    print(f"f1score_macro: {f1score_macro:.2f}\nf1score_weighted: {f1score_weighted:.2f}\n1score_micro: {f1score_micro:.2f}")
+
+    ######################################
+    ## Supervised Approch: classifier 2 ##
+    ######################################
+    from sklearn.naive_bayes import MultinomialNB
+    from sklearn.naive_bayes import GaussianNB
+
+    print("\n######## Part 2.2: Naive Bayes #########\n")
+    # Training and testing the Naive Bayes Classifier
+    classifierNB = GaussianNB()
+    classifierNB.fit(trainingFeatures, trainingDataLabels)
+    predictionsNB = classifierNB.predict(testFeatures)
+
+    # Evaluating the classifier's performance
+    accuracyNB = accuracy_score(testDataLabels, predictionsNB)
+    recallNB = recall_score(testDataLabels, predictions, average='macro', zero_division=False)
+    precisionNB = precision_score(testDataLabels, predictions, average='weighted', zero_division=False)
+
+    print(f"Metrics of supervised learning approach: Accuracy of {accuracyNB:.3f} | Sensitivity of {recallNB:.3f} | precision of {precisionNB:.3f}")
+    scores = cross_val_score(classifierNB, fullFeatures, fullDatasetLabels, cv=5)
+    print("Cross validation scores: {}".format(scores))
+    print("Average score: {:.2f}".format(scores.mean()))
+
+    print("Calculated the following F1 score:")
+    f1score = f1_score(testDataLabels, predictionsNB, average='micro')
+    print(f1score)
+
 
 readFilesFromDisk = None
-readFilesFromDiskInput = input("Read files from disk? If not, enter 'n'. Else just press Enter")
+readFilesFromDiskInput = ""  # input("Read files from disk? If not, enter 'n'. Else just press Enter")
 if "n" in readFilesFromDiskInput.lower():
     readFilesFromDisk = False
 else:
