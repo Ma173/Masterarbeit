@@ -2,6 +2,7 @@ import json
 import pickle
 import random
 import time
+from collections import Counter
 from datetime import datetime
 
 import gensim
@@ -1183,6 +1184,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     trainingDataTexts = {}
     trainingDataLabels = {}
+    fullDatasetLabels = {}
     testDataTexts = {}
     testDataLabels = {}
     trainingDataSentences = {}
@@ -1264,10 +1266,14 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     trainingDataChancelleryNames = []
     testDataChancelleryNames = []
     for chancellery, sentencesList in chancelleriesSentencesIfEmpathyLabels.items():
+        chancelleryEmpathyLabel = int(chancelleryEmpathyLabels[chancellery])
         if chancellery in trainChancelleries:
             trainingDataChancelleryNames.append(chancellery)
             trainingData.append(sentencesList)
-            trainingDataLabels.append(int(chancelleryEmpathyLabels[chancellery]))
+            if chancelleryEmpathyLabel < 3:
+                trainingDataLabels.append(1)
+            elif chancelleryEmpathyLabel == 3:
+                trainingDataLabels.append(2)
             chancelleriesTextsIfInTrainingData.append(chancelleriesTextsDict[chancellery])
             textVectors = []
             for lemmaGroup, lemmaCount in lemmaCountsPerChancellery[chancellery].items():
@@ -1285,7 +1291,10 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
         elif chancellery in testChancelleries:
             testDataChancelleryNames.append(chancellery)
             testData.append(sentencesList)
-            testDataLabels.append(int(chancelleryEmpathyLabels[chancellery]))
+            if chancelleryEmpathyLabel < 3:
+                testDataLabels.append(1)
+            elif chancelleryEmpathyLabel == 3:
+                testDataLabels.append(2)
             textVectors = []
             for lemmaGroup, lemmaCount in lemmaCountsPerChancellery[chancellery].items():
                 lemma, posTag = lemmaGroup
@@ -1317,7 +1326,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     trainingFeatures = np.column_stack(([minimumEmpathyDistancesTrainingData, averageEmpathyDistancesTrainingData]))
     testFeatures = np.column_stack(([minimumEmpathyDistancesTestData, averageEmpathyDistancesTestData]))
     fullFeatures = np.column_stack(([minimumEmpathyDistancesFullData, averageEmpathyDistancesFullData]))
-    print(f"\nFull features:\n{fullFeatures}")
 
     if datasetSplit:
         fullDatasetLabels = trainingDataLabels + testDataLabels
@@ -1329,7 +1337,6 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     ##########################
     # Unsupervised approach ##
     ##########################
-    print("The following are all empathy distances for the training & test data")
 
     averageEmpathyDistancesFullDataset = averageEmpathyDistancesTrainingData + averageEmpathyDistancesTestData
     minimumEmpathyDistancesFullDataset = minimumEmpathyDistancesTrainingData + minimumEmpathyDistancesTestData
@@ -1346,8 +1353,12 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     # np.column_stack((averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset))
 
+    numberOfClusters = 3
+
+    print(f"Number of clusters: {numberOfClusters}")
+
     # Setting the number of clusters
-    kmeans = KMeans(n_clusters=2)
+    kmeans = KMeans(n_clusters=numberOfClusters)
 
     # Fitting the algorithm
     kmeans.fit(featuresArray)
@@ -1355,30 +1366,91 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
     # Predicting the clusters
     predictedClusters = kmeans.predict(featuresArray)
 
+    ############
+    #  Purity  #
+    ############
+
+    clusterCount = {(0, 1): 0,
+                    (0, 2): 0,
+                    (1, 1): 0,
+                    (1, 2): 0,
+                    (2, 1): 0,
+                    (2, 2): 0}
+
+    for i, clusterValue in enumerate(predictedClusters):
+        documentLabel = fullDatasetLabels[i]
+        clusterValueDocumentLabelGroup = (clusterValue, documentLabel)
+        clusterCount[clusterValueDocumentLabelGroup] += 1
+
+    print(f"Cluster count: {clusterCount}")
+
+    clusterCountsFirstCluster = [(key, value) for key, value in clusterCount.items() if key[0] == 0]
+    clusterCountsSecondCluster = [(key, value) for key, value in clusterCount.items() if key[0] == 1]
+    clusterCountsThirdCluster = [(key, value) for key, value in clusterCount.items() if key[0] == 2]
+    firstClusterMajorityClass = max(clusterCountsFirstCluster, key=lambda x: x[1])[0][1]
+    secondClusterMajorityClass = max(clusterCountsSecondCluster, key=lambda x: x[1])[0][1]
+    thirdClusterMajorityClass = max(clusterCountsThirdCluster, key=lambda x: x[1])[0][1]
+
+    totalNumberOfDocumentsInAllClusters = len(predictedClusters)
+    clustersSumOfDocumentCountOfMajorityClass = clusterCount[(0, firstClusterMajorityClass)] + clusterCount[(1, secondClusterMajorityClass)] + clusterCount[
+        (2, thirdClusterMajorityClass)]
+
+    print(
+        f"The clusters have the following majority classes:\nCluster 0: Class {firstClusterMajorityClass}\nCluster 1: Class {secondClusterMajorityClass}\nCluster 2: Class {thirdClusterMajorityClass}")
+
+    print(f"Sum of all majority cluster counts: {clustersSumOfDocumentCountOfMajorityClass}")
+    purity = (clustersSumOfDocumentCountOfMajorityClass / totalNumberOfDocumentsInAllClusters)
+    print(f"Calculated a purity of {purity}")
+
+    ############
+    # Baseline #
+    ############
+
+    # Count the number of occurrences of each class in the training data
+    class_counts = {}
+    for label in trainingDataLabels:
+        if label not in class_counts:
+            class_counts[label] = 0
+        class_counts[label] += 1
+
+    # Determine the majority class
+    overallMajorityClass = max(class_counts, key=class_counts.get)
+    print(f"The majority class is: {overallMajorityClass}")
+
+    # Use the majority class as the prediction for each element in the test data
+    print(f"len(testFeatures): {len(testFeatures)}")
+
+    clusterPredictionsBaselineMatches = clusterCount[(0, overallMajorityClass)] + clusterCount[(1, overallMajorityClass)] + clusterCount[
+        (2, overallMajorityClass)]
+    clusterPredictionsBaselineAccordance = clusterPredictionsBaselineMatches / totalNumberOfDocumentsInAllClusters
+    print(
+        f"Recognized a match of {clusterPredictionsBaselineMatches} predictions with the baseline (majority class). This makes a baseline ratio of {clusterPredictionsBaselineAccordance}")
+    print(f"Predicted clusters: {predictedClusters}")
+
+    #########################
+    # Cluster visualization #
+    #########################
+
+    # Note: The colors of all clusters are randomly distributed by the algorithm. Therefore, multiple executions of the program may lead to different results in cluster colors
+
     sizeEmpathyCluster0 = list(predictedClusters).count(0)  # sum(i for i in predictedClusters if i == 0)
     sizeEmpathyCluster1 = list(predictedClusters).count(1)
     sizeEmpathyCluster2 = list(predictedClusters).count(2)
 
-    # Ziel: blau rot grün
-    # cluster_colors = {0: 'blue', 1: 'green', 2: 'red'}  # grün blau rot
-    # cluster_colors = {0: 'blue', 1: 'red', 2: 'green'} # blau grün rot
-    # cluster_colors = {0: 'red', 1: 'green', 2: 'blue'} # grün rot blau
-    cluster_colors = {0: 'red', 1: 'blue', 2: 'green'}  # BLAU ROT GRÜN
-    # cluster_colors = {0: 'green', 1: 'red', 2: 'blue'}
-    # cluster_colors = {0: 'green', 1: 'blue', 2: 'red'}
-    print(f"Predicted clusters: {predictedClusters}")
-    print(f"These are the following empathy cluster sizes:\n")
-    print(f"1: {sizeEmpathyCluster0} ({cluster_colors[0]}) | 1: {sizeEmpathyCluster1} ({cluster_colors[1]}) | 0: {sizeEmpathyCluster2} ({cluster_colors[2]})")
+    cluster_colors = {0: 'red', 1: 'blue', 2: 'green'}
+
+    print(f"These are the empathy cluster sizes:")
+    print(f"1: {sizeEmpathyCluster0} ({cluster_colors[0]}) | 2: {sizeEmpathyCluster1} ({cluster_colors[1]}) | 0: {sizeEmpathyCluster2} ({cluster_colors[2]})")
 
     colors = [cluster_colors[c] for c in predictedClusters]
     plt.figure(figsize=(12, 6))
     plt.scatter(averageEmpathyDistancesFullDataset, minimumEmpathyDistancesFullDataset, c=colors)  # c=fullDatasetLabels, cmap='viridis')
-    legend_elements_old = [
+    legend_elements = [
         Line2D([0], [0], marker="o", color=cluster_colors[1], label="Cluster 0", markersize=10),
         Line2D([0], [0], marker="o", color=cluster_colors[0], label="Cluster 1", markersize=10),
         Line2D([0], [0], marker="o", color=cluster_colors[2], label="Cluster 2", markersize=10)
     ]
-    legend_elements = [
+    legend_elements_old = [
         Line2D([0], [0], marker="o", color="blue", label="Cluster 0", markersize=10),
         Line2D([0], [0], marker="o", color="red", label="Cluster 1", markersize=10)
     ]
@@ -1444,7 +1516,7 @@ def linguistic_experiments(chancelleryHTMLtexts, chancelleriesWordDensities, lem
 
     print("\n######## Part 2.2: Naive Bayes #########\n")
     # Training and testing the Naive Bayes Classifier
-    classifierNB = GaussianNB()
+    classifierNB = MultinomialNB()  # GaussianNB()
     classifierNB.fit(trainingFeatures, trainingDataLabels)
     predictionsNB = classifierNB.predict(testFeatures)
 
